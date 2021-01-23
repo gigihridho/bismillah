@@ -44,7 +44,7 @@ class LoginController extends Controller
         dd($user->hasRole('admin'));
         //menjalankan method aut ketika login
         if($user->hasRole('admin')){
-            return redirect()->route('dashboard'); //jika admin akan diarahkan ke dashboar
+            return redirect()->route('dashboard'); //jika admin akan diarahkan ke dashboard
         }
 
         return redirect()->route('home'); //jika user maka ke home
