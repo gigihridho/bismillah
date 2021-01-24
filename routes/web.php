@@ -20,20 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-// Route::middleware('role:admin')->get('/dashboard', function(){
-//     // return 'Dashboard';
-// })->name('dashboard');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/change-pass','ChangePassController@change')->name('change-pass');
 
-// Route::get('dashboard','Admin\DashboardController@index');
-//(['middleware' => ['role:admin']], function () {
-// Route::prefix('admin)
-//     ->namespace('admin')
-//     ->middleware('role:admin')
-//     ->group(function(){
-//     Route::get('/dashboard', 'Admin\DashboardController')->name('admin-dashboard');
-//     Route::resource('fasilitas', 'FacilityController');
-// });
 Route::prefix('admin')
     ->middleware('role:admin')
     ->group(function () {

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.dashboard')
 
 @section('title')
     Fasilitas
@@ -22,15 +22,15 @@
               <div class="card-body">
                 <a href="{{ route('fasilitas.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Fasilitas</a>
                 <div class="table-responsive">
-                  <table class="table table-striped table-bordered" id="table-1" cellspacing="0" width="100%">
+                  <table class="table table-striped table-bordered" id="table-1" cellspacing="0" style="width: 100%">
                     <thead>
                       <tr>
-                        <th class="text-center">
+                        <th class="text-center" style="width: 5%">
                           ID
                         </th>
-                        <th>Nama</th>
-                        <th>Icon</th>
-                        <th>Aksi</th>
+                        <th style="width: 20%">Nama</th>
+                        <th style="width: 30%">Icon</th>
+                        <th style="width: 30%">Aksi</th>
                       </tr>
                     </thead>
                   </table>
@@ -62,7 +62,6 @@
                 name: 'action',
                 orderable: false,
                 searchable: false,
-                width: '15%'
             },
         ]
     })

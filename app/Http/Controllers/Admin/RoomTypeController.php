@@ -59,11 +59,11 @@ class RoomTypeController extends Controller
         return view('pages.admin.tipe.edit');
     }
     public function show(){
-
+        //
     }
 
     public function update(){
-//
+        //
     }
     public function create(){
         return view('pages.admin.tipe.create');
@@ -72,7 +72,7 @@ class RoomTypeController extends Controller
     public function store(Request $request){
         $data = $request->all();
         $data['name'] = $request->name;
-        $data['photo'] = $request->file('photo')->store('assets/category','public');
+        $data['photo'] = $request->file('photo')->store('assets/facility','public');
         $data['price'] = $request->price;
         $data['size'] = $request->size;
 

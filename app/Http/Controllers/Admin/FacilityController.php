@@ -25,30 +25,19 @@ class FacilityController extends Controller
                 ->addColumn('action', function($data){
                     return '
                         <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
-                                    type="button" id="action' .  $data->id . '"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Aksi
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="action' .  $data->id . '">
-                                    <a class="dropdown-item" href="' . route('fasilitas.edit', $data->id) . '">
+                                    <a class="btn btn-info edit" href="' . route('fasilitas.edit', $data->id) . '" >
                                         Sunting
                                     </a>
-                                    <form action="' . route('fasilitas.destroy', $data->id) . '" method="POST">
+                                    <form action="' . route('fasilitas.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
                                         ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class="dropdown-item text-danger">
+                                        <button type="submit" class="btn btn-danger">
                                             Hapus
                                         </button>
                                     </form>
-                                </div>
-                            </div>
-                    </div>';
+                        </div>';
                 })
                 ->editColumn('icon', function($data){
-                    return $data->icon ? '<img src="'. Storage::url($data->icon).'" style="max-height: 30px;"/>' : '';
+                    return $data->icon ? '<img src="'. Storage::url($data->icon).'" style="max-height: 50px;"/>' : '';
                 })
                 ->rawColumns(['action','icon'])
                 ->make();
