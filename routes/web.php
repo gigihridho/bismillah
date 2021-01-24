@@ -21,6 +21,27 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::middleware('role:admin')->get('/dashboard', function(){
-    return 'Dashboard';
-})->name('dashboard');
+// Route::middleware('role:admin')->get('/dashboard', function(){
+//     // return 'Dashboard';
+// })->name('dashboard');
+
+// Route::get('dashboard','Admin\DashboardController@index');
+//(['middleware' => ['role:admin']], function () {
+// Route::prefix('admin)
+//     ->namespace('admin')
+//     ->middleware('role:admin')
+//     ->group(function(){
+//     Route::get('/dashboard', 'Admin\DashboardController')->name('admin-dashboard');
+//     Route::resource('fasilitas', 'FacilityController');
+// });
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('admin','Admin\DashboardController@index')->name('admin-dashboard');
+    Route::resource('fasilitas','Admin\FacilityController');
+    Route::resource('kamar','Admin\RoomController');
+    Route::resource('tipe','Admin\RoomTypeController');
+    Route::resource('user','Admin\UserController');
+    Route::resource('transaksi', 'Admin\TransaksiController');
+    Route::resource('testimoni', 'Admin\TestimoniController');
+    Route::resource('gallery', 'Admin\GalleryController');
+
+});
