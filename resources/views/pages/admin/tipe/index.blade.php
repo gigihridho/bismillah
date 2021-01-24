@@ -30,7 +30,7 @@
                         </th>
                         <th>Nama</th>
                         <th>Foto</th>
-                        <th>Hatga</th>
+                        <th>Harga</th>
                         <th>Luas</th>
                         <th>Aksi</th>
                       </tr>

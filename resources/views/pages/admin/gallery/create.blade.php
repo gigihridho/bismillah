@@ -23,18 +23,26 @@
                     <h4>Tambah Galeri Kamar</h4>
                   </div>
                   <div class="card-body">
+                    <form action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                     <div class="form-group">
-                      <label>Nama Kamar</label>
-                      <input type="text" class="form-control">
+                        <label>Kamar</label>
+                        <select name="room_id" class="form-control">
+                            @foreach ($rooms as $room)
+                                <option value="{{ $room->id }}">
+                                    {{ $room->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Foto Kamar</label>
-                        <input type="file" class="form-control">
+                        <input type="file" name="photos" class="form-control">
                       </div>
                     <div class="row">
                         <div class="col text-right">
                             <button type="submit" class="btn btn-success px-5">
-                                Save Now
+                                Simpan Data
                             </button>
                         </div>
                     </div>

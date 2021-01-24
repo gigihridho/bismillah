@@ -18,6 +18,15 @@
       <div class="section-body">
         <div class="row">
             <div class="col-12">
+                @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                @endif
                 <div class="card">
                   <div class="card-header">
                     <h4>Tambah Kamar</h4>
@@ -29,31 +38,32 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Nama Kamar</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="name" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Tipe Kamar</label>
-                                <select name="periode" id="" class="form-control">
-                                    <option value="#">Tipe Kamar 1</option>
-                                    <option value="#">Tipe Kamar 2</option>
-                                    <option value="#">Tipe Kamar 3</option>
+                                <select name="room_type_id" class="form-control">
+                                    @foreach ($room_types as $room_type)
+                                        <option value="{{ $room_type->id }}">
+                                            {{ $room_type->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
-
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Deskripsi Product</label>
+                                <label>Deskripsi Kamar</label>
                                 <textarea name="description" id="editor"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Status</label>
-                                <select name="available" id="available" class="form-control">
-                                    <option value="Terseidia">Tersedia</option>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="Tersedia">Tersedia</option>
                                     <option value="Tidak Terseidia">Tidak Tersedia</option>
                                 </select>
                             </div>

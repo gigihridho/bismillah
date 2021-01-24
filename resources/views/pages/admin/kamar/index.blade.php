@@ -28,41 +28,14 @@
                               <th class="text-center">
                                 #
                               </th>
-                              <th>Nama</th>
                               <th>Tipe Kamar</th>
-                              <th>Gambar</th>
-                              <th>Action</th>
+                              <th>Nama</th>
+                              <th>Deskripsi</th>
+                              <th>Status</th>
+                              <th>Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td class="text-center">
-                                1
-                              </td>
-                              <td>Kamar K1L2</td>
-                              <td>Tipe Kamar 1</td>
-                              <td>
-                                <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                              </td>
-                              <td>
-                                <a href="{{ route('kamar.create') }}" class="btn btn-info"><span i class="fas fa-edit"></span> Edit</a>
-                                <a href="{{ route('kamar.index') }}" class="btn btn-danger"><span i class="fas fa-trash-alt"></span> Hapus</a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="text-center">
-                                2
-                              </td>
-                              <td>Kamar K1L2</td>
-                              <td>Tipe Kamar 2</td>
-                              <td>
-                                <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                              </td>
-                              <td>
-                                <a href="{{ route('kamar.create') }}" class="btn btn-info"><span i class="fas fa-edit"></span> Edit</a>
-                                <a href="{{ route('kamar.index') }}" class="btn btn-danger"><span i class="fas fa-trash-alt"></span> Hapus</a>
-                              </td>
-                            </tr>
                           </tbody>
                     </table>
                   </div>
@@ -77,9 +50,44 @@
 @push('addon-script')
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('#table-1').DataTable({
-            "autoWidth": false
+    var datatable = $('#table-1').DataTable({
+        processing: true,
+        serverSide: true,
+        ordering: true,
+        ajax: {
+            url: '{!! url() -> current()!!}',
+        },
+        columns:[
+            {data: 'id', name: 'id'},
+            {data: 'room_type.name', name: 'room_type.name'},
+            {data: 'name', name: 'name'},
+            {data: 'description', name: 'description'},
+            {data: 'status', name: 'status'},
+            {
+                data: 'action',
+                name: 'action',
+                orderable: false,
+                searchable: false,
+            },
+        ]
+    });
+    $(".deleteHarga").click(function(){
+        swal({
+            title: "Apakah kamu yakin?",
+            text: "Jika kamu menghapusnya, maka data akan hilang!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            //proses hapus di sini bisa pakai ajax
+            swal("Harga berhasil dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Data tidak jadi dihapus");
+        }
         });
     });
 </script>
