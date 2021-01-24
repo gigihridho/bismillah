@@ -25,15 +25,15 @@ class FacilityController extends Controller
                 ->addColumn('action', function($data){
                     return '
                         <div class="btn-group">
-                                    <a class="btn btn-info edit" href="' . route('fasilitas.edit', $data->id) . '" >
-                                        Sunting
-                                    </a>
-                                    <form action="' . route('fasilitas.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
-                                        ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class="btn btn-danger">
-                                            Hapus
-                                        </button>
-                                    </form>
+                            <a class="btn btn-info edit" href="' . route('fasilitas.edit', $data->id) . '" >
+                                Sunting
+                            </a>
+                            <form action="' . route('fasilitas.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
+                                ' . method_field('delete') . csrf_field() . '
+                                <button type="submit" class="btn btn-danger">
+                                    Hapus
+                                </button>
+                            </form>
                         </div>';
                 })
                 ->editColumn('icon', function($data){

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Gallery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\GalleryRequest;
 use App\Room;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -56,7 +57,7 @@ class GalleryController extends Controller
         }
         return view('pages.admin.gallery.index');
     }
-    public function edit(Request $request){
+    public function edit(GalleryRequest $request){
         return view('pages.admin.gallery.edit');
     }
 
@@ -68,7 +69,7 @@ class GalleryController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function store(GalleryRequest $request){
         $data = $request->all();
 
         $data['photos'] = $request->file('photos')->store('assets/product','public');

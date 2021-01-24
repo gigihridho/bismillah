@@ -20,7 +20,7 @@
             <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Tambah Galeri Kamar</h4>
+                    <h4>Tambah Foto Kamar</h4>
                   </div>
                   <div class="card-body">
                     <form action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
