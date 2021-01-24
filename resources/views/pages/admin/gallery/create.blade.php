@@ -54,3 +54,6 @@
     </section>
   </div>
 @endsection
+@push('addon-script')
+<script src="{{ asset('asset/js/page/components-multiple-upload.js') }}"
+@endpush

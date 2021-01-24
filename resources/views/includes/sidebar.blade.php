@@ -31,10 +31,7 @@
           </li>
           <li class="menu-header">User
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-id-card"></i> <span>Profil</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-user"></i> <span>User</span></a>
+                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-user"></i> <span>User</span></a>
             </li>
           </li>
     </aside>

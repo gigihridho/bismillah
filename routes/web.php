@@ -40,6 +40,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('kamar','Admin\RoomController');
     Route::resource('tipe','Admin\RoomTypeController');
     Route::resource('user','Admin\UserController');
+    Route::get('user/{id}/detail','Admin\UserController@detail')->name('detail-user');
     Route::resource('transaksi', 'Admin\TransaksiController');
     Route::resource('testimoni', 'Admin\TestimoniController');
     Route::resource('gallery', 'Admin\GalleryController');
