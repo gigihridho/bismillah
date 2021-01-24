@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>403</title>
+  <title>404</title>
 
   <!-- General CSS Files -->
   @stack('prepend-style')
@@ -22,19 +22,21 @@
       <div class="container mt-5">
         <div class="page-error">
           <div class="page-inner">
-            <h1>403</h1>
+            <h1>404</h1>
             <div class="page-description">
-            	You do not have access to this page.
+              The page you were looking for could not be found.
             </div>
+            <div class="page-search">
               <div class="mt-3">
                 <a href="/">Back to Home</a>
               </div>
             </div>
           </div>
         </div>
+       @include('includes.footer')
+      </div>
     </section>
   </div>
-  @include('includes.footer')
 
   <!-- General JS Scripts -->
   @include('includes.script')
