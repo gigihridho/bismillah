@@ -43,4 +43,8 @@ class UserTransactionController extends Controller
         }
         return view('pages.user.user-transaksi.index');
     }
+
+    public function create(){
+        return view('pages.user.user-transaksi.create');
+    }
 }
