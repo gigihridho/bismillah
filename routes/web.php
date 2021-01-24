@@ -34,8 +34,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 //     Route::get('/dashboard', 'Admin\DashboardController')->name('admin-dashboard');
 //     Route::resource('fasilitas', 'FacilityController');
 // });
-Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('admin','Admin\DashboardController@index')->name('admin-dashboard');
+Route::prefix('admin')
+    ->middleware('role:admin')
+    ->group(function () {
+    Route::get('/','Admin\DashboardController@index')->name('admin-dashboard');
     Route::resource('fasilitas','Admin\FacilityController');
     Route::resource('kamar','Admin\RoomController');
     Route::resource('tipe','Admin\RoomTypeController');
