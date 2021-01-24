@@ -4,16 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>@yield('title')</title>
-
-    <!-- Scripts -->
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     @stack('prepend-style')
@@ -41,7 +32,7 @@
     {{-- Script --}}
     @stack('prepend-script')
     @include('includes.script')
-    @stack('addon-script')
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    @stack('addon-script')
 </body>
 </html>

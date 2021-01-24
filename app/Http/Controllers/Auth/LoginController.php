@@ -47,6 +47,6 @@ class LoginController extends Controller
             return redirect()->route('admin-dashboard');//jika admin akan diarahkan ke dashboard
         }
 
-        return redirect()->route('home'); //jika user maka ke home
+        return redirect()->route('dashboard'); //jika user maka ke home
     }
 }

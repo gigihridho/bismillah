@@ -19,9 +19,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::prefix('user')
+    ->middleware('role:user')
+    ->group(function(){
+        Route::get('/', 'DashboardController@index')->name('dashboard');
+        Route::get('/change-pass','ChangePassController@change')->name('change-pass');
+        Route::resource('user-transaksi', 'UserTransactionController');
+});
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/change-pass','ChangePassController@change')->name('change-pass');
 
 Route::prefix('admin')
     ->middleware('role:admin')
@@ -35,5 +40,6 @@ Route::prefix('admin')
     Route::resource('transaksi', 'Admin\TransaksiController');
     Route::resource('testimoni', 'Admin\TestimoniController');
     Route::resource('gallery', 'Admin\GalleryController');
+    Route::get('change-pass', 'ChangePassController@update')->name('change-pass');
 
 });

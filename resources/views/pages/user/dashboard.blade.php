@@ -1,7 +1,7 @@
-@extends('layouts.admin')
+@extends('layouts.dashboard')
 
 @section('title')
-    Admin Dashboard
+    User Dashboard
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
                 <h4>Total Penghuni</h4>
               </div>
               <div class="card-body">
-                {{Auth::user()->count()}}
+                {{ Auth::user()->count() }}
               </div>
             </div>
           </div>
