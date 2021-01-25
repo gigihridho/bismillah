@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','HomeController@index')->name('home');
+Route::get('/detail','DetailController@index')->name('detail-kost');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
 Route::prefix('user')
-    ->middleware('role:user')
+    ->middleware(['role:user', 'verified'])
     ->group(function(){
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('/change-pass','ChangePassController@change')->name('change-pass');
@@ -27,7 +29,7 @@ Route::prefix('user')
 
 
 Route::prefix('admin')
-    ->middleware('role:admin')
+    ->middleware(['role:admin', 'verified'])
     ->group(function () {
     Route::get('/','Admin\DashboardController@index')->name('admin-dashboard');
     Route::resource('fasilitas','Admin\FacilityController');

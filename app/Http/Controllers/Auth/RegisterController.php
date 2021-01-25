@@ -53,15 +53,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'photo_ktp' => ['required','file']
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
     protected function create(array $data)
     {
         $user = User::create([
@@ -69,7 +64,12 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
+        if(request()->hasFile('photo_ktp')){
+            $photo_ktp = request()->file('photo_ktp')->getClientOriginalName();
+            request()->file('photo_ktp')->storeAs('photo_ktp',$user->id.'/'.$photo_ktp,'');
+            $user->update(['photo_ktp' => $photo_ktp]);
+        }
+        $user->active = 0;
         $user->assignRole('user');
 
         return $user;

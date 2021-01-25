@@ -41,12 +41,10 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        // dd($user->hasRole('admin'));
-        //menjalankan method aut ketika login
         if($user->hasRole('admin')){
-            return redirect()->route('admin-dashboard');//jika admin akan diarahkan ke dashboard
+            return redirect()->route('admin-dashboard');
         }
 
-        return redirect()->route('dashboard'); //jika user maka ke home
+        return redirect()->route('home');
     }
 }

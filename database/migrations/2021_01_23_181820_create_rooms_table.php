@@ -17,7 +17,6 @@ class CreateRoomsTable extends Migration
             $table->increments('id');
             $table->integer('room_type_id')->unsigned()->index();
             $table->string('name');
-            $table->longText('description');
             $table->enum('status',['Tersedia','Tidak Tersedia']);
             $table->timestamps();
 

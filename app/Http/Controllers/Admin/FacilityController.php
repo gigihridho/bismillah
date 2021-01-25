@@ -26,7 +26,7 @@ class FacilityController extends Controller
                     return '
                         <div class="btn-group">
                             <a class="btn btn-info edit" href="' . route('fasilitas.edit', $data->id) . '" >
-                                Sunting
+                                Edit
                             </a>
                             <form action="' . route('fasilitas.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
                                 ' . method_field('delete') . csrf_field() . '
@@ -55,18 +55,17 @@ class FacilityController extends Controller
     }
 
     public function store(FacilityRequest $request){
-        $id = $request->id;
         $data = $request->all();
         $data['name'] = $request->name;
         $data['icon'] = $request->file('icon')->store('assets/icon','public');
         Facility::create($data);
-        return redirect()->route('fasilitas.index');
+        return redirect()->route('fasilitas.index')->with('success','data berhasil ditambah');
     }
 
     public function destroy($id){
         $data = Facility::findOrFail($id);
         $data->delete();
-        return redirect()->route('fasilitas.index');
+        return redirect()->route('fasilitas.index')->with('success','data berhasil dihapus');
     }
 }
 

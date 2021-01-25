@@ -17,6 +17,7 @@ class CreateRoomTypesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('photo');
+            $table->longText('description');
             $table->string('price');
             $table->string('size');
             $table->timestamps();
