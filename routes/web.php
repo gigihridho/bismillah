@@ -20,7 +20,7 @@ Route::get('/detail','DetailController@index')->name('detail-kost');
 Auth::routes(['verify' => true]);
 
 Route::prefix('user')
-    ->middleware(['role:user', 'verified'])
+    ->middleware(['auth','role:user', 'verified'])
     ->group(function(){
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('/change-pass','ChangePassController@change')->name('change-pass');
@@ -29,7 +29,7 @@ Route::prefix('user')
 
 
 Route::prefix('admin')
-    ->middleware(['role:admin', 'verified'])
+    ->middleware(['auth','role:admin', 'verified'])
     ->group(function () {
     Route::get('/','Admin\DashboardController@index')->name('admin-dashboard');
     Route::resource('fasilitas','Admin\FacilityController');
@@ -42,4 +42,7 @@ Route::prefix('admin')
     Route::resource('gallery', 'Admin\GalleryController');
     Route::get('change-pass', 'ChangePassController@update')->name('change-pass');
 
+});
+Route::get('/verify', function () {
+    return view('auth/verify');
 });
