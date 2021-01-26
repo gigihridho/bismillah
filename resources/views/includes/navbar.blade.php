@@ -14,8 +14,8 @@
                 <a href="{{ route('change-pass') }}" class="dropdown-item has-icon">
                     <i class="fas fa-lock"></i> Ubah Kata Sandi
                 </a>
-                <a href="/" class="dropdown-item has-icon">
-                    <i class="fas fa-envelope"></i> Ubah Email
+                <a href="{{ route('change-email') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-user"></i> Ubah Email
                 </a>
               @endif
 
@@ -24,7 +24,7 @@
                     <i class="fas fa-lock"></i> Ubah Kata Sandi
                 </a>
                 <a href="/" class="dropdown-item has-icon">
-                    <i class="fas fa-envelope"></i> Ubah Email
+                    <i class="fas fa-user"></i> Ubah Profil
                 </a>
               @endif
               <div class="dropdown-divider"></div>

@@ -13,7 +13,7 @@ class RoomController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth']);
     }
     public function index(){
         if(request()->ajax()){
@@ -25,7 +25,7 @@ class RoomController extends Controller
                     return '
                     <div class="btn-group">
                         <a class="btn btn-info edit" href="' . route('kamar.edit', $data->id) . '" >
-                            Sunting
+                            Edit
                         </a>
                         <form action="' . route('kamar.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
                             ' . method_field('delete') . csrf_field() . '
@@ -65,7 +65,6 @@ class RoomController extends Controller
         $data = $request->all();
 
         $data['name'] = $request->name;
-        $data['description'] = $request->description;
         $data['status'] = $request->status;
 
         Room::create($data);

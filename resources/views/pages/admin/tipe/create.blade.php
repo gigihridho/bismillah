@@ -19,6 +19,15 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                   <div class="card-header">
                     <h4>Tambah Tipe Kamar</h4>
                   </div>
@@ -36,6 +45,12 @@
                                 <div class="form-group">
                                     <label>Foto</label>
                                     <input type="file" name="photo" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Deskripsi</label>
+                                    <textarea name="description" id="editor" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">

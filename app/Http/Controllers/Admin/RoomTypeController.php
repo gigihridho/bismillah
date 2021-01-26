@@ -14,7 +14,7 @@ class RoomTypeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','verified']);
     }
     public function index(){
         if(request()->ajax()){
@@ -63,6 +63,7 @@ class RoomTypeController extends Controller
         $data = $request->all();
         $data['name'] = $request->name;
         $data['photo'] = $request->file('photo')->store('assets/facility','public');
+        $data['description'] = $request->description;
         $data['price'] = $request->price;
         $data['size'] = $request->size;
 

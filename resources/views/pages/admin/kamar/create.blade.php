@@ -55,12 +55,6 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Deskripsi Kamar</label>
-                                <textarea name="description" id="editor"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
                                 <label>Status</label>
                                 <select name="status" id="status" class="form-control">
                                     <option value="Tersedia">Tersedia</option>

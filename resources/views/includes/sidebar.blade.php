@@ -34,6 +34,9 @@
             <li class="nav-item">
                 <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-user"></i> <span>User</span></a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('reviews.index') }}" class="nav-link"><i class="fas fa-review"></i><span>Review User</span></a>
+            </li>
           </li>
 
           @endif

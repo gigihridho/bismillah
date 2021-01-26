@@ -38,9 +38,10 @@ Route::prefix('admin')
     Route::resource('user','Admin\UserController');
     Route::get('user/{id}/detail','Admin\UserController@detail')->name('detail-user');
     Route::resource('transaksi', 'Admin\TransaksiController');
-    Route::resource('testimoni', 'Admin\TestimoniController');
+    Route::resource('reviews', 'Admin\ReviewsController');
     Route::resource('gallery', 'Admin\GalleryController');
     Route::get('change-pass', 'ChangePassController@update')->name('change-pass');
+    Route::get('change-email','DetailController@index');
 
 });
 Route::get('/verify', function () {

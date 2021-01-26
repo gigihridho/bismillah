@@ -30,7 +30,6 @@
                               </th>
                               <th>Tipe Kamar</th>
                               <th>Nama</th>
-                              <th>Deskripsi</th>
                               <th>Status</th>
                               <th>Aksi</th>
                             </tr>
@@ -58,10 +57,9 @@
             url: '{!! url() -> current()!!}',
         },
         columns:[
-            {data: 'id', name: 'id'},
+            {data: 'DT_RowIndex', name: 'id'},
             {data: 'room_type.name', name: 'room_type.name'},
             {data: 'name', name: 'name'},
-            {data: 'description', name: 'description'},
             {data: 'status', name: 'status'},
             {
                 data: 'action',

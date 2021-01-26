@@ -36,7 +36,7 @@
                 <h4>Total Kamar</h4>
               </div>
               <div class="card-body">
-                42
+                {{ DB::table('rooms')->where('status','Tersedia')->count() }}
               </div>
             </div>
           </div>

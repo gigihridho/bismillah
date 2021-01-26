@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','verified']);
     }
 
     public function index(){
@@ -23,7 +23,7 @@ class UserController extends Controller
                 ->addColumn('action', function($data){
                     return '
                     <div class="btn-group">
-                        <a class="btn btn-info edit" href="' . route('user.detail', $data->id) . '" >
+                        <a class="btn btn-info edit" href="' . route('dashboard', $data->id) . '" >
                             Edit
                         </a>
                         <form action="' . route('user.destroy', $data->id) . '" method="POST"  style="margin-left:10%">

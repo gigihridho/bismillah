@@ -54,7 +54,7 @@
             url: '{!! url()->current() !!}',
         },
         columns:[
-            {data: 'id', data: 'id'},
+            {data: 'DT_RowIndex', name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'icon', name: 'icon'},
             {

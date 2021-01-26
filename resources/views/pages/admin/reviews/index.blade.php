@@ -28,31 +28,11 @@
                           #
                         </th>
                         <th>Nama</th>
-                        <th>Testimoni</th>
+                        <th>Reviews</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="text-center">
-                          1
-                        </td>
-                        <td>Agung</td>
-                        <td>Kamarnya bagus</td>
-                        <td>
-                            <a href="{{ route('testimoni.index') }}" class="btn btn-danger"><span i class="fas fa-trash-alt"></span> Hapus</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          2
-                        </td>
-                        <td>Budi</td>
-                        <td>Kamarnya bagus</td>
-                        <td>
-                            <a href="{{ route('testimoni.index') }}" class="btn btn-danger"><span i class="fas fa-trash-alt"></span> Hapus</a>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -67,10 +47,44 @@
 @push('addon-script')
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('#table-1').DataTable({
-            "autoWidth": false
+    var datatable = $('#table-1').DataTable({
+        processing: true,
+        serverSide: true,
+        ordering: true,
+        ajax: {
+            url: '{!! url() -> current()!!}',
+        },
+        columns:[
+            {data: 'id', name: 'id'},
+            {data: 'user.name', name: 'user.name'},
+            {data: 'review', name: 'review'},
+            {
+                data: 'action',
+                name: 'action',
+                orderable: false,
+                searchable: false,
+            },
+        ]
+    });
+    $(".deleteHarga").click(function(){
+        swal({
+            title: "Apakah kamu yakin?",
+            text: "Jika kamu menghapusnya, maka data akan hilang!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            //proses hapus di sini bisa pakai ajax
+            swal("Harga berhasil dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Data tidak jadi dihapus");
+        }
         });
     });
 </script>
 @endpush
+

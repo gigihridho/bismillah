@@ -56,7 +56,7 @@
             url: '{!! url() -> current()!!}',
         },
         columns:[
-            {data: 'id', name: 'id'},
+            {data: 'DT_RowIndex', name: 'id'},
             {data: 'room.name', name: 'room.name'},
             {data: 'photos', name: 'photos'},
             {

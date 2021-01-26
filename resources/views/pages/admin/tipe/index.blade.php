@@ -30,6 +30,7 @@
                         </th>
                         <th>Nama</th>
                         <th>Foto</th>
+                        <th>Deskripsi</th>
                         <th>Harga</th>
                         <th>Luas</th>
                         <th>Aksi</th>
@@ -58,11 +59,12 @@
             url: '{!! url() -> current()!!}',
         },
         columns:[
-            {data: 'id', name: 'id'},
+            {data: 'DT_RowIndex', name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'photo', name: 'photo'},
+            {data: 'description', name: 'description'},
             {data: 'price', name: 'price'},
-            {data: 'size', name: 'size'},
+            {data: 'size', name: 'size'}
             {
                 data: 'action',
                 name: 'action',
@@ -71,24 +73,24 @@
             },
         ]
     });
-    $(".deleteHarga").click(function(){
-        swal({
-            title: "Apakah kamu yakin?",
-            text: "Jika kamu menghapusnya, maka data akan hilang!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-        if (willDelete) {
-            //proses hapus di sini bisa pakai ajax
-            swal("Harga berhasil dihapus", {
-            icon: "success",
-            });
-        } else {
-            swal("Data tidak jadi dihapus");
-        }
-        });
-    });
+    // $(".deleteHarga").click(function(){
+    //     swal({
+    //         title: "Apakah kamu yakin?",
+    //         text: "Jika kamu menghapusnya, maka data akan hilang!",
+    //         icon: "warning",
+    //         buttons: true,
+    //         dangerMode: true,
+    //     })
+    //     .then((willDelete) => {
+    //     if (willDelete) {
+    //         //proses hapus di sini bisa pakai ajax
+    //         swal("Harga berhasil dihapus", {
+    //         icon: "success",
+    //         });
+    //     } else {
+    //         swal("Data tidak jadi dihapus");
+    //     }
+    //     });
+    // });
 </script>
 @endpush
