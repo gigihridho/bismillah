@@ -8,6 +8,7 @@ use App\Room;
 use App\RoomType;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RoomController extends Controller
 {
@@ -57,7 +58,9 @@ class RoomController extends Controller
         $data['status'] = $request->status;
 
         Room::create($data);
-        return redirect()->route('kamar.index')->with('success','data berhasil ditambah');
+
+        Alert::success('SUCCESS','Data Tipe Kamar Berhasil Ditambah');
+        return redirect()->route('kamar.index');
     }
 
     public function edit($id){
@@ -81,6 +84,7 @@ class RoomController extends Controller
 
         $item->update($data);
 
+        Alert::success('SUCCESS','Data Tipe Kamar Berhasil Diupdate');
         return redirect()->route('kamar.index');
     }
 

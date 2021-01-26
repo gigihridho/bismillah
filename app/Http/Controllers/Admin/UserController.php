@@ -47,7 +47,8 @@ class UserController extends Controller
 
             return Datatables::of($query)
                 ->addIndexColumn()
-                ->make();
+                ->rawColumnns(['id'])
+                ->make(true);
         }
         return view('pages.admin.user.detail',[
             'item' => $item,

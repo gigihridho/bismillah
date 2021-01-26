@@ -34,7 +34,7 @@
     @include('includes.footer')
 
     <!-- Bootstrap core JavaScript -->
-
+    @include('sweetalert::alert')
     {{-- Script --}}
     @stack('prepend-script')
     @include('includes.script')

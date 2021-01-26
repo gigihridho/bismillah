@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\RoomTypeRequest;
 use App\Room;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RoomTypeController extends Controller
 {
@@ -53,9 +54,6 @@ class RoomTypeController extends Controller
             'item' => $item
         ]);
     }
-    // public function show(){
-    //     //
-    // }
 
     public function update(RoomTypeRequest $request, $id){
         $data = $request->all();
@@ -69,8 +67,8 @@ class RoomTypeController extends Controller
         $item = RoomType::findOrFail($id);
 
         $item->update($data);
-
-        return redirect()->route('tipe.index')->with('success','data berhasil diupdate');
+        Alert::success('SUCCESS','Data Tipe Kamar Berhasil Diupdate');
+        return redirect()->route('tipe.index');
     }
     public function create(){
         return view('pages.admin.tipe.create');
@@ -86,12 +84,13 @@ class RoomTypeController extends Controller
         $data['size'] = $request->size;
 
         RoomType::create($data);
-        return redirect()->route('tipe.index')->with('success','data berhasil ditambah');
+        Alert::success('SUCCESS','Data Tipe Kamar Berhasil Ditambah');
+        return redirect()->route('tipe.index');
     }
 
     public function destroy($id){
         $item = Room::findOrFail($id);
         $item->delete();
-        return redirect()->route('tipe.index')->with('success','data berhasil dihapus');
+        return redirect()->route('tipe.index');
     }
 }

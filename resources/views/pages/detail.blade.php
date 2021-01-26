@@ -83,13 +83,18 @@
                           </div>
                       </div>
                       <div class="col-lg-4" data-aos="zoom-in">
+                          @foreach ($data as $d)
+
+
                         <div class="card-body shadow-lg p-3 mb-5 bg-white rounde" style="background: grey;">
-                            <div class="price">Rp 600.000 / bulan</div>
+                            <div class="price">{{ $d->room_type->price }} / bulan</div>
                             <div class="form-group">
                                 <label>Pilih Kamar</label>
                                 <select name="room" id="room" class="form-control">
-                                    <option value="room">Kamar K1L1</option>
-                                    <option value="room">Kamar K1L2</option>
+                                    <option value="{{ $item->room }}">{{ $item->room->name }}</option>
+                                    @foreach ($rooms as $room)
+                                        <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
@@ -111,6 +116,7 @@
                                 Pesan Kamar
                               </a>
                         </div>
+                        @endforeach
                       </div>
                       </div>
                     </div>
@@ -195,15 +201,15 @@
             },
             {
               id: 2,
-              url: "/images/products-details-2.jpg",
+              url: "/seapalace/img/gallery/g2.png",
             },
             {
               id: 3,
-              url: "/images/products-details-3.jpg",
+              url: "/seapalace/img/gallery/g3s.png",
             },
             {
               id: 4,
-              url: "/images/products-details-4.jpg",
+              url: "/seapalace/img/gallery/g4.png",
             },
           ],
         },

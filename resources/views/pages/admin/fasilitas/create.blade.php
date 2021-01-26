@@ -28,6 +28,11 @@
                             </ul>
                         </div>
                     @endif
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
                   <div class="card-header">
                     <h4>Tambah Fasilitas</h4>
                   </div>
@@ -50,7 +55,7 @@
                         </div>
                             <div class="row">
                                 <div class="col text-right">
-                                    <button type="submit" id="submit" class="btn btn-success px-5" onclick="simpanData()">
+                                    <button type="submit" id="submit" class="btn btn-success px-5 simpan">
                                         Simpan Data
                                     </button>
                                 </div>
@@ -63,50 +68,3 @@
     </section>
   </div>
 @endsection
-
-@push('addon-script')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-  <script>
-    function simpanData(id) {
-        swal({
-            'Good job!',
-            'You clicked the button!',
-            'success'
-            showCancelButton: !0,
-            reverseButtons: !0
-        }).then(function (e) {
-
-            if (e.value === true) {
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-                $.ajax({
-                    type: 'POST',
-                    url: '{!! url()->current() !!}',
-                    data: {_token: CSRF_TOKEN},
-                    dataType: 'JSON',
-                    success: function (results) {
-
-                        if (results.success === true) {
-                            swal("Done!", results.message, "success");
-                        } else {
-                            swal("Error!", results.message, "error");
-                        }
-                    }
-                });
-
-            } else {
-                e.dismiss;
-            }
-
-        }, function (dismiss) {
-            return false;
-        })
-    }
-
-    Swal.fire(
-
-)
-  </script>
-
-@endpush

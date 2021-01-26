@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\FacilityRequest;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FacilityController extends Controller
 {
@@ -45,16 +45,27 @@ class FacilityController extends Controller
         }
         return view('pages.admin.fasilitas.index');
     }
+
+    public function create(){
+        return view('pages.admin.fasilitas.create');
+    }
+
+    public function store(FacilityRequest $request){
+        $data = $request->all();
+
+        $data['slug'] = $request->name;
+        $data['icon'] = $request->file('icon')->store('assets/icon','public');
+        Facility::create($data);
+        Alert::success('SUCCESS','Data Fasilitas Berhasil Ditambah');
+        return redirect()->route('fasilitas.index');
+    }
+
     public function edit($id){
         $item = Facility::findOrFail($id);
 
         return view('pages.admin.fasilitas.edit',[
             'item' => $item
         ]);
-    }
-
-    public function create(){
-        return view('pages.admin.fasilitas.create');
     }
 
     public function update(FacilityRequest $request, $id){
@@ -66,19 +77,12 @@ class FacilityController extends Controller
         $item = Facility::findOrFail($id);
 
         $item->update($data);
-
+        Alert::success('SUCCESS','Data Fasilitas Berhasil Diupdate');
         return redirect()->route('fasilitas.index');
 
     }
 
-    public function store(FacilityRequest $request){
-        $data = $request->all();
 
-        $data['slug'] = $request->name;
-        $data['icon'] = $request->file('icon')->store('assets/icon','public');
-        Facility::create($data);
-        return redirect()->route('fasilitas.index')->with('success','data berhasil ditambah');
-    }
 
     public function destroy($id){
         $item = Facility::findOrFail($id);

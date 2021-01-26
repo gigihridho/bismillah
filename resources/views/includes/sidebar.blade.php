@@ -43,15 +43,11 @@
 
           @if(auth()->user()->hasRole('user'))
           <li class="menu-header">Dashboard</li>
-            <li class="nav-item active">
-                <a href="{{ route('admin-dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-            </li>
-          <li class="menu-header">User</li>
             <li class="nav-item">
                 <a href="{{ route('user-transaksi.index') }}" class="nav-link"><i class="fas fa-money-bill"></i> <span>Transaksi</span></a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('tipe.index') }}" class="nav-link"><i class="fas fa-hamburger"></i> <span>Tipe Kamar</span></a>
+                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-hamburger"></i> <span>Tipe Kamar</span></a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('kamar.index') }}" class="nav-link"><i class="fas fa-bed"></i> <span>Kamar</span></a>

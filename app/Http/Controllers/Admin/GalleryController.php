@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\GalleryRequest;
 use App\Room;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GalleryController extends Controller
 {
@@ -43,9 +44,6 @@ class GalleryController extends Controller
         }
         return view('pages.admin.gallery.index');
     }
-    public function edit(GalleryRequest $request){
-        return view('pages.admin.gallery.edit');
-    }
 
     public function create(){
         $rooms = Room::all();
@@ -61,6 +59,7 @@ class GalleryController extends Controller
         $data['photos'] = $request->file('photos')->store('assets/product','public');
 
         Gallery::create($data);
+        Alert::success('SUCCESS','Data Galleri Berhasil Ditambah');
         return redirect()->route('gallery.index');
     }
 

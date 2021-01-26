@@ -25,6 +25,7 @@ Route::prefix('user')
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('/change-pass','ChangePassController@change')->name('change-pass');
         Route::resource('user-transaksi', 'UserTransactionController');
+        Route::resource('review', 'UserReviewController');
 });
 
 
@@ -40,8 +41,9 @@ Route::prefix('admin')
     Route::resource('transaksi', 'Admin\TransaksiController');
     Route::resource('reviews', 'Admin\ReviewsController');
     Route::resource('gallery', 'Admin\GalleryController');
-    Route::get('change-pass', 'ChangePassController@update')->name('change-pass');
-    Route::get('change-email','DetailController@index')->name('change-email');
+    Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
+    Route::patch('change-pass','Admin\ChangePasswordController@update')->name('change-pass-update');
+    Route::get('change-profil','Controller@index')->name('change-email');
 
 });
 Route::get('/verify', function () {
