@@ -20,6 +20,7 @@ class CreateRoomTypesTable extends Migration
             $table->longText('description');
             $table->string('price');
             $table->string('size');
+            $table->string('slug');
             $table->timestamps();
         });
     }

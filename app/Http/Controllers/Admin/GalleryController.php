@@ -27,9 +27,6 @@ class GalleryController extends Controller
                 ->addColumn('action', function($data){
                     return '
                     <div class="btn-group">
-                        <a class="btn btn-info edit" href="' . route('kamar.edit', $data->id) . '" >
-                            Edit
-                        </a>
                         <form action="' . route('kamar.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-danger">
@@ -68,8 +65,8 @@ class GalleryController extends Controller
     }
 
     public function destroy($id){
-        $data = Gallery::findOrFail($id);
-        $data->delete();
+        $item = Gallery::findOrFail($id);
+        $item->delete();
 
         return redirect()->route('gallery.index');
     }

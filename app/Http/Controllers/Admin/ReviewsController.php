@@ -9,6 +9,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ReviewsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     public function index(){
         if(request()->ajax()){
             $query = Review::with('user');

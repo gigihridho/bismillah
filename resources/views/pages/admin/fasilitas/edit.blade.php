@@ -32,13 +32,16 @@
                     <h4>Edit Fasilitas</h4>
                   </div>
                   <div class="card-body">
+                    <form action="{{ route('fasilitas.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                        @method("PUT")
+                        @csrf
                     <div class="form-group">
                       <label>Nama Fasilitas</label>
-                      <input type="text" class="form-control">
+                      <input type="text" name="name" value="{{ $item->name }}" class="form-control">
                     </div>
                     <div class="form-group">
                       <label>Icon</label>
-                      <input type="file" class="form-control">
+                      <input type="file" name="icon" {{ $item->icon }} class="form-control">
                     </div>
                     <div class="row">
                         <div class="col text-right">

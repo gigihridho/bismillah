@@ -65,6 +65,7 @@
             {data: 'photo_ktp', name: 'photo_ktp'},
             {data: 'address', name: 'address'},
             {data: 'profession', name: 'address'},
+            {data: 'user.user_id', name: 'user.user_id'},
             {
                 data: 'action',
                 name: 'action',

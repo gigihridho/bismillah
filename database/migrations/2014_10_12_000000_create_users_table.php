@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('photo_ktp')->nullable();
             $table->string('address')->nullable();
             $table->string('profession')->nullable();
-            $table->boolean('active')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

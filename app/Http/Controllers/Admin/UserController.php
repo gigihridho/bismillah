@@ -20,13 +20,13 @@ class UserController extends Controller
 
             return Datatables::of($query)
                 ->addIndexColumn()
-                ->addColumn('action', function($data){
+                ->addColumn('action', function($item){
                     return '
                     <div class="btn-group">
-                        <a class="btn btn-info edit" href="' . route('dashboard', $data->id) . '" >
-                            Edit
+                        <a class="btn btn-info edit" href="' . route('detail-user', $item->id) . '" >
+                            Detail
                         </a>
-                        <form action="' . route('user.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
+                        <form action="' . route('user.destroy', $item->id) . '" method="POST"  style="margin-left:10%">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-danger">
                                 Hapus
@@ -41,7 +41,7 @@ class UserController extends Controller
     }
 
     public function detail($id){
-        $data = User::findOrFail($id);
+        $item = User::findOrFail($id);
         if(request()->ajax()){
             $query = User::query($id);
 
@@ -50,13 +50,13 @@ class UserController extends Controller
                 ->make();
         }
         return view('pages.admin.user.detail',[
-            'data' => $data
+            'item' => $item,
         ]);
     }
 
     public function destroy($id){
-        $data = User::findOrFail($id);
-        $data->delete();
+        $item = User::findOrFail($id);
+        $item->delete();
 
         return redirect()->route('user.index');
     }

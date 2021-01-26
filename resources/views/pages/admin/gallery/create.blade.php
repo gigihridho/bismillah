@@ -35,20 +35,26 @@
                   <div class="card-body">
                     <form action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                    <div class="form-group">
-                        <label>Kamar</label>
-                        <select name="room_id" class="form-control">
-                            @foreach ($rooms as $room)
-                                <option value="{{ $room->id }}">
-                                    {{ $room->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <div class="row">
+                        <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Kamar</label>
+                            <select name="room_id" class="form-control">
+                                @foreach ($rooms as $room)
+                                    <option value="{{ $room->id }}">
+                                        {{ $room->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        </div>
+                        <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Foto Kamar</label>
+                            <input type="file" name="photos" class="form-control">
+                        </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Foto Kamar</label>
-                        <input type="file" name="photos" class="form-control">
-                      </div>
                     <div class="row">
                         <div class="col text-right">
                             <button type="submit" class="btn btn-success px-5">
@@ -65,5 +71,4 @@
   </div>
 @endsection
 @push('addon-script')
-<script src="{{ asset('asset/js/page/components-multiple-upload.js') }}"
 @endpush

@@ -32,32 +32,40 @@
                     <h4>Tambah Tipe Kamar</h4>
                   </div>
                   <div class="card-body">
-                    <form action="{{ route('tipe.update',$data->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('tipe.update', $item->id ) }}" method="POST" enctype="multipart/form-data">
                     @method("PUT")
                     @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Tipe Kamar</label>
-                                    <input type="text" name="name" value="{{ $data->name }}" class="form-control">
+                                    <input type="text" name="name" value="{{ $item->name }}" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input type="file" name="photo" value="{{ $data->photo }}" class="form-control">
+                                    <input type="file" name="photo" value="{{ $item->photo }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Deskripsi</label>
+                                    <textarea name="description" id="editor" class="form-control">
+                                        {!! $item->description !!}
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Harga</label>
-                                    <input type="number" name="price" value="{{ $data->price }}" class="form-control">
+                                    <input type="number" name="price" value="{{ $item->price }}" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Luas</label>
-                                    <input type="text" name="size" value="{{ $data->size }}" class="form-control">
+                                    <input type="text" name="size" value="{{ $item->size }}" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -77,3 +85,9 @@
     </section>
   </div>
 @endsection
+@push('addon-script')
+    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'editor' );
+    </script>
+@endpush

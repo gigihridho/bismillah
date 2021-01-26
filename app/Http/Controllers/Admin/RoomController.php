@@ -21,13 +21,13 @@ class RoomController extends Controller
 
             return Datatables::of($query)
                 ->addIndexColumn()
-                ->addColumn('action', function($data){
+                ->addColumn('action', function($item){
                     return '
                     <div class="btn-group">
-                        <a class="btn btn-info edit" href="' . route('kamar.edit', $data->id) . '" >
+                        <a class="btn btn-info edit" href="' . route('kamar.edit', $item->id) . '" >
                             Edit
                         </a>
-                        <form action="' . route('kamar.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
+                        <form action="' . route('kamar.destroy', $item->id) . '" method="POST"  style="margin-left:10%">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-danger">
                                 Hapus
@@ -42,17 +42,6 @@ class RoomController extends Controller
         return view('pages.admin.kamar.index');
     }
 
-    public function edit(RoomRequest $request, $id){
-        $data = Room::findOrFail($id);
-
-        $room_types = RoomType::all();
-
-        return view('pages.admin.kamar.edit',[
-            'data' => $data,
-            'room_types' => $room_types
-        ]);
-    }
-
     public function create(){
         $room_types = RoomType::all();
 
@@ -64,16 +53,40 @@ class RoomController extends Controller
     public function store(RoomRequest $request){
         $data = $request->all();
 
-        $data['name'] = $request->name;
+        $data['slug'] = $request->name;
         $data['status'] = $request->status;
 
         Room::create($data);
+        return redirect()->route('kamar.index')->with('success','data berhasil ditambah');
+    }
+
+    public function edit($id){
+        $item = Room::findOrFail($id);
+
+        $room_types = RoomType::all();
+
+        return view('pages.admin.kamar.edit',[
+            'item' => $item,
+            'room_types' => $room_types
+        ]);
+    }
+
+    public function update(RoomRequest $request, $id){
+        $data = $request->all();
+
+        $data['slug'] = $request->name;
+        $data['status'] = $request->status;
+
+        $item = Room::findOrFail($id);
+
+        $item->update($data);
+
         return redirect()->route('kamar.index');
     }
 
     public function destroy($id){
-        $data = Room::findOrFail($id);
-        $data->delete();
+        $item = Room::findOrFail($id);
+        $item->delete();
 
         return redirect()->route('kamar.index');
     }

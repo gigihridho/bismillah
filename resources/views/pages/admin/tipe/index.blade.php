@@ -33,6 +33,7 @@
                         <th>Deskripsi</th>
                         <th>Harga</th>
                         <th>Luas</th>
+                        <th>Slug</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -64,7 +65,8 @@
             {data: 'photo', name: 'photo'},
             {data: 'description', name: 'description'},
             {data: 'price', name: 'price'},
-            {data: 'size', name: 'size'}
+            {data: 'slug', name: 'slug'},
+            {data: 'size', name: 'size'},
             {
                 data: 'action',
                 name: 'action',

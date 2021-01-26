@@ -30,6 +30,7 @@
                               </th>
                               <th>Tipe Kamar</th>
                               <th>Nama</th>
+                              <th>Slug</th>
                               <th>Status</th>
                               <th>Aksi</th>
                             </tr>
@@ -60,6 +61,7 @@
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'room_type.name', name: 'room_type.name'},
             {data: 'name', name: 'name'},
+            {data: 'slug', name: 'slug'},
             {data: 'status', name: 'status'},
             {
                 data: 'action',

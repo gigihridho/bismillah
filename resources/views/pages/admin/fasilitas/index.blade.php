@@ -28,9 +28,10 @@
                         <th class="text-center" style="width: 5%">
                           ID
                         </th>
-                        <th style="width: 20%">Nama</th>
-                        <th style="width: 30%">Icon</th>
-                        <th style="width: 30%">Aksi</th>
+                        <th>Nama</th>
+                        <th>Icon</th>
+                        <th>Slug</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                   </table>
@@ -57,6 +58,7 @@
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'icon', name: 'icon'},
+            {data: 'slug', name: 'slug'},
             {
                 data: 'action',
                 name: 'action',

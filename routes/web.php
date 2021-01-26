@@ -41,7 +41,7 @@ Route::prefix('admin')
     Route::resource('reviews', 'Admin\ReviewsController');
     Route::resource('gallery', 'Admin\GalleryController');
     Route::get('change-pass', 'ChangePassController@update')->name('change-pass');
-    Route::get('change-email','DetailController@index');
+    Route::get('change-email','DetailController@index')->name('change-email');
 
 });
 Route::get('/verify', function () {
