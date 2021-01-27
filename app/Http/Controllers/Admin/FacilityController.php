@@ -29,12 +29,14 @@ class FacilityController extends Controller
                             <a class="btn btn-info edit" href="' . route('fasilitas.edit', $item->id) . '" >
                                 Edit
                             </a>
-                            <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST"  style="margin-left:10%">
-                                ' . method_field('delete') . csrf_field() . '
-                                <button type="submit" class="btn btn-danger">
+
+                            <a href="#" data-id="{{ $item->idaAs}} class="btn btn-danger delete-confirm" style="margin-left:10%">
+                                <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST">
+                                    ' . method_field('delete') . csrf_field() . '
                                     Hapus
-                                </button>
-                            </form>
+                                </form>
+                            </a>
+
                         </div>';
                 })
                 ->editColumn('icon', function($item){
@@ -87,7 +89,9 @@ class FacilityController extends Controller
     public function destroy($id){
         $item = Facility::findOrFail($id);
         $item->delete();
-        return redirect()->route('fasilitas.index')->with('success','data berhasil dihapus');
+
+        Alert::success('SUCCESS', 'Data Fasilitas Berhasil Dihapus');
+        return redirect()->route('fasilitas.index');
     }
 }
 

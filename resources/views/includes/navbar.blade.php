@@ -11,8 +11,8 @@
             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
                 @if(auth()->user()->hasRole('admin'))
-                <a href="{{ route('change-email') }}" class="dropdown-item has-icon">
-                    <i class="fas fa-user"></i> Ubah Email
+                <a href="{{ route('change-profil') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-user"></i> Ubah Profil
                 </a>
                 <a href="{{ route('change-pass-edit') }}" class="dropdown-item has-icon">
                     <i class="fas fa-lock"></i> Ubah Kata Sandi

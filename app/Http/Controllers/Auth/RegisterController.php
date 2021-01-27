@@ -66,6 +66,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'slug' => $data['name'],
         ]);
         if(request()->hasFile('photo_ktp')){
             $photo_ktp = request()->file('photo_ktp')->getClientOriginalName();

@@ -46,6 +46,7 @@
 @endsection
 @push('addon-script')
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     var datatable = $('#table-1').DataTable({
         processing: true,
@@ -67,5 +68,28 @@
             },
         ]
     })
+</script>
+<script>
+    // $(document).ready(function(){
+        $(".delete-confirm").click(function(e) {
+            id = e.target.daataset.id
+            swal({
+                title: 'Are you sure?',
+                text: 'Once deleted, you will not be able to recover this imaginary file!',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                swal('Poof! Your imaginary file has been deleted!', {
+                    icon: 'success',
+                });
+                } else {
+                swal('Your imaginary file is safe!');
+                }
+            });
+        });
+
 </script>
 @endpush

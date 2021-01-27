@@ -43,7 +43,8 @@ Route::prefix('admin')
     Route::resource('gallery', 'Admin\GalleryController');
     Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
     Route::patch('change-pass','Admin\ChangePasswordController@update')->name('change-pass-update');
-    Route::get('change-profil','Controller@index')->name('change-email');
+    Route::get('change-profil','Admin\ChangeProfilController@profil')->name('change-profil');
+    Route::post('change-profil/{redirect}','Admin\ChangeProfilController@update')->name('change-profil-redirect');
 
 });
 Route::get('/verify', function () {
