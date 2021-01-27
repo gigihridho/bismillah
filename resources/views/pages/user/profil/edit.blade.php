@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    Profil
+    User Profil
 @endsection
 
 @section('content')
 <div class="main-content">
     <section class="section">
       <div class="section-header">
-        <h1>Table @yield('title')</h1>
+        <h1>@yield('title')</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
           <div class="breadcrumb-item">@yield('title')</div>
@@ -28,13 +28,13 @@
                         </div>
                     @endif
                   <div class="card-header">
-                    <h4>Profil Admin</h4>
+                    <h4>Profil User</h4>
                   </div>
                   <div class="card-body">
-                    <form action="{{ route('change-profil-redirect','change-profil') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('change-profil-user-redirect','change-profil-user') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Nama Admin</label>
+                            <label for="name">Nama User</label>
                             <input type="text" name="name" value="{{ auth()->user()->name }}" class="form-control">
                         </div>
                         <div class="form-group">
@@ -44,6 +44,18 @@
                         <div class="form-group">
                             <label for="no_hp">No Telepon</label>
                             <input type="text" name="no_hp" id="no_hp" value="{{ $user->no_hp }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Foto KTP</label>
+                            <input type="file" name="photo_ktp" value="{{ $user->photo_ktp }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Alamat</label>
+                            <input type="text" name="address" id="address" value="{{ $user->address }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="profession">Profesi</label>
+                            <input type="text" name="profession" id="profession" value="{{ $user->profession }}" class="form-control">
                         </div>
                         <div class="row">
                             <div class="col text-right">

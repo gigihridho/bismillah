@@ -1,22 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class ChangeProfilController extends Controller
+class ProfilUserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    public function profil(){
+    public function user(){
         $user = auth()->user();
 
-        return view('pages.admin.profil.edit',[
+        return view('pages.user.profil.edit',[
             'user' => $user
         ]);
     }
@@ -27,7 +21,6 @@ class ChangeProfilController extends Controller
         $item = auth()->user();
 
         $item->update($data);
-
         Alert::success('SUCCESS','Profil Berhasil diupdate');
         return redirect()->route($redirect);
     }

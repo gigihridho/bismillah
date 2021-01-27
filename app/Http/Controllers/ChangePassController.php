@@ -5,20 +5,20 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ChangePassRequest;
+use App\Http\Requests\ChangePasswordRequest;
 
 class ChangePassController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth']);
     }
 
     public function change(){
         return view('pages.change-pass.index');
     }
 
-    public function update(ChangePassRequest $request) {
+    public function update(ChangePasswordRequest $request) {
 
         $command = User::findOrFail(Auth::user()->id)->update(['password'=> bcrypt($request->new_password)]);
 

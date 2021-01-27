@@ -20,11 +20,11 @@
               @endif
 
               @if(auth()->user()->hasRole('user'))
+                <a href="{{ route('change-profil-user') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-user"></i> Ubah Profil
+                </a>
                 <a href="{{ route('user-transaksi.index') }}" class="dropdown-item has-icon">
                     <i class="fas fa-lock"></i> Ubah Kata Sandi
-                </a>
-                <a href="/" class="dropdown-item has-icon">
-                    <i class="fas fa-user"></i> Ubah Profil
                 </a>
               @endif
               <div class="dropdown-divider"></div>

@@ -26,6 +26,8 @@ Route::prefix('user')
         Route::get('/change-pass','ChangePassController@change')->name('change-pass');
         Route::resource('user-transaksi', 'UserTransactionController');
         Route::resource('review', 'UserReviewController');
+        Route::get('change-profil-user','ProfilUserController@user')->name('change-profil-user');
+        Route::post('change-profil-user/{redirect}','ProfilUserController@update')->name('change-profil-user-redirect');
 });
 
 
