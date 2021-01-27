@@ -15,7 +15,7 @@
 
     <!-- ================ start banner area ================= -->
     <section class="home-banner-area" id="home">
-      <div class="container h-100">
+      <div class="container h-40">
         <div class="home-banner">
           <div class="text-center">
             <h4>Rumah Kost yang bersih dan nyaman</h4>

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Review;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserReviewController extends Controller
 {
@@ -11,74 +15,39 @@ class UserReviewController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function review()
     {
-        return view('pages.user.review.index');
+        $review = Review::all();
+
+        return view('pages.user.review.edit',[
+            'review' => $review
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function update(Request $request, $redirect){
+        // $data = $request->all();
+        $user = Auth::user()->id;
+        $item = Review::where('user_id', $user)->first();
+        // dd($item);
+        if($item == null){
+            $item = new Review();
+            $item->review = $request->review;
+            $item->user_id = $user;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            $item->save();
+        }else {
+            if($item != null){
+                $item->review = $request->review;
+                $item->user_id = $user;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+                $item->save();
+            }
+        }
+        $data = [];
+        $data['user'] = User::where('id', '=' , auth()->user()->id)->first();
+        $data['review'] = Review::where('user_id', $user)->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        Alert::success('SUCCESS','Review Berhasil ditambah');
+        return redirect()->route($redirect);
     }
 }

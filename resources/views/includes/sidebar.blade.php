@@ -59,8 +59,8 @@
             <li class="{{ (request()->is('user/user-transaksi*')) ? 'active' : '' }}">
                 <a href="{{ route('user-transaksi.index') }}" class="nav-link"><i class="fas fa-money-bill"></i> <span>Transaksi</span></a>
             </li>
-            <li class="{{ (request()->is('user/user*')) ? 'active' : '' }}">
-                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-hamburger"></i> <span>Tipe Kamar</span></a>
+            <li class="{{ (request()->is('user/review*')) ? 'active' : '' }}">
+                <a href="{{ route('review-user') }}" class="nav-link"><i class="fas fa-comments"></i> <span>Review</span></a>
             </li>
           @endif
     </aside>

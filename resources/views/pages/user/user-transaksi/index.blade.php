@@ -32,7 +32,7 @@
                               <th>Kamar</th>
                               <th>Tanggal Pesan</th>
                               <th>Foto Pembayaran</th>
-                              <th>Aksi</th>
+                              <th>Status</th>
                             </tr>
                           </thead>
                           <tbody>
