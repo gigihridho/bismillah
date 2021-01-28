@@ -20,7 +20,6 @@
 
           <ul class="nav navbar-nav">
             <li class="nav-item active"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             @guest
             <li class="nav-item">
                 <a href="{{ route('register') }}" class="nav-link">Sign Up</a>
@@ -45,9 +44,9 @@
                     <div class="dropdown-divider"></div>
                     <a
                     href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="dropdown-item"
+                    class="dropdown-item text-danger"
                     >
-                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+                    <i class="fas fa-sign-out-alt text-danger"></i> <span>Logout</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -59,7 +58,7 @@
                     <div class="dropdown-divider"></div>
                     <a
                     href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="dropdown-item"
+                    class="dropdown-item text-danger"
                     >
                     <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
