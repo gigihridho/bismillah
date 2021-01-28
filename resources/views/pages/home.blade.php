@@ -15,7 +15,7 @@
 
     <!-- ================ start banner area ================= -->
     <section class="home-banner-area" id="home">
-      <div class="container h-40">
+      <div class="container">
         <div class="home-banner">
           <div class="text-center">
             <h4>Rumah Kost yang bersih dan nyaman</h4>
@@ -32,7 +32,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-5 mb-4 mb-lg-0">
-            <div class="row no-gutters welcome-images">
+            <div class="row welcome-images">
               <div class="col-sm-7">
                 <div class="card">
                   <img class="" src="{{ url('/seapalace/img/home/welcomeBanner1.png')}}" alt="Card image cap">
@@ -72,47 +72,24 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-explore">
-              <div class="card-explore__img">
-                <img class="card-img" src="{{ url('/seapalace/img/home/explore1.png')}}" alt="">
+            @php $incrementRoomType = 0 @endphp
+            @forelse ($room_types as $room_type)
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade-up">
+                <div class="card card-explore">
+                  <div class="card-explore__img">
+                    <img class="card-img" src="{{ Storage::url($room_type->photo) }}" alt="">
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-explore__price">Rp {{ number_format($room_type->price) }} <sub>/ Per Bulan</sub></h3>
+                    <h4 class="card-explore__title"><a href="#">{{ $room_type->name }}</a></h4>
+                    <p>{!! $room_type->description !!}</p>
+                    <a class="card-explore__link" href="{{ route('detail-kost') }}">Book Now <i class="ti-arrow-right"></i></a>
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <h3 class="card-explore__price">$150.00 <sub>/ Per Night</sub></h3>
-                <h4 class="card-explore__title"><a href="#">Classic Bed Room</a></h4>
-                <p>Beginning fourth dominion creeping god was. Beginning, which fly yieldi dry beast moved blessed </p>
-                <a class="card-explore__link" href="{{ route('detail-kost') }}">Book Now <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
+            @empty
 
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-explore">
-              <div class="card-explore__img">
-                <img class="card-img" src="{{ url('/seapalace/img/home/explore2.png')}}" alt="">
-              </div>
-              <div class="card-body">
-                <h3 class="card-explore__price">$170.00 <sub>/ Per Night</sub></h3>
-                <h4 class="card-explore__title"><a href="#">Premium Room</a></h4>
-                <p>Beginning fourth dominion creeping god was. Beginning, which fly yieldi dry beast moved blessed </p>
-                <a class="card-explore__link" href="#">Book Now <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-explore">
-              <div class="card-explore__img">
-                <img class="card-img" src="{{ url('/seapalace/img/home/explore3.png')}}" alt="">
-              </div>
-              <div class="card-body">
-                <h3 class="card-explore__price">$190.00 <sub>/ Per Night</sub></h3>
-                <h4 class="card-explore__title"><a href="#">Family Room</a></h4>
-                <p>Beginning fourth dominion creeping god was. Beginning, which fly yieldi dry beast moved blessed </p>
-                <a class="card-explore__link" href="#">Book Now <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
+            @endforelse
         </div>
       </div>
     </section>
@@ -130,6 +107,18 @@
                 <div class="testi-carousel__img">
                   <img src="{{ url('/seapalace/img/home/testimonial1.png') }}" alt="">
                 </div>
+                @php $incrementRoomType = 0 @endphp
+                @forelse ($reviews as $review)
+                <div class="media-body">
+                    <p>{!! $review->review !!}</p>
+                    <div class="testi-carousel__intro">
+                        <h3>{{ $review->user_id }}</h3>
+                        <p>CEO & Founder</p>
+                    </div>
+                </div>
+                @empty
+
+                @endforelse
                 <div class="media-body">
                   <p>Incidunt deleniti blanditiis quas aperiam recusandae consillo ullam quibusdam cum libero illo repell endus!</p>
                   <div class="testi-carousel__intro">

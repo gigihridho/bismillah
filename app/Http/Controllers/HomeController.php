@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Review;
+use App\RoomType;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,6 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        $users = User::all();
+        $room_types = RoomType::all();
+        $reviews = Review::all();
+        return view('pages.home',[
+            'users' => $users,
+            'room_types' => $room_types,
+            'reviews' => $reviews
+        ]);
     }
 }

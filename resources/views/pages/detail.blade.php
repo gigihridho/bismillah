@@ -23,7 +23,7 @@
                             <nav>
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="#">Home</a>
+                                        <a href="{{ route('home') }}">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active">
                                         Kost Details
@@ -174,13 +174,13 @@
 <script src="{{ url('/vue/vue.js') }}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script>
-    // $(document).ready(function() {
-    //     $("#datepicker").datepicker({
-    //     format: 'dd-mm-yyyy',
-    //     autoclose: true,
+    $(document).ready(function() {
+        $("#datepicker").datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true,
 
-    //     });
-    // });
+        });
+    });
 
     var gallery = new Vue({
         el: "#gallery",
