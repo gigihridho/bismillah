@@ -43,9 +43,6 @@ class UserReviewController extends Controller
                 $item->save();
             }
         }
-        $data = [];
-        $data['user'] = User::where('id', '=' , auth()->user()->id)->first();
-        $data['review'] = Review::where('user_id', $user)->first();
 
         Alert::success('SUCCESS','Review Berhasil ditambah');
         return redirect()->route($redirect);

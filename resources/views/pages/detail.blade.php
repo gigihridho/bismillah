@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Kost Griya Kenyo</title>
-  <link  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  {{-- <link  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet"> --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
   @include('includes.main.style')
   @include('includes.main.styledetail');
@@ -70,7 +72,7 @@
                       <div class="col-lg-8">
                         <h1>Tipe Kamar</h1>
                         <div class="owner">Kamar Standar</div>
-                        <div class="price">$1,500</div>
+                        <div class="price">Rp 700.000 / Per Bulan</div>
                         <div class="store-description">
                             <div class="container">
                               <div class="row">
@@ -83,88 +85,52 @@
                           </div>
                       </div>
                       <div class="col-lg-4" data-aos="zoom-in">
-                          @foreach ($data as $d)
 
-
-                        <div class="card-body shadow-lg p-3 mb-5 bg-white rounde" style="background: grey;">
-                            <div class="price">{{ $d->room_type->price }} / bulan</div>
+                        <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
                             <div class="form-group">
                                 <label>Pilih Kamar</label>
                                 <select name="room" id="room" class="form-control">
-                                    <option value="{{ $item->room }}">{{ $item->room->name }}</option>
-                                    @foreach ($rooms as $room)
-                                        <option value="{{ $room->id }}">{{ $room->name }}</option>
-                                    @endforeach
+                                    <option value="room">Kamar Standar</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Pilih tanggal masuk</label>
+                                <label for="date">Pilih tanggal masuk</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">
                                         <i class="fas fa-calendar"></i>
                                       </div>
                                     </div>
-                                    <input type="text" class="form-control datepicker" id="datepicker">
-                                  </div>
+                                    <input type="text" class="form-control" id="date" name="date" placeholder="MM/DD/YYYY">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="duration">Durasi Sewa</label>
-                                <input type="number" value="1">
+                                <select name="duration" id="duration" class="form-control">
+                                    <option value="1">1 Bulan</option>
+                                    <option value="6">6 Bulan</option>
+                                    <option value="12">1 Tahun</option>
+                                </select>
                             </div>
-                            <a href="/cart.html" class="btn btn-success px-4 text-white btn-block mb-3">
+                            <a href="{{ route('dashboard') }}" class="btn btn-success px-4 text-white btn-block mb-3" id="pesan">
                                 Pesan Kamar
                               </a>
                         </div>
-                        @endforeach
                       </div>
                       </div>
-                    </div>
-                  </div>
-                </section>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <h4>Fasilitas</h4>
+                              <div class="card-body">
 
-                <section class="store-review">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-12 col-lg-8 mt-3 mb-3">
-                        <h5>Customer Review (3)</h5>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12 col-lg-8">
-                        <ul class="list-unstyled">
-                          <li class="media">
-                            <img src="/images/pic_review-1.png" alt="" class="mr-3 rounded-circle">
-                             <div class="media-body">
-                               <h5 class="mt-2 mb-1">Noah</h5>
-                               I thought it was not good for living room. I really happy
-        to decided buy this product last week now feels like homey.
-                             </div>
-                          </li>
-                          <li class="media">
-                            <img src="/images/pic_review-1.png" alt="" class="mr-3 rounded-circle">
-                             <div class="media-body">
-                               <h5 class="mt-2 mb-1">Sutrisna</h5>
-                               Color is great with the minimalist concept. Even I thought it was
-        made by Cactus industry. I do really satisfied with this.
-                             </div>
-                          </li>
-                          <li class="media">
-                            <img src="/images/pic_review-1.png" alt="" class="mr-3 rounded-circle">
-                             <div class="media-body">
-                               <h5 class="mt-2 mb-1">Luna</h5>
-                               When I saw at first, it was really awesome to have with.
-        Just let me know if there is another upcoming product like this.
-                             </div>
-                          </li>
-                        </ul>
+                              </div>
+                          </div>
                       </div>
                     </div>
                   </div>
                 </section>
               </div>
         </div>
-
     </main>
 
 
@@ -173,19 +139,17 @@
 
 
 @include('includes.main.script')
-</body>
-</html>
 @push('addon-script')
-<script src="/vue/vue.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ url('/vue/vue.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#datepicker').datepicker({
-        format: 'dd-mm-yyyy',
-        autoclose: true,
+    // $(document).ready(function() {
+    //     $("#datepicker").datepicker({
+    //     format: 'dd-mm-yyyy',
+    //     autoclose: true,
 
-        });
-    });
+    //     });
+    // });
 
     var gallery = new Vue({
         el: "#gallery",
@@ -220,4 +184,16 @@
         },
       });
 </script>
+<script type="text/javascript">
+    $(function(){
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+    });
+</script>
 @endpush
+
+</body>
+</html>

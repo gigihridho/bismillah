@@ -68,9 +68,6 @@
     <section class="section-margin" id="kost">
       <div class="container">
         <div class="section-intro text-center pb-80px">
-          <div class="section-intro__style">
-            <img src="{{ url('/seapalace/img/home/bed-icon.png')}}" alt="">
-          </div>
           <h2>Tipe Kamar Rumah Kost Griya Kenyo</h2>
         </div>
 
@@ -125,10 +122,7 @@
      <section class="section-margin">
         <div class="container">
           <div class="section-intro text-center pb-20px">
-            <div class="section-intro__style">
-              <img src="{{ url('/seapalace/img/home/bed-icon.png') }}" alt="">
-            </div>
-            <h2>Our Guest Love Us</h2>
+            <h2>Review Penghuni</h2>
           </div>
           <div class="owl-carousel owl-theme testi-carousel">
             <div class="testi-carousel__item">
