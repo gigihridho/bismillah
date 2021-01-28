@@ -52,9 +52,13 @@
           </div>
           <div class="col-lg-7">
             <div class="welcome-content">
-              <h2 class="mb-4">Selamat Datang</h2>
-              <p>Beginning blessed second a creepeth. Darkness wherein fish years good air whose after seed appear midst evenin, appear void give third bearing divide one so blessed moved firmament gathered </p>
-              <p>Beginning blessed second a creepeth. Darkness wherein fish years good air whose after seed appear midst evenin, appear void give third bearing divide one so blessed</p>
+              <h2 class="mb-2">Selamat Datang</h2>
+              <h4 class="mb-2">Cara Pemesanan Kamar</h4>
+              <p>1. Daftar dan Masuk ke Website </p>
+              <p>2. Pilih Kamar yang diinginkan</p>
+              <p>3. Lakukan pembayaran sesuai dengan harga yang tertera</p>
+              <p>4. Masuk ke Dashboard dan upload bukti pembayaran</p>
+              <p>5. Admin akan mengkonfirmasi pembayaran</p>
               <a class="button button--active home-banner-btn mt-4" href="#kost">Learn More</a>
             </div>
           </div>
@@ -112,22 +116,16 @@
                 <div class="media-body">
                     <p>{!! $review->review !!}</p>
                     <div class="testi-carousel__intro">
-                        <h3>{{ $review->user_id }}</h3>
-                        <p>CEO & Founder</p>
+                        <h3>{{ $review->user->name }}</h3>
+                        <p>{{ $review->user->profession }}r</p>
                     </div>
                 </div>
-                @empty
 
-                @endforelse
-                <div class="media-body">
-                  <p>Incidunt deleniti blanditiis quas aperiam recusandae consillo ullam quibusdam cum libero illo repell endus!</p>
-                  <div class="testi-carousel__intro">
-                    <h3>Robert Mack</h3>
-                    <p>CEO & Founder</p>
-                  </div>
-                </div>
               </div>
             </div>
+            @empty
+
+            @endforelse
 
             <div class="testi-carousel__item">
                 <div class="media">
@@ -144,20 +142,6 @@
                 </div>
               </div>
 
-              <div class="testi-carousel__item">
-                <div class="media">
-                  <div class="testi-carousel__img">
-                    <img src="{{ url('/seapalace/img/home/testimonial1.png') }}" alt="">
-                  </div>
-                  <div class="media-body">
-                    <p>Incidunt deleniti blanditiis quas aperiam recusandae consillo ullam quibusdam cum libero illo repell endus!</p>
-                    <div class="testi-carousel__intro">
-                      <h3>Robert Mack</h3>
-                      <p>CEO & Founder</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
           </div>
         </div>
       </section>

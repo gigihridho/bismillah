@@ -28,7 +28,7 @@ class UserReviewController extends Controller
         // $data = $request->all();
         $user = Auth::user()->id;
         $item = Review::where('user_id', $user)->first();
-        // dd($item);
+
         if($item == null){
             $item = new Review();
             $item->review = $request->review;
