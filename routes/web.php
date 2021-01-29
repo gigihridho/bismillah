@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','HomeController@index')->name('home');
-Route::get('/detail','DetailController@index')->name('detail-kost');
+Route::get('/detail/{id}','DetailController@detail')->name('detail-kost');
 
 Auth::routes(['verify' => true]);
 

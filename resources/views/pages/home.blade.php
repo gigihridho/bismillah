@@ -52,8 +52,8 @@
           </div>
           <div class="col-lg-7">
             <div class="welcome-content">
-              <h2 class="mb-2">Selamat Datang</h2>
-              <h4 class="mb-2">Cara Pemesanan Kamar</h4>
+              <h2 class="mb-4">Selamat Datang</h2>
+              <h4>Cara Pemesanan Kamar</h4>
               <p>1. Daftar dan Masuk ke Website </p>
               <p>2. Pilih Kamar yang diinginkan</p>
               <p>3. Lakukan pembayaran sesuai dengan harga yang tertera</p>
@@ -87,7 +87,7 @@
                     <h3 class="card-explore__price">Rp {{ number_format($room_type->price) }} <sub>/ Per Bulan</sub></h3>
                     <h4 class="card-explore__title"><a href="#">{{ $room_type->name }}</a></h4>
                     <p>{!! $room_type->description !!}</p>
-                    <a class="card-explore__link" href="{{ route('detail-kost') }}">Book Now <i class="ti-arrow-right"></i></a>
+                    <a class="card-explore__link" href="{{ route('detail-kost',$room_type->slug) }}">Book Now <i class="ti-arrow-right"></i></a>
                   </div>
                 </div>
               </div>
@@ -120,7 +120,6 @@
                         <p>{{ $review->user->profession }}r</p>
                     </div>
                 </div>
-
               </div>
             </div>
             @empty

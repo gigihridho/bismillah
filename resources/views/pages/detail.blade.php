@@ -71,8 +71,8 @@
                     <div class="row">
                       <div class="col-lg-8">
                         <h1>Tipe Kamar</h1>
-                        <div class="owner">Kamar Standar</div>
-                        <div class="price">Rp 700.000 / Per Bulan</div>
+                        <div class="owner">{{ $room_types->name }}</div>
+                        <div class="price">Rp {{ $room_types->price }}/ Per Bulan</div>
                         <div class="store-description">
                             <div class="container">
                               <div class="row">
@@ -119,12 +119,27 @@
                       </div>
                       </div>
                       <div class="row">
-                          <div class="col-md-6">
-                              <h4>Fasilitas</h4>
-                              <div class="card-body">
+                        @php $incrementRoomType = 0 @endphp
+                        <div class="col-md-6">
+                            <h4>Fasilitas</h4>
+                            <p>Fasilitas yang tersedia pada kamar ini</p>
+                            @forelse ($facilities as $facility)
+                            <div class="card-body">
+                                <ul>
+                                    <p>{{ $facilitiy->name }}</p>
+                                </ul>
 
-                              </div>
-                          </div>
+                            </div>
+                            @empty
+
+                            @endforelse
+
+                        </div>
+
+
+
+
+
                       </div>
                     </div>
                   </div>

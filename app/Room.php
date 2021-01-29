@@ -17,10 +17,10 @@ class Room extends Model
     ];
 
     public function room_type(){
-        return $this->belongsTo(RoomType::class);
+        return $this->belongsTo(RoomType::class,'room_type_id','id');
     }
 
     public function transactions(){
-        return $this->hasOne(RoomBooking::class);
+        return $this->hasOne(RoomBooking::class,'id','transaction_id');
     }
 }

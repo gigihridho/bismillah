@@ -17,6 +17,6 @@ class Facility extends Model
     ];
 
     public function room_types(){
-        return $this->belongsToMany(RoomType::class,'facility_room_type')->withTimestamps();
+        return $this->belongsToMany(RoomType::class,'facility_id','id')->withTimestamps();
     }
 }
