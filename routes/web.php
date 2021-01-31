@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','HomeController@index')->name('home');
+
+
 Route::get('/detail/{id}','DetailController@detail')->name('detail-kost');
 
 Auth::routes(['verify' => true]);
@@ -41,7 +43,7 @@ Route::prefix('admin')
     Route::resource('tipe','Admin\RoomTypeController');
     Route::resource('user','Admin\UserController');
     Route::get('user/{id}/detail','Admin\UserController@detail')->name('detail-user');
-    Route::resource('transaksi', 'Admin\TransaksiController');
+    // Route::resource('transaksi', 'Admin\TransaksiController');
     Route::resource('reviews', 'Admin\ReviewsController');
     Route::resource('gallery', 'Admin\GalleryController');
     Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');

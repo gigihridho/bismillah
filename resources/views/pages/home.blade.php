@@ -33,19 +33,9 @@
         <div class="row align-items-center">
           <div class="col-lg-5 mb-4 mb-lg-0">
             <div class="row welcome-images">
-              <div class="col-sm-7">
+              <div class="col-sm-12">
                 <div class="card">
-                  <img class="" src="{{ url('/seapalace/img/home/welcomeBanner1.png')}}" alt="Card image cap">
-                </div>
-              </div>
-              <div class="col-sm-5">
-                <div class="card">
-                  <img class="" src="{{ url('/seapalace/img/home/welcomeBanner2.png')}}" alt="Card image cap">
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="card">
-                  <img class="" src="{{ url('/seapalace/img/home/welcomeBanner3.png')}}" alt="Card image cap">
+                  <img class="" src="{{ url('/seapalace/img/home/welcomeBanner1.png')}}" alt="Card image cap" style="border-radius: 20px">
                 </div>
               </div>
             </div>
@@ -54,8 +44,8 @@
             <div class="welcome-content">
               <h2 class="mb-4">Selamat Datang</h2>
               <h4>Cara Pemesanan Kamar</h4>
-              <p>1. Daftar dan Masuk ke Website </p>
-              <p>2. Pilih Kamar yang diinginkan</p>
+              <p>1. <a href="{{ route('register') }}">Daftar</a> dan <a href="{{ route('register') }}">Masuk</a> ke Website </p>
+              <p>2. Pilih Kamar, Tanggal Masuk, dan Durasi Sewa</p>
               <p>3. Lakukan pembayaran sesuai dengan harga yang tertera</p>
               <p>4. Masuk ke Dashboard dan upload bukti pembayaran</p>
               <p>5. Admin akan mengkonfirmasi pembayaran</p>
@@ -85,7 +75,7 @@
                   </div>
                   <div class="card-body">
                     <h3 class="card-explore__price">Rp {{ number_format($room_type->price) }} <sub>/ Per Bulan</sub></h3>
-                    <h4 class="card-explore__title"><a href="#">{{ $room_type->name }}</a></h4>
+                    <h4 class="card-explore__title">{{ $room_type->name }}</></h4>
                     <p>{!! $room_type->description !!}</p>
                     <a class="card-explore__link" href="{{ route('detail-kost',$room_type->slug) }}">Book Now <i class="ti-arrow-right"></i></a>
                   </div>
@@ -117,7 +107,7 @@
                     <p>{!! $review->review !!}</p>
                     <div class="testi-carousel__intro">
                         <h3>{{ $review->user->name }}</h3>
-                        <p>{{ $review->user->profession }}r</p>
+                        <p>{{ $review->user->profession }}</p>
                     </div>
                 </div>
               </div>
@@ -125,21 +115,6 @@
             @empty
 
             @endforelse
-
-            <div class="testi-carousel__item">
-                <div class="media">
-                  <div class="testi-carousel__img">
-                    <img src="{{ url('/seapalace/img/home/testimonial1.png') }}" alt="">
-                  </div>
-                  <div class="media-body">
-                    <p>Incidunt deleniti blanditiis quas aperiam recusandae consillo ullam quibusdam cum libero illo repell endus!</p>
-                    <div class="testi-carousel__intro">
-                      <h3>Robert Mack</h3>
-                      <p>CEO & Founder</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
           </div>
         </div>

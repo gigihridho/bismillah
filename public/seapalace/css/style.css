@@ -602,11 +602,11 @@ button {
 .welcome {
   padding-top: 40px; }
   .welcome-images .card {
-    border-radius: 0;
-    border: 0;
+    border-radius: 20px;
     margin: 0 4px 4px 0; }
     @media (max-width: 991px) {
       .welcome-images .card img {
+        border-radius: 20px;
         width: 100%; } }
   @media (min-width: 991px) {
     .welcome-content {
@@ -620,7 +620,7 @@ button {
   box-shadow: 0px 10px 30px 0px rgba(153, 153, 153, 0.2);
   transition: all .4s ease; }
   .card-explore .card-img {
-    border-radius: 0; }
+    border-radius: 20px; }
   .card-explore__img {
     width: 100%;
     position: relative; }

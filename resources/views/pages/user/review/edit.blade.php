@@ -41,7 +41,7 @@ Review
                             <div class="form-group">
                                 <label for="review">Review</label>
                                 <textarea name="review" id="editor" class="form-control">
-                                    {{ $review->review }}
+                                    {{ auth()->user()->review }}
                                 </textarea>
                             </div>
                             <div class="row">
