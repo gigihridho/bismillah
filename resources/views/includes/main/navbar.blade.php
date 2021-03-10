@@ -14,13 +14,12 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <div id="logo">
-                <a href="index.html"><img src="{{ url('/seapalace/img/Logo.png')}}" alt="" title="" style="max-width: 50%"  /></a>
+                <a href="{{ route('home') }}"><img src="{{ url('/seapalace/img/Logo.png')}}" alt="" title="" style="max-width: 50%"  /></a>
               </div>
           </div>
 
           <ul class="nav navbar-nav">
             <li class="nav-item active"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
             @guest
             <li class="nav-item">
                 <a href="{{ route('register') }}" class="nav-link">Sign Up</a>

@@ -65,8 +65,8 @@
             {data: 'photo', name: 'photo'},
             {data: 'description', name: 'description'},
             {data: 'price', name: 'price'},
-            {data: 'slug', name: 'slug'},
             {data: 'size', name: 'size'},
+            {data: 'slug', name: 'slug'},
             {
                 data: 'action',
                 name: 'action',

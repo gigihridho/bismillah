@@ -43,7 +43,7 @@ Route::prefix('admin')
     Route::resource('tipe','Admin\RoomTypeController');
     Route::resource('user','Admin\UserController');
     Route::get('user/{id}/detail','Admin\UserController@detail')->name('detail-user');
-    // Route::resource('transaksi', 'Admin\TransaksiController');
+    Route::resource('transaksi', 'Admin\TransactionsController');
     Route::resource('reviews', 'Admin\ReviewsController');
     Route::resource('gallery', 'Admin\GalleryController');
     Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');

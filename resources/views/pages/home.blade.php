@@ -20,7 +20,7 @@
           <div class="text-center">
             <h4>Rumah Kost yang bersih dan nyaman</h4>
             <h1>Rumah Kost Griya Kenyo</h1>
-            <a class="button home-banner-btn" href="#">Book Now</a>
+            <a class="button home-banner-btn" href="#">Silakan Memilih Kamar</a>
           </div>
         </div>
       </div>
@@ -49,7 +49,6 @@
               <p>3. Lakukan pembayaran sesuai dengan harga yang tertera</p>
               <p>4. Masuk ke Dashboard dan upload bukti pembayaran</p>
               <p>5. Admin akan mengkonfirmasi pembayaran</p>
-              <a class="button button--active home-banner-btn mt-4" href="#kost">Learn More</a>
             </div>
           </div>
         </div>

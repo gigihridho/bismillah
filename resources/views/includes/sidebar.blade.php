@@ -39,8 +39,8 @@
                 <a href="{{ route('gallery.index') }}" class="nav-link"><i class="fas fa-camera"></i> <span>Gallery</span></a>
             </li>
           <li class="menu-header">Transaksi
-            <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-money-bill"></i> <span>Transaksi</span></a>
+            <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
+                <a href="{{ route('transaksi.index') }}" class="nav-link"><i class="fas fa-money-bill"></i> <span>Transaksi</span></a>
             </li>
           </li>
           <li class="menu-header">User

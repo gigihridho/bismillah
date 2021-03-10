@@ -20,7 +20,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('user-transaksi.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Kamar</a>
+                    <a href="{{ route('user-transaksi.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Transaksi</a>
                   <div class="table-responsive">
                     <table class="table table-bordered" id="table-1">
                         <thead>
@@ -36,6 +36,22 @@
                             </tr>
                           </thead>
                           <tbody>
+                              <tr>
+                                  <td>1</td>
+                                  <td>Kamar Standar</td>
+                                  <td>Kamar K1L2</td>
+                                  <td>1 Februari 2020</td>
+                                  <td><img src="{{ url('/assets/img/bukti.jpg') }}" alt="" width="100px" height="100px"></td>
+                                  <td>Belum dikonfirmasi</td>
+                              </tr>
+                              {{-- <tr>
+                                <td>2</td>
+                                <td>Kamar Premium</td>
+                                <td>Kamar K2L1</td>
+                                <td>1 Maret 2021</td>
+                                <td><img src="{{ url('/assets/img/bukti.jpg') }}" alt="" width="100px" height="100px"></td>
+                                <td>Terkonfirmasi</td>
+                            </tr> --}}
                           </tbody>
                     </table>
                   </div>
@@ -49,7 +65,7 @@
 @endsection
 @push('addon-script')
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
-<script>
+{{-- <script>
     var datatable = $('#table-1').DataTable({
         processing: true,
         serverSide: true,
@@ -90,5 +106,5 @@
         }
         });
     });
-</script>
+</script> --}}
 @endpush

@@ -23,7 +23,7 @@
                 <a href="{{ route('change-profil-user') }}" class="dropdown-item has-icon">
                     <i class="fas fa-user"></i> Ubah Profil
                 </a>
-                <a href="{{ route('user-transaksi.index') }}" class="dropdown-item has-icon">
+                <a href="{{ route('change-pass') }}" class="dropdown-item has-icon">
                     <i class="fas fa-lock"></i> Ubah Kata Sandi
                 </a>
               @endif
