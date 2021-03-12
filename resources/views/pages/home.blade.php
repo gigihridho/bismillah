@@ -79,7 +79,7 @@
                     <a class="card-explore__link" href="{{ route('detail-kost',$room_type->slug) }}">Book Now <i class="ti-arrow-right"></i></a>
                   </div>
                 </div>
-              </div>
+            </div>
             @empty
 
             @endforelse

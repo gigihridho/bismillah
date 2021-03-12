@@ -11,7 +11,7 @@
         <h1>Table @yield('title')</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-          <div class="breadcrumb-item">Table @yield('title')</div>
+          <div class="breadcrumb-item">@yield('title')</div>
         </div>
       </div>
 

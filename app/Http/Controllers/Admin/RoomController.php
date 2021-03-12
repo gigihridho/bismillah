@@ -23,18 +23,11 @@ class RoomController extends Controller
             return Datatables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($item){
-                    return '
-                    <div class="btn-group">
-                        <a class="btn btn-info edit" href="' . route('kamar.edit', $item->id) . '" >
-                            Edit
-                        </a>
-                        <form action="' . route('kamar.destroy', $item->id) . '" method="POST"  style="margin-left:10%">
-                            ' . method_field('delete') . csrf_field() . '
-                            <button type="submit" class="btn btn-danger">
-                                Hapus
-                            </button>
-                        </form>
-                    </div>';
+
+                        $button = '<a href="'.route('kamar.edit', $item->id).'" data-toggle="tooltip"  data-id="'.$item->id.'" data-original-title="Edit" class="edit btn btn-info btn-sm edit-post"><i class="far fa-edit"></i> Edit</a>';
+                        $button .= '&nbsp;&nbsp;';
+                        $button .= '<button type="button" name="delete" id="'.$item->id.'" class="delete btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Hapus</button>';
+                        return $button;
                 })
                 ->rawColumns(['action'])
                 ->make();
@@ -59,7 +52,7 @@ class RoomController extends Controller
 
         Room::create($data);
 
-        Alert::success('SUCCESS','Data Tipe Kamar Berhasil Ditambah');
+        Alert::success('SUCCESS','Data Kamar Berhasil Ditambah');
         return redirect()->route('kamar.index');
     }
 
@@ -84,7 +77,7 @@ class RoomController extends Controller
 
         $item->update($data);
 
-        Alert::success('SUCCESS','Data Tipe Kamar Berhasil Diupdate');
+        Alert::success('SUCCESS','Data Kamar Berhasil Diupdate');
         return redirect()->route('kamar.index');
     }
 
@@ -95,3 +88,12 @@ class RoomController extends Controller
         return redirect()->route('kamar.index');
     }
 }
+// <a class="btn btn-info edit" href="' . route('kamar.edit', $item->id) . '" >
+//                             Edit
+//                         </a>
+//                         <form action="' . route('kamar.destroy', $item->id) . '" method="POST"  style="margin-left:10%">
+//                             ' . method_field('delete') . csrf_field() . '
+//                             <button type="submit" class="btn btn-danger" name="delete">
+//                                 Hapus
+//                             </button>
+//                         </form>
