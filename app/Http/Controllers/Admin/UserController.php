@@ -24,12 +24,12 @@ class UserController extends Controller
                     return '
                     <div class="btn-group">
                         <a class="btn btn-info edit" href="' . route('detail-user', $item->id) . '" >
-                            Detail
+                            <i class="far fa-eye"></i> Detail
                         </a>
-                        <form action="' . route('user.destroy', $item->id) . '" method="POST"  style="margin-left:10%">
+                        <form action="' . route('user.destroy', $item->id) . '" method="POST"  style="margin-left:10px">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-danger">
-                                Hapus
+                                <i class="far fa-trash-alt"></i> Hapus
                             </button>
                         </form>
                     </div>';

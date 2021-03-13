@@ -28,16 +28,16 @@ class GalleryController extends Controller
                 ->addColumn('action', function($data){
                     return '
                     <div class="btn-group">
-                        <form action="' . route('kamar.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
+                        <form action="' . route('kamar.destroy', $data->id) . '" method="POST"  style="margin-left:10px">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-danger">
-                                Hapus
+                            <i class="far fa-trash-alt"></i> Hapus
                             </button>
                         </form>
                     </div>';
                 })
                 ->editColumn('photos', function($data){
-                    return $data->photos ? '<img src="'. Storage::url($data->photos).'" style="max-height: 50px;"/>' : '';
+                    return $data->photos ? '<img src="'. Storage::url($data->photos).'" style="max-height: 70px;"/>' : '';
                 })
                 ->rawColumns(['action','photos'])
                 ->make();

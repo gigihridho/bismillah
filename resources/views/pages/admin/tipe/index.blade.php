@@ -30,7 +30,7 @@
                         </th>
                         <th>Nama</th>
                         <th>Foto</th>
-                        <th>Deskripsi</th>
+                        <th style="width: 30%">Deskripsi</th>
                         <th>Harga</th>
                         <th>Luas</th>
                         <th>Slug</th>

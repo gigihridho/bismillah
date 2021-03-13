@@ -28,12 +28,12 @@ class RoomTypeController extends Controller
                     return '
                     <div class="btn-group">
                         <a class="btn btn-info edit" href="' . route('tipe.edit', $item->id) . '" >
-                            Edit
+                            <i class="far fa-edit"></i> Edit
                         </a>
-                        <form action="' . route('tipe.destroy', $item->id) . '" method="POST"  style="margin-left:10%">
+                        <form action="' . route('tipe.destroy', $item->id) . '" method="POST" style="margin-left:5px">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-danger">
-                                Hapus
+                                <i class="far fa-trash-alt"></i> Hapus
                             </button>
                         </form>
                     </div>';

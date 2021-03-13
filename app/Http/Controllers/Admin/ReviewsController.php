@@ -22,10 +22,10 @@ class ReviewsController extends Controller
                 ->addColumn('action', function($data){
                     return '
                     <div class="btn-group">
-                        <form action="' . route('kamar.destroy', $data->id) . '" method="POST"  style="margin-left:10%">
+                        <form action="' . route('kamar.destroy', $data->id) . '" method="POST"  style="margin-left:10px">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-danger">
-                                Hapus
+                                <i class="far fa-trash-alt"></i> Hapus
                             </button>
                         </form>
                     </div>';

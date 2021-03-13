@@ -25,19 +25,17 @@ class FacilityController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($item){
                     return '
-                        <div class="btn-group">
-                            <a class="btn btn-info edit" href="' . route('fasilitas.edit', $item->id) . '" >
-                                Edit
-                            </a>
-
-                            <a href="#" data-id="{{ $item->idaAs}} class="btn btn-danger delete-confirm" style="margin-left:10%">
-                                <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST">
-                                    ' . method_field('delete') . csrf_field() . '
-                                    Hapus
-                                </form>
-                            </a>
-
-                        </div>';
+                    <div class="btn-group">
+                        <a class="btn btn-info edit" href="' . route('fasilitas.edit', $item->id) . '" >
+                            <i class="far fa-edit"></i> Edit
+                        </a>
+                        <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST"  style="margin-left:10px">
+                            ' . method_field('delete') . csrf_field() . '
+                            <button type="submit" class="btn btn-danger">
+                                <i class="far fa-trash-alt"></i> Hapus
+                            </button>
+                        </form>
+                    </div>';
                 })
                 ->editColumn('icon', function($item){
                     return $item->icon ? '<img src="'. Storage::url($item->icon).'" style="max-height: 50px;"/>' : '';
