@@ -20,7 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->string('photo_payment');
             $table->date('order_date');
             $table->integer('price');
-            $table->integer('duration');
+            $table->enum('duration',['1 Bulan','6 Bulan','1 Tahun']);
             $table->date('arrival_date');
             $table->date('departure_date')->nullable();
             $table->enum('status',['Konfirmasi','Belum Konfirmasi','Selesai']);

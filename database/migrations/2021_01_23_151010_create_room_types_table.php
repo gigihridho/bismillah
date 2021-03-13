@@ -21,7 +21,6 @@ class CreateRoomTypesTable extends Migration
             $table->string('price');
             $table->string('size');
             $table->string('slug');
-            $table->enum('status',['Tersedia','Tidak Tersedia']);
             $table->timestamps();
         });
     }
