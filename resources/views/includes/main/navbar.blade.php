@@ -40,7 +40,7 @@
                </a>
                <div class="dropdown-menu">
                  @if(auth()->user()->hasRole('user'))
-                 <a href="{{ route('dashboard') }}" class="dropdown-item"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
+                 <a href="{{ route('user-transaksi.index') }}" class="dropdown-item"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
                     <div class="dropdown-divider"></div>
                     <a
                     href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

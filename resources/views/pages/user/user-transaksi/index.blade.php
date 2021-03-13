@@ -20,7 +20,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('user-transaksi.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Transaksi</a>
+                    {{-- <a href="{{ route('user-transaksi.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Transaksi</a> --}}
                   <div class="table-responsive">
                     <table class="table table-bordered" id="table-1">
                         <thead>
@@ -32,6 +32,7 @@
                               <th>Kamar</th>
                               <th>Tanggal Pesan</th>
                               <th>Foto Pembayaran</th>
+                              <th>Detail</th>
                               <th>Status</th>
                             </tr>
                           </thead>
@@ -42,6 +43,7 @@
                                   <td>Kamar K1L2</td>
                                   <td>1 Februari 2020</td>
                                   <td><img src="{{ url('/assets/img/bukti.jpg') }}" alt="" width="100px" height="100px"></td>
+                                  <td><button class="btn btn-info"><i class="fas fa-eye"></i> Detail</button></td>
                                   <td>Belum dikonfirmasi</td>
                               </tr>
                               {{-- <tr>

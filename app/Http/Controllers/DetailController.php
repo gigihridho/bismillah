@@ -15,7 +15,6 @@ class DetailController extends Controller
         $room_type = RoomType::where('slug',$slug)->firstOrFail();
         $facilities = Facility::all();
         $rooms = Room::with('room_types','transactions')->where('room_type_id',$room_type->id);
-        // dd($room_type, $facilities,$room_type, $rooms);
         return view('pages.detail',[
             'room_types' => $room_types,
             'facilities' => $facilities,
