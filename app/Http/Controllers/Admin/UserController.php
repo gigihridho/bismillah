@@ -44,11 +44,8 @@ class UserController extends Controller
         $item = User::findOrFail($id);
         if(request()->ajax()){
             $query = User::query($id);
-
             return Datatables::of($query)
-                ->addIndexColumn()
-                ->rawColumnns(['id'])
-                ->make(true);
+                ->make();
         }
         return view('pages.admin.user.detail',[
             'item' => $item,

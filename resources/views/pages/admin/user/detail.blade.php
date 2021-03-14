@@ -21,7 +21,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-striped" id="table-1">
+                  <table class="table table-striped" table-bordered" id="table-1" cellspacing="0" style="width: 100%">
                     <thead>
                       <tr>
                         <th class="text-center">
@@ -63,9 +63,8 @@
             {data: 'email', name: 'email'},
             {data: 'no_hp', name: 'no_hp'},
             {data: 'photo_ktp', name: 'photo_ktp'},
+            {data: 'profession', name: 'profession'},
             {data: 'address', name: 'address'},
-            {data: 'profession', name: 'address'},
-            {data: 'user.user_id', name: 'user.user_id'},
             {
                 data: 'action',
                 name: 'action',

@@ -54,7 +54,7 @@
                  @endif
 
                  @if(auth()->user()->hasRole('admin'))
-                 <a href="{{ route('admin-dashboard') }}" class="dropdown-item"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
+                 <a href="{{ route('admin-dashboard') }}" class="dropdown-item"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
                     <div class="dropdown-divider"></div>
                     <a
                     href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
