@@ -18,7 +18,10 @@ Route::get('/','HomeController@index')->name('home');
 
 
 Route::get('/detail/{id}','DetailController@detail')->name('detail-kost');
+Route::post('/detail/','DetailController@add')->name('detail-add');
 
+
+Route::post('/detail-transaksi','DetailTransactionController@index')->name('detail-transaksi');
 Auth::routes(['verify' => true]);
 
 Route::prefix('user')
@@ -55,5 +58,4 @@ Route::prefix('admin')
 Route::get('/verify', function () {
     return view('auth/verify');
 });
-Route::get('detail-transaksi','DetailTransactionController@index')->name('detail-transaksi');
 

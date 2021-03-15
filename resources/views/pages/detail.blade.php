@@ -72,7 +72,7 @@
                       <div class="col-lg-8">
                         <h1>Tipe Kamar</h1>
                         <div class="owner">{{ $room_type->name }}</div>
-                        <div class="price">Rp {{ $room_type->price }} / Per Bulan</div>
+                        <div class="price" name="price">Rp {{ $room_type->price }} / Per Bulan</div>
                         <div class="store-description">
                             <div class="container">
                               <div class="row">
@@ -89,13 +89,14 @@
                       </div>
                       @endforelse
                       <div class="col-lg-4" data-aos="zoom-in">
-
+                      <form action="{{ route('detail-add') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
                             <div class="form-group">
                                 <label>Pilih Kamar</label>
-                                <select name="room" id="room" class="form-control">
+                                <select name="room_id" id="room_id" class="form-control">
                                     @foreach ($rooms as $room)
-                                        <option value={{ $room->name }}>{{ $room->name }}</option>
+                                        <option value={{ $room->id }}>{{ $room->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -104,30 +105,30 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     </div>
-                                    <input type="date" class="form-control" id="datepicker" name="datepicker" placeholder="DD/MM/YYYY">
+                                    <input type="date" class="form-control" id="datepicker" name="arrival_date" placeholder="DD/MM/YYYY">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="duration">Durasi Sewa</label>
                                 <select name="duration" id="duration" class="form-control">
-                                    <option value="1 Bulan">1 Bulan</option>
-                                    <option value="6 Bulan">6 Bulan</option>
-                                    <option value="1 Tahun">1 Tahun</option>
+                                    <option value="1">1 Bulan</option>
+                                    <option value="6">6 Bulan</option>
+                                    <option value="12">1 Tahun</option>
                                     {{-- @foreach ($transactions as $transaction)
                                         <option value="{{ $transaction->duration }}">{{ $transaction->$duration }}</option>
                                     @endforeach --}}
                                 </select>
                             </div>
                             @auth
-                                <a href="{{ route('detail-transaksi') }}" class="btn btn-success px-4 text-white btn-block mb-3">
-                                    Pesan Kamar
-                                </a>
+                                    <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
+                                        Pesan Kamar
+                                    </button>
                             @else
                                 <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
                                     Masuk Untuk Pesan
                                 </a>
                             @endauth
-
+                            </form>
                         </div>
                       </div>
                       </div>

@@ -28,4 +28,30 @@ class DetailController extends Controller
         ]);
     }
 
+    public function add(Request $request){
+        $request->validate([
+            'user_id' => 'required|exists:user,id',
+            'room_id' => 'required|exists:rooms,id',
+            'price' => 'required|number',
+            'duration' => 'required|integer',
+            'arrival_date' => 'required|date',
+            'status' => 'required'
+        ]);
+        dd($request)->all();
+        $transaction = Transaction::create([
+            'user_id' => $request->user_id,
+            'room_id' => $request->room_id,
+            'order_date' => $request->order_date,
+            'price' => $request->price,
+            'duration' => $request->duration,
+            'arrival_date' => $request->arrival_date,
+            'departure_date' => $request->departure_date,
+            'status' => $request->status
+        ]);
+        dd($transaction);
+        Transaction::with(['user','room'])->find($transaction->id);
+
+        return redirect()->route('home');
+    }
+
 }
