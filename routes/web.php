@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,46 +15,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-
-Route::get('/detail/{id}','DetailController@detail')->name('detail-kost');
+Route::get('/detail/{id}', 'DetailController@detail')->name('detail-kost');
 
 Auth::routes(['verify' => true]);
 
+Route::post('detail', 'DetailController@add')->name('detail-add');
 Route::prefix('user')
-    ->middleware(['auth','role:user', 'verified'])
-    ->group(function(){
+    ->middleware(['auth', 'role:user', 'verified'])
+    ->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
-        Route::get('/change-pass','ChangePassController@change')->name('change-pass');
+        Route::get('/change-pass', 'ChangePassController@change')->name('change-pass');
         Route::resource('user-transaksi', 'UserTransactionController');
         Route::get('review', 'UserReviewController@review')->name('review-user');
         Route::post('review/{redirect}', 'UserReviewController@update')->name('review-user-redirect');
-        Route::get('change-profil-user','ProfilUserController@user')->name('change-profil-user');
-        Route::post('change-profil-user/{redirect}','ProfilUserController@update')->name('change-profil-user-redirect');
-});
+        Route::get('change-profil-user', 'ProfilUserController@user')->name('change-profil-user');
+        Route::post('change-profil-user/{redirect}', 'ProfilUserController@update')->name('change-profil-user-redirect');
+    });
 
 
 Route::prefix('admin')
-    ->middleware(['auth','role:admin', 'verified'])
+    ->middleware(['auth', 'role:admin', 'verified'])
     ->group(function () {
-    Route::get('/','Admin\DashboardController@index')->name('admin-dashboard');
-    Route::resource('fasilitas','Admin\FacilityController');
-    Route::resource('kamar','Admin\RoomController');
-    Route::resource('tipe','Admin\RoomTypeController');
-    Route::resource('user','Admin\UserController');
-    Route::get('user/{id}/detail','Admin\UserController@detail')->name('detail-user');
-    Route::resource('transaksi', 'Admin\TransactionsController');
-    Route::resource('reviews', 'Admin\ReviewsController');
-    Route::resource('gallery', 'Admin\GalleryController');
-    Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
-    Route::patch('change-pass','Admin\ChangePasswordController@update')->name('change-pass-update');
-    Route::get('change-profil','Admin\ChangeProfilController@profil')->name('change-profil');
-    Route::post('change-profil/{redirect}','Admin\ChangeProfilController@update')->name('change-profil-redirect');
-
-});
+        Route::get('/', 'Admin\DashboardController@index')->name('admin-dashboard');
+        Route::resource('fasilitas', 'Admin\FacilityController');
+        Route::resource('kamar', 'Admin\RoomController');
+        Route::resource('tipe', 'Admin\RoomTypeController');
+        Route::resource('user', 'Admin\UserController');
+        Route::get('user/{id}/detail', 'Admin\UserController@detail')->name('detail-user');
+        Route::resource('transaksi', 'Admin\TransactionsController');
+        Route::resource('reviews', 'Admin\ReviewsController');
+        Route::resource('gallery', 'Admin\GalleryController');
+        Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
+        Route::patch('change-pass', 'Admin\ChangePasswordController@update')->name('change-pass-update');
+        Route::get('change-profil', 'Admin\ChangeProfilController@profil')->name('change-profil');
+        Route::post('change-profil/{redirect}', 'Admin\ChangeProfilController@update')->name('change-profil-redirect');
+    });
 Route::get('/verify', function () {
     return view('auth/verify');
 });
-Route::get('detail-transaksi','DetailTransactionController@index')->name('detail-transaksi');
-
+Route::get('detail-transaksi', 'DetailTransactionController@index')->name('detail-transaksi');
