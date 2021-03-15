@@ -1,12 +1,12 @@
 <script src="{{ url('/seapalace/vendors/jquery/jquery-3.2.1.min.js')}}"></script>
 <script src="{{ url('/seapalace/vendors/bootstrap/bootstrap.bundle.min.js')}}"></script>
 <script src="{{ url('/seapalace/vendors/magnefic-popup/jquery.magnific-popup.min.js')}}"></script>
-{{-- <script src="{{ url('/seapalace/vendors/owl-carousel/owl.carousel.min.js')}}"></script> --}}
+<script src="{{ url('/seapalace/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"></script>
 <script src="{{ url('/seapalace/vendors/easing.min.js')}}"></script>
-<script src="{{ url('/seapalace/superfish.min.js')}}"></script>
-<script src="{{ url('/seapalace/vendors/nice-select/jquery.nice-select.min.js')}}"></script>
+<script src="{{ url('/seapalace/vendors/superfish.min.js')}}"></script>
+{{-- <script src="{{ url('/seapalace/vendors/nice-select/jquery.nice-select.min.js')}}"></script> --}}
 <script src="{{ url('/seapalace/vendors/jquery.ajaxchimp.min.js')}}"></script>
 <script src="{{ url('/seapalace/vendors/mail-script.js')}}"></script>
 <script src="{{ url('/seapalace/js/main.js')}}"></script>

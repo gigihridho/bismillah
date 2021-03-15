@@ -23,11 +23,18 @@ class RoomController extends Controller
             return Datatables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($item){
-
-                        $button = '<a href="'.route('kamar.edit', $item->id).'" data-toggle="tooltip"  data-id="'.$item->id.'" data-original-title="Edit" class="edit btn btn-info btn-sm edit-post"><i class="far fa-edit"></i> Edit</a>';
-                        $button .= '&nbsp;&nbsp;';
-                        $button .= '<button type="button" name="delete" id="'.$item->id.'" class="delete btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Hapus</button>';
-                        return $button;
+                    return '
+                    <div class="btn-group">
+                        <a class="btn btn-info edit" href="' . route('kamar.edit', $item->id) . '" >
+                            <i class="far fa-edit"></i> Edit
+                        </a>
+                        <form action="' . route('kamar.destroy', $item->id) . '" method="POST" style="margin-left:5px">
+                            ' . method_field('delete') . csrf_field() . '
+                            <button type="submit" class="btn btn-danger">
+                                <i class="far fa-trash-alt"></i> Hapus
+                            </button>
+                        </form>
+                    </div>';
                 })
                 ->rawColumns(['action'])
                 ->make();

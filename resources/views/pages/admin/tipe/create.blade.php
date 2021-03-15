@@ -35,13 +35,13 @@
                     <form action="{{ route('tipe.store') }}" method="POST" enctype="multipart/form-data">
                      @csrf
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tipe Kamar</label>
                                     <input type="text" name="name" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Foto</label>
                                     <input type="file" name="photo" class="form-control">
@@ -53,16 +53,27 @@
                                     <textarea name="description" id="editor" class="form-control"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Harga</label>
                                     <input type="number" name="price" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Luas</label>
                                     <input type="text" name="size" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                <label class="d-block">Fasilitas</label>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" id="defaultCheck1">
+                                      <label class="form-check-label" for="defaultCheck1">
+                                        Checkbox
+                                      </label>
+                                      </div>
                                 </div>
                             </div>
                         </div>
