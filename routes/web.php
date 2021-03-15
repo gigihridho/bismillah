@@ -55,3 +55,5 @@ Route::prefix('admin')
 Route::get('/verify', function () {
     return view('auth/verify');
 });
+Route::get('detail-transaksi','DetailTransactionController@index')->name('detail-transaksi');
+

@@ -33,7 +33,7 @@
                                         <a href="{{ route('home') }}">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        Kost Details
+                                        Detail Transaksi
                                     </li>
                                 </ol>
                             </nav>
@@ -42,27 +42,9 @@
                 </div>
             </section>
             <section class="store-gallery mb-3" id="gallery">
-                <div class="container">
-                  <div class="row">
-                    @php $incrementRoomType = 0 @endphp
-                    @forelse ($room_types as $room_type)
-                    <div class="col-lg-8" data-aos="zoom-in">
-                      <transition name="slide-fade" mode="out-in">
-                        <img src="{{ Storage::url($room_type->photo) }}"
-                        {{-- :src="photos[activePhoto].url"
-                        :key="photos[activePhoto].id" --}}
-                        alt="" style="width: 70%"/>
-                      </transition>
-                    </div>
-                    @empty
-                      <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                        No Room Type Found
-                      </div>
-                      @endforelse
-                </div>
-              </section>
+            </section>
               <div class="store-details-container" data-aos="fade-up">
-                <section class="store-heading">
+                {{-- <section class="store-heading">
                   <div class="container">
                     <div class="row">
                       @php
@@ -113,13 +95,11 @@
                                     <option value="1 Bulan">1 Bulan</option>
                                     <option value="6 Bulan">6 Bulan</option>
                                     <option value="1 Tahun">1 Tahun</option>
-                                    {{-- @foreach ($transactions as $transaction)
-                                        <option value="{{ $transaction->duration }}">{{ $transaction->$duration }}</option>
-                                    @endforeach --}}
+                                    
                                 </select>
                             </div>
                             @auth
-                                <a href="{{ route('detail-transaksi') }}" class="btn btn-success px-4 text-white btn-block mb-3">
+                                <a href="{{ route('detail-transactions') }}" class="btn btn-success px-4 text-white btn-block mb-3" data-toggle="modal" data-target="#modal-konfirmasi">
                                     Pesan Kamar
                                 </a>
                             @else
@@ -154,7 +134,7 @@
                       </div>
                     </div>
                   </div>
-                </section>
+                </section> --}}
               </div>
         </div>
     </main>
