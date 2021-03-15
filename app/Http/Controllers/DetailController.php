@@ -31,11 +31,25 @@ class DetailController extends Controller
 
     public function add(Request $request)
     {
+        echo Auth::user()->id;
         $request->validate([
             'room' => 'required|exists:rooms,id',
             'arrival_date' => 'required|date',
             'duration' => 'required|integer'
         ]);
-        dd($request);
+        $departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
+        $data = [
+            'user_id' => Auth::user()->id,
+            'room_id' => $request->room,
+            'photo_payment' => 'aku.jpeg',
+            'order_date' => date('Y-m-d'),
+            'price' => '900000',
+            'arrival_date' => $request->arrival_date,
+            'departure_date' => $departure_date,
+            'duration' => $request->duration,
+            'status' => 'Belum Konfirmasi'
+        ];
+        DB::table('transactions')->insert($data);
+        return redirect()->route('home');
     }
 }
