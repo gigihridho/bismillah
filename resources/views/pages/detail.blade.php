@@ -6,8 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Kost Griya Kenyo</title>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <link  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
   @include('includes.main.style')
   @include('includes.main.styledetail');
@@ -43,7 +44,7 @@
                         {{-- :src="photos[activePhoto].url"
                         :key="photos[activePhoto].id" --}}
                         alt=""
-                        class="w-50 main-image"/>
+                        class="w-60 main-image"/>
                       </transition>
                     </div>
                     <div class="col-lg-2">
@@ -99,7 +100,9 @@
                             <div class="form-group">
                                 <label>Pilih Kamar</label>
                                 <select name="room" id="room" class="form-control">
-                                    <option value="room">Kamar Standar</option>
+                                    @foreach ($rooms as $room)
+                                        <option value={{ $rooms->name }}>{{ $rooms->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
@@ -114,11 +117,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="date">Pilih tanggal keluar</label>
+                                <div class="input-group">
+                                    <input id="datepicker" name="date" width="276" />
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="duration">Durasi Sewa</label>
                                 <select name="duration" id="duration" class="form-control">
-                                    <option value="1">1 Bulan</option>
-                                    <option value="6">6 Bulan</option>
-                                    <option value="12">1 Tahun</option>
+                                    @foreach ($transactions as $transaction)
+                                        <option value="{{ $transaction->duration }}">{{ $transaction->$duration }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <button type="button" class="btn btn-success px-4 text-white btn-block mb-3" data-toggle="modal" data-target="#modal-konfirmasi">
@@ -145,10 +154,6 @@
                             @endforelse --}}
 
                         </div>
-
-
-
-
 
                       </div>
                     </div>
@@ -199,13 +204,13 @@
 <script src="{{ url('/vue/vue.js') }}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $("#datepicker").datepicker({
-        format: 'dd-mm-yyyy',
-        autoclose: true,
+    // $(document).ready(function() {
+    //     $("#datepicker").datepicker({
+    //     format: 'dd-mm-yyyy',
+    //     autoclose: true,
 
-        });
-    });
+    //     });
+    // });
 
     var gallery = new Vue({
         el: "#gallery",
@@ -240,13 +245,18 @@
         },
       });
 </script>
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(function(){
         $(".datepicker").datepicker({
             format: 'yyyy-mm-dd',
             autoclose: true,
             todayHighlight: true,
         });
+    });
+</script> --}}
+<script>
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
     });
 </script>
 @endpush
