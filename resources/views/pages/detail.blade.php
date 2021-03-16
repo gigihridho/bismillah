@@ -51,8 +51,10 @@
             @forelse ($room_types as $room_type)
             <div class="col-lg-8" data-aos="zoom-in">
               <transition name="slide-fade" mode="out-in">
-                <img src="{{ Storage::url($room_type->photo) }}" {{-- :src="photos[activePhoto].url"
-                        :key="photos[activePhoto].id" --}} alt="" style="width: 70%" />
+                <img src="{{ Storage::url($room_type->photo) }}"
+                :src="photos[activePhoto].url"
+                        :key="photos[activePhoto].id"
+                        alt="" style="width: 70%" />
               </transition>
             </div>
             @empty
@@ -98,7 +100,7 @@
                       <label>Pilih Kamar</label>
                       <select name="room" id="room" class="form-control">
                         @foreach ($rooms as $room)
-                        <option value={{ $room->id }}>{{ $room->name }}</option>
+                            <option value={{ $room->id }}>{{ $room->name }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -119,7 +121,7 @@
                       </select>
                     </div>
                     @auth
-                    <button type="submit" class="btn btn-success px-5">
+                    <button type="submit" class="btn btn-success px-5 text-white btn-block mb-3">
                       Pesan Kamar
                     </button>
                     @else

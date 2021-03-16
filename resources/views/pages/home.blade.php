@@ -12,7 +12,6 @@
 	@include('includes.main.navbar')
   <main class="site-main">
 
-
     <!-- ================ start banner area ================= -->
     <section class="home-banner-area" id="home">
       <div class="container">

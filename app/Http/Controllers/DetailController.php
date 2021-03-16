@@ -19,9 +19,10 @@ class DetailController extends Controller
         $room_types = RoomType::where('slug', $slug)->get();
         $rooms = DB::table('room_types')
             ->join('rooms', 'room_types.id', '=', 'rooms.room_type_id')
-            ->where('room_types.id', 1)
+            ->where('room_type_id',1)
             ->get();
-        //        SELECT * FROM `room_types` INNER JOIN rooms ON room_types.id = rooms.room_type_id WHERE room_types.id = 2
+        // dd($rooms);
+        //SELECT * FROM `room_types` INNER JOIN rooms ON room_types.id = rooms.room_type_id WHERE room_types.id = 2
         $facilities = Facility::all();
         return view('pages.detail', [
             'room_types' => $room_types,
@@ -39,15 +40,22 @@ class DetailController extends Controller
             'duration' => 'required|integer'
         ]);
         //$departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
-        $departure_date = Carbon::now()->addMonth();
+        $duration = $request->duration;
+        if($duration == 1){
+            $departure_date = Carbon::now()->addMonth();
+        }elseif($duration == 6){
+            $departure_date = Carbon::now()->addMonth(6);
+        }else {
+            $departure_date = Carbon::now()->addYear();
+        }
         $data = [
             'user_id' => Auth::user()->id,
             'room_id' => $request->room,
             'order_date' => Carbon::now(),
-            'total_price' => '900000',
+            'total_price' => 700000,
             'arrival_date' => $request->arrival_date,
             'departure_date' => $departure_date,
-            'duration' => $request->duration,
+            'duration' => $duration,
             'status' => 'Belum Konfirmasi',
         ];
         DB::table('transactions')->insert($data);

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Room;
+use App\Facility;
 use App\RoomType;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\RoomTypeRequest;
-use App\Room;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class RoomTypeController extends Controller
 {
@@ -63,6 +64,7 @@ class RoomTypeController extends Controller
         $data['description'] = $request->description;
         $data['price'] = $request->price;
         $data['size'] = $request->size;
+        $data['facilities'] = $request->facility;
 
         $item = RoomType::findOrFail($id);
 
@@ -71,7 +73,11 @@ class RoomTypeController extends Controller
         return redirect()->route('tipe.index');
     }
     public function create(){
-        return view('pages.admin.tipe.create');
+        $facilities = Facility::all();
+        // dd($facilities);
+        return view('pages.admin.tipe.create',[
+            'facilities' => $facilities
+        ]);
     }
 
     public function store(RoomTypeRequest $request){
