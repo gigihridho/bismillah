@@ -39,9 +39,4 @@ class TransactionsController extends Controller
         }
         return view('pages.admin.transaksi.index');
     }
-
-    public function create()
-    {
-
-    }
 }

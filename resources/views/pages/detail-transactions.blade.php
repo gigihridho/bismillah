@@ -6,16 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Kost Griya Kenyo</title>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
-  <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <script>
-    $( function() {
-        $( "#datepicker" ).datepicker({
-            dateFormat: 'dd-mm-yy'}).val();
-        // $( "#datepicker").datepicker("show");
-    });
-  </script>
   @include('includes.main.style')
   @include('includes.main.styledetail');
 </head>
@@ -44,111 +34,49 @@
             <section class="store-gallery mb-3" id="gallery">
             </section>
               <div class="store-details-container" data-aos="fade-up">
-                {{-- <section class="store-heading">
+                <section class="store-heading">
                   <div class="container">
                     <div class="row">
-                      @php
-                          $incrementRoomTypes = 0
-                      @endphp
-                      @forelse ($room_types as $room_type)
-                      <div class="col-lg-8">
-                        <h1>Tipe Kamar</h1>
-                        <div class="owner">{{ $room_type->name }}</div>
-                        <div class="price">Rp {{ $room_type->price }} / Per Bulan</div>
-                        <div class="store-description">
-                            <div class="container">
-                              <div class="row">
-                                <div class="col-12 col-lg-8">
-                                  <p>{!! $room_type->description !!}</p>
+                        <div class="col-12 col-md-4">
+                            <img src="{{ url('assets/img/explore1.png') }}" class="w-100 mb-3" alt="">
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="transactions-title">Name</div>
+                                    <div class="transactions-subtitle">Budi</div>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-                      @empty
-                      <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                        No Room Type Found
-                      </div>
-                      @endforelse
-                      <div class="col-lg-4" data-aos="zoom-in">
-
-                        <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
-                            <div class="form-group">
-                                <label>Pilih Kamar</label>
-                                <select name="room" id="room" class="form-control">
-                                    @foreach ($rooms as $room)
-                                        <option value={{ $room->name }}>{{ $room->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="date">Pilih tanggal masuk</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="date" class="form-control" id="datepicker" name="datepicker" placeholder="DD/MM/YYYY">
+                                <div class="col-12 col-md-6">
+                                    <div class="transactions-title">Kamar</div>
+                                    <div class="transactions-subtitle">Kamar K1L1</div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="duration">Durasi Sewa</label>
-                                <select name="duration" id="duration" class="form-control">
-                                    <option value="1 Bulan">1 Bulan</option>
-                                    <option value="6 Bulan">6 Bulan</option>
-                                    <option value="1 Tahun">1 Tahun</option>
-                                    
-                                </select>
-                            </div>
-                            @auth
-                                <a href="{{ route('detail-transactions') }}" class="btn btn-success px-4 text-white btn-block mb-3" data-toggle="modal" data-target="#modal-konfirmasi">
+                                <div class="col-12 col-md-6">
+                                    <div class="transactions-title">Tanggal Pesan</div>
+                                    <div class="transactions-subtitle">20-03-2021</div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="transactions-title">Harga</div>
+                                    <div class="transactions-subtitle">Rp 90000</div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="transactions-title">Tanggal Masuk</div>
+                                    <div class="transactions-subtitle">20-03-2021</div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="transactions-title">Tanggal Keluar</div>
+                                    <div class="transactions-subtitle">20-04-2021</div>
+                                </div>
+                                <button type="submit" class="btn btn-success px-5 text-white mb-3">
                                     Pesan Kamar
-                                </a>
-                            @else
-                                <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
-                                    Masuk Untuk Pesan
-                                </a>
-                            @endauth
-
-                        </div>
-                      </div>
-                      </div>
-                      <div class="row">
-                        @php $incrementRoomType = 0 @endphp
-                        <div class="col-md-6">
-                            <h4>Fasilitas</h4>
-                            <p>Fasilitas yang tersedia pada kamar ini</p>
-                            @forelse ($facilities as $facility)
-                            <div class="card-body">
-                                <ul>
-                                    <p>{{ $room_type->facilities }}</p>
-
-                                </ul>
-
+                                </button>
                             </div>
-                            @empty
-                            <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                                No Facility Found
-                            </div>
-                            @endforelse
-
                         </div>
-                      </div>
                     </div>
                   </div>
-                </section> --}}
+                </section>
               </div>
         </div>
     </main>
-
-<script>
-    $('#exampleModal').on('show.bs.modal', event => {
-        var button = $(event.relatedTarget);
-        var modal = $(this);
-        // Use above variables to manipulate the DOM
-
-    });
-</script>
-
-
 
 @include('includes.main.footer')
 

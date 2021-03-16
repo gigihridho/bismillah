@@ -17,10 +17,10 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('room_id')->unsigned()->index();
-            $table->string('photo_payment');
+            $table->string('photo_payment')->nullable();
             $table->date('order_date');
-            $table->integer('price');
-            $table->enum('duration',['1 Bulan','6 Bulan','1 Tahun']);
+            $table->integer('total_price');
+            $table->enum('duration',[1,6,12]);
             $table->date('arrival_date');
             $table->date('departure_date')->nullable();
             $table->enum('status',['Konfirmasi','Belum Konfirmasi','Selesai']);
