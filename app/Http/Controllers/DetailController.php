@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Room;
 use App\Facility;
 use App\RoomType;
-use App\Transaction;
 use Carbon\Carbon;
+use App\Transaction;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,22 +15,21 @@ use Illuminate\Support\Facades\Auth;
 class DetailController extends Controller
 {
 
-    public function detail(Request $request, $id)
+    public function detail(Request $request, $slug)
     {
-        $room_typess = RoomType::all();
-        $room_types = RoomType::where('slug', $id)->firstOrFail();
-        dd($room_types);
-        $roomm = Room::with('room_type','user')->where('room_type_id', $room_types->id)->get();
-
+        // $room_typess = RoomType::where('slug',$slug)->pluck('id');
+        $room_types = RoomType::where('slug', $slug)->get();
+        $price = RoomType::where('slug',$slug)->pluck('price');
+        // $roomm = Room::with('room_type','user')->where('room_type_id', $room_types->id)->get();
         $rooms = DB::table('room_types')
             ->join('rooms', 'room_types.id', '=', 'rooms.room_type_id')
             ->where('room_types.id',1)
             ->get();
-        //SELECT * FROM `room_types` INNER JOIN rooms ON room_types.id = rooms.room_type_id WHERE room_types.id = 2
+
         $facilities = Facility::all();
         return view('pages.detail', [
-            'room_typess' => $room_typess,
             'room_types' => $room_types,
+            'price' => $price,
             'rooms' => $rooms,
             'facilities' => $facilities,
         ]);
@@ -44,26 +44,37 @@ class DetailController extends Controller
         ]);
 
         $duration = $request->duration;
+        
         if($duration == 1){
-            $departure_date = Carbon::now()->addMonth();
+            $departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
         }elseif($duration == 6){
-            $departure_date = Carbon::now()->addMonth(6);
+            $departure_date = date('Y-m-d', strtotime('+6 month', strtotime($request->arrival_date)));
         }else {
-            $departure_date = Carbon::now()->addYear();
+            $departure_date = date('Y-m-d', strtotime('+12 month', strtotime($request->arrival_date)));
         }
-        $price = $request->price;
-        $total_price = $price * $duration;
+
+        $price = RoomType::where('id',$request->room)->pluck('price');
+        // dd($total_price[0]);
+        if($duration == 1){
+            $total_price = $duration * $price[0];
+        } elseif($duration == 6){
+            $total_price = $duration * $price[0] - (0.1 * $duration * $price[0]);
+        } elseif($duration == 12){
+            $total_price = $duration * $price[0] - (0.2 * $duration * $price[0]);
+        }
+        // dd($total_price);
         $data = [
             'user_id' => Auth::user()->id,
             'room_id' => $request->room,
             'order_date' => Carbon::now(),
-            'total_price' => 400000,
+            'total_price' => $total_price,
             'arrival_date' => $request->arrival_date,
             'departure_date' => $departure_date,
             'duration' => $duration,
             'status' => 'Belum Konfirmasi',
         ];
-        DB::table('transactions')->insert($data);
+
+        Transaction::create($data);
         return redirect()->route('user-transaksi.index');
     }
 }

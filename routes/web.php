@@ -20,6 +20,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('details/{id}', 'DetailController@detail')->name('detail-kost');
 Route::post('details', 'DetailController@add')->name('detail-add');
 
+Route::get('checkout','CheckoutController@process')->name('checkout');
+
 Route::prefix('user')
     ->middleware(['auth', 'role:user', 'verified'])
     ->group(function () {
