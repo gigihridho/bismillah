@@ -12,27 +12,26 @@ class UserTransactionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth']);
     }
 
     public function index(){
         if(request()->ajax()){
             $query = Transaction::with('user','room');
-
             return Datatables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($data){
                     return '
                         <div class="btn-group">
-                            <a class="btn btn-info edit" href="' . route('fasilitas.edit', $data->id) . '" >
-                                Belum dikonfirmasi
+                            <a class="btn btn-info edit" href="' . route('fasilitas.edit', $data->id) . '"  >
+                                <i class="far fa-eye"></i> Detail
                             </a>
                         </div>';
                 })
-                ->editColumn('icon', function($data){
-                    return $data->icon ? '<img src="'. Storage::url($data->icon).'" style="max-height: 50px;"/>' : '';
+                ->editColumn('photo_payment', function($data){
+                    return $data->photo_payment ? '<img src="'. Storage::url($data->photo_payment).'" style="max-height: 50px;"/>' : '';
                 })
-                ->rawColumns(['action','icon'])
+                ->rawColumns(['action','photo_payment'])
                 ->make();
         }
         return view('pages.user.user-transaksi.index');

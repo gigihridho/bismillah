@@ -28,33 +28,16 @@
                               <th class="text-center">
                                 #
                               </th>
-                              <th>Tipe Kamar</th>
+                              <th>Nama</th>
                               <th>Kamar</th>
                               <th>Tanggal Pesan</th>
                               <th>Foto Pembayaran</th>
-                              <th>Detail</th>
                               <th>Status</th>
+                              <th>Detail</th>
                             </tr>
                           </thead>
                           <tbody>
-                              <tr>
-                                  <td>1</td>
-                                  <td>Kamar Standar</td>
-                                  <td>Kamar K1L2</td>
-                                  <td>1 Februari 2020</td>
-                                  <td><img src="{{ url('/assets/img/bukti.jpg') }}" alt="" width="100px" height="100px"></td>
-                                  <td><button class="btn btn-info"><i class="fas fa-eye"></i> Detail</button></td>
-                                  <td>Belum dikonfirmasi</td>
-                              </tr>
-                              {{-- <tr>
-                                <td>2</td>
-                                <td>Kamar Premium</td>
-                                <td>Kamar K2L1</td>
-                                <td>1 Maret 2021</td>
-                                <td><img src="{{ url('/assets/img/bukti.jpg') }}" alt="" width="100px" height="100px"></td>
-                                <td>Terkonfirmasi</td>
-                            </tr> --}}
-                          </tbody>
+                        </tbody>
                     </table>
                   </div>
                 </div>
@@ -67,7 +50,7 @@
 @endsection
 @push('addon-script')
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
-{{-- <script>
+<script>
     var datatable = $('#table-1').DataTable({
         processing: true,
         serverSide: true,
@@ -76,11 +59,12 @@
             url: '{!! url() -> current()!!}',
         },
         columns:[
-            {data: 'id', name: 'id'},
-            {data: 'room_type.name', name: 'room_type.name'},
-            {data: 'name', name: 'name'},
-            {data: 'description', name: 'description'},
-            {data: 'status', name: 'status'},
+            {data: 'DT_RowIndex', name: 'id'},
+            {data: 'user.name', name: 'user.name'},
+            {data: 'room_id', name: 'room_id'},
+            {data: 'order_date', name: 'order_date'},
+            {data: 'photo_payment', name: 'photo_payment'},
+            {data: 'status',name: 'status'},
             {
                 data: 'action',
                 name: 'action',
@@ -108,5 +92,5 @@
         }
         });
     });
-</script> --}}
+</script>
 @endpush
