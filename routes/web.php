@@ -17,11 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/detail/{id}', 'DetailController@detail')->name('detail-kost');
+Route::get('details/{id}', 'DetailController@detail')->name('detail-kost');
+Route::post('details', 'DetailController@add')->name('detail-add');
 
-Auth::routes(['verify' => true]);
-
-Route::post('detail', 'DetailController@add')->name('detail-add');
 Route::prefix('user')
     ->middleware(['auth', 'role:user', 'verified'])
     ->group(function () {
@@ -33,7 +31,6 @@ Route::prefix('user')
         Route::get('change-profil-user', 'ProfilUserController@user')->name('change-profil-user');
         Route::post('change-profil-user/{redirect}', 'ProfilUserController@update')->name('change-profil-user-redirect');
     });
-
 
 Route::prefix('admin')
     ->middleware(['auth', 'role:admin', 'verified'])
@@ -55,4 +52,6 @@ Route::prefix('admin')
 Route::get('/verify', function () {
     return view('auth/verify');
 });
+Auth::routes(['verify' => true]);
+
 Route::get('detail-transaksi', 'DetailTransactionController@index')->name('detail-transaksi');

@@ -9,7 +9,7 @@ class Room extends Model
     protected $table = 'rooms';
 
     protected $fillable = [
-        'name','status','room_type_id', 'slug'
+        'name','room_type_id', 'slug'
     ];
 
     protected $hidden = [
@@ -20,7 +20,8 @@ class Room extends Model
         return $this->belongsTo(RoomType::class,'room_type_id','id');
     }
 
-    public function transactions(){
-        return $this->hasOne(RoomBooking::class,'id','transaction_id');
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
     }
+
 }

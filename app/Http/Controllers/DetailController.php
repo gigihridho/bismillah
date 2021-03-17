@@ -14,18 +14,21 @@ use Illuminate\Support\Facades\Auth;
 class DetailController extends Controller
 {
 
-    public function detail(Request $request, $slug)
+    public function detail(Request $request, $id)
     {
-        $room_types = RoomType::where('slug', $slug)->get();
-        $room = DB::table('room_types')->select('room_types.*','room_types.id as room_types_id');
+        $room_typess = RoomType::all();
+        $room_types = RoomType::where('slug', $id)->firstOrFail();
+        dd($room_types);
+        $roomm = Room::with('room_type','user')->where('room_type_id', $room_types->id)->get();
+
         $rooms = DB::table('room_types')
             ->join('rooms', 'room_types.id', '=', 'rooms.room_type_id')
-            ->where('room_types.id',2)
+            ->where('room_types.id',1)
             ->get();
-        // dd($rooms);
         //SELECT * FROM `room_types` INNER JOIN rooms ON room_types.id = rooms.room_type_id WHERE room_types.id = 2
         $facilities = Facility::all();
         return view('pages.detail', [
+            'room_typess' => $room_typess,
             'room_types' => $room_types,
             'rooms' => $rooms,
             'facilities' => $facilities,

@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->enum('duration',[1,6,12]);
             $table->date('arrival_date');
             $table->date('departure_date')->nullable();
-            $table->enum('status',['Konfirmasi','Belum Konfirmasi','Selesai']);
+            $table->enum('status',['Konfirmasi','Belum Konfirmasi']);
             $table->timestamps();
 
             $table->foreign('user_id')

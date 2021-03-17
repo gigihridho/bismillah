@@ -9,7 +9,7 @@ class DetailTransaction extends Model
     protected $table = 'detail_transactions';
 
     protected $fillable = [
-        'transaction_id','facility_id'
+        'transaction_id','user_id'
     ];
 
     protected $hidden = [

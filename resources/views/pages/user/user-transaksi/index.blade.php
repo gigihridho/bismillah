@@ -31,9 +31,10 @@
                               <th>Nama</th>
                               <th>Kamar</th>
                               <th>Tanggal Pesan</th>
+                              <th>Total Harga</th>
                               <th>Foto Pembayaran</th>
                               <th>Status</th>
-                              <th>Detail</th>
+                              <th>Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -61,8 +62,9 @@
         columns:[
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'user.name', name: 'user.name'},
-            {data: 'room_id', name: 'room_id'},
+            {data: 'room.name', name: 'room.name'},
             {data: 'order_date', name: 'order_date'},
+            {data: 'total_price', name: 'total_price'},
             {data: 'photo_payment', name: 'photo_payment'},
             {data: 'status',name: 'status'},
             {
@@ -73,6 +75,9 @@
             },
         ]
     });
+    // $(".upload").click(function(){
+
+    // })
     $(".deleteHarga").click(function(){
         swal({
             title: "Apakah kamu yakin?",

@@ -39,43 +39,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          1
-                        </td>
-                        <td>Agung</td>
-                        <td class="align-middle">
-                          Kamar L1K2
-                        </td>
-                        <td>20-12-2019</td>
-                        <td>
-                            <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                        </td>
-                        <td>20-12-2019</td>
-                        <td>20-01-2020</td>
-                        <td>Rp 600.000</td>
-                        <td><div class="badge badge-success">Konfirmasi</div></td>
-                        <td><a href="#" class="btn btn-danger">Hapus</a></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          2
-                        </td>
-                        <td>Budi</td>
-                        <td class="align-middle">
-                          Kamar L2K2
-                        </td>
-                        <td>20-2-2020</td>
-                        <td>
-                            <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                        </td>
-                        <td>21-02-2020</td>
-                        <td>20-08-2020</td>
-                        <td>Rp 4.800.000</td>
-                        <td><div class="badge badge-success">Konfirmasi</div></td>
-                        <td><a href="#" class="btn btn-danger">Hapus</a></td>
-                      </tr>
-
                     </tbody>
                   </table>
                 </div>
@@ -90,10 +53,30 @@
 @push('addon-script')
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('#table-1').DataTable({
-            "autoWidth": false
-        });
+    var datatable = $('#table-1').DataTable({
+        processing: true,
+        serverSide: true,
+        ordering: true,
+        ajax: {
+            url: '{!! url() -> current()!!}',
+        },
+        columns:[
+            {data: 'DT_RowIndex', name: 'id'},
+            {data: 'user.name', name: 'user.name'},
+            {data: 'room.name', name: 'room.name'},
+            {data: 'order_date', name: 'order_date'},
+            {data: 'photo_payment', name: 'photo_payment'},
+            {data: 'arrival_date', name: 'arrival_date'},
+            {data: 'departure_date', name: 'departure_date'},
+            {data: 'total_price', name: 'total_price'},
+            {data: 'status',name: 'status'},
+            {
+                data: 'action',
+                name: 'action',
+                orderable: false,
+                searchable: false,
+            },
+        ]
     });
 </script>
 @endpush

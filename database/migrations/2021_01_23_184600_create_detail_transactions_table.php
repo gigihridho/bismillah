@@ -16,11 +16,11 @@ class CreateDetailTransactionsTable extends Migration
         Schema::create('detail_transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('transaction_id')->unsigned()->index();
-            $table->integer('facility_id')->unsigned()->index();
+            $table->integer('room_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->foreign('facility_id')
-                ->references('id')->on('facilities')
+            $table->foreign('room_id')
+                ->references('id')->on('rooms')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('transaction_id')
                 ->references('id')->on('transactions')

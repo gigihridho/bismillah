@@ -26,13 +26,13 @@ class TransactionsController extends Controller
                 ->addColumn('action', function($data){
                     return '
                         <div class="btn-group">
-                            <a class="btn btn-info edit" href="' . route('fasilitas.edit', $data->id) . '" >
-                                Belum dikonfirmasi
+                            <a class="btn btn-info success" href="' . route('fasilitas.edit', $data->id) . '" >
+                                Konfirmasi
                             </a>
                         </div>';
                 })
-                ->editColumn('icon', function($data){
-                    return $data->icon ? '<img src="'. Storage::url($data->icon).'" style="max-height: 50px;"/>' : '';
+                ->editColumn('photo_payment', function($data){
+                    return $data->photo_payment ? '<img src="'. Storage::url($data->photo_payment).'" style="max-height: 50px;"/>' : '';
                 })
                 ->rawColumns(['action','icon'])
                 ->make();

@@ -43,7 +43,7 @@
             <div class="welcome-content">
               <h2 class="mb-4">Selamat Datang</h2>
               <h4>Cara Pemesanan Kamar</h4>
-              <p>1. <a href="{{ route('register') }}">Daftar</a> dan <a href="{{ route('register') }}">Masuk</a> ke Website </p>
+              <p>1. <a href="{{ route('register') }}">Daftar</a> dan <a href="{{ route('login') }}">Masuk</a> ke Website </p>
               <p>2. Pilih Kamar, Tanggal Masuk, dan Durasi Sewa</p>
               <p>3. Lakukan pembayaran sesuai dengan harga yang tertera</p>
               <p>4. Masuk ke Dashboard dan upload bukti pembayaran</p>
