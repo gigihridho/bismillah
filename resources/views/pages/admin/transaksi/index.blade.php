@@ -31,6 +31,7 @@
                         <th>Kamar</th>
                         <th>Tanggal Transaksi</th>
                         <th>Bukti Transaksi</th>
+                        <th>Durasi</th>
                         <th>Tanggal Masuk</th>
                         <th>Tanggal Keluar</th>
                         <th>Harga</th>
@@ -66,6 +67,7 @@
             {data: 'room.name', name: 'room.name'},
             {data: 'order_date', name: 'order_date'},
             {data: 'photo_payment', name: 'photo_payment'},
+            {data: 'duration', name: 'duration'},
             {data: 'arrival_date', name: 'arrival_date'},
             {data: 'departure_date', name: 'departure_date'},
             {data: 'total_price', name: 'total_price'},

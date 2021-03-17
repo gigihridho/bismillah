@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -26,6 +27,11 @@ class UserTransactionController extends Controller
                             <a class="btn btn-info edit" href="' . route('fasilitas.edit', $data->id) . '"  >
                                 <i class="far fa-eye"></i> Detail
                             </a>
+                            <a class="btn btn-success upload" href="' . route('fasilitas.edit', $data->id) . '" style="margin-left:3px"
+                            data-toggle
+                            >
+                                <i class="fas fa-upload"></i> Detail
+                            </a>
                         </div>';
                 })
                 ->editColumn('photo_payment', function($data){
@@ -39,5 +45,9 @@ class UserTransactionController extends Controller
 
     public function create(){
         return view('pages.user.user-transaksi.create');
+    }
+
+    public function detail(Request $request){
+        return view('pages.user.user-transaksi.detail');
     }
 }

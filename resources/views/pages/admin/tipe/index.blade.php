@@ -50,6 +50,7 @@
   </div>
 @endsection
 @push('addon-script')
+<script src="../assets/js/page/bootstrap-modal.js"></script>
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
     var datatable = $('#table-1').DataTable({

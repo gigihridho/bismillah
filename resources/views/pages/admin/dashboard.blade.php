@@ -48,10 +48,10 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Total Transaksi</h4>
+                <h4>Jumlah Transaksi</h4>
               </div>
               <div class="card-body">
-                1,201
+                {{ DB::table('transactions')->count()}}
               </div>
             </div>
           </div>
@@ -63,10 +63,10 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Transaksi</h4>
+                <h4>Total Transaksi</h4>
               </div>
               <div class="card-body">
-                47
+                {{ DB::table('transactions')->sum('total_price') }}
               </div>
             </div>
           </div>

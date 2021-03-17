@@ -54,7 +54,6 @@ class DetailController extends Controller
         }
 
         $price = RoomType::where('id',$request->room)->pluck('price');
-        // dd($total_price[0]);
         if($duration == 1){
             $total_price = $duration * $price[0];
         } elseif($duration == 6){
@@ -62,7 +61,6 @@ class DetailController extends Controller
         } elseif($duration == 12){
             $total_price = $duration * $price[0] - (0.2 * $duration * $price[0]);
         }
-        // dd($total_price);
         $data = [
             'user_id' => Auth::user()->id,
             'room_id' => $request->room,
