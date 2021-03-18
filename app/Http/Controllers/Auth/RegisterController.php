@@ -69,8 +69,7 @@ class RegisterController extends Controller
             'slug' => $data['name'],
         ]);
         if(request()->hasFile('photo_ktp')){
-            $photo_ktp = request()->file('photo_ktp')->getClientOriginalName();
-            request()->file('photo_ktp')->storeAs('photo_ktp',$user->id.'/'.$photo_ktp,'');
+            $photo_ktp = request()->file('photo_ktp')->store('assets/user','public');
             $user->update(['photo_ktp' => $photo_ktp]);
         }
         $user->active = 0;

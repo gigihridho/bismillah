@@ -72,6 +72,6 @@ class DetailController extends Controller
         ];
 
         Transaction::create($data);
-        return redirect()->route('user-transaksi.index');
+        return redirect()->route('user-transaksi');
     }
 }

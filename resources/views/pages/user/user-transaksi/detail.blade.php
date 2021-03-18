@@ -74,33 +74,4 @@ $(document).ready( function () {
     $('#table-1').DataTable();
 } );
 </script>
-{{-- <script>
-    var datatable = $('#table-1').DataTable({
-        processing: true,
-        serverSide: true,
-        ordering: true,
-        ajax: {
-            url: '{!! url() -> current()!!}',
-        },
-        columns:[
-            {data: 'id', name: 'id'},
-            {data: 'user.name', name: 'user.name'},
-            {data: 'room.name', name: 'room.name'},
-            {data: 'order_date', name: 'order_date'},
-            {data: 'total_price', name: 'total_price'},
-            {data: 'photo_payment', name: 'photo_payment'},
-            {data: 'status',name: 'status'},
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-            },
-        ]
-    });
-    // $(".upload").click(function(){
-
-    // })
-
-</script> --}}
 @endpush

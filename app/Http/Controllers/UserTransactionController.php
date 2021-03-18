@@ -28,11 +28,9 @@ class UserTransactionController extends Controller
                             <a class="btn btn-info edit" href="' . route('user-transaksi-detail', $item->id) . '"  >
                                 <i class="far fa-eye"></i> Detail
                             </a>
-                            <a class="btn btn-success upload" href="' . route('user-transaksi-upload', $item->id) . '" style="margin-left:3px"
-                            data-toggle
-                            >
-                                <i class="fas fa-upload"></i> Upload Bukti
-                            </a>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadBukti" style="margin-left:5px">
+                                <i class="fas fa-upload"></i>  Upload Bukti
+                            </button>
                         </div>';
                 })
                 ->editColumn('photo_payment', function($item){

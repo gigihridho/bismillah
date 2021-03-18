@@ -42,7 +42,7 @@
                                 <td>{{ $it->name }}</td>
                                 <td>{{ $it->email }}</td>
                                 <td>{{ $it->no_hp }}</td>
-                                <td>{{ $it->photo_ktp }}</td>
+                                <td><img src="{{ Storage::url($it->photo_ktp) }}" alt="Responsive image" width="80px" height="auto"></td>
                                 <td>{{ $it->profession }}</td>
                                 <td>{{ $it->address }}</td>
                             </tr>
@@ -59,37 +59,10 @@
   </div>
 @endsection
 @push('addon-script')
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
 $(document).ready( function () {
     $('#table-1').DataTable();
 } );
 </script>
-{{-- <script>
-    var datatable = $('#table-1').DataTable({
-        processing: true,
-        serverSide: true,
-        ordering: true,
-        ajax: {
-            url: '{!! url() -> current()!!}',
-        },
-        columns:[
-            {data: 'id', name: 'id'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
-            {data: 'no_hp', name: 'no_hp'},
-            {data: 'photo_ktp', name: 'photo_ktp'},
-            {data: 'profession', name: 'profession'},
-            {data: 'address', name: 'address'},
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-            },
-        ]
-    });
-</script> --}}
 @endpush
