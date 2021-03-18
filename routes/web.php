@@ -27,7 +27,9 @@ Route::prefix('user')
     ->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('/change-pass', 'ChangePassController@change')->name('change-pass');
-        Route::resource('user-transaksi', 'UserTransactionController');
+        Route::get('user-transaksi', 'UserTransactionController@index')->name('user-transaksi');
+        Route::get('user-transaksi/{id}', 'UserTransactionController@detail')->name('user-transaksi-detail');
+        Route::post('user-transaksi/{id}', 'UserTransactionController@upload')->name('user-transaksi-upload');
         Route::get('review', 'UserReviewController@review')->name('review-user');
         Route::post('review/{redirect}', 'UserReviewController@update')->name('review-user-redirect');
         Route::get('change-profil-user', 'ProfilUserController@user')->name('change-profil-user');

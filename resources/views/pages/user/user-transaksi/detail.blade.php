@@ -30,14 +30,30 @@
                               </th>
                               <th>Nama</th>
                               <th>Kamar</th>
+                              <th>Foto Pembayaran</th>
                               <th>Tanggal Pesan</th>
                               <th>Total Harga</th>
-                              <th>Foto Pembayaran</th>
+                              <th>Durasi</th>
+                              <th>Tanggal Masuk</th>
+                              <th>Tanggal Keluar</th>
                               <th>Status</th>
-                              <th>Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
+                              @foreach ($item as $it)
+                              <tr>
+                                <td>{{ $it->id }}</td>
+                                <td>{{ $it->user->name }}</td>
+                                <td>{{ $it->room->name }}</td>
+                                <td>{{ $it->photo_payment }}</td>
+                                <td>{{ $it->order_date }}</td>
+                                <td>{{ $it->total_price }}</td>
+                                <td>{{ $it->duration }}</td>
+                                <td>{{ $it->arrival_date }}</td>
+                                <td>{{ $it->departure_date }}</td>
+                                <td>{{ $it->status }}</td>
+                              </tr>
+                              @endforeach
                         </tbody>
                     </table>
                   </div>
@@ -50,8 +66,15 @@
   </div>
 @endsection
 @push('addon-script')
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
+$(document).ready( function () {
+    $('#table-1').DataTable();
+} );
+</script>
+{{-- <script>
     var datatable = $('#table-1').DataTable({
         processing: true,
         serverSide: true,
@@ -60,7 +83,7 @@
             url: '{!! url() -> current()!!}',
         },
         columns:[
-            {data: 'DT_RowIndex', name: 'id'},
+            {data: 'id', name: 'id'},
             {data: 'user.name', name: 'user.name'},
             {data: 'room.name', name: 'room.name'},
             {data: 'order_date', name: 'order_date'},
@@ -78,24 +101,6 @@
     // $(".upload").click(function(){
 
     // })
-    $(".deleteHarga").click(function(){
-        swal({
-            title: "Apakah kamu yakin?",
-            text: "Jika kamu menghapusnya, maka data akan hilang!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-        if (willDelete) {
-            //proses hapus di sini bisa pakai ajax
-            swal("Harga berhasil dihapus", {
-            icon: "success",
-            });
-        } else {
-            swal("Data tidak jadi dihapus");
-        }
-        });
-    });
-</script>
+
+</script> --}}
 @endpush
