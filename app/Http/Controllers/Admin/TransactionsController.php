@@ -21,6 +21,7 @@ class TransactionsController extends Controller
     {
         if(request()->ajax()){
             $query = Transaction::with('user','room');
+
             return Datatables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($item){

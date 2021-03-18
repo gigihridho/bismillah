@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         $admin = User::create([
             'name' => 'admin',
-            'email' => 'griyakenyo@gmail.com',
+            'email' => 'admin@gmail.com',
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('12345678'),
             'no_hp' => '088225035926',

@@ -74,6 +74,7 @@
               @forelse ($room_types as $room_type)
               <div class="col-lg-8">
                 <h1>Tipe Kamar</h1>
+                <input type="hidden" name="id" value="{{ $room_type->room }}">
                 <div class="owner">{{ $room_type->name }}</div>
                 <div class="price">Rp {{ $room_type->price }} / Per Bulan</div>
                 <div class="store-description">

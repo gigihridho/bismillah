@@ -72,7 +72,6 @@ class RegisterController extends Controller
             $photo_ktp = request()->file('photo_ktp')->store('assets/user','public');
             $user->update(['photo_ktp' => $photo_ktp]);
         }
-        $user->active = 0;
         $user->assignRole('user');
         return $user;
 

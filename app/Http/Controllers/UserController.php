@@ -11,7 +11,4 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    // public function change(){
-    //     return view
-    // }
 }

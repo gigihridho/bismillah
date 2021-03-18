@@ -16,10 +16,9 @@ class DetailController extends Controller
 
     public function detail(Request $request, $slug)
     {
-        // $room_typess = RoomType::where('slug',$slug)->pluck('id');
+
         $room_types = RoomType::where('slug', $slug)->get();
         $price = RoomType::where('slug',$slug)->pluck('price');
-        // $roomm = Room::with('room_type','user')->where('room_type_id', $room_types->id)->get();
         $rooms = DB::table('room_types')
             ->join('rooms', 'room_types.id', '=', 'rooms.room_type_id')
             ->where('room_types.id',1)

@@ -25,7 +25,6 @@ class UserReviewController extends Controller
     }
 
     public function update(Request $request, $redirect){
-        // $data = $request->all();
         $user = Auth::user()->id;
         $item = Review::where('user_id', $user)->first();
 

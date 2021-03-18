@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -19,7 +19,8 @@ class UserTransactionController extends Controller
 
     public function index(){
         if(request()->ajax()){
-            $query = Transaction::with('user','room');
+            $query = Transaction::with('user','room')->where('user_id', Auth::user()->id);
+
             return Datatables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($item){
@@ -42,21 +43,29 @@ class UserTransactionController extends Controller
         return view('pages.user.user-transaksi.index');
     }
 
-    public function create(){
-        return view('pages.user.user-transaksi.create');
-    }
-
     public function detail(Request $request, $id){
         $item = Transaction::where('id',$id)->get();
-        // dd($item);
-        // if(request()->ajax()){
-        //     $query = Transaction::query($id)->with('user','room');
-        //     dd($query);
-        //     return Datatables::of($query)
-        //         ->make();
-        // }
+
         return view('pages.user.user-transaksi.detail',[
             'item' => $item,
         ]);
     }
+
+    public function upload(Request $request){
+        // $item = Transaction::where('id',$id)->get();
+        $this->validate($request, [
+            'photo_payment' => 'required|image|max:2000|mimes:png,jpg',
+        ]);
+            $file = $request->file('photo_payment');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $to = 'storage/transaction';
+            $file->move($to, $nama_file);
+
+            Transaction::create([
+                'photo_payment' => $file
+            ]);
+
+            Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
+            return redirect()->back();
+        }
 }

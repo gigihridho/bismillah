@@ -11,13 +11,12 @@ class ProfilUserController extends Controller
 {
     public function user(){
         $user = auth()->user();
-
         return view('pages.user.profil.edit',[
             'user' => $user
-        ]);
-    }
+            ]);
+        }
 
-    public function update(Request $request, $redirect){
+        public function update(Request $request, $redirect){
         $data = $request->all();
 
         $data['name'] = Str::slug($request->name);
