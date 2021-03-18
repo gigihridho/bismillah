@@ -74,7 +74,6 @@ class RoomTypeController extends Controller
     }
     public function create(){
         $facilities = Facility::all();
-        // dd($facilities);
         return view('pages.admin.tipe.create',[
             'facilities' => $facilities
         ]);

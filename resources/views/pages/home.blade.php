@@ -96,9 +96,9 @@
           <div class="owl-carousel owl-theme testi-carousel">
             <div class="testi-carousel__item">
               <div class="media">
-                <div class="testi-carousel__img">
+                {{-- <div class="testi-carousel__img">
                   <img src="{{ url('/seapalace/img/home/testimonial1.png') }}" alt="">
-                </div>
+                </div> --}}
                 @php $incrementRoomType = 0 @endphp
                 @forelse ($reviews as $review)
                 <div class="media-body">

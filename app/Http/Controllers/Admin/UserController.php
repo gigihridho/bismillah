@@ -41,7 +41,7 @@ class UserController extends Controller
     }
 
     public function detail($id){
-        $item = User::findOrFail($id);
+        $item = User::where('id',$id)->get();
         if(request()->ajax()){
             $query = User::query($id);
             return Datatables::of($query)

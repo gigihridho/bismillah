@@ -41,7 +41,6 @@ class DetailController extends Controller
             'arrival_date' => 'required|date',
             'duration' => 'required|integer'
         ]);
-
         $duration = $request->duration;
 
         if($duration == 1){
@@ -60,6 +59,7 @@ class DetailController extends Controller
         } elseif($duration == 12){
             $total_price = $duration * $price[0] - (0.2 * $duration * $price[0]);
         }
+
         $data = [
             'user_id' => Auth::user()->id,
             'room_id' => $request->room,
