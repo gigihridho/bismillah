@@ -21,15 +21,20 @@ class TransactionsController extends Controller
     {
         if(request()->ajax()){
             $query = Transaction::with('user','room');
-
             return Datatables::of($query)
                 ->addIndexColumn()
-                ->addColumn('action', function($data){
+                ->addColumn('action', function($item){
                     return '
                         <div class="btn-group">
-                            <a class="btn btn-info success" href="' . route('fasilitas.edit', $data->id) . '" >
+                            <a class="btn btn-info success" href="' . route('transaksi.edit', $item->id) . '" >
                                 Konfirmasi
                             </a>
+                            <form action="' . route('transaksi.destroy', $item->id) . '" method="POST" style="margin-left:5px">
+                            ' . method_field('delete') . csrf_field() . '
+                            <button type="submit" class="btn btn-danger">
+                                Hapus
+                            </button>
+                        </form>
                         </div>';
                 })
                 ->editColumn('photo_payment', function($data){
@@ -39,5 +44,11 @@ class TransactionsController extends Controller
                 ->make();
         }
         return view('pages.admin.transaksi.index');
+    }
+
+    public function destroy($id){
+        $item = Transaction::findOrFail($id);
+        $item->delete();
+        return redirect()->route('transaksi.index');
     }
 }

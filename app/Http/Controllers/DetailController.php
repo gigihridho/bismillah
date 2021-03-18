@@ -7,7 +7,6 @@ use App\Facility;
 use App\RoomType;
 use Carbon\Carbon;
 use App\Transaction;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +43,7 @@ class DetailController extends Controller
         ]);
 
         $duration = $request->duration;
-        
+
         if($duration == 1){
             $departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
         }elseif($duration == 6){
