@@ -36,6 +36,17 @@
                       </tr>
                     </thead>
                     <tbody>
+                        @foreach ($item as $it)
+                            <tr>
+                                <td>{{ $it->id }}</td>
+                                <td>{{ $it->name }}</td>
+                                <td>{{ $it->email }}</td>
+                                <td>{{ $it->no_hp }}</td>
+                                <td>{{ $it->photo_ktp }}</td>
+                                <td>{{ $it->profession }}</td>
+                                <td>{{ $it->address }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -48,8 +59,15 @@
   </div>
 @endsection
 @push('addon-script')
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
+$(document).ready( function () {
+    $('#table-1').DataTable();
+} );
+</script>
+{{-- <script>
     var datatable = $('#table-1').DataTable({
         processing: true,
         serverSide: true,
@@ -73,5 +91,5 @@
             },
         ]
     });
-</script>
+</script> --}}
 @endpush

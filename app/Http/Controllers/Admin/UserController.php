@@ -42,11 +42,11 @@ class UserController extends Controller
 
     public function detail($id){
         $item = User::where('id',$id)->get();
-        if(request()->ajax()){
-            $query = User::query($id);
-            return Datatables::of($query)
-                ->make();
-        }
+        // if(request()->ajax()){
+        //     $query = User::query($id);
+        //     return Datatables::of($query)
+        //         ->make();
+        // }
         return view('pages.admin.user.detail',[
             'item' => $item,
         ]);
