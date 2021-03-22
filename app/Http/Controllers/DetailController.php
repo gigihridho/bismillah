@@ -16,18 +16,19 @@ class DetailController extends Controller
 
     public function detail(Request $request, $slug)
     {
-
         $room_types = RoomType::where('slug', $slug)->get();
-        $price = RoomType::where('slug',$slug)->pluck('price');
+        // $price = RoomType::where('slug',$slug)->pluck('price');
+        $room = Room::all();
         $rooms = DB::table('room_types')
-            ->join('rooms', 'room_types.id', '=', 'rooms.room_type_id')
-            ->where('room_types.id',1)
-            ->get();
+        ->join('rooms', 'rooms.room_type_id', '=', 'room_types.id')
+        // ->where('room_types.id',$request->slug)
+        ->get();
 
-        $facilities = Facility::all();
+        $facilities = RoomType::with('facilities')->where('id','room_type_id')->get();
+        // dd($facilities);
         return view('pages.detail', [
             'room_types' => $room_types,
-            'price' => $price,
+            'room' => $room,
             'rooms' => $rooms,
             'facilities' => $facilities,
         ]);

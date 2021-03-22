@@ -48,6 +48,39 @@ class RoomTypeController extends Controller
         return view('pages.admin.tipe.index');
     }
 
+    public function create(){
+        $facilities = Facility::all();
+        return view('pages.admin.tipe.create',[
+            'facilities' => $facilities
+        ]);
+    }
+
+    public function store(RoomTypeRequest $request){
+        // $data = $request->all();
+
+        $data = new RoomType();
+        $data->name = $request->input('name');
+        $data->slug = Str::slug($request->name);
+        $data->photo = $request->file('photo')->store('assets/roomtypes','public');
+        $data->description = $request->input('description');
+        $data->price = $request->input('price');
+        $data->size = $request->input('size');
+        $data->save();
+
+        // $data['slug'] = Str::slug($request->name);
+        // $data['photo'] = $request->file('photo')->store('assets/facility','public');
+        // $data['description'] = $request->description;
+        // $data['price'] = $request->price;
+        // $data['size'] = $request->size;
+
+        // RoomType::create($data);
+        if($request->has('facility')){
+            $data->facilities()->attach(array_keys($request->input('facility')));
+        }
+        dd($data);
+        Alert::success('SUCCESS','Data Tipe Kamar Berhasil Ditambah');
+        return redirect()->route('tipe.index');
+    }
     public function edit($id){
         $item = RoomType::findOrFail($id);
 
@@ -60,7 +93,7 @@ class RoomTypeController extends Controller
         $data = $request->all();
 
         $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/facility','public');
+        $data['photo'] = $request->file('photo')->store('assets/roomtypes','public');
         $data['description'] = $request->description;
         $data['price'] = $request->price;
         $data['size'] = $request->size;
@@ -72,26 +105,7 @@ class RoomTypeController extends Controller
         Alert::success('SUCCESS','Data Tipe Kamar Berhasil Diupdate');
         return redirect()->route('tipe.index');
     }
-    public function create(){
-        $facilities = Facility::all();
-        return view('pages.admin.tipe.create',[
-            'facilities' => $facilities
-        ]);
-    }
 
-    public function store(RoomTypeRequest $request){
-        $data = $request->all();
-
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/facility','public');
-        $data['description'] = $request->description;
-        $data['price'] = $request->price;
-        $data['size'] = $request->size;
-
-        RoomType::create($data);
-        Alert::success('SUCCESS','Data Tipe Kamar Berhasil Ditambah');
-        return redirect()->route('tipe.index');
-    }
 
     public function destroy($id){
         $item = Room::findOrFail($id);
