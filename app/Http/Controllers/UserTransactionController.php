@@ -52,7 +52,8 @@ class UserTransactionController extends Controller
     }
 
     public function upload(Request $request){
-        // $item = Transaction::where('id',$id)->get();
+        $item = Auth::user()->id;
+        dd($item);
         $this->validate($request, [
             'photo_payment' => 'required|image|max:2000|mimes:png,jpg',
         ]);
@@ -61,9 +62,7 @@ class UserTransactionController extends Controller
             $to = 'storage/transaction';
             $file->move($to, $nama_file);
 
-            Transaction::create([
-                'photo_payment' => $file
-            ]);
+            $item->save();
 
             Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
             return redirect()->back();

@@ -70,8 +70,8 @@
                                 <label class="d-block">Fasilitas</label>
                                 @foreach ($facilities as $facility)
                                     <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
+                                        <input name="facilitity" value={{ $facility->name }} class="form-check-input" type="checkbox" id="defaultCheck1">
+                                        <label name="facility" class="form-check-label" for="defaultCheck1">
                                             {{ $facility->name }}
                                         </label>
                                     </div>

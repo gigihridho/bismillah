@@ -99,7 +99,7 @@
                     @csrf
                     <div class="form-group">
                       <label>Pilih Kamar</label>
-                      <select name="room" id="room" class="form-control">
+                      <select name="name" id="name" class="form-control">
                         @foreach ($rooms as $room)
                             <option value={{ $room->id }}>{{ $room->name }}</option>
                         @endforeach
@@ -142,7 +142,7 @@
                 @forelse ($facilities as $facility)
                 <div class="card-body">
                   <ul>
-                    <p>{{ $room_type->facilities }}</p>
+                    <p>{{ $facility->name }}</p>
 
                   </ul>
                 </div>
