@@ -76,38 +76,17 @@
         <div class="col-lg-8 col-md-12 col-12 col-sm-12">
           <div class="card">
             <div class="card-header">
-              <h4>Statistics</h4>
-              <div class="card-header-action">
+              <h4>Statistik Jumlah Transaksi Setiap Bulan</h4>
+              {{-- <div class="card-header-action">
                 <div class="btn-group">
                   <a href="#" class="btn btn-primary">Week</a>
                   <a href="#" class="btn">Month</a>
                 </div>
-              </div>
+              </div> --}}
             </div>
             <div class="card-body">
-              <canvas id="myChart" height="182"></canvas>
-              <div class="statistic-details mt-sm-4">
-                <div class="statistic-details-item">
-                  <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 7%</span>
-                  <div class="detail-value">$243</div>
-                  <div class="detail-name">Today's Sales</div>
-                </div>
-                <div class="statistic-details-item">
-                  <span class="text-muted"><span class="text-danger"><i class="fas fa-caret-down"></i></span> 23%</span>
-                  <div class="detail-value">$2,902</div>
-                  <div class="detail-name">This Week's Sales</div>
-                </div>
-                <div class="statistic-details-item">
-                  <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span>9%</span>
-                  <div class="detail-value">$12,821</div>
-                  <div class="detail-name">This Month's Sales</div>
-                </div>
-                <div class="statistic-details-item">
-                  <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 19%</span>
-                  <div class="detail-value">$92,142</div>
-                  <div class="detail-name">This Year's Sales</div>
-                </div>
-              </div>
+              <canvas id="myChart" height="150"></canvas>
+
             </div>
           </div>
         </div>
@@ -115,3 +94,57 @@
     </section>
   </div>
 @endsection
+@push('prepend-script')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul','Aug','Sept','Oct','Nov','Dec'],
+            datasets: [{
+                label: 'Jumlah transaksi',
+                data: [12, 19, 3, 5, 2, 3,15,8,10,2,20,13],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+@endpush
