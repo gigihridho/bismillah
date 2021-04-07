@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ChangePassRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class ChangePassRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -25,7 +26,7 @@ class ChangePassRequest extends FormRequest
     {
         return [
             'current_password'          => 'required|password',
-            'new_password'              => 'required|string|min:8|max:20|different:current_password',
+            'password'              => 'required|string|min:8|confirmed|different:current_password',
             'new_password_confirmation' => 'same:new_password',
         ];
     }

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 
 @section('title')
     Ubah Kata Sandi
@@ -8,7 +8,7 @@
 <div class="main-content">
     <section class="section">
       <div class="section-header">
-        <h1>@yield('title') Admin</h1>
+        <h1>@yield('title') User</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
           <div class="breadcrumb-item">@yield('title')</div>
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('change-pass-update') }}">
+                        <form method="POST" action="{{ route('change-pass-user-update') }}">
                             @csrf
                             <div class="form-group row">
                                 <label for="current_password" class="col-md-4 col-form-label text-md-right">{{ __('Kata Sandi Lama') }}</label>
@@ -55,7 +55,7 @@
 
 
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Konfirmasi Kata Sandi Baru') }}</label>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Konfirmasi Kata Sandi Baru ') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">

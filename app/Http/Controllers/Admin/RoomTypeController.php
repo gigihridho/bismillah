@@ -108,8 +108,9 @@ class RoomTypeController extends Controller
 
 
     public function destroy($id){
-        $item = Room::findOrFail($id);
+        $item = RoomType::findOrFail($id);
         $item->delete();
+
         return redirect()->route('tipe.index');
     }
 }

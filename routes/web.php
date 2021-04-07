@@ -26,7 +26,8 @@ Route::prefix('user')
     ->middleware(['auth', 'role:user', 'verified'])
     ->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
-        Route::get('/change-pass', 'ChangePassController@change')->name('change-pass');
+        Route::get('change-pass', 'ChangePassController@change')->name('change-pass');
+        Route::post('change-pass','ChangePassController@update')->name('change-pass-user-update');
         Route::get('user-transaksi', 'UserTransactionController@index')->name('user-transaksi');
         Route::get('user-transaksi/{id}', 'UserTransactionController@detail')->name('user-transaksi-detail');
         Route::post('user-transaksi', 'UserTransactionController@upload')->name('user-transaksi-upload');
@@ -49,7 +50,7 @@ Route::prefix('admin')
         Route::resource('reviews', 'Admin\ReviewsController');
         Route::resource('gallery', 'Admin\GalleryController');
         Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
-        Route::patch('change-pass', 'Admin\ChangePasswordController@update')->name('change-pass-update');
+        Route::post('change-pass', 'Admin\ChangePasswordController@update')->name('change-pass-update');
         Route::get('change-profil', 'Admin\ChangeProfilController@profil')->name('change-profil');
         Route::post('change-profil/{redirect}', 'Admin\ChangeProfilController@update')->name('change-profil-redirect');
     });

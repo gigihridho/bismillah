@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\ChangePasswordRequest;
 
 class ChangePassController extends Controller
@@ -15,25 +17,14 @@ class ChangePassController extends Controller
     }
 
     public function change(){
-        return view('pages.change-pass.index');
+        return view('pages.user.change-pass.index');
     }
 
     public function update(ChangePasswordRequest $request) {
-
-        $command = User::findOrFail(Auth::user()->id)->update(['password'=> bcrypt($request->new_password)]);
-
-        if ($command) {
-            $request->session()->flash('alert-success', 'Password berhasil diganti!');
-        } else {
-            $request->session()->flash('alert-failed', 'Password gagal diganti!');
-        }
-
-        if(Auth::user()->role == 'user'){
-            return redirect()->route('user.change-pass.index');
-        }
-        elseif (Auth::user()->role == 'admin')
-        {
-            return redirect()->route('admin.change-pass.index');
-        }
+        $request->user()->update([
+            'password' => Hash::make($request->get('password'))
+        ]);
+        Alert::success('SUCCESS','Kata Sandi Berhasil Diubah');
+        return redirect()->route('change-pass');
     }
 }

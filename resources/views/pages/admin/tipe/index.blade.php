@@ -50,7 +50,7 @@
   </div>
 @endsection
 @push('addon-script')
-<script src="../assets/js/page/bootstrap-modal.js"></script>
+<script src="../dist/modules/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
     var datatable = $('#table-1').DataTable({
@@ -76,24 +76,23 @@
             },
         ]
     });
-    // $(".deleteHarga").click(function(){
-    //     swal({
-    //         title: "Apakah kamu yakin?",
-    //         text: "Jika kamu menghapusnya, maka data akan hilang!",
-    //         icon: "warning",
-    //         buttons: true,
-    //         dangerMode: true,
-    //     })
-    //     .then((willDelete) => {
-    //     if (willDelete) {
-    //         //proses hapus di sini bisa pakai ajax
-    //         swal("Harga berhasil dihapus", {
-    //         icon: "success",
-    //         });
-    //     } else {
-    //         swal("Data tidak jadi dihapus");
-    //     }
-    //     });
-    // });
+    $("#swal-6").click(function() {
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this imaginary file!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+      swal('Poof! Your imaginary file has been deleted!', {
+        icon: 'success',
+      });
+      } else {
+      swal('Your imaginary file is safe!');
+      }
+    });
+});
 </script>
 @endpush
