@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -27,9 +28,13 @@ class TransactionsController extends Controller
                 ->addColumn('action', function($item){
                     return '
                         <div class="btn-group">
-                            <a class="btn btn-info success" href="' . route('transaksi.edit', $item->id) . '" >
+                            <form action="'. route('confirmation',$item->id).'" enctype="multipart/form-data">
+                                '.method_field('PUT') .csrf_field() .'
+                            <button value="Konfirmasi" id="status" name="status" type="submit" class="btn btn-info success"
+                                onclick="return confirm("Anda yakin ingin mengkonfirmasi pendaftaran ini?")">
                                 Konfirmasi
-                            </a>
+                            </button>
+                            </form>
                             <form action="' . route('transaksi.destroy', $item->id) . '" method="POST" style="margin-left:5px">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-danger">
@@ -45,6 +50,15 @@ class TransactionsController extends Controller
                 ->make();
         }
         return view('pages.admin.transaksi.index');
+    }
+
+    public function confirmation(Request $request, $id){
+        $data = Transaction::where('id',$id)->first();
+        $data->status = $request->status;
+        $data->save();
+        Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
+        return redirect()->route('transaksi.index');
+
     }
 
     public function destroy($id){

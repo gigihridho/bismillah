@@ -45,7 +45,7 @@
                                 <td>{{ $it->id }}</td>
                                 <td>{{ $it->user->name }}</td>
                                 <td>{{ $it->room->name }}</td>
-                                <td>{{ $it->photo_payment }}</td>
+                                <td><img src="{{ Storage::url($it->photo_payment) }}" alt="Responsive image" width="80px" height="auto"></td>
                                 <td>{{ $it->order_date }}</td>
                                 <td>{{ $it->total_price }}</td>
                                 <td>{{ $it->duration }}</td>

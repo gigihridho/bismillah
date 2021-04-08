@@ -20,6 +20,9 @@
               @endif
 
               @if(auth()->user()->hasRole('user'))
+                <a href="{{ route('home') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-home">Home</i>
+                </a>
                 <a href="{{ route('change-profil-user') }}" class="dropdown-item has-icon">
                     <i class="fas fa-user"></i> Ubah Profil
                 </a>
