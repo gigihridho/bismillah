@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -13,6 +14,9 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
     public function index(){
-        return view('pages.admin.dashboard');
+        $user = User::role('user')->get()->count();
+        return view('pages.admin.dashboard',[
+            'user' => $user
+        ]);
     }
 }

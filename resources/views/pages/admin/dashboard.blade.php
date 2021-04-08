@@ -21,7 +21,7 @@
                 <h4>Total Penghuni</h4>
               </div>
               <div class="card-body">
-                {{ Auth::user()->get()->count() }}
+                  {{ $user }}
               </div>
             </div>
           </div>

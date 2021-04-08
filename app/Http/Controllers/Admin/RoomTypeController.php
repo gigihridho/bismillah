@@ -31,12 +31,10 @@ class RoomTypeController extends Controller
                         <a class="btn btn-info edit" href="' . route('tipe.edit', $item->id) . '" >
                             <i class="far fa-edit"></i> Edit
                         </a>
-                        <form action="' . route('tipe.destroy', $item->id) . '" method="POST" style="margin-left:5px">
-                            ' . method_field('delete') . csrf_field() . '
-                            <button type="submit" class="btn btn-danger">
-                                <i class="far fa-trash-alt"></i> Hapus
-                            </button>
-                        </form>
+                        <a href="#" class="btn btn-danger confirm-delete">
+                            <i class="far fa-trash-alt"></i> Hapus
+                        </a>
+
                     </div>';
                 })
                 ->editColumn('photo', function($item){
@@ -114,3 +112,7 @@ class RoomTypeController extends Controller
         return redirect()->route('tipe.index');
     }
 }
+// <form action="' . route('tipe.destroy', $item->id) . '" method="POST" style="margin-left:5px">
+//                             ' . method_field('delete') . csrf_field() . '
+
+//                         </form>

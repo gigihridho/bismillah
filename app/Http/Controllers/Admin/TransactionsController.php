@@ -38,10 +38,10 @@ class TransactionsController extends Controller
                         </form>
                         </div>';
                 })
-                ->editColumn('photo_payment', function($data){
-                    return $data->photo_payment ? '<img src="'. Storage::url($data->photo_payment).'" style="max-height: 50px;"/>' : '';
+                ->editColumn('photo_payment', function($item){
+                    return $item->photo_payment ? '<img src="'. Storage::url($item->photo_payment).'" style="max-height: 50px;"/>' : '';
                 })
-                ->rawColumns(['action','icon'])
+                ->rawColumns(['action','photo_payment'])
                 ->make();
         }
         return view('pages.admin.transaksi.index');
