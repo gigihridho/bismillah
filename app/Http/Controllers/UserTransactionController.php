@@ -30,7 +30,7 @@ class UserTransactionController extends Controller
                                 <i class="far fa-eye"></i> Detail
                             </a>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadBukti" style="margin-left:5px">
-                                <i class="fas fa-upload"></i>  Upload Bukti
+                                <i class="fas fa-upload"></i>
                             </button>
                         </div>';
                 })
@@ -52,19 +52,14 @@ class UserTransactionController extends Controller
     }
 
     public function upload(Request $request){
-        $item = Auth::user()->id;
-        dd($item);
         $this->validate($request, [
-            'photo_payment' => 'required|image|max:2000|mimes:png,jpg',
+            'photo_payment' => 'required|image|max:2048|mimes:png,jpg',
         ]);
-            $file = $request->file('photo_payment');
-            $nama_file = time()."_".$file->getClientOriginalName();
-            $to = 'storage/transaction';
-            $file->move($to, $nama_file);
-
-            $item->save();
-
-            Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
-            return redirect()->back();
+        $data = Transaction::where('user_id',Auth::user()->id)->first();
+        $file = $request->file('photo_payment')->store('assets/transaction','public');
+        $data->photo_payment = $file;
+        $data->save();
+        Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
+        return redirect()->back();
         }
 }

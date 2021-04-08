@@ -22,10 +22,11 @@
                 <div class="card-body">
                     {{-- <a href="{{ route('user-transaksi.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Transaksi</a> --}}
                   <div class="table-responsive">
-                    <table class="table table-bordered" id="table-1">
+                      <table class="table table-bordered" id="table-1">
+                        <p>Pilih tombol <button class="btn btn-success"> <i class="fas fa-upload"></i></button> pada kolom Aksi untuk Upload Bukti Pembayaran </p>
                         <thead>
                             <tr>
-                              <th class="text-center">
+                                <th class="text-center">
                                 #
                               </th>
                               <th>Nama</th>
