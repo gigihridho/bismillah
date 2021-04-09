@@ -42,7 +42,7 @@
                                 <td>{{ $it->name }}</td>
                                 <td>{{ $it->email }}</td>
                                 <td>{{ $it->no_hp }}</td>
-                                <td><img src="{{ Storage::url($it->photo_ktp) }}" alt="Responsive image" width="80px" height="auto"></td>
+                                <td>$it->photo_ktp ? <img src="{{ Storage::url($it->photo_ktp) }}" alt="Responsive image" width="80px" height="auto"> : ''</td>
                                 <td>{{ $it->profession }}</td>
                                 <td>{{ $it->address }}</td>
                             </tr>
