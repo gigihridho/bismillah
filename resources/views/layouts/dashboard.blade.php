@@ -10,6 +10,7 @@
     <meta name="author" content="" />
 
     <title>@yield('title')</title>
+    <link rel="icon" href="{{ url('/seapalace/img/favicon.png') }}" type="image/png">
 
     {{-- Style --}}
     @stack('prepend-style')

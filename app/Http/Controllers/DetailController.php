@@ -16,11 +16,10 @@ class DetailController extends Controller
 
     public function detail(Request $request, $slug)
     {
-        $room_types = RoomType::where('slug', $slug)->get();
-        $price = RoomType::where('slug',$slug)->pluck('price');
+        $room_types = RoomType::where('slug',$slug )->get();
+        $price = RoomType::where('slug',$request->$room_types)->pluck('price');
         $rooms = DB::table('room_types')
         ->join('rooms', 'rooms.room_type_id', '=', 'room_types.id')
-        // ->where('room_types.id',$request->slug)
         ->get();
 
         $facilities = RoomType::with('facilities')->where('id','room_type_id')->get();
@@ -38,10 +37,10 @@ class DetailController extends Controller
             'room' => 'required|exists:rooms,id',
             'arrival_date' => 'required|date',
             'duration' => 'required|integer'
-        ]);
-        dd($request);
+            ]);
         $duration = $request->duration;
-
+            
+        dd($request);
         if($duration == 1){
             $departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
         }elseif($duration == 6){

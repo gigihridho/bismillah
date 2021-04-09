@@ -29,7 +29,7 @@ class FacilityController extends Controller
                         <a class="btn btn-info edit" href="' . route('fasilitas.edit', $item->id) . '" >
                             <i class="far fa-edit"></i> Edit
                         </a>
-                        <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST"  style="margin-left:10px" class="deleteconfirmation">
+                        <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST"  style="margin-left:10px" class="deleteconfirmation" onSubmit="return confirm("Yakin hapus data?")">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="deleteconfirmation btn btn-danger">
                                 <i class="far fa-trash-alt"></i> Hapus

@@ -1,26 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container mt-5 pt-5">
+    <div class="row align-items-sm-center align-items-l-stretch">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
+                <div class="card-header d-flex align-item-center justify-content-between">
+                    <div>
+                        {{ __('Silakan verifikasi email Anda') }}
+                    </div>
+                    <div>
+                        {{Auth::user()->email}}
+                    </div>
+                </div>
                 <div class="card-body">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+                            {{ __('Link verifikasi baru telah dikirim ke email Anda') }}
                         </div>
                     @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
+                    {{ __('Silakan periksa email Anda untuk memverifikasinya.') }}
+                    {{ __('Jika Anda belum menerima email') }},
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Klik di sini untuk verifikasi ulang') }}</button>.
                     </form>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="learning_img">
+                <center><a href="https://storyset.com/internet" target="_blank"><img src="{{asset('/assets/img/email-open.png')}}" height="70%" width="70%" alt="email logo" style=""></center>
             </div>
         </div>
     </div>
