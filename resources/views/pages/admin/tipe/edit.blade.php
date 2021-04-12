@@ -68,6 +68,19 @@
                                     <input type="text" name="size" value="{{ $item->size }}" class="form-control">
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                <label class="d-block">Fasilitas</label>
+                                @foreach ($facilities as $facility)
+                                    <div class="form-check mb-3">
+                                        <input name="facilitity" value={{ $facility->name }} class="form-check-input" type="checkbox" id="defaultCheck1">
+                                        <label name="facility" class="form-check-label" for="defaultCheck1">
+                                            {{ $facility->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col text-right">

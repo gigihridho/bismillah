@@ -30,7 +30,7 @@ class CreateTransactionsTable extends Migration
                 ->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-                $table->foreign('room_id')
+            $table->foreign('room_id')
                 ->references('id')->on('rooms')
                 ->onUpdate('cascade')->onDelete('cascade');
         });

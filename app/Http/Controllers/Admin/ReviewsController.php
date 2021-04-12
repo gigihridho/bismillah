@@ -22,7 +22,7 @@ class ReviewsController extends Controller
                 ->addColumn('action', function($data){
                     return '
                     <div class="btn-group">
-                        <form action="' . route('kamar.destroy', $data->id) . '" method="POST"  style="margin-left:10px">
+                        <form action="' . route('reviews.destroy', $data->id) . '" method="POST"  style="margin-left:10px">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-danger">
                                 <i class="far fa-trash-alt"></i> Hapus
@@ -30,10 +30,17 @@ class ReviewsController extends Controller
                         </form>
                     </div>';
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','review'])
                 ->make();
             }
 
         return view('pages.admin.reviews.index');
+    }
+
+    public function destroy($id){
+        $item = Review::find($id);
+        $item->delete();
+
+        return redirect()->route('reviews.index');
     }
 }

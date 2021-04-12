@@ -51,11 +51,12 @@ class UserTransactionController extends Controller
         ]);
     }
 
-    public function upload(Request $request){
+    public function upload(Request $request, $id){
         $this->validate($request, [
             'photo_payment' => 'required|image|max:2048|mimes:png,jpg',
         ]);
-        $data = Transaction::where('id',Auth::user()->id)->first();
+        $transaction = Transaction::where('id',$id)->get();
+        $data = Transaction::where('id', $transaction)->first();
         $file = $request->file('photo_payment')->store('assets/transaction','public');
         $data->photo_payment = $file;
         $data->save();

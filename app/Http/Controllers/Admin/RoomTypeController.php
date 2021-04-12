@@ -64,26 +64,19 @@ class RoomTypeController extends Controller
         $data->price = $request->input('price');
         $data->size = $request->input('size');
         $data->save();
-
-        // $data['slug'] = Str::slug($request->name);
-        // $data['photo'] = $request->file('photo')->store('assets/facility','public');
-        // $data['description'] = $request->description;
-        // $data['price'] = $request->price;
-        // $data['size'] = $request->size;
-
-        // RoomType::create($data);
         if($request->has('facility')){
             $data->facilities()->attach(array_keys($request->input('facility')));
         }
-        dd($data);
         Alert::success('SUCCESS','Data Tipe Kamar Berhasil Ditambah');
         return redirect()->route('tipe.index');
     }
+
     public function edit($id){
         $item = RoomType::findOrFail($id);
-
+        $facilities = Facility::all();
         return view('pages.admin.tipe.edit',[
-            'item' => $item
+            'item' => $item,
+            'facilities' => $facilities
         ]);
     }
 

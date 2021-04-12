@@ -14,7 +14,6 @@ class CreateDetailFacilitiesTable extends Migration
     public function up()
     {
         Schema::create('detail_facilities', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('facility_id')->unsigned()->index();
             $table->integer('room_type_id')->unsigned()->index();
             $table->timestamps();

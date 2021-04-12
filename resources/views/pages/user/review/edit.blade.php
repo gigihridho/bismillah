@@ -40,8 +40,8 @@ Review
                             </div>
                             <div class="form-group">
                                 <label for="review">Review</label>
-                                <textarea name="review" id="editor" class="form-control">
-                                    {{ auth()->user()->review }}
+                                <textarea name="review" id="editor" class="form-control" required>
+                                    {{ $review->review}}
                                 </textarea>
                             </div>
                             <div class="row">

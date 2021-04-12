@@ -70,41 +70,10 @@
             </div>
             @empty
             <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-              No Room Type Found
+              Tipe Kamar Tidak Ditemukan
             </div>
             @endforelse
-          </div>
-        </div>
-      </section>
-      <div class="store-details-container" data-aos="fade-up">
-        <section class="store-heading">
-          <div class="container">
-            <div class="row">
-              @php
-              $incrementRoomTypes = 0
-              @endphp
-              @forelse ($room_types as $room_type)
-              <div class="col-lg-8">
-                <h1>Tipe Kamar</h1>
-                <input type="hidden" name="id" value="{{ $room_type->room }}">
-                <div class="owner">{{ $room_type->name }}</div>
-                <div class="price">Rp {{ $room_type->price }} / Per Bulan</div>
-                <div class="store-description">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-12 col-lg-8">
-                        <p>{!! $room_type->description !!}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @empty
-              <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                No Room Type Found
-              </div>
-              @endforelse
-              <div class="col-lg-4" data-aos="zoom-in">
+            <div class="col-lg-4" data-aos="zoom-in">
 
                 <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
                   <form action="{{ route('detail-add') }}" method="POST" enctype="multipart/form-data">
@@ -145,6 +114,37 @@
                   </form>
                 </div>
               </div>
+          </div>
+        </div>
+      </section>
+      <div class="store-details-container" data-aos="fade-up">
+        <section class="store-heading">
+          <div class="container">
+            <div class="row">
+              @php
+              $incrementRoomTypes = 0
+              @endphp
+              @forelse ($room_types as $room_type)
+              <div class="col-lg-8">
+                <h1>Tipe Kamar</h1>
+                <input type="hidden" name="id" value="{{ $room_type->room }}">
+                <div class="owner">{{ $room_type->name }}</div>
+                <div class="price">Rp {{ $room_type->price }} / Per Bulan</div>
+                <div class="store-description">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12 col-lg-8">
+                        <p>{!! $room_type->description !!}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @empty
+              <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                Tipe Kamar Tidak Ditemukan
+              </div>
+              @endforelse
             </div>
             <div class="row">
               @php $incrementRoomType = 0 @endphp
@@ -155,15 +155,14 @@
                 <div class="card-body">
                   <ul>
                     <p>{{ $facility->name }}</p>
-
+                    {{ $facility->icon }}
                   </ul>
                 </div>
                 @empty
                 <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                    No Facility Found
+                    Data Fasilitas Tidak Ditemukan
                 </div>
                 @endforelse
-
               </div>
             </div>
           </div>

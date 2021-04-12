@@ -66,16 +66,18 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="form-group">
                                 <label class="d-block">Fasilitas</label>
-                                @foreach ($facilities as $facility)
+                                <div class="form-group">
+                                @forelse($facilities as $facility)
                                     <div class="form-check mb-3">
-                                        <input name="facilitity" value={{ $facility->name }} class="form-check-input" type="checkbox" id="defaultCheck1">
-                                        <label name="facility" class="form-check-label" for="defaultCheck1">
+                                        <label class="checkbox" name="facility" class="form-check-label">
+                                            <input name="facilitity[{{$facility->id}}]" value={{ $facility->name }} class="form-check-input" type="checkbox" data-toggle="checkbox">
                                             {{ $facility->name }}
                                         </label>
                                     </div>
-                                @endforeach
+                                @empty
+                                <p>Maaf tidak ada fasilitas tersedia</p>
+                                @endforelse
                                 </div>
                             </div>
                         </div>

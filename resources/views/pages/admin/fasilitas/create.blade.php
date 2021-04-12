@@ -43,13 +43,13 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Nama Fasilitas</label>
-                                    <input type="text" name="name" class="form-control" required>
+                                    <input type="text" name="name" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Icon</label>
-                                    <input type="file" name="icon" class="form-control"required>
+                                    <input type="file" name="icon" class="form-control">
                                 </div>
                             </div>
                         </div>

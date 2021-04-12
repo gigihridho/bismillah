@@ -11,6 +11,9 @@
             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
                 @if(auth()->user()->hasRole('admin'))
+                <a href="{{ route('home') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-home"></i> Home
+                </a>
                 <a href="{{ route('change-profil') }}" class="dropdown-item has-icon">
                     <i class="fas fa-user"></i> Ubah Profil
                 </a>
@@ -21,7 +24,7 @@
 
               @if(auth()->user()->hasRole('user'))
                 <a href="{{ route('home') }}" class="dropdown-item has-icon">
-                    <i class="fas fa-home">Home</i>
+                    <i class="fas fa-home"></i> Home
                 </a>
                 <a href="{{ route('change-profil-user') }}" class="dropdown-item has-icon">
                     <i class="fas fa-user"></i> Ubah Profil

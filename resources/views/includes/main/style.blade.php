@@ -10,3 +10,4 @@
 <link rel="stylesheet" href="{{ url('/seapalace/vendors/nice-select/nice-select.css') }}">
 
 <link rel="stylesheet" href="{{ url('/seapalace/css/style.css') }}">
+

@@ -26,11 +26,6 @@ class DetailController extends Controller
         }
         $rooms = Room::whereIn('room_type_id', $roomTypes)->get();
 
-/*        $rooms = DB::table('room_types')
-        ->join('rooms', 'rooms.room_type_id', '=', 'room_types.id')
-        // ->where('room_types.id',$request->slug)
-        ->get();*/
-
         $facilities = RoomType::with('facilities')->where('id','room_type_id')->get();
         return view('pages.detail', [
             'room_types' => $room_types,
@@ -44,7 +39,7 @@ class DetailController extends Controller
     {
         $request->validate([
             'room' => 'required|exists:rooms,id',
-            'arrival_date' => 'required|date',
+            'arrival_date' => 'required|date|after_or_equal:today',
             'duration' => 'required|integer'
         ]);
 
