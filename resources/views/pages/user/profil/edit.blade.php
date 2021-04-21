@@ -35,27 +35,27 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama User</label>
-                            <input type="text" name="name" value="{{ auth()->user()->name }}" class="form-control">
+                            <input type="text" name="name" value="{{ auth()->user()->name }}" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" name="email" value="{{ auth()->user()->email }}" class="form-control">
+                            <input type="email" name="email" value="{{ auth()->user()->email }}" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="no_hp">No Telepon</label>
-                            <input type="text" name="no_hp" id="no_hp" value="{{ $user->no_hp }}" class="form-control">
+                            <input type="text" name="no_hp" id="no_hp" value="{{ $user->no_hp }}" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Foto KTP</label>
-                            <input type="file" name="photo_ktp" value="{{ $user->photo_ktp }}" class="form-control">
+                            <input type="file" name="photo_ktp" value="{{ $user->photo_ktp }}" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="address">Alamat</label>
-                            <input type="text" name="address" id="address" value="{{ $user->address }}" class="form-control">
+                            <input type="text" name="address" id="address" value="{{ $user->address }}" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="profession">Profesi</label>
-                            <input type="text" name="profession" id="profession" value="{{ $user->profession }}" class="form-control">
+                            <input type="text" name="profession" id="profession" value="{{ $user->profession }}" class="form-control" required>
                         </div>
                         <div class="row">
                             <div class="col text-right">

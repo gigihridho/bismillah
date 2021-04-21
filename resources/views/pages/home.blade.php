@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Kost Griya Kenyo</title>
+  <title>Kost Griyo Kenyo</title>
 
   @include('includes.main.style')
 </head>
@@ -18,7 +18,7 @@
         <div class="home-banner">
           <div class="text-center">
             <h4>Rumah Kost yang bersih dan nyaman</h4>
-            <h1>Rumah Kost Griya Kenyo</h1>
+            <h1>Rumah Kost Griyo Kenyo</h1>
             <a class="button home-banner-btn" href="#">Silakan Memilih Kamar</a>
           </div>
         </div>
@@ -60,7 +60,7 @@
     <section class="section-margin" id="kost">
       <div class="container">
         <div class="section-intro text-center pb-80px">
-          <h2>Tipe Kamar Rumah Kost Griya Kenyo</h2>
+          <h2>Tipe Kamar Rumah Kost Griyo Kenyo</h2>
         </div>
 
         <div class="row">
