@@ -16,7 +16,7 @@ class ProfilUserController extends Controller
             ]);
         }
 
-        public function update(Request $request, $redirect){
+    public function update(Request $request, $redirect){
         $data = $request->all();
 
         $data['name'] = Str::slug($request->name);

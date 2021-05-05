@@ -121,10 +121,7 @@
 
   </main>
 
-
-
   @include('includes.main.footer')
-
 
  @include('includes.main.script')
 </body>
