@@ -41,6 +41,10 @@ class DetailController extends Controller
             'room' => 'required|exists:rooms,id',
             'arrival_date' => 'required|date|after_or_equal:today',
             'duration' => 'required|integer'
+        ],[
+            'room.required' => 'Kamar tidak boleh kosong',
+            'arrival_date.required' => 'Tanggal masuk tidak boleh kosong',
+            'duration.required' => 'Lama waktu sewa tidak boleh kosong'
         ]);
 
         $duration = $request->duration;

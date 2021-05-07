@@ -74,7 +74,6 @@
             </div>
             @endforelse
             <div class="col-lg-4" data-aos="zoom-in">
-
                 <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
                   <form action="{{ route('detail-add') }}" method="POST" enctype="multipart/form-data">
                     @csrf
