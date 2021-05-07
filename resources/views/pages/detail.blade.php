@@ -129,7 +129,7 @@
                 <h1>Tipe Kamar</h1>
                 <input type="hidden" name="id" value="{{ $room_type->room }}">
                 <div class="owner">{{ $room_type->name }}</div>
-                <div class="price">Rp {{ $room_type->price }} / Per Bulan</div>
+                <div class="price">Rp {{ number_format($room_type->price) }} / Per Bulan</div>
                 <div class="store-description">
                   <div class="container">
                     <div class="row">
