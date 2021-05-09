@@ -28,10 +28,10 @@ class RoomTypeController extends Controller
                 ->addColumn('action', function($item){
                     return '
                     <div class="btn-group">
-                        <a class="btn btn-info edit" href="' . route('tipe.edit', $item->id) . '" >
+                        <a class="btn btn-info btn-sm edit" href="' . route('tipe.edit', $item->id) . '">
                             <i class="far fa-edit"></i> Edit
                         </a>
-                        <a href="#" class="btn btn-danger confirm-delete">
+                        <a href="#" class="btn btn-danger btn-sm confirm-delete" style="margin-left:10px">
                             <i class="far fa-trash-alt"></i> Hapus
                         </a>
 

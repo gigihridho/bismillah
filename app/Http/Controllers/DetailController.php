@@ -62,9 +62,9 @@ class DetailController extends Controller
         if($duration == 1){
             $total_price = $duration * $price;
         } elseif($duration == 6){
-            $total_price = $duration * $price - (0.1 * $duration * $price[0]);
+            $total_price = $duration * $price - (0.5 * $price);
         } elseif($duration == 12){
-            $total_price = $duration * $price - (0.2 * $duration * $price[0]);
+            $total_price = $duration * $price - (1 * $price);
         }
 
         $data = [
