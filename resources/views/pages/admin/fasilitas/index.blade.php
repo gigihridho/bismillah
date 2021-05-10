@@ -20,7 +20,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <a href="{{ route('fasilitas.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Fasilitas</a>
+                <a href="{{ route('fasilitas.create') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Fasilitas</a>
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="table-1" cellspacing="0" style="width: 100%">
                     <thead>

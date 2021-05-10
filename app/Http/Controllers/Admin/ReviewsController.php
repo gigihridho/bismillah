@@ -24,7 +24,7 @@ class ReviewsController extends Controller
                     <div class="btn-group">
                         <form action="' . route('reviews.destroy', $data->id) . '" method="POST"  style="margin-left:10px">
                             ' . method_field('delete') . csrf_field() . '
-                            <button type="submit" class="btn btn-danger">
+                            <button type="submit" class="btn btn-sm btn-danger">
                                 <i class="far fa-trash-alt"></i> Hapus
                             </button>
                         </form>

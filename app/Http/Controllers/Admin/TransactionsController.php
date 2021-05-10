@@ -30,14 +30,13 @@ class TransactionsController extends Controller
                         <div class="btn-group">
                             <form action="'. route('confirmation',$item->id).'" enctype="multipart/form-data">
                                 '.method_field('PUT') .csrf_field() .'
-                            <button value="Konfirmasi" id="status" name="status" type="submit" class="btn btn-info success"
-                                onclick="return confirm("Anda yakin ingin mengkonfirmasi pendaftaran ini?")">
+                            <button value="Konfirmasi" id="status" name="status" type="submit" class="btn btn-sm btn-info success">
                                 Konfirmasi
                             </button>
                             </form>
                             <form action="' . route('transaksi.destroy', $item->id) . '" method="POST" style="margin-left:5px">
                             ' . method_field('delete') . csrf_field() . '
-                            <button type="submit" class="btn btn-danger">
+                            <button type="submit" class="btn btn-sm btn-danger">
                                 Hapus
                             </button>
                         </form>

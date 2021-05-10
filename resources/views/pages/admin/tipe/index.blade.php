@@ -20,7 +20,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <a href="{{ route('tipe.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Tipe Kamar</a>
+                <a href="{{ route('tipe.create') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Tipe Kamar</a>
                 <div class="table-responsive">
                   <table class="table table-striped" id="table-1">
                     <thead>

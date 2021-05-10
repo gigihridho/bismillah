@@ -26,12 +26,12 @@ class FacilityController extends Controller
                 ->addColumn('action', function($item){
                     return '
                     <div class="btn-group">
-                        <a class="btn btn-info edit" href="' . route('fasilitas.edit', $item->id) . '" >
+                        <a class="btn btn-sm btn-info edit" href="' . route('fasilitas.edit', $item->id) . '" >
                             <i class="far fa-edit"></i> Edit
                         </a>
                         <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST"  style="margin-left:10px" class="deleteconfirmation" onSubmit="return confirm("Yakin hapus data?")">
                             ' . method_field('delete') . csrf_field() . '
-                            <button type="submit" class="deleteconfirmation btn btn-danger">
+                            <button type="submit" class="deleteconfirmation btn btn-sm btn-danger">
                                 <i class="far fa-trash-alt"></i> Hapus
                             </button>
                         </form>
