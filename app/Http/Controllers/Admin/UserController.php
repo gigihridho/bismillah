@@ -26,7 +26,7 @@ class UserController extends Controller
                         <a class="btn btn-sm btn-info edit" href="' . route('detail-user', $item->id) . '" >
                             <i class="far fa-eye"></i> Detail
                         </a>
-                        <form action="' . route('user.destroy', $item->id) . '" method="POST"  style="margin-left:10px">
+                        <form action="' . route('user.destroy', $item->id) . '" method="POST" style="margin-left:5px">
                             ' . method_field('delete') . csrf_field() . '
                             <button type="submit" class="btn btn-sm btn-danger">
                                 <i class="far fa-trash-alt"></i> Hapus

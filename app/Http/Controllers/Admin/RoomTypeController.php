@@ -31,7 +31,7 @@ class RoomTypeController extends Controller
                         <a class="btn btn-info btn-sm edit" href="' . route('tipe.edit', $item->id) . '">
                             <i class="far fa-edit"></i> Edit
                         </a>
-                        <a href="#" class="btn btn-danger btn-sm confirm-delete" style="margin-left:10px">
+                        <a href="#" class="btn btn-danger btn-sm confirm-delete" style="margin-left:5px">
                             <i class="far fa-trash-alt"></i> Hapus
                         </a>
 
