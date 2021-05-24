@@ -23,11 +23,13 @@ class DashboardController extends Controller
             $chart = collect(DB::select("SELECT count(id) as jumlah from transactions where month(created_at)='$bulan'"))->first();
             $jumlah_transactions[] = $chart->jumlah;
         }
+        $total_price = DB::table('transactions')->sum('total_price');
         return view('pages.admin.dashboard',[
             'user' => $user,
             'label' => $label,
-            'transaction' => $transactions,
+            'transactions' => $transactions,
             'jumlah_transactions' => $jumlah_transactions,
+            'total_price' => $total_price,
         ]);
     }
 }

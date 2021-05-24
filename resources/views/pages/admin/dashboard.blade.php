@@ -51,7 +51,7 @@
                 <h4>Jumlah Transaksi</h4>
               </div>
               <div class="card-body">
-                {{ DB::table('transactions')->count()}}
+                {{ $transactions }}
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@
                 <h4>Total Transaksi</h4>
               </div>
               <div class="card-body">
-                {{ DB::table('transactions')->sum('total_price') }}
+                Rp {{ number_format($total_price) }}
               </div>
             </div>
           </div>
