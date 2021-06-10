@@ -19,13 +19,13 @@
           </div>
 
           <ul class="nav navbar-nav">
-            <li class="nav-item active"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+            <li class="nav-item active"><a class="nav-link" href="{{ route('home') }}">Beranda</a></li>
             @guest
             <li class="nav-item">
-                <a href="{{ route('register') }}" class="nav-link">Sign Up</a>
+                <a href="{{ route('register') }}" class="nav-link">Daftar</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('login') }}" class="btn btn-success nav-link px-4 text-white">Sign In</a>
+                <a href="{{ route('login') }}" class="btn btn-success nav-link px-4 text-white">Masuk</a>
             </li>
             @endguest
           </ul>
@@ -40,18 +40,19 @@
                </a>
                <div class="dropdown-menu">
                  @if(auth()->user()->hasRole('user'))
-                 <a href="{{ route('user-transaksi') }}" class="dropdown-item"><span>Dashboard</span></a>
+                 <a href="{{ route('change-profil-user') }}" class="dropdown-item">Profil</a>
+                 <a href="{{ route('user-transaksi') }}" class="dropdown-item"><span>Transaksi</span></a>
                     <div class="dropdown-divider"></div>
-                    <a
-                    href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="dropdown-item text-danger"
-                    >
-                    <span>Logout</span>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                    </a>
+                <a
+                href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                class="dropdown-item text-danger"
+                >
+                <span>Keluar</span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                </a>
                  @endif
 
                  @if(auth()->user()->hasRole('admin'))
@@ -61,7 +62,7 @@
                     href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     class="dropdown-item text-danger"
                     >
-                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+                    <i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>

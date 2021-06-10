@@ -17,6 +17,17 @@ class ProfilUserController extends Controller
         }
 
     public function update(Request $request, $redirect){
+        $this->validate($request,[
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'no_hp' => 'required|numeric',
+            'profession' => 'required',
+            'address' => 'required',
+        ],
+        [
+            'name.required' => 'Nama tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+        ]);
         $data = $request->all();
 
         $data['name'] = Str::slug($request->name);

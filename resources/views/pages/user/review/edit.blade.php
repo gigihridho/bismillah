@@ -40,9 +40,7 @@ Review
                             </div>
                             <div class="form-group">
                                 <label for="review">Review</label>
-                                <textarea name="review" id="editor" class="form-control" required>
-                                    {{ $review->review}}
-                                </textarea>
+                                <input type="text" name="review" id="review" value="{{ $review }}" class="form-control">
                             </div>
                             <div class="row">
                                 <div class="col text-right">

@@ -19,7 +19,7 @@ class UserReviewController extends Controller
     public function review()
     {
         $user = Auth::user()->id;
-        $review = Review::where('user_id',$user)->first();
+        $review = Review::where('review',$user)->get();
 
         return view('pages.user.review.edit',[
             'user' => $user,
@@ -29,7 +29,7 @@ class UserReviewController extends Controller
 
     public function update(Request $request, $redirect){
         $user = Auth::user()->id;
-        $item = Review::where('user_id', $user)->first();
+        $item = Review::where('review', $user)->get();
 
         if($item == null){
             $item = new Review();

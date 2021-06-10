@@ -65,9 +65,6 @@
             <li class="{{ (request()->is('user/change-profil-user*')) ? 'active' : '' }}">
                 <a href="{{ route('change-profil-user') }}" class="nav-link"><i class="fas fa-user"></i> <span>Profil</span></a>
             </li>
-            <li class="{{ (request()->is('user/change-pass*')) ? 'active' : '' }}">
-                <a href="{{ route('change-pass') }}" class="nav-link"><i class="fas fa-key"></i> <span>Ubah kata sandi</span></a>
-            </li>
           @endif
     </aside>
   </div>
