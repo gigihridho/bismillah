@@ -91,7 +91,10 @@
                 orderable: false,
                 searchable: false,
             },
-        ]
+        ],
+        "language":{
+            "emptyTable": "Tidak ada data yang ditampilkan"
+        }
     });
 </script>
 @endpush

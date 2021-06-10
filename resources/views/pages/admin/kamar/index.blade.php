@@ -69,7 +69,10 @@
                 orderable: false,
                 searchable: false,
             },
-        ]
+        ],
+        "language":{
+            "emptyTable": "Tidak ada data yang ditampilkan"
+        }
     });
 
     $(document).on('click', '.delete', function () {

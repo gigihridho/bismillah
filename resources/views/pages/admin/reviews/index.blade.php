@@ -55,7 +55,7 @@
             url: '{!! url() -> current()!!}',
         },
         columns:[
-            {data: 'id', name: 'id'},
+            {data: 'DT_RowIndex', name: 'id'},
             {data: 'user.name', name: 'user.name'},
             {data: 'review', name: 'review'},
             {
@@ -64,7 +64,10 @@
                 orderable: false,
                 searchable: false,
             },
-        ]
+        ],
+        "language":{
+            "emptyTable": "Tidak ada data yang ditampilkan"
+        }
     });
     $(".deleteHarga").click(function(){
         swal({
