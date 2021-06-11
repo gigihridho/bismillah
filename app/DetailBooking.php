@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DetailTransaction extends Model
+class DetailBookings extends Model
 {
-    protected $table = 'detail_transactions';
+    protected $table = 'detail_bookings';
 
     protected $fillable = [
-        'transaction_id','user_id'
+        'booking_id','user_id'
     ];
 
     protected $hidden = [

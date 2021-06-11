@@ -15,16 +15,14 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('room_type_id')->unsigned()->index();
             $table->string('name');
+            $table->string('photo');
+            $table->integer('floor');
+            $table->string('price');
+            $table->string('size');
+            $table->integer('total_rooms');
             $table->string('slug');
-            $table->enum('status',['Tersedia','Tidak Tersedia']);
             $table->timestamps();
-
-            $table->foreign('room_type_id')
-                ->references('id')->on('room_types')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
         });
     }
 

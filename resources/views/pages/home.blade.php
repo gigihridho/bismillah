@@ -63,7 +63,7 @@
           <h2>Tipe Kamar Rumah Kost Griyo Kenyo</h2>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             @php $incrementRoomType = 0 @endphp
             @forelse ($room_types as $room_type)
             <div class="col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade-up">
@@ -82,7 +82,7 @@
             @empty
 
             @endforelse
-        </div>
+        </div> --}}
       </div>
     </section>
     <!-- ================ Explore section end ================= -->

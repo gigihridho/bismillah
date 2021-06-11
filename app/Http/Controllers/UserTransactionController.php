@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class UserTransactionController extends Controller
 
     public function index(){
         if(request()->ajax()){
-            $query = Transaction::with('user','room')->where('user_id', Auth::user()->id);
+            $query = Booking::with('user','room')->where('user_id', Auth::user()->id);
 
             return Datatables::of($query)
                 ->addIndexColumn()
@@ -44,7 +45,7 @@ class UserTransactionController extends Controller
     }
 
     public function detail(Request $request, $id){
-        $item = Transaction::where('id',$id)->get();
+        $item = Booking::where('id',$id)->get();
 
         return view('pages.user.user-transaksi.detail',[
             'item' => $item,
@@ -55,8 +56,8 @@ class UserTransactionController extends Controller
         $this->validate($request, [
             'photo_payment' => 'required|image|max:2048|mimes:png,jpg',
         ]);
-        $transaction = Transaction::where('id',$id)->get();
-        $data = Transaction::where('id', $transaction)->first();
+        $transaction = Booking::where('id',$id)->get();
+        $data = Booking::where('id', $transaction)->first();
         $file = $request->file('photo_payment')->store('assets/transaction','public');
         $data->photo_payment = $file;
         $data->save();

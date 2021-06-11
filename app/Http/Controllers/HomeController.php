@@ -28,11 +28,9 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::all();
-        $room_types = RoomType::all();
         $reviews = Review::all();
         return view('pages.home',[
             'users' => $users,
-            'room_types' => $room_types,
             'reviews' => $reviews
         ]);
     }

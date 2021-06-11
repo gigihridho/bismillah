@@ -9,7 +9,7 @@ class DetailFacility extends Model
     protected $table = 'detail_facilities';
 
     protected $fillable = [
-        'facility_id','room_type_id'
+        'facility_id','room_id'
     ];
 
     protected $hidden = [

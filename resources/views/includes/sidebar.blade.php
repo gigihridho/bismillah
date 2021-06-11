@@ -29,14 +29,8 @@
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">
                 <i class="fas fa-columns"></i> <span>Fasilitas</span></a>
             </li>
-            <li class="{{ (request()->is('admin/tipe*')) ? 'active' : '' }}nav-item">
-                <a href="{{ route('tipe.index') }}" class="nav-link"><i class="fas fa-hamburger"></i> <span>Tipe Kamar</span></a>
-            </li>
             <li class="{{ (request()->is('admin/kamar*')) ? 'active' : '' }}">
                 <a href="{{ route('kamar.index') }}" class="nav-link"><i class="fas fa-bed"></i> <span>Kamar</span></a>
-            </li>
-            <li class="{{ (request()->is('admin/gallery*')) ? 'active' : '' }}">
-                <a href="{{ route('gallery.index') }}" class="nav-link"><i class="fas fa-camera"></i> <span>Gallery</span></a>
             </li>
           <li class="menu-header">Transaksi
             <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">

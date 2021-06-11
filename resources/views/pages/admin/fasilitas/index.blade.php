@@ -29,7 +29,6 @@
                           ID
                         </th>
                         <th>Nama</th>
-                        <th>Icon</th>
                         <th>Slug</th>
                         <th>Aksi</th>
                       </tr>
@@ -58,7 +57,6 @@
         columns:[
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'icon', name: 'icon'},
             {data: 'slug', name: 'slug'},
             {
                 data: 'action',
