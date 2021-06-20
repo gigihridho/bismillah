@@ -17,7 +17,7 @@ class DashboardController extends Controller
     }
     public function index(){
         $user = User::role('user')->get()->count();
-        // $transactions = Booking::where('status','Konfirmasi')->count();
+        $transactions = Booking::where('status','Konfirmasi')->count();
         $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         for($bulan = 1 ; $bulan < 12; $bulan++){
             $chart = collect(DB::select("SELECT count(id) as jumlah from bookings where month(created_at)='$bulan'"))->first();
@@ -27,7 +27,7 @@ class DashboardController extends Controller
         return view('pages.admin.dashboard',[
             'user' => $user,
             'label' => $label,
-            // 'transactions' => $transactions,
+            'transactions' => $transactions,
             'jumlah_transactions' => $jumlah_transactions,
             'total_price' => $total_price,
         ]);

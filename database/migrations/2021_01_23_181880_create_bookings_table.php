@@ -23,7 +23,7 @@ class CreateBookingsTable extends Migration
             $table->enum('duration',[1,6,12]);
             $table->date('arrival_date');
             $table->date('departure_date')->nullable();
-            $table->enum('status',['Konfirmasi','Belum Konfirmasi']);
+            $table->enum('status',['Lunas','Belum Terbayar']);
             $table->timestamps();
 
             $table->foreign('user_id')

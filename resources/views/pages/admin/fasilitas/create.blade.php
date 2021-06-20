@@ -40,16 +40,10 @@
                       <form id="facilities_store" action="{{ route('fasilitas.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nama Fasilitas</label>
                                     <input type="text" name="name" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Icon</label>
-                                    <input type="file" name="icon" class="form-control">
                                 </div>
                             </div>
                         </div>

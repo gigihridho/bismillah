@@ -54,7 +54,6 @@ class FacilityController extends Controller
         $data = $request->all();
 
         $data['slug'] = $request->name;
-        $data['icon'] = $request->file('icon')->store('assets/icon','public');
         Facility::create($data);
         Alert::success('SUCCESS','Data Fasilitas Berhasil Ditambah');
         return redirect()->route('fasilitas.index');
@@ -72,7 +71,6 @@ class FacilityController extends Controller
         $data = $request->all();
 
         $data['slug'] = Str::slug($request->name);
-        $data['icon'] = $request->file('icon')->store('assets/icon','public');
 
         $item = Facility::findOrFail($id);
 

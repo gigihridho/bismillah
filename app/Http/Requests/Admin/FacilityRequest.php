@@ -25,7 +25,6 @@ class FacilityRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'icon' => 'required|image'
         ];
     }
 }

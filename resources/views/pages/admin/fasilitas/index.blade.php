@@ -45,7 +45,7 @@
 @endsection
 @push('addon-script')
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="sweetalert2.all.min.js"></script>
 <script>
     var datatable = $('#table-1').DataTable({
         processing: true,
@@ -71,39 +71,21 @@
     })
 </script>
 <script>
-    window.deleteconfirmation = function(formId)
-    {
     Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
         icon: 'warning',
-        text: 'Do you want to delete this?',
         showCancelButton: true,
-        confirmButtonText: 'Delete',
-        confirmButtonColor: '#e3342f',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            document.getElementById(formId).submit();
+            Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+            )
         }
-    });
-}
-        // $(".delete").click(function(e) {
-        //     id = e.target.daataset.id
-        //     swal({
-        //         title: 'Are you sure?',
-        //         text: 'Once deleted, you will not be able to recover this imaginary file!',
-        //         icon: 'warning',
-        //         buttons: true,
-        //         dangerMode: true,
-        //     })
-        //     .then((willDelete) => {
-        //         if (willDelete) {
-        //         swal('Poof! Your imaginary file has been deleted!', {
-        //             icon: 'success',
-        //         });
-        //         } else {
-        //         swal('Your imaginary file is safe!');
-        //         }
-        //     });
-        // });
-
-</script>
+    })
 @endpush
