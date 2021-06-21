@@ -25,14 +25,14 @@
                   <table class="table table-striped" id="table-1">
                     <thead>
                       <tr>
-                        <th class="text-center">
+                        <th style="width: 30px" class="text-center">
                           #
                         </th>
                         <th>Nama</th>
                         <th>Foto</th>
                         <th>Lantai</th>
-                        <th>Harga</th>
-                        <th>Ukuran</th>
+                        <th style="width: 30px">Harga</th>
+                        <th style="width: 30px">Ukuran</th>
                         <th>Status</th>
                         <th>Aksi</th>
                       </tr>
@@ -64,9 +64,14 @@
                                 <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="{{ route('kamar.index', $d->id) }}"  >
                                     <i class="far fa-bed"></i>
                                 </a>
-                                <a title="hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm edit" href="route('tipe.edit', $d->id)">
-                                    <i class="far fa-trash-alt"></i>
-                                </a>
+                                <form action="{{ route('tipe.destroy',$d->id) }}" method="POST"
+                                    data-toggle="tooltip" data-placement="top" title="Hapus Tipe Kamar" class="destroy" onclick="return confirm('Anda yakin ingin menghapus data?')">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="btn btn-sm btn-danger mr-2"
+                                    style="color:white"><i class="far fa-trash-alt"></i>
+                                </button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -80,25 +85,6 @@
       </div>
     </section>
   </div>
-  <div class="modal" id="delete" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection
 @push('addon-script')
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
@@ -108,4 +94,4 @@
         $('#table-1').DataTable();
     } );
     </script>
-    @endpush
+@endpush
