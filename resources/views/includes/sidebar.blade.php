@@ -29,9 +29,12 @@
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">
                 <i class="fas fa-columns"></i> <span>Fasilitas</span></a>
             </li>
-            <li class="{{ (request()->is('admin/kamar*')) ? 'active' : '' }}">
-                <a href="{{ route('kamar.index') }}" class="nav-link"><i class="fas fa-bed"></i> <span>Kamar</span></a>
+            <li class="{{ (request()->is('admin/tipe*')) ? 'active' : '' }}">
+                <a href="{{ route('tipe.index') }}" class="nav-link"><i class="fas fa-bed"></i> <span>Tipe Kamar</span></a>
             </li>
+            {{-- <li class="{{ (request()->is('admin/kamar*')) ? 'active' : '' }}">
+                <a href="{{ route('kamar.index') }}" class="nav-link"><i class="fas fa-bed"></i> <span>Kamar</span></a>
+            </li> --}}
           <li class="menu-header">Transaksi
             <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
                 <a href="{{ route('transaksi.index') }}" class="nav-link"><i class="fas fa-money-bill"></i> <span>Transaksi</span></a>

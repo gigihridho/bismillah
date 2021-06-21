@@ -26,10 +26,11 @@ class RoomTypeRequest extends FormRequest
         return [
             'name' => 'required|string',
             'photo' => 'required|image',
-            'description' => 'required|string',
+            'floor' => 'required|integer',
             'price' => 'required|integer',
             'size' => 'required|string',
-            'facility' => 'array'
+            'facility' => 'array',
+            'status' => 'required|boolean',
         ];
     }
 }

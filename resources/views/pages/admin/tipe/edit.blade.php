@@ -32,40 +32,53 @@
                     <h4>Tambah Tipe Kamar</h4>
                   </div>
                   <div class="card-body">
-                    <form action="{{ route('tipe.update', $item->id ) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('tipe.update', $data->id ) }}" method="POST" enctype="multipart/form-data">
                     @method("PUT")
                     @csrf
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tipe Kamar</label>
-                                    <input type="text" name="name" value="{{ $item->name }}" class="form-control">
+                                    <input type="text" name="name" value="{{ $data->name }}" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Foto</label>
-                                    <input type="file" name="photo" value="{{ $item->photo }}" class="form-control">
+                                    <input type="file" name="photo" value="{{ $data->photo }}" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Deskripsi</label>
-                                    <textarea name="description" id="editor" class="form-control">
-                                        {!! $item->description !!}
-                                    </textarea>
+                                    <label>Lantai</label>
+                                    <input type="number" name="floor" value="{{ $data->floor }}" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Harga</label>
-                                    <input type="number" name="price" value="{{ $item->price }}" class="form-control">
+                                    <input type="number" name="price" value="{{ $data->price }}" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Luas</label>
-                                    <input type="text" name="size" value="{{ $item->size }}" class="form-control">
+                                    <input type="text" name="size" value="{{ $data->size }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="1"
+                                            @if (old('status') == '1')selected="selected" @endif" >
+                                            Aktif
+                                        </option>
+                                        <option value="0" s
+                                            @if (old('status') == '0')selected="selected" @endif" >
+                                            Tidak Aktif
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -73,9 +86,9 @@
                                 <label class="d-block">Fasilitas</label>
                                 @foreach ($facilities as $facility)
                                     <div class="form-check mb-3">
-                                        <input name="facilitity" value={{ $facility->name }} class="form-check-input" type="checkbox" id="defaultCheck1">
-                                        <label name="facility" class="form-check-label" for="defaultCheck1">
-                                            {{ $facility->name }}
+                                        <label class="checkbox">
+                                            <input name="facilitity" value={{ $facility->name }} class="form-check-input" type="checkbox" id="defaultCheck1" data-toggle="checkbox">
+                                            @if ($data->facilities->contains($facility->id)) checked="" @endif>{{ $facility->name }}
                                         </label>
                                     </div>
                                 @endforeach

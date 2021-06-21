@@ -29,7 +29,6 @@
                           ID
                         </th>
                         <th>Nama</th>
-                        <th>Slug</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -57,7 +56,6 @@
         columns:[
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'slug', name: 'slug'},
             {
                 data: 'action',
                 name: 'action',

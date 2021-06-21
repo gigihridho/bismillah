@@ -30,13 +30,46 @@
                         </th>
                         <th>Nama</th>
                         <th>Foto</th>
-                        <th style="width: 30%">Deskripsi</th>
+                        <th>Lantai</th>
                         <th>Harga</th>
-                        <th>Luas</th>
+                        <th>Ukuran</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            @php $no = 1; @endphp
+                            @foreach($data as $d)
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $d->name }}</td>
+                            <td>
+                                <img height="70px" src="{{ Storage::url($d->photo) }}" alt="">
+                            </td>
+                            <td>{{ $d->floor }}</td>
+                            <td>{{ $d->price }}</td>
+                            <td>{{ $d->size }}</td>
+                            <td>
+                                @if($d->status == 1)
+                                    <button class="btn btn-success btn-sm btn-fill">Aktif</button>
+                                @else
+                                    <button class="btn btn-danger btn-sm btn-fill">Tidak Aktif
+                                    </button>
+                                @endif
+                            </td>
+                            <td>
+                                <a title="edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $d->id) }}">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="{{ route('kamar.index', $d->id) }}"  >
+                                    <i class="far fa-bed"></i>
+                                </a>
+                                <a title="hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm edit" href="route('tipe.edit', $d->id)">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -71,30 +104,8 @@
 <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    var datatable = $('#table-1').DataTable({
-        processing: true,
-        serverSide: true,
-        ordering: true,
-        ajax: {
-            url: '{!! url() -> current()!!}',
-        },
-        columns:[
-            {data: 'DT_RowIndex', name: 'id'},
-            {data: 'name', name: 'name'},
-            {data: 'photo', name: 'photo'},
-            {data: 'description', name: 'description'},
-            {data: 'price', name: 'price'},
-            {data: 'size', name: 'size'},
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-            },
-        ],
-        "language":{
-            "emptyTable": "Tidak ada data yang ditampilkan"
-        }
-    });
-</script>
-@endpush
+    $(document).ready( function () {
+        $('#table-1').DataTable();
+    } );
+    </script>
+    @endpush

@@ -19,7 +19,7 @@ class CreateRoomTypesTable extends Migration
             $table->string('photo');
             $table->integer('floor');
             $table->string('price');
-            $table->integer('size');
+            $table->string('size');
             $table->boolean('status')->default(true);
             $table->string('slug');
             $table->timestamps();

@@ -47,10 +47,10 @@
                                     <input type="file" name="photo" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Deskripsi</label>
-                                    <textarea name="description" id="editor" class="form-control"></textarea>
+                                    <label>Lantai</label>
+                                    <input type="number" name="floor" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -65,6 +65,21 @@
                                     <input type="text" name="size" class="form-control">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="1"
+                                            @if (old('status') == '1')selected="selected" @endif" >
+                                            Aktif
+                                        </option>
+                                        <option value="0" s
+                                            @if (old('status') == '0')selected="selected" @endif" >
+                                            Tidak Aktif
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <label class="d-block">Fasilitas</label>
                                 <div class="form-group">
@@ -76,7 +91,7 @@
                                         </label>
                                     </div>
                                 @empty
-                                <p>Maaf tidak ada fasilitas tersedia</p>
+                                    <p>Maaf tidak ada fasilitas tersedia</p>
                                 @endforelse
                                 </div>
                             </div>
