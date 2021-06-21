@@ -47,7 +47,7 @@ class RoomController extends Controller
         $room_types = RoomType::all();
 
         return view('pages.admin.kamar.create',[
-            'room_types' => $room_types
+            'room_type' => $room_types
         ]);
     }
 
@@ -56,6 +56,7 @@ class RoomController extends Controller
 
         $data['slug'] = $request->name;
         $data['status'] = $request->status;
+        $data['availability'] = $request->availability;
 
         Room::create($data);
 
@@ -79,6 +80,7 @@ class RoomController extends Controller
 
         $data['slug'] = $request->name;
         $data['status'] = $request->status;
+        $data['availability'] = $request->availability;
 
         $item = Room::findOrFail($id);
 
@@ -95,12 +97,3 @@ class RoomController extends Controller
         return redirect()->route('kamar.index');
     }
 }
-// <a class="btn btn-info edit" href="' . route('kamar.edit', $item->id) . '" >
-//                             Edit
-//                         </a>
-//                         <form action="' . route('kamar.destroy', $item->id) . '" method="POST"  style="margin-left:10%">
-//                             ' . method_field('delete') . csrf_field() . '
-//                             <button type="submit" class="btn btn-danger" name="delete">
-//                                 Hapus
-//                             </button>
-//                         </form>

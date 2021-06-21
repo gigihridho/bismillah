@@ -42,8 +42,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/', 'Admin\DashboardController@index')->name('admin-dashboard');
         Route::resource('fasilitas', 'Admin\FacilityController');
-        Route::resource('kamar', 'Admin\RoomController');
-        Route::resource('tipe', 'Admin\RoomTypeController');
+        // Route::resource('kamar', 'Admin\RoomController');
         Route::resource('user', 'Admin\UserController');
         Route::get('user/{id}/detail', 'Admin\UserController@detail')->name('detail-user');
         Route::resource('transaksi', 'Admin\TransactionsController');
@@ -54,6 +53,18 @@ Route::prefix('admin')
         Route::post('change-pass', 'Admin\ChangePasswordController@update')->name('change-pass-update');
         Route::get('change-profil', 'Admin\ChangeProfilController@profil')->name('change-profil');
         Route::post('change-profil/{redirect}', 'Admin\ChangeProfilController@update')->name('change-profil-redirect');
+
+        Route::resource('tipe', 'Admin\RoomTypeController');
+        Route::get('/tipe/{id}/kamar','Admin\RoomController@index');
+        Route::get('/tipe/{id}/kamar.create', 'Admin\RoomController@create');
+        Route::post('/{id}/kamar', 'Admin\RoomController@store');
+        Route::get('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@edit');
+        Route::put('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@update');
+        Route::delete('/{id}/room/{room_id}', 'Admin\RoomController@destroy');
+        // Route::group(['prefix' => 'tipe', 'middleware' => 'auth', 'role:admin' , 'verified'],
+        // function(){
+        //     Route::get('/{id}/kamar', 'Admin\RoomController@index');
+        // });
     });
 Route::get('/verify', function () {
     return view('auth/verify');

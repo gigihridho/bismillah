@@ -19,12 +19,12 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-body">
+              <div class="card-body" style="overflow-x:auto;">
 
                 <div class="table-responsive">
                   <table class="table table-striped" id="table-1">
                     <thead>
-                      <tr>
+                      <tr style="text-align:center; text-transform: uppercase">
                         <th class="text-center">
                           #
                         </th>

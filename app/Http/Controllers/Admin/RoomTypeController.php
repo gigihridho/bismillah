@@ -45,6 +45,7 @@ class RoomTypeController extends Controller
     //         }
     //     return view('pages.admin.tipe.index');
     // }
+    
     public function index(){
         $data = RoomType::with('facilities:name')->get();
         return view('pages.admin.tipe.index',[

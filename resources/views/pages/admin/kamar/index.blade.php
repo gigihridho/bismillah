@@ -29,11 +29,6 @@
                                 #
                               </th>
                               <th>Nama</th>
-                              <th>Foto</th>
-                              <th>Floor</th>
-                              <th>Price</th>
-                              <th>Size</th>
-                              <th>Total Rooms</th>
                               <th>Status</th>
                               <th>Aksi</th>
                             </tr>
@@ -63,11 +58,6 @@
         columns:[
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'photo', name:'photo'},
-            {data: 'floor', name: 'floor'},
-            {data: 'price', name: 'price'},
-            {data: 'size', name: 'size'},
-            {data: 'total_rooms', name:'total_rooms'},
             {data: 'status', name: 'status'},
             {
                 data: 'action',
