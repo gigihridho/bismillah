@@ -30,7 +30,7 @@ class BookingController extends Controller
         $room_type = RoomType::findOrFail($room_type_id);
         $new_arrival_date = $request->input('arrival_date');
 
-        $duration = $request->duration;
+        $duration = $request->input('duration');
 
         if($duration == 1){
             $new_departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
@@ -39,31 +39,44 @@ class BookingController extends Controller
         }else {
             $new_departure_date = date('Y-m-d', strtotime('+12 month', strtotime($request->arrival_date)));
         }
-        $new_departure_date = $request->input('departure_date');
+        // $new_departure_date = $request->input('departure_date');
         $rules['booking_validation'] = [new RoomAvailableRule($room_type,$new_arrival_date,$new_departure_date)];
 
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()){
             return redirect()->back()
-                ->withInput($request->all())
+            ->withInput($request->all())
                 ->withErrors($validator);
-        }
+            }
 
         $room_booking = new RoomBooking();
         $user = Auth::user();
 
         $room_booking->arrival_date = $request->input('arrival_date');
-        $room_booking->departure_date = $request->input('departure_date');
+        $room_booking->departure_date = $new_departure_date;
         $room_booking->order_date = Carbon::now();
-        $startTime = Carbon::parse($room_booking->arrival_date);
-        $finishTime = Carbon::parse($room_booking->departure_date);
-        $no_of_days = $finishTime->diffInDays($startTime) ? $finishTime->diffInDays($startTime) : 1;
-        $room_booking->total_price = $no_of_days * $room_type->finalPrice;
+
+        // $startTime = Carbon::parse($room_booking->arrival_date);
+        // $finishTime = Carbon::parse($room_booking->departure_date);
+
+        $price = $room_type->price;
+
+        if($duration == 1){
+            $total_price = $duration * $price;
+        } elseif($duration == 6){
+            $total_price = $duration * $price - (0.5 * $price);
+        } elseif($duration == 12){
+            $total_price = $duration * $price - (1 * $price);
+        }
+
+        $room_booking->total_price = $total_price;
         $room_booking->user_id = $user->id;
 
         $booking = new Booking($room_type, $new_arrival_date, $new_departure_date);
         $room_booking->room_id = $booking->available_room_number();
         $room_booking->user_id = $user->id;
+        $room_booking->status = "Belum Terbayar";
+        // dd($room_booking);
         $room_booking->save();
 
         Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Booking;
+use App\RoomBooking;
 use App\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,7 +23,7 @@ class TransactionsController extends Controller
     public function index()
     {
         if(request()->ajax()){
-            $query = Booking::with('user','room');
+            $query = RoomBooking::with('user','room');
 
             return Datatables::of($query)
                 ->addIndexColumn()
@@ -53,7 +54,7 @@ class TransactionsController extends Controller
     }
 
     public function confirmation(Request $request, $id){
-        $data = Booking::where('id',$id)->first();
+        $data = RoomBooking::where('id',$id)->first();
         $data->status = $request->status;
         $data->save();
         Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
@@ -62,7 +63,7 @@ class TransactionsController extends Controller
     }
 
     public function destroy($id){
-        $item = Booking::findOrFail($id);
+        $item = RoomBooking::findOrFail($id);
         $item->delete();
         return redirect()->route('transaksi.index');
     }

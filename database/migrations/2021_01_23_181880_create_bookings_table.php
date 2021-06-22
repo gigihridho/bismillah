@@ -15,8 +15,8 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
             $table->integer('room_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index();
             $table->string('photo_payment')->nullable();
             $table->date('order_date');
             $table->integer('total_price');
@@ -26,13 +26,14 @@ class CreateBookingsTable extends Migration
             $table->enum('status',['Lunas','Belum Terbayar']);
             $table->timestamps();
 
+            $table->foreign('room_id')
+                ->references('id')->on('rooms')
+                ->onUpdate('cascade')->onDelete('cascade');
+
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->foreign('room_id')
-                ->references('id')->on('rooms')
-                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

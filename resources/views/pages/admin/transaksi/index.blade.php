@@ -28,7 +28,7 @@
                           #
                         </th>
                         <th>Nama</th>
-                        <th>Kamar</th>
+                        <th>No Kamar</th>
                         <th>Tanggal Transaksi</th>
                         <th>Bukti Transaksi</th>
                         <th>Durasi</th>
@@ -63,7 +63,7 @@
         columns:[
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'user.name', name: 'user.name'},
-            {data: 'room.name', name: 'room.name'},
+            {data: 'room.number', name: 'room.number'},
             {data: 'order_date', name: 'order_date'},
             {data: 'photo_payment', name: 'photo_payment'},
             {data: 'duration', name: 'duration'},
