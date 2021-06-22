@@ -32,21 +32,28 @@
                     <h4>Tambah Kamar</h4>
                   </div>
                   <div class="card-body">
-                    <form action="#" method="POST" enctype="multipart/form-data">
+                    <form action="/admin/tipe/{{ $room_type->id }}/kamar" method="POST" enctype="multipart/form-data">
                         @csrf
                       <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label>Nama Kamar</label>
-                                <input type="text" name="name" class="form-control">
+                                <label>Nomor Kamar</label>
+                                <input type="text" name="room_number" class="form-control"
+                                placeholder="" value="{{ old('room_number') }}">
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Status</label>
                                 <select name="status" id="status" class="form-control">
-                                    <option value="Tersedia">Tersedia</option>
-                                    <option value="Tidak Terseidia">Tidak Tersedia</option>
+                                    <option value="1"
+                                        @if (old('status') == '1')selected="selected" @endif" >
+                                        Aktif
+                                    </option>
+                                    <option value="0" s
+                                        @if (old('status') == '0')selected="selected" @endif" >
+                                        Tidak Aktif
+                                    </option>
                                 </select>
                             </div>
                         </div>

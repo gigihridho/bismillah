@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
-use Yajra\DataTables\Facades\DataTables;
+// use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\RoomTypeRequest;
 
 class RoomTypeController extends Controller
@@ -45,11 +45,11 @@ class RoomTypeController extends Controller
     //         }
     //     return view('pages.admin.tipe.index');
     // }
-    
+
     public function index(){
-        $data = RoomType::with('facilities:name')->get();
+        $room_types = RoomType::with('facilities:name')->get();
         return view('pages.admin.tipe.index',[
-            'data' => $data
+            'room_types' => $room_types
         ]);
     }
     public function create(){

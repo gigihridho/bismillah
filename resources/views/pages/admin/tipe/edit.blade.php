@@ -74,7 +74,7 @@
                                             @if (old('status') == '1')selected="selected" @endif" >
                                             Aktif
                                         </option>
-                                        <option value="0" s
+                                        <option value="0"
                                             @if (old('status') == '0')selected="selected" @endif" >
                                             Tidak Aktif
                                         </option>
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col text-right">
+                            <div class="col text-center">
                                 <button type="submit" class="btn btn-success px-5">
                                     Simpan Data
                                 </button>

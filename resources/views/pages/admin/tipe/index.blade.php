@@ -39,17 +39,17 @@
                     </thead>
                     <tbody>
                         <tr>
-                            @foreach ($data as $index => $d)
+                            @foreach ($room_types as $index => $room_type)
                                 <td>{{ $index+1 }}</td>
-                                <td>{{ $d->name }}</td>
+                                <td>{{ $room_type->name }}</td>
                                 <td>
-                                    <img height="70px" src="{{ Storage::url($d->photo) }}" alt="">
+                                    <img height="70px" src="{{ Storage::url($room_type->photo) }}" alt="">
                                 </td>
-                                <td>{{ $d->floor }}</td>
-                                <td>{{ $d->price }}</td>
-                                <td>{{ $d->size }}</td>
+                                <td>{{ $room_type->floor }}</td>
+                                <td>{{ $room_type->price }}</td>
+                                <td>{{ $room_type->size }}</td>
                                 <td>
-                                    @if($d->status == 1)
+                                    @if($room_type->status == 1)
                                         <button class="btn btn-success btn-sm" style="text-align:center">Aktif</button>
                                     @else
                                         <button class="btn btn-danger btn-sm" style="text-align:center">Tidak Aktif
@@ -57,20 +57,20 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <form action="{{ route('tipe.destroy',$d->id) }}" method="POST">
-                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $d->id) }}">
+                                    <form action="/admin/tipe/{{ $room_type->id }}" method="POST">
+                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $room_type->id) }}">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="/admin/tipe/{{ $d->id }}/kamar"  >
+                                        <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="/admin/tipe/{{ $room_type->id }}/kamar"  >
                                             <i class="far fa-bed"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $d->id }})">
-                                        <i class="far fa-trash-alt" style="color: white;"></i>
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $room_type->id }})">
+                                            <i class="far fa-trash-alt" style="color: white;"></i>
                                         </a>
                                     </form>
                                 </td>
-                                @endforeach
-                        </tr>
+                            </tr>
+                            @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -119,7 +119,7 @@
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "/admin/tipe"
+                                window.location.href = "/admin/tipe/"
                             }
                         });
                     },
@@ -129,7 +129,7 @@
                             text: 'Data tidak dapat di hapus!',
                             icon: 'warning',
                         });
-                        window.location.href = "/admin/tipe"
+                        window.location.href = "/admin/tipe/"
                     }
                 });
             }

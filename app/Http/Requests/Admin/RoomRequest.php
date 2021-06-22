@@ -25,8 +25,7 @@ class RoomRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'room_type_id' => 'required|exists:room_types,id',
-            'status' => 'required'
+            'status' => 'boolean|required'
         ];
     }
 }

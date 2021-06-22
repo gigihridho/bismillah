@@ -30,6 +30,7 @@
                               </th>
                               <th>Tipe Kamar</th>
                               <th>Nomor Kamar</th>
+                              <th>Availability</th>
                               <th>Status</th>
                               <th>Aksi</th>
                             </tr>
@@ -38,7 +39,7 @@
                               <tr>
                                   @foreach ($room_type->rooms as $index => $room)
                                   <td>{{ $index+1 }}</td>
-                                  <td>{{ $room->room_type_id }}</td>
+                                  <td>{{ $room_type->name}}</td>
                                   <td>{{ $room->room_number }}</td>
                                   <td>
                                     @if($room->available == 1)
@@ -55,20 +56,17 @@
                                     @endif
                                   </td>
                                   <td>
-                                    <form action="{{ route('tipe.destroy',$room->id) }}" method="POST">
-                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $room->id) }}">
+                                    <form action="/admin/tipe/{{ $room_type->id }}/kamar/{{ $room->id }}" method="POST">
+                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/tipe/{{ $room_type->id }}/kamar/{{ $room->id }}/edit">
                                             <i class="far fa-edit"></i>
-                                        </a>
-                                        <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="{{ route('tipe.index',$room->id,'kamar') }}"  >
-                                            <i class="far fa-bed"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $room->id }})">
                                         <i class="far fa-trash-alt" style="color: white;"></i>
                                         </a>
                                     </form>
                                   </td>
-                                  @endforeach
-                              </tr>
+                                </tr>
+                                @endforeach
                           </tbody>
                     </table>
                   </div>
@@ -87,32 +85,51 @@
             responsive: true
         });
     } );
-    // var datatable = $('#table-1').DataTable({
-    //     processing: true,
-    //     serverSide: true,
-    //     ordering: true,
-    //     ajax: {
-    //         url: '{!! url() -> current()!!}',
-    //     },
-    //     columns:[
-    //         {data: 'DT_RowIndex', name: 'id'},
-    //         {data: 'room.name', name: 'room.name'},
-    //         {data: 'room.status', name: 'room.status'},
-    //         {
-    //             data: 'action',
-    //             name: 'action',
-    //             orderable: false,
-    //             searchable: false,
-    //         },
-    //     ],
-    //     "language":{
-    //         "emptyTable": "Tidak ada data yang ditampilkan"
-    //     }
-    // });
 
-    // $(document).on('click', '.delete', function () {
-    //         dataId = $(this).attr('id');
-    //         $('#konfirmasi-modal').modal('show');
-    // });
+    function deleteConfirm(id) {
+        Swal.fire({
+            title: 'Harap Konfirmasi',
+            text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Lanjutkan'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+                    },
+                    url: "admin/tipe/{{ $room_type->id }}/kamar/" + id,
+                    method: "post",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "_method": "DELETE",
+                        id: id
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            title: 'Berhasil!',
+                            text: 'Data berhasil di hapus!',
+                            icon: 'success',
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = "/admin/tipe/{{ $room_type->id }}/kamar"
+                            }
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Gagal!',
+                            text: 'Data tidak dapat di hapus!',
+                            icon: 'warning',
+                        });
+                        window.location.href = "/admin/tipe/{{ $room_type->id }}/kamar"
+                    }
+                });
+            }
+        })
+    }
 </script>
 @endpush

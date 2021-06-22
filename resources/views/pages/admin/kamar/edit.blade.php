@@ -32,26 +32,26 @@
                     <h4>Edit Data Kamar</h4>
                   </div>
                   <div class="card-body">
-                    <form action="{{ route('kamar.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="/admin/tipe/{{ $room_type->id }}/kamar/{{ $room->id }}/edit" method="POST" enctype="multipart/form-data">
                         @method("PUT")
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Nama Kamar</label>
-                                    <input type="text" name="name" value="{{ $item->name }}" class="form-control">
+                                    <label>Nomor Kamar</label>
+                                    <input type="text" name="room_number" value="{{ $room->room_number }}" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Tipe Kamar</label>
                                     <select name="room_type_id" class="form-control">
-                                        <option value="{{ $item->room_type_id }}">{{ $item->room_type->name }}</option>
-                                        @foreach ($room_types as $room_type)
-                                            <option value="{{ $room_type->id }}">
+                                        <option value="{{ $room_type->room_type_id }}">{{ $room_type->name }}</option>
+                                        {{-- @foreach ($room_type as $r)
+                                            <option value="{{ $r->id }}">
                                                 {{ $room_type->name }}
                                             </option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>
@@ -59,9 +59,14 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select name="status" id="status" class="form-control">
-                                        <option value="{{ $item->status }}" selected>Tidak diganti</option>
-                                        <option value="Tersedia">Tersedia</>
-                                        <option value="Tidak Terseidia">Tidak Tersedia</option>
+                                        <option value="1"
+                                        @if (old('status') == '1')selected="selected" @endif" >
+                                        Aktif
+                                        </option>
+                                        <option value="0"
+                                            @if (old('status') == '0')selected="selected" @endif" >
+                                        Tidak Aktif
+                                    </option>
                                     </select>
                                 </div>
                             </div>

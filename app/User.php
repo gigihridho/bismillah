@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'no_hp','photo_ktp','address','profession','avatar'
+        'name', 'email', 'password', 'no_hp','photo_ktp','address','profession'
     ];
 
     /**
@@ -37,6 +37,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function room_type(){
+        return $this->belongsTo(RoomType::class);
+    }
+
+    public function room_bookings(){
+        return $this->hasMany(Booking::class);
+    }
 
     public function review()
     {
