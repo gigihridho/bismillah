@@ -47,6 +47,7 @@ class Booking implements Rule
 
     public function room_available(){
         $this->room_exist();
+
         foreach ($this->room_type->rooms as $room) {
             if($this->room_bookings_exist($room)){
                 if($this->room_bookings_check($room->room_bookings) == false)
@@ -56,14 +57,15 @@ class Booking implements Rule
         }
     }
 
-    protected function available_room_number(){
+    public function available_room_number(){
         $this->room_exist();
         foreach ($this->room_type->rooms as $room) {
+
             if($this->room_bookings_exist($room)){
                 if($this->room_bookings_check($room->room_bookings) == false)
                 continue;
             }
-            return $room->room_name;
+            return $room->room_number;
         }
     }
 
@@ -75,7 +77,7 @@ class Booking implements Rule
         return false;
     }
 
-    public function room_bookings_exist($room){
+    protected function room_bookings_exist($room){
         if(count($room->room_bookings) > 0){
             return true;
         }

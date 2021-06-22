@@ -75,7 +75,7 @@
                     <h3 class="card-explore__price">Rp {{ number_format($room_type->price) }} <sub>/ Per Bulan</sub></h3>
                     <h4 class="card-explore__title">{{ $room_type->name }}</></h4>
                     <p>{!! $room_type->description !!}</p>
-                    <a class="card-explore__link" href="{{ route('detail-kost',$room_type->slug) }}">Book Now <i class="ti-arrow-right"></i></a>
+                    <a class="card-explore__link" href="{{ route('detail-kost',$room_type->id) }}">Book Now <i class="ti-arrow-right"></i></a>
                   </div>
                 </div>
             </div>
@@ -96,9 +96,6 @@
           <div class="owl-carousel owl-theme testi-carousel">
             <div class="testi-carousel__item">
               <div class="media">
-                {{-- <div class="testi-carousel__img">
-                  <img src="{{ url('/seapalace/img/home/testimonial1.png') }}" alt="">
-                </div> --}}
                 @php $incrementRoomType = 0 @endphp
                 @forelse ($reviews as $review)
                 <div class="media-body">
@@ -111,7 +108,7 @@
               </div>
             </div>
             @empty
-
+                <p>Tidak ada data yang ditampilkan</p>
             @endforelse
 
           </div>

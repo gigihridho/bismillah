@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('details/{id}', 'DetailController@detail')->name('detail-kost');
-Route::post('details', 'DetailController@add')->name('detail-add');
+Route::post('details/{id}/book', 'BookingController@booking')->name('booking');
 
 Route::get('checkout','CheckoutController@process')->name('checkout');
 

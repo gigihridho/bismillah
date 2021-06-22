@@ -15,10 +15,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 class DetailController extends Controller
 {
 
-    public function detail(Request $request, $slug)
+    public function detail(Request $request, $id)
     {
-        $room_types = RoomType::where('slug', $slug)->get();
-        $price = RoomType::where('slug',$slug)->pluck('price');
+        $room_types = RoomType::where('id', $id)->get();
+        $price = RoomType::where('id',$id)->pluck('price');
 
         $roomTypes = [];
         foreach ($room_types as $room_type){
@@ -35,14 +35,12 @@ class DetailController extends Controller
         ]);
     }
 
-    public function add(Request $request)
+    public function add(Request $request, $room_type_id)
     {
         $request->validate([
-            'room' => 'required|exists:rooms,id',
             'arrival_date' => 'required|date|after_or_equal:today',
             'duration' => 'required|integer'
         ],[
-            'room.required' => 'Kamar tidak boleh kosong',
             'arrival_date.required' => 'Tanggal masuk tidak boleh kosong',
             'duration.required' => 'Lama waktu sewa tidak boleh kosong'
         ]);
@@ -56,7 +54,7 @@ class DetailController extends Controller
         }else {
             $departure_date = date('Y-m-d', strtotime('+12 month', strtotime($request->arrival_date)));
         }
-        $room = Room::find($request->room);
+
         $price = $room->room_type->price;
 
         if($duration == 1){

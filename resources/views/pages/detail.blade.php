@@ -16,24 +16,13 @@
         dateFormat: 'dd-mm-yy'
       }).val();
       // $( "#datepicker").datepicker("show");
-    });
+    })
   </script>
   @include('includes.main.style')
-  @include('includes.main.styledetail');
+  @include('includes.main.styledetail')
 </head>
 
 <body>
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
   @include('includes.main.navbar')
   <main class="site-main">
     <div class="page-content page-details">
@@ -55,6 +44,17 @@
           </div>
         </div>
       </section>
+
+      @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+      @endif
+
       <section class="store-gallery mb-3" id="gallery">
         <div class="container">
           <div class="row">
@@ -75,16 +75,8 @@
             @endforelse
             <div class="col-lg-4" data-aos="zoom-in">
                 <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
-                  <form action="{{ route('detail-add') }}" method="POST" enctype="multipart/form-data">
+                  <form action="{{ route('booking',$room_type->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
-                      <label>Pilih Kamar</label>
-                      <select name="room" id="room" class="form-control">
-                        @foreach ($rooms as $room)
-                            <option value={{ $room->id }}>{{ $room->name }}</option>
-                        @endforeach
-                      </select>
-                    </div>
                     <div class="form-group">
                       <label for="date">Pilih tanggal masuk</label>
                       <div class="input-group">
