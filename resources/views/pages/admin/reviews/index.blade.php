@@ -25,7 +25,7 @@
                     <thead>
                       <tr style="text-align:center; text-transform: uppercase">
                         <th class="text-center">
-                          #
+                          No
                         </th>
                         <th>Nama</th>
                         <th>Reviews</th>
@@ -33,6 +33,22 @@
                       </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            @php $no = 1; @endphp
+                            @foreach ($reviews as $review)
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $review->name }}</td>
+                                <td>{{ $review->review }}</td>
+                                <td>
+                                    <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $d->id) }}">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="{{ route('tipe.index',$d->id,'kamar') }}"  >
+                                        <i class="far fa-bed"></i>
+                                    </a>
+                                </td>
+                            @endforeach
+                        </tr>
                     </tbody>
                   </table>
                 </div>
@@ -45,49 +61,11 @@
   </div>
 @endsection
 @push('addon-script')
-<script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
-    var datatable = $('#table-1').DataTable({
-        processing: true,
-        serverSide: true,
-        ordering: true,
-        ajax: {
-            url: '{!! url() -> current()!!}',
-        },
-        columns:[
-            {data: 'DT_RowIndex', name: 'id'},
-            {data: 'user.name', name: 'user.name'},
-            {data: 'review', name: 'review'},
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-            },
-        ],
-        "language":{
-            "emptyTable": "Tidak ada data yang ditampilkan"
-        }
-    });
-    $(".deleteHarga").click(function(){
-        swal({
-            title: "Apakah kamu yakin?",
-            text: "Jika kamu menghapusnya, maka data akan hilang!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-        if (willDelete) {
-            //proses hapus di sini bisa pakai ajax
-            swal("Harga berhasil dihapus", {
-            icon: "success",
-            });
-        } else {
-            swal("Data tidak jadi dihapus");
-        }
+    $(document).ready( function () {
+        $('#table-1').DataTable({
         });
-    });
+    } );
 </script>
 @endpush
 

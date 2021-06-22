@@ -26,7 +26,7 @@
                     <thead>
                       <tr style="text-align:center; text-transform: uppercase">
                         <th style="width: 10px" class="text-center">
-                          #
+                          No
                         </th>
                         <th>Nama</th>
                         <th>Foto</th>
@@ -39,9 +39,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            @php $no = 1; @endphp
-                            @foreach ($data as $d)
-                                <td>{{ $no++ }}</td>
+                            @foreach ($data as $index => $d)
+                                <td>{{ $index+1 }}</td>
                                 <td>{{ $d->name }}</td>
                                 <td>
                                     <img height="70px" src="{{ Storage::url($d->photo) }}" alt="">
@@ -57,24 +56,21 @@
                                         </button>
                                     @endif
                                 </td>
-                                <td class="flex">
-                                    <a title="edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $d->id) }}">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                    <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="{{ route('tipe.index',$d->id,'kamar') }}"  >
-                                        <i class="far fa-bed"></i>
-                                    </a>
-                                    <form action="{{ route('tipe.destroy',$d->id) }}" method="POST"
-                                        data-toggle="tooltip" data-placement="top" title="Hapus" class="destroy">
-                                        @csrf
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-sm btn-danger"
-                                            style="color:white"><i class="far fa-trash-alt"></i>
-                                        </button>
+                                <td>
+                                    <form action="{{ route('tipe.destroy',$d->id) }}" method="POST">
+                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $d->id) }}">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="/admin/tipe/{{ $d->id }}/kamar"  >
+                                            <i class="far fa-bed"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $d->id }})">
+                                        <i class="far fa-trash-alt" style="color: white;"></i>
+                                        </a>
                                     </form>
                                 </td>
+                                @endforeach
                         </tr>
-                            @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -87,12 +83,57 @@
   </div>
 @endsection
 @push('addon-script')
-<script type="text/javascript" src="/DataTables/datatables.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript">
+<script>
     $(document).ready( function () {
         $('#table-1').DataTable({
+            responsive: true
         });
     } );
-    </script>
+
+    function deleteConfirm(id) {
+        Swal.fire({
+            title: 'Harap Konfirmasi',
+            text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Lanjutkan'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+                    },
+                    url: "tipe/" + id,
+                    method: "post",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "_method": "DELETE",
+                        id: id
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            title: 'Berhasil!',
+                            text: 'Data berhasil di hapus!',
+                            icon: 'success',
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = "/admin/tipe"
+                            }
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Gagal!',
+                            text: 'Data tidak dapat di hapus!',
+                            icon: 'warning',
+                        });
+                        window.location.href = "/admin/tipe"
+                    }
+                });
+            }
+        })
+    }
+</script>
 @endpush

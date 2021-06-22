@@ -16,35 +16,42 @@ class RoomController extends Controller
     {
         $this->middleware(['auth']);
     }
-    public function index(){
-        if(request()->ajax()){
-            $query = Room::with('room_type');
+    // public function index(){
+    //     if(request()->ajax()){
+    //         $query = Room::with('room_type');
 
-            return Datatables::of($query)
-                ->addIndexColumn()
-                ->addColumn('action', function($item){
-                    return '
-                    <div class="btn-group">
-                        <a class="btn btn-sm btn-info edit" href="' . route('kamar.edit', $item->id) . '" >
-                            <i class="far fa-edit"></i> Edit
-                        </a>
-                        <form action="' . route('kamar.destroy', $item->id) . '" method="POST" style="margin-left:5px">
-                            ' . method_field('delete') . csrf_field() . '
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                <i class="far fa-trash-alt"></i> Hapus
-                            </button>
-                        </form>
-                    </div>';
-                })
-                ->rawColumns(['action'])
-                ->make();
-            }
+    //         return Datatables::of($query)
+    //             ->addIndexColumn()
+    //             ->addColumn('action', function($item){
+    //                 return '
+    //                 <div class="btn-group">
+    //                     <a class="btn btn-sm btn-info edit" href="' . route('kamar.edit', $item->id) . '" >
+    //                         <i class="far fa-edit"></i> Edit
+    //                     </a>
+    //                     <form action="' . route('kamar.destroy', $item->id) . '" method="POST" style="margin-left:5px">
+    //                         ' . method_field('delete') . csrf_field() . '
+    //                         <button type="submit" class="btn btn-sm btn-danger">
+    //                             <i class="far fa-trash-alt"></i> Hapus
+    //                         </button>
+    //                     </form>
+    //                 </div>';
+    //             })
+    //             ->rawColumns(['action'])
+    //             ->make();
+    //         }
 
-        return view('pages.admin.kamar.index');
+    //     return view('pages.admin.kamar.index');
+    // }
+
+    public function index($id){
+        $room_types = RoomType::find($id);
+
+        return view('pages.admin.kamar.index',[
+            'room_type' => $room_types
+        ]);
     }
-
-    public function create(){
-        $room_types = RoomType::all();
+    public function create($id){
+        $room_types = RoomType::find($id);
 
         return view('pages.admin.kamar.create',[
             'room_type' => $room_types

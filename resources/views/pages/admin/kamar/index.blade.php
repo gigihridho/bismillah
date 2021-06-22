@@ -20,7 +20,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('kamar.create') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Kamar</a>
+                    <a href="/admin/tipe/{{ $room_type->id }}/kamar/create" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Kamar</a>
                   <div class="table-responsive">
                     <table class="table table-bordered" id="table-1">
                         <thead>
@@ -28,12 +28,47 @@
                               <th class="text-center">
                                 #
                               </th>
-                              <th>Nama</th>
+                              <th>Tipe Kamar</th>
+                              <th>Nomor Kamar</th>
                               <th>Status</th>
                               <th>Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
+                              <tr>
+                                  @foreach ($room_type->rooms as $index => $room)
+                                  <td>{{ $index+1 }}</td>
+                                  <td>{{ $room->room_type_id }}</td>
+                                  <td>{{ $room->room_number }}</td>
+                                  <td>
+                                    @if($room->available == 1)
+                                    <button class="btn btn-danger btn-xs btn-fill">Available</button>
+                                    @else
+                                    <button class="btn btn-default btn-xs btn-fill">Booked</button>
+                                    @endif
+                                  </td>
+                                  <td>
+                                    @if($room->status == 1)
+                                    <button class="btn btn-success btn-xs btn-fill">Aktif</button>
+                                    @else
+                                    <button class="btn btn-default btn-xs btn-fill">Tidak Aktif</button>
+                                    @endif
+                                  </td>
+                                  <td>
+                                    <form action="{{ route('tipe.destroy',$room->id) }}" method="POST">
+                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $room->id) }}">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="{{ route('tipe.index',$room->id,'kamar') }}"  >
+                                            <i class="far fa-bed"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $room->id }})">
+                                        <i class="far fa-trash-alt" style="color: white;"></i>
+                                        </a>
+                                    </form>
+                                  </td>
+                                  @endforeach
+                              </tr>
                           </tbody>
                     </table>
                   </div>
@@ -46,34 +81,38 @@
   </div>
 @endsection
 @push('addon-script')
-<script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
-    var datatable = $('#table-1').DataTable({
-        processing: true,
-        serverSide: true,
-        ordering: true,
-        ajax: {
-            url: '{!! url() -> current()!!}',
-        },
-        columns:[
-            {data: 'DT_RowIndex', name: 'id'},
-            {data: 'name', name: 'name'},
-            {data: 'status', name: 'status'},
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-            },
-        ],
-        "language":{
-            "emptyTable": "Tidak ada data yang ditampilkan"
-        }
-    });
+    $(document).ready( function () {
+        $('#table-1').DataTable({
+            responsive: true
+        });
+    } );
+    // var datatable = $('#table-1').DataTable({
+    //     processing: true,
+    //     serverSide: true,
+    //     ordering: true,
+    //     ajax: {
+    //         url: '{!! url() -> current()!!}',
+    //     },
+    //     columns:[
+    //         {data: 'DT_RowIndex', name: 'id'},
+    //         {data: 'room.name', name: 'room.name'},
+    //         {data: 'room.status', name: 'room.status'},
+    //         {
+    //             data: 'action',
+    //             name: 'action',
+    //             orderable: false,
+    //             searchable: false,
+    //         },
+    //     ],
+    //     "language":{
+    //         "emptyTable": "Tidak ada data yang ditampilkan"
+    //     }
+    // });
 
-    $(document).on('click', '.delete', function () {
-            dataId = $(this).attr('id');
-            $('#konfirmasi-modal').modal('show');
-    });
+    // $(document).on('click', '.delete', function () {
+    //         dataId = $(this).attr('id');
+    //         $('#konfirmasi-modal').modal('show');
+    // });
 </script>
 @endpush

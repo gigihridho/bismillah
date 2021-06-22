@@ -13,28 +13,12 @@ class ReviewsController extends Controller
     {
         $this->middleware(['auth']);
     }
+
     public function index(){
-        if(request()->ajax()){
-            $query = Review::with('user');
-
-            return Datatables::of($query)
-                ->addIndexColumn()
-                ->addColumn('action', function($data){
-                    return '
-                    <div class="btn-group">
-                        <form action="' . route('reviews.destroy', $data->id) . '" method="POST">
-                            ' . method_field('delete') . csrf_field() . '
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                <i class="far fa-trash-alt"></i> Hapus
-                            </button>
-                        </form>
-                    </div>';
-                })
-                ->rawColumns(['action','review'])
-                ->make();
-            }
-
-        return view('pages.admin.reviews.index');
+        $reviews = Review::with('user')->get();
+        return view('pages.admin.reviews.index',[
+            'reviews' => $reviews
+        ]);
     }
 
     public function destroy($id){

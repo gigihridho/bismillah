@@ -32,25 +32,13 @@
                     <h4>Tambah Kamar</h4>
                   </div>
                   <div class="card-body">
-                    <form action="{{ route('kamar.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="#" method="POST" enctype="multipart/form-data">
                         @csrf
                       <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Nama Kamar</label>
                                 <input type="text" name="name" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Tipe Kamar</label>
-                                <select name="room_type_id" class="form-control">
-                                    @foreach ($room_types as $room_type)
-                                        <option value="{{ $room_type->id }}">
-                                            {{ $room_type->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                         <div class="col-md-12">

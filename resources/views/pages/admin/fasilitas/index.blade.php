@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('title')
     Fasilitas
@@ -19,14 +19,14 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-body">
+              <div class="card-body" style="overflow-x:auto;">
                 <a href="{{ route('fasilitas.create') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Fasilitas</a>
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="table-1" cellspacing="0" style="width: 100%">
                     <thead>
-                      <tr>
+                      <tr style="text-align:center; text-transform: uppercase">
                         <th class="text-center" style="width: 5%">
-                          ID
+                          No
                         </th>
                         <th>Nama</th>
                         <th>Aksi</th>
@@ -43,8 +43,6 @@
   </div>
 @endsection
 @push('addon-script')
-<script type="text/javascript" src="/DataTables/datatables.min.js"></script>
-<script src="sweetalert2.all.min.js"></script>
 <script>
     var datatable = $('#table-1').DataTable({
         processing: true,
@@ -67,23 +65,24 @@
             "emptyTable": "Tidak ada data yang ditampilkan"
         }
     })
+    function deleteConfirm(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+            }
+        });
+    }
 </script>
-<script>
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-            )
-        }
-    })
 @endpush

@@ -25,17 +25,13 @@ class FacilityController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($item){
                     return '
-                    <div class="btn-group">
+                    <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST">
                         <a class="btn btn-sm btn-info edit" href="' . route('fasilitas.edit', $item->id) . '" >
                             <i class="far fa-edit"></i> Edit
                         </a>
-                        <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST"  style="margin-left:5px" class="deleteconfirmation" onSubmit="return confirm("Yakin hapus data?")">
-                            ' . method_field('delete') . csrf_field() . '
-                            <button type="submit" class="deleteconfirmation btn btn-sm btn-danger">
-                                <i class="far fa-trash-alt"></i> Hapus
-                            </button>
-                        </form>
-                    </div>';
+                            <a class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $item->id }})">
+                            <i class="far fa-trash-alt" style="color: white;"></i>
+                    </form>';
                 })
                 ->editColumn('icon', function($item){
                     return $item->icon ? '<img src="'. Storage::url($item->icon).'" style="max-height: 50px;"/>' : '';

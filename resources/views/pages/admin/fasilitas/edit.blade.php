@@ -39,10 +39,6 @@
                       <label>Nama Fasilitas</label>
                       <input type="text" name="name" value="{{ $item->name }}" class="form-control">
                     </div>
-                    <div class="form-group">
-                      <label>Icon</label>
-                      <input type="file" name="icon" {{ $item->icon }} class="form-control">
-                    </div>
                     <div class="row">
                         <div class="col text-right">
                             <button type="submit" class="btn btn-success px-5">

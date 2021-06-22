@@ -55,16 +55,21 @@ Route::prefix('admin')
         Route::post('change-profil/{redirect}', 'Admin\ChangeProfilController@update')->name('change-profil-redirect');
 
         Route::resource('tipe', 'Admin\RoomTypeController');
-        Route::get('/tipe/{id}/kamar','Admin\RoomController@index');
-        Route::get('/tipe/{id}/kamar.create', 'Admin\RoomController@create');
-        Route::post('/{id}/kamar', 'Admin\RoomController@store');
-        Route::get('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@edit');
-        Route::put('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@update');
-        Route::delete('/{id}/room/{room_id}', 'Admin\RoomController@destroy');
-        // Route::group(['prefix' => 'tipe', 'middleware' => 'auth', 'role:admin' , 'verified'],
-        // function(){
-        //     Route::get('/{id}/kamar', 'Admin\RoomController@index');
-        // });
+        // Route::get('/tipe/{id}/kamar','Admin\RoomController@index');
+        // Route::get('/tipe/{id}/kamar/create', 'Admin\RoomController@create');
+        // Route::post('/{id}/kamar', 'Admin\RoomController@store');
+        // Route::get('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@edit');
+        // Route::put('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@update');
+        // Route::delete('/{id}/room/{room_id}', 'Admin\RoomController@destroy');
+
+        Route::prefix('tipe')
+            ->middleware(['auth', 'role:admin' , 'verified'])
+            ->group(function(){
+                Route::get('/{id}/kamar', 'Admin\RoomController@index');
+                Route::get('/{id}/kamar/create', 'Admin\RoomController@create');
+                Route::post('/{id}/kamar', 'Admin\RoomController@store');
+
+        });
     });
 Route::get('/verify', function () {
     return view('auth/verify');
