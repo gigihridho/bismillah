@@ -63,7 +63,7 @@
         columns:[
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'user.name', name: 'user.name'},
-            {data: 'room.number', name: 'room.number'},
+            {data: 'room.room_number', name: 'room.room_number'},
             {data: 'order_date', name: 'order_date'},
             {data: 'photo_payment', name: 'photo_payment'},
             {data: 'duration', name: 'duration'},

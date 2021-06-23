@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\RoomBooking;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,17 +21,17 @@ class UserTransactionController extends Controller
 
     public function index(){
         if(request()->ajax()){
-            $query = Booking::with('user','room')->where('user_id', Auth::user()->id);
+            $query = RoomBooking::with('user','room')->where('user_id', Auth::user()->id);
 
             return Datatables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($item){
                     return '
                         <div class="btn-group">
-                            <a class="btn btn-info edit" href="' . route('user-transaksi-detail', $item->id) . '"  >
+                            <a class="btn btn-info btn-sm edit" href="' . route('user-transaksi-detail', $item->id) . '"  >
                                 <i class="far fa-eye"></i> Detail
                             </a>
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadBukti" style="margin-left:5px">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uploadBukti" style="margin-left:5px">
                                 <i class="fas fa-upload"></i>
                             </button>
                         </div>';
@@ -45,7 +46,7 @@ class UserTransactionController extends Controller
     }
 
     public function detail(Request $request, $id){
-        $item = Booking::where('id',$id)->get();
+        $item = RoomBooking::where('id',$id)->get();
 
         return view('pages.user.user-transaksi.detail',[
             'item' => $item,
@@ -56,8 +57,8 @@ class UserTransactionController extends Controller
         $this->validate($request, [
             'photo_payment' => 'required|image|max:2048|mimes:png,jpg',
         ]);
-        $transaction = Booking::where('id',$id)->get();
-        $data = Booking::where('id', $transaction)->first();
+        $transaction = RoomBooking::where('id',$id)->get();
+        $data = RoomBooking::where('id', $transaction)->first();
         $file = $request->file('photo_payment')->store('assets/transaction','public');
         $data->photo_payment = $file;
         $data->save();

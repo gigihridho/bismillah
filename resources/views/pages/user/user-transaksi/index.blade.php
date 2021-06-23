@@ -29,8 +29,8 @@
                                 <th class="text-center">
                                 #
                               </th>
-                              <th>Nama</th>
-                              <th>Kamar</th>
+                              <th>Nama Pemesan</th>
+                              <th>No Kamar</th>
                               <th>Tanggal Pesan</th>
                               <th>Total Harga</th>
                               <th>Foto Pembayaran</th>
@@ -92,7 +92,7 @@
         columns:[
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'user.name', name: 'user.name'},
-            {data: 'room.name', name: 'room.name'},
+            {data: 'room.room_number', name: 'room.room_number'},
             {data: 'order_date', name: 'order_date'},
             {data: 'total_price', name: 'total_price'},
             {data: 'photo_payment', name: 'photo_payment'},
