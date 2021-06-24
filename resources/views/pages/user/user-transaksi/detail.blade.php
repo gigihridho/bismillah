@@ -29,7 +29,7 @@
                                 #
                               </th>
                               <th>Nama</th>
-                              <th>Kamar</th>
+                              <th>Nomor Kamar</th>
                               <th>Foto Pembayaran</th>
                               <th>Tanggal Pesan</th>
                               <th>Total Harga</th>
@@ -44,14 +44,21 @@
                               <tr>
                                 <td>{{ $it->id }}</td>
                                 <td>{{ $it->user->name }}</td>
-                                <td>{{ $it->room->name }}</td>
+                                <td>{{ $it->room->room_number }}</td>
                                 <td><img src="{{ Storage::url($it->photo_payment) }}" width="80px" height="auto"></td>
                                 <td>{{ $it->order_date }}</td>
                                 <td>{{ $it->total_price }}</td>
                                 <td>{{ $it->duration }}</td>
                                 <td>{{ $it->arrival_date }}</td>
                                 <td>{{ $it->departure_date }}</td>
-                                <td>{{ $it->status }}</td>
+                                <td>
+                                    @if($it->status == "Lunas")
+                                    <button class="btn btn-success btn-sm" style="text-align:center">Lunas</button>
+                                    @else
+                                    <button class="btn btn-danger btn-sm" style="text-align:center">Belum Terbayar
+                                    </button>
+                                    @endif
+                                </td>
                               </tr>
                               @endforeach
                         </tbody>

@@ -53,15 +53,14 @@ class UserTransactionController extends Controller
         ]);
     }
 
-    public function upload(Request $request, $id){
+    public function upload(Request $request){
         $this->validate($request, [
             'photo_payment' => 'required|image|max:2048|mimes:png,jpg',
         ]);
-        $transaction = RoomBooking::where('id',$id)->get();
-        $data = RoomBooking::where('id', $transaction)->first();
         $file = $request->file('photo_payment')->store('assets/transaction','public');
-        $data->photo_payment = $file;
-        $data->save();
+        $data = new RoomBooking();
+        $data->import($file);
+
         Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
         return redirect()->back();
         }

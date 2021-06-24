@@ -32,7 +32,7 @@ class TransactionsController extends Controller
                         <div class="btn-group">
                             <form action="'. route('confirmation',$item->id).'" enctype="multipart/form-data">
                                 '.method_field('PUT') .csrf_field() .'
-                            <button value="Konfirmasi" id="status" name="status" type="submit" class="btn btn-sm btn-info success">
+                            <button value="Lunas" id="status" name="status" type="submit" class="btn btn-sm btn-info success">
                                 Konfirmasi
                             </button>
                             </form>
