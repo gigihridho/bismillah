@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookingsTable extends Migration
+class CreateRoomBookingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBookingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('room_bookings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('room_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
@@ -23,7 +23,7 @@ class CreateBookingsTable extends Migration
             $table->enum('duration',[1,6,12]);
             $table->date('arrival_date');
             $table->date('departure_date')->nullable();
-            $table->enum('status',['Lunas','Belum Terbayar']);
+            $table->enum('status',['Lunas','Belum Terbayar'])->default('Belum Terbayar');
             $table->timestamps();
 
             $table->foreign('room_id')

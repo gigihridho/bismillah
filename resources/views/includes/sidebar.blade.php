@@ -42,7 +42,7 @@
                         <a href="{{ route('transaksi.index') }}"><i class="fas fa-check-square"></i>Approve Booking</a>
                     </li>
                     <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                        <a href="{{ route('transaksi.index') }}"><i class="fas fa-sign-in-alt"></i>Data Booking</a>
+                        <a href="{{ route('data-booking') }}"><i class="fas fa-sign-in-alt"></i>Data Booking</a>
                     </li>
                 </ul>
             </li>

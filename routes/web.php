@@ -42,10 +42,10 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/', 'Admin\DashboardController@index')->name('admin-dashboard');
         Route::resource('fasilitas', 'Admin\FacilityController');
-        // Route::resource('kamar', 'Admin\RoomController');
         Route::resource('user', 'Admin\UserController');
         Route::get('user/{id}/detail', 'Admin\UserController@detail')->name('detail-user');
         Route::resource('transaksi', 'Admin\TransactionsController');
+        Route::get('transaksi/data','Admin\TransactionsController@data')->name('data-booking');
         Route::get('transaksi/konfirmasi/{id}','Admin\TransactionsController@confirmation')->name('confirmation');
         Route::resource('reviews', 'Admin\ReviewsController');
         Route::resource('gallery', 'Admin\GalleryController');

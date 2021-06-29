@@ -22,7 +22,7 @@
                 <a href="{{ route('register') }}" class="nav-link">Daftar</a>
             </li>
             <li class="nav-item mx-auto">
-                <a href="{{ route('login') }}" class="btn btn-success px-4 nav-link text-white" style="border-radius: 20px">Masuk</a>
+                <a href="{{ route('login') }}" class="btn btn-success px-4 nav-link text-white">Masuk</a>
             </li>
             @endguest
           </ul>

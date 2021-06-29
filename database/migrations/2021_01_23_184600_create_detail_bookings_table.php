@@ -23,7 +23,7 @@ class CreateDetailBookingsTable extends Migration
                 ->references('id')->on('rooms')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('booking_id')
-                ->references('id')->on('bookings')
+                ->references('id')->on('room_bookings')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
