@@ -36,8 +36,8 @@
                             </tr>
                           </thead>
                           <tbody>
+                              @foreach ($room_type->rooms as $index => $room)
                               <tr>
-                                  @foreach ($room_type->rooms as $index => $room)
                                   <td>{{ $index+1 }}</td>
                                   <td>{{ $room_type->name}}</td>
                                   <td>{{ $room->room_number }}</td>
@@ -82,7 +82,10 @@
 <script>
     $(document).ready( function () {
         $('#table-1').DataTable({
-            responsive: true
+            responsive: true,
+            "language":{
+                "emptyTable": "Tidak ada data yang ditampilkan"
+        }
         });
     } );
 

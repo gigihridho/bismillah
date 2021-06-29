@@ -33,22 +33,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            @php $no = 1; @endphp
-                            @foreach ($reviews as $review)
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $review->name }}</td>
-                                <td>{{ $review->review }}</td>
-                                <td>
-                                    <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $d->id) }}">
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                    <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="{{ route('tipe.index',$d->id,'kamar') }}"  >
-                                        <i class="far fa-bed"></i>
-                                    </a>
-                                </td>
-                            @endforeach
-                        </tr>
+                        @foreach ($reviews as $review)
+                            <tr>
+                                @php $no = 1; @endphp
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $review->name }}</td>
+                                    <td>{{ $review->review }}</td>
+                                    <td>
+                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $d->id) }}">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                        <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="{{ route('tipe.index',$d->id,'kamar') }}"  >
+                                            <i class="far fa-bed"></i>
+                                        </a>
+                                    </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -64,6 +64,9 @@
 <script>
     $(document).ready( function () {
         $('#table-1').DataTable({
+            "language":{
+                "emptyTable": "Tidak ada data yang ditampilkan"
+            }
         });
     } );
 </script>
