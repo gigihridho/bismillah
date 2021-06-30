@@ -53,11 +53,19 @@ class UserTransactionController extends Controller
         ]);
     }
 
-    public function upload(Request $request){
+    public function upload(Request $request, $id){
         $this->validate($request, [
-            'photo_payment' => 'required|image|max:2048|mimes:png,jpg',
+            'photo_payment' => 'required|image|max:2048|mimes:png,jpg,jpeg',
+        ],
+        [
+            'photo_payment.required' => 'Bukti pembayaran tidak boleh kosong',
+            'photo_payment.max' => 'Bukti pembayaran melebihi 2MB',
+            'photo_payment.mimes' => 'Format file tidak didukung'
         ]);
-        $file = $request->file('photo_payment')->store('assets/transaction','public');
+        if($data == RoomBooking::where('id',$id)->first()){
+            $file = $request->file('photo_payment')->store('assets/transaction','public');
+            $data->save();
+        }
         $data = new RoomBooking();
         $data->import($file);
 
