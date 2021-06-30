@@ -75,113 +75,112 @@
             @endforelse
             <div class="col-lg-4" data-aos="zoom-in">
                 <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
-                  <form action="{{ route('booking',$room_type->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('booking',$room_type->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                      <label for="date">Pilih tanggal masuk</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
+                        <label for="date">Pilih tanggal masuk</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                            </div>
+                                <input type="date" class="form-control" id="datepicker" name="arrival_date" placeholder="DD/MM/YYYY">
                         </div>
-                        <input type="date" class="form-control" id="datepicker" name="arrival_date" placeholder="DD/MM/YYYY">
-                      </div>
                     </div>
                     <div class="form-group">
-                      <label for="duration">Durasi Sewa</label>
-                      <select name="duration" id="duration" class="form-control">
-                          <option value="1">1 Bulan</option>
-                          <option value="6">6 Bulan</option>
-                          <option value="12">1 Tahun</option>
-                      </select>
+                        <label for="duration">Durasi Sewa</label>
+                        <select name="duration" id="duration" class="form-control">
+                            <option value="1">1 Bulan</option>
+                            <option value="6">6 Bulan</option>
+                            <option value="12">1 Tahun</option>
+                        </select>
                     </div>
                     @auth
                     <button type="submit" class="btn btn-success px-5 text-white btn-block mb-3">
-                      Pesan Kamar
+                        Pesan Kamar
                     </button>
                     @else
                     <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
-                      Masuk Untuk Pesan
+                        Masuk Untuk Pesan
                     </a>
                     @endauth
-                  </form>
+                </form>
                 </div>
-              </div>
-          </div>
-        </div>
-      </section>
-      <div class="store-details-container" data-aos="fade-up">
-        <section class="store-heading">
-          <div class="container">
-            <div class="row">
-              @php
-              $incrementRoomTypes = 0
-              @endphp
-              @forelse ($room_types as $room_type)
-              <div class="col-lg-8">
-                <h1>Tipe Kamar</h1>
-                <input type="hidden" name="id" value="{{ $room_type->room }}">
-                <div class="owner">{{ $room_type->name }}</div>
-                <div class="price">Rp {{ number_format($room_type->price) }} / Per Bulan</div>
-                <div class="store-description">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-12 col-lg-8">
-                        <p>{!! $room_type->description !!}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @empty
-              <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                Tipe Kamar Tidak Ditemukan
-              </div>
-              @endforelse
             </div>
+        </div>
+        </div>
+    </section>
+    <div class="store-details-container" data-aos="fade-up">
+        <section class="store-heading">
+            <div class="container">
             <div class="row">
-              @php $incrementRoomType = 0 @endphp
-              <div class="col-md-6">
-                <h4>Fasilitas</h4>
-                <p>Fasilitas yang tersedia pada kamar ini</p>
-                @forelse ($facilities as $facility)
-                <div class="card-body">
-                  <ul>
-                    <p>{{ $facility->name }}</p>
-                    {{ $facility->icon }}
-                  </ul>
+                @php
+                $incrementRoomTypes = 0
+                @endphp
+                @forelse ($room_types as $room_type)
+                <div class="col-lg-8">
+                    <h1>Tipe Kamar</h1>
+                    <input type="hidden" name="id" value="{{ $room_type->room }}">
+                    <div class="owner">{{ $room_type->name }}</div>
+                    <div class="price">Rp {{ number_format($room_type->price) }} / Per Bulan</div>
+                    <div class="store-description">
+                    <div class="container">
+                        <div class="row">
+                        <div class="col-12 col-lg-8">
+                            <p>{!! $room_type->description !!}</p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
                 @empty
                 <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                    Data Fasilitas Tidak Ditemukan
+                    Tipe Kamar Tidak Ditemukan
                 </div>
                 @endforelse
-              </div>
             </div>
-          </div>
-      </div>
-      </section>
+            <div class="row">
+                @php $incrementRoomType = 0 @endphp
+                <div class="col-md-6">
+                    <h4>Fasilitas</h4>
+                    <p>Fasilitas yang tersedia pada kamar ini</p>
+                    @forelse ($facilities as $facility)
+                    <div class="card-body">
+                        <ul>
+                            <p>{{ $facility->name }}</p>
+                        </ul>
+                    </div>
+                    @empty
+                    <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                        Data Fasilitas Tidak Ditemukan
+                    </div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
     </div>
     </div>
-  </main>
+</main>
 
-  <script>
+<script>
     $('#exampleModal').on('show.bs.modal', event => {
-      var button = $(event.relatedTarget);
-      var modal = $(this);
+    var button = $(event.relatedTarget);
+    var modal = $(this);
       // Use above variables to manipulate the DOM
 
     });
-  </script>
+</script>
 
 
 
-  @include('includes.main.footer')
+@include('includes.main.footer')
 
 
-  @include('includes.main.script')
-  @push('addon-script')
-  <script src="{{ url('/vue/vue.js') }}"></script>
-  <script src="{{ url('/js/moment.min.js') }}"></script>
-  @endpush
+@include('includes.main.script')
+@push('addon-script')
+<script src="{{ url('/vue/vue.js') }}"></script>
+<script src="{{ url('/js/moment.min.js') }}"></script>
+@endpush
 
 </body>
 

@@ -39,18 +39,15 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-money-bill"></i><span>Booking</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                        <a href="{{ route('transaksi.index') }}"><i class="fas fa-check-square"></i>Approve Booking</a>
-                    </li>
-                    <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                        <a href="{{ route('data-booking') }}"><i class="fas fa-sign-in-alt"></i>Data Booking</a>
+                        <a href="{{ route('transaksi.index') }}"></i>Approve Booking</a>
                     </li>
                 </ul>
             </li>
-          {{-- <li class="menu-header">Transaksi
+          <li class="menu-header">Transaksi
             <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                <a href="{{ route('transaksi.index') }}" class="nav-link"><i class="fas fa-money-bill"></i> <span>Transaksi</span></a>
+                <a href="{{ route('transaksi.view') }}"></i>Data Booking</a>
             </li>
-          </li> --}}
+          </li>
           <li class="menu-header">User
             <li class="{{ (request()->is('admin/user*')) ? 'active' : '' }}">
                 <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-user"></i> <span>User</span></a>

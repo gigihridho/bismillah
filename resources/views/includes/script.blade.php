@@ -11,11 +11,12 @@
 <script src="{{ asset('/assets/js/custom.js') }}"></script>
 
 <!-- JS Libraies -->
-<script type="text/javascript" src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
+<script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+{{-- <script type="text/javascript" src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('datatables/js/dataTables.jqueryui.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('datatables/js/dataTables.fixedHeader.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('datatables/js/dataTables.responsive.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('datatables/js/responsive.bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('datatables/js/dataTables.select.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('datatables/js/dataTables.select.min.js') }}"></script> --}}
 

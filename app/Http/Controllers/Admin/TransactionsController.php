@@ -21,7 +21,7 @@ class TransactionsController extends Controller
     public function index()
     {
         if(request()->ajax()){
-            $query = RoomBooking::with('user','room')->where('status','Belum Terbayar')->get();
+            $query = RoomBooking::with('user','room')->whereIn('status',['Lunas','Belum Terbayar'])->get();
 
             return Datatables::of($query)
                 ->addIndexColumn()
@@ -51,20 +51,10 @@ class TransactionsController extends Controller
         return view('pages.admin.transaksi.index');
     }
 
-
-    public function confirmation(Request $request, $id){
-        $data = RoomBooking::where('id',$id)->first();
-        $data->status = $request->status;
-        $data->save();
-        Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
-        return redirect()->route('transaksi.index');
-
-    }
-
-    public function data()
+    public function paid()
     {
         if(request()->ajax()){
-            $query = RoomBooking::with('user','room');
+            $query = RoomBooking::with('user','room')->where('status','Lunas');
 
             return Datatables::of($query)
                 ->addIndexColumn()
@@ -85,13 +75,23 @@ class TransactionsController extends Controller
                 ->rawColumns(['action','photo_payment'])
                 ->make();
         }
-        return view('pages.admin.transaksi.data');
+        return view('pages.admin.transaksi.view');
+    }
+
+    public function confirmation(Request $request, $id){
+        $data = RoomBooking::where('id',$id)->first();
+        $data->status = $request->status;
+        $data->save();
+        Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
+        return redirect()->route('transaksi.index');
+
     }
 
     public function show($id)
     {
         //
     }
+
     public function destroy($id){
         $item = RoomBooking::findOrFail($id);
         $item->delete();

@@ -34,7 +34,7 @@
                     </thead>
                     <tbody>
                         @foreach ($reviews as $review)
-                            <tr>
+                            <tr style="text-align:center">
                                 @php $no = 1; @endphp
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $review->name }}</td>

@@ -37,7 +37,7 @@
                           </thead>
                           <tbody>
                               @foreach ($room_type->rooms as $index => $room)
-                              <tr>
+                              <tr style="text-align:center">
                                   <td>{{ $index+1 }}</td>
                                   <td>{{ $room_type->name}}</td>
                                   <td>{{ $room->room_number }}</td>
