@@ -46,7 +46,7 @@ Route::prefix('admin')
         Route::get('user/{id}/detail', 'Admin\UserController@detail')->name('detail-user');
         Route::resource('transaksi', 'Admin\TransactionsController')->except('Belum Terbayar');
         Route::get('transaksi/konfirmasi/{id}','Admin\TransactionsController@confirmation')->name('confirmation');
-        Route::get('transaksi/view','Admin\TransactionsController@view')->name('transaksi.view');
+        Route::get('paid','Admin\TransactionsController@paid')->name('view');
         Route::resource('reviews', 'Admin\ReviewsController');
         Route::resource('gallery', 'Admin\GalleryController');
         Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');

@@ -44,8 +44,8 @@
                 </ul>
             </li>
           <li class="menu-header">Transaksi
-            <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                <a href="{{ route('transaksi.view') }}"></i>Data Booking</a>
+            <li class="{{ (request()->is('admin/transaksi/')) ? 'active' : '' }}">
+                <a href="{{ route('view') }}"></i>Data Booking</a>
             </li>
           </li>
           <li class="menu-header">User
