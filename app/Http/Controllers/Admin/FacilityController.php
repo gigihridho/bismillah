@@ -6,8 +6,6 @@ use App\Facility;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\FacilityRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -90,12 +88,6 @@ class FacilityController extends Controller
         $item->delete();
 
         return redirect()->route('fasilitas.index');
-        // $facility = Facility::findOrFail($id);
-        // if($facility->delete()){
-        //     return redirect()->route('fasilitas.index');
-        // }
-        // $facility->delete();
-        // return redirect()->route('fasilitas.index');
     }
 }
 

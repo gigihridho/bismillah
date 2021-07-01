@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Room;
 use App\Facility;
 use App\RoomType;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\RoomTypeRequest;
 
@@ -59,7 +57,6 @@ class RoomTypeController extends Controller
     }
 
     public function store(RoomTypeRequest $request){
-        // $data = $request->all();
 
         $data = new RoomType();
         $data->name = $request->input('name');
@@ -111,7 +108,3 @@ class RoomTypeController extends Controller
         return redirect()->route('tipe.index');
     }
 }
-// <form action="' . route('tipe.destroy', $item->id) . '" method="POST" style="margin-left:5px">
-//                             ' . method_field('delete') . csrf_field() . '
-
-//                         </form>
