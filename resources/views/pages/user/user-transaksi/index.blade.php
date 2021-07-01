@@ -46,7 +46,6 @@
                                 <td>{{ $tf->room->room_number }}</td>
                                 <td>{{ $tf->order_date }}</td>
                                 <td>{{ $tf->total_price }}</td>
-                                {{-- <td>{{ $tf->photo_payment  != null ? $tf->photo_payment : 'Belum Upload ' }}</td> --}}
                                 <td>
                                     @if($tf->photo_payment != null)
                                     @else

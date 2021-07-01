@@ -32,6 +32,24 @@
                         <th>Aksi</th>
                       </tr>
                     </thead>
+                    <tbody>
+                        @foreach ($facilites as $index => $facility)
+                        <tr style="text-align: center">
+                            <td>{{ $index+1 }}</td>
+                            <td>{{ $facility->name }}</td>
+                            <td>
+                                <form action="{{ route('fasilitas.destroy',$facility->id) }}" method="POST">
+                                    <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('fasilitas.edit',$facility->id) }}">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $facility->id }})">
+                                        <i class="far fa-trash-alt" style="color: white;"></i>
+                                    </a>
+                                </form>
+                              </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -44,45 +62,59 @@
 @endsection
 @push('addon-script')
 <script>
-    var datatable = $('#table-1').DataTable({
-        processing: true,
-        serverSide: true,
-        ordering: true,
-        ajax: {
-            url: '{!! url()->current() !!}',
-        },
-        columns:[
-            {data: 'DT_RowIndex', name: 'id'},
-            {data: 'name', name: 'name'},
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-            },
-        ],
-        "language":{
-            "emptyTable": "Tidak ada data yang ditampilkan"
-        }
-    })
+    $(document).ready( function () {
+        $('#table-1').DataTable({
+            responsive: true,
+            "language":{
+                "emptyTable": "Tidak ada data yang ditampilkan"
+            }
+        });
+    } );
+
     function deleteConfirm(id) {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Harap Konfirmasi',
+            text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Lanjutkan'
         }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-                )
+            if (result.value) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+                    },
+                    url: "fasilitas/" + id,
+                    method: "post",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "_method": "DELETE",
+                        id: id
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            title: 'Berhasil!',
+                            text: 'Data berhasil di hapus!',
+                            icon: 'success',
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = "fasilitas/"
+                            }
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Gagal!',
+                            text: 'Data tidak dapat di hapus!',
+                            icon: 'warning',
+                        });
+                        window.location.href = "fasilitas/"
+                    }
+                });
             }
-        });
+        })
     }
 </script>
 @endpush
