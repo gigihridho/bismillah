@@ -28,17 +28,53 @@
                             <tr>
                                 <th class="text-center">
                                 #
-                              </th>
-                              <th>Nama Pemesan</th>
-                              <th>No Kamar</th>
-                              <th>Tanggal Pesan</th>
-                              <th>Total Harga</th>
-                              <th>Foto Pembayaran</th>
-                              <th>Status</th>
-                              <th>Aksi</th>
+                                </th>
+                                <th>Nama Pemesan</th>
+                                <th>No Kamar</th>
+                                <th>Tanggal Pesan</th>
+                                <th>Total Harga</th>
+                                <th>Foto Pembayaran</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
-                          </thead>
-                          <tbody>
+                        </thead>
+                        <tbody>
+                            @foreach ($transaction as $index => $tf)
+                            <tr style="text-align: center">
+                                <td>{{ $index+1 }}</td>
+                                <td>{{ $tf->user->name }}</td>
+                                <td>{{ $tf->room->room_number }}</td>
+                                <td>{{ $tf->order_date }}</td>
+                                <td>{{ $tf->total_price }}</td>
+                                {{-- <td>{{ $tf->photo_payment  != null ? $tf->photo_payment : 'Belum Upload ' }}</td> --}}
+                                <td>
+                                    @if($tf->photo_payment != null)
+                                    @else
+                                        <button class="btn btn-warning btn-sm" style="text-align:center">Belum Upload
+                                        </button>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($tf->status == 1)
+                                        <button class="btn btn-success btn-sm" style="text-align:center">Lunas</button>
+                                    @else
+                                        <button class="btn btn-danger btn-sm" style="text-align:center">Belum Terbayar
+                                        </button>
+                                    @endif
+                                </td>
+                                <td>
+                                    <form action="#" method="POST">
+                                        <a title="Upload Bukti" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="#"  >
+                                            <i class="fas fa-upload"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Cancel" onClick="#">
+                                            <i class="far fa-trash-alt" style="color: white;"></i>
+                                        </a>
+                                    </form>
+                                </td>
+
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                   </div>
@@ -68,8 +104,8 @@
                             <input type="file" name="photo_payment" class="form-control-file" id="exampleFormControlFile1">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success">Upload</button>
                         </div>
                 </div>
             </form>
@@ -80,33 +116,14 @@
 @endsection
 @push('addon-script')
 <script src="{{ url('/assets/js/page/bootstrap-modal.js') }}"></script>
-<script type="text/javascript" src="/DataTables/datatables.min.js"></script>
 <script>
-    var datatable = $('#table-1').DataTable({
-        processing: true,
-        serverSide: true,
-        ordering: true,
-        ajax: {
-            url: '{!! url() -> current()!!}',
-        },
-        columns:[
-            {data: 'DT_RowIndex', name: 'id'},
-            {data: 'user.name', name: 'user.name'},
-            {data: 'room.room_number', name: 'room.room_number'},
-            {data: 'order_date', name: 'order_date'},
-            {data: 'total_price', name: 'total_price'},
-            {data: 'photo_payment', name: 'photo_payment'},
-            {data: 'status',name: 'status'},
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-            },
-        ],
-        "language":{
-            "emptyTable": "Tidak ada data yang ditampilkan"
-        }
-    });
+    $(document).ready( function () {
+        $('#table-1').DataTable({
+            responsive: true,
+            "language":{
+                "emptyTable": "Tidak ada data yang ditampilkan"
+            }
+        });
+    } );
 </script>
 @endpush

@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
-// use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\RoomTypeRequest;
 
 class RoomTypeController extends Controller

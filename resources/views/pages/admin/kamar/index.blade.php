@@ -85,7 +85,7 @@
             responsive: true,
             "language":{
                 "emptyTable": "Tidak ada data yang ditampilkan"
-        }
+            }
         });
     } );
 
