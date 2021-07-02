@@ -58,7 +58,7 @@
       <section class="store-gallery mb-3" id="gallery">
         <div class="container">
           <div class="row">
-            @php $incrementRoomType = 0 @endphp
+            {{-- @php $incrementRoomType = 0 @endphp --}}
             @forelse ($room_types as $room_type)
             <div class="col-lg-8" data-aos="zoom-in">
               <transition name="slide-fade" mode="out-in">
@@ -135,7 +135,7 @@
                 <div class="col-md-6">
                     <h4>Fasilitas</h4>
                     <p>Fasilitas yang tersedia pada kamar ini</p>
-                    @forelse ($facilities as $facility)
+                    @forelse ($room_type->facilities as $facility)
                     <div class="card-body">
                         <ul>
                             <p>{{ $facility->name }}</p>

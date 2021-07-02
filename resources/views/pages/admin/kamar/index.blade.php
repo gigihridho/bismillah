@@ -24,8 +24,8 @@
                   <div class="table-responsive">
                     <table class="table table-bordered" id="table-1">
                         <thead>
-                            <tr>
-                              <th class="text-center">
+                            <tr style="text-align:center">
+                              <th >
                                 #
                               </th>
                               <th>Tipe Kamar</th>
@@ -43,9 +43,9 @@
                                   <td>{{ $room->room_number }}</td>
                                   <td>
                                     @if($room->available == 1)
-                                    <button class="btn btn-danger btn-xs btn-fill">Available</button>
+                                    <button class="btn btn-secondary btn-xs btn-fill">Available</button>
                                     @else
-                                    <button class="btn btn-default btn-xs btn-fill">Booked</button>
+                                    <button class="btn btn-danger btn-xs btn-fill">Booked</button>
                                     @endif
                                   </td>
                                   <td>

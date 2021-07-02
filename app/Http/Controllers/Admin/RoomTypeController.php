@@ -26,7 +26,7 @@ class RoomTypeController extends Controller
     }
 
     public function create(){
-        $facilities = Facility::all();
+        $facilities = Facility::all()->where('status',true);
         return view('pages.admin.tipe.create',[
             'facilities' => $facilities
         ]);
@@ -52,7 +52,7 @@ class RoomTypeController extends Controller
 
     public function edit($id){
         $data = RoomType::findOrFail($id);
-        $facilities = Facility::all();
+        $facilities = Facility::where('status',true);
         return view('pages.admin.tipe.edit',[
             'data' => $data,
             'facilities' => $facilities
