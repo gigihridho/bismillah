@@ -62,16 +62,15 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <form action="#" method="POST">
-                                        <a title="Upload Bukti" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="#"  >
+                                    <form action="{{ route('user-transaksi-delete',$tf->id) }}" method="POST">
+                                        <button title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
                                             <i class="fas fa-upload"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Cancel" onClick="#">
+                                        </button>
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Cancel" onClick="deleteConfirm({{ $tf->id }})">
                                             <i class="far fa-trash-alt" style="color: white;"></i>
                                         </a>
                                     </form>
                                 </td>
-
                             </tr>
                             @endforeach
                         </tbody>
@@ -86,7 +85,7 @@
     <!-- Modal -->
     <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form action="{{ route('user-transaksi-upload') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user-transaksi-upload',$tf->id) }}" method="POST" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Pembayaran</h5>
@@ -95,7 +94,6 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    @method('PUT')
                     @csrf
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Pilih File</label>
@@ -124,5 +122,51 @@
             }
         });
     } );
+
+    function deleteConfirm(id) {
+        Swal.fire({
+            title: 'Harap Konfirmasi',
+            text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Lanjutkan'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+                    },
+                    url: "/user/user-transaksi" + id,
+                    method: "post",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "_method": "DELETE",
+                        id: id
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            title: 'Berhasil!',
+                            text: 'Data berhasil di hapus!',
+                            icon: 'success',
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = "/user/user-transaksi"
+                            }
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Gagal!',
+                            text: 'Data tidak dapat di hapus!',
+                            icon: 'warning',
+                        });
+                        window.location.href = "/user/user-transaksi"
+                    }
+                });
+            }
+        })
+    }
 </script>
 @endpush

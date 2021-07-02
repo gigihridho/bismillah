@@ -86,7 +86,10 @@
 <script>
     $(document).ready( function () {
         $('#table-1').DataTable({
-            responsive: true
+            responsive: true,
+            "language":{
+                "emptyTable": "Tidak ada data yang ditampilkan"
+            }
         });
     } );
 

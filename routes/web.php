@@ -30,7 +30,8 @@ Route::prefix('user')
         Route::post('change-pass','ChangePassController@update')->name('change-pass-user-update');
         Route::get('user-transaksi', 'UserTransactionController@index')->name('user-transaksi');
         Route::get('user-transaksi/{id}', 'UserTransactionController@detail')->name('user-transaksi-detail');
-        Route::post('user-transaksi', 'UserTransactionController@upload')->name('user-transaksi-upload');
+        Route::post('user-transaksi/{id}', 'UserTransactionController@upload')->name('user-transaksi-upload');
+        Route::delete('user-transaksi/{id}','UserTransactionController@destroy')->name('user-transaksi-delete');
         Route::get('review', 'UserReviewController@review')->name('review-user');
         Route::post('review/{redirect}', 'UserReviewController@update')->name('review-user-redirect');
         Route::get('change-profil-user', 'ProfilUserController@user')->name('change-profil-user');
