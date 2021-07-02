@@ -87,9 +87,8 @@
                                 @forelse ($facilities as $facility)
                                     <div class="form-check mb-3">
                                         <label class="checkbox">
-                                            <input name="facility[{{ $facility->id }}]" value={{ $facility->name }} class="form-check-input" type="checkbox">
-                                            @if ($data->facilities->contains($facility->id)) checked="" @endif>
-                                            {{ $facility->name }}
+                                            <input name="facility[{{ $facility->id }}]" class="form-check-input" type="checkbox" value="{{ $facility->name }}"
+                                            @if ($data->facilities->contains($facility->id)) checked @endif>{{ $facility->name }}
                                         </label>
                                     </div>
                                 @empty

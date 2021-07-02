@@ -51,8 +51,8 @@ class RoomTypeController extends Controller
     }
 
     public function edit($id){
+        $facilities = Facility::all()->where('status',true);
         $data = RoomType::findOrFail($id);
-        $facilities = Facility::where('status',true);
         return view('pages.admin.tipe.edit',[
             'data' => $data,
             'facilities' => $facilities
@@ -87,7 +87,7 @@ class RoomTypeController extends Controller
         $data->status = $request->input('status');
         $data->save();
 
-        $data->facilities()->sync(array_keys($request->input('facilites')));
+        $data->facilities()->sync(array_keys($request->input('facility')));
 
         Alert::success('SUCCESS','Data Tipe Kamar Berhasil Diupdate');
         return redirect()->route('tipe.index');
