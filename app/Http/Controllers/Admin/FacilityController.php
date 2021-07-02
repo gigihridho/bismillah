@@ -15,30 +15,6 @@ class FacilityController extends Controller
     {
         $this->middleware('auth');
     }
-    // public function index(){
-    //     if(request()->ajax()){
-    //         $query = Facility::query();
-
-    //         return Datatables::of($query)
-    //             ->addIndexColumn()
-    //             ->addColumn('action', function($item){
-    //                 return '
-    //                 <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST">
-    //                     <a class="btn btn-sm btn-info edit" href="' . route('fasilitas.edit', $item->id) . '" >
-    //                         <i class="far fa-edit"></i> Edit
-    //                     </a>
-    //                         <a class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $item->id }})">
-    //                         <i class="far fa-trash-alt" style="color: white;"></i>
-    //                 </form>';
-    //             })
-    //             ->editColumn('icon', function($item){
-    //                 return $item->icon ? '<img src="'. Storage::url($item->icon).'" style="max-height: 50px;"/>' : '';
-    //             })
-    //             ->rawColumns(['action','icon'])
-    //             ->make();
-    //     }
-    //     return view('pages.admin.fasilitas.index');
-    // }
 
     public function index(){
         $facilities = Facility::all();
@@ -78,7 +54,6 @@ class FacilityController extends Controller
         $item->update($data);
         Alert::success('SUCCESS','Data Fasilitas Berhasil Diupdate');
         return redirect()->route('fasilitas.index');
-
     }
 
 
@@ -90,4 +65,29 @@ class FacilityController extends Controller
         return redirect()->route('fasilitas.index');
     }
 }
+
+// public function index(){
+    //     if(request()->ajax()){
+    //         $query = Facility::query();
+
+    //         return Datatables::of($query)
+    //             ->addIndexColumn()
+    //             ->addColumn('action', function($item){
+    //                 return '
+    //                 <form action="' . route('fasilitas.destroy', $item->id) . '" method="POST">
+    //                     <a class="btn btn-sm btn-info edit" href="' . route('fasilitas.edit', $item->id) . '" >
+    //                         <i class="far fa-edit"></i> Edit
+    //                     </a>
+    //                         <a class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $item->id }})">
+    //                         <i class="far fa-trash-alt" style="color: white;"></i>
+    //                 </form>';
+    //             })
+    //             ->editColumn('icon', function($item){
+    //                 return $item->icon ? '<img src="'. Storage::url($item->icon).'" style="max-height: 50px;"/>' : '';
+    //             })
+    //             ->rawColumns(['action','icon'])
+    //             ->make();
+    //     }
+    //     return view('pages.admin.fasilitas.index');
+    // }
 

@@ -39,7 +39,6 @@ class BookingController extends Controller
         }else {
             $new_departure_date = date('Y-m-d', strtotime('+12 month', strtotime($request->arrival_date)));
         }
-        // $new_departure_date = $request->input('departure_date');
         $rules['booking_validation'] = [new RoomAvailableRule($room_type,$new_arrival_date,$new_departure_date)];
 
         $validator = Validator::make($request->all(), $rules);
@@ -55,9 +54,6 @@ class BookingController extends Controller
         $room_booking->arrival_date = $request->input('arrival_date');
         $room_booking->departure_date = $new_departure_date;
         $room_booking->order_date = Carbon::now();
-
-        // $startTime = Carbon::parse($room_booking->arrival_date);
-        // $finishTime = Carbon::parse($room_booking->departure_date);
 
         $price = $room_type->price;
 
@@ -76,10 +72,9 @@ class BookingController extends Controller
         $room_booking->room_id = $booking->available_room_number();
         $room_booking->user_id = $user->id;
         $room_booking->status = "Belum Terbayar";
-        // dd($room_booking);
         $room_booking->save();
 
         Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');
-        return redirect()->route('change-profil-user');
+        return redirect()->route('user-transaksi');
     }
 }

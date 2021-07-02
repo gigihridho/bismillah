@@ -16,32 +16,6 @@ class RoomTypeController extends Controller
     {
         $this->middleware(['auth']);
     }
-    // public function index(){
-    //     if(request()->ajax()){
-    //         $query = RoomType::query();
-
-    //         return Datatables::of($query)
-    //             ->addIndexColumn()
-    //             ->addColumn('action', function($item){
-    //                 return '
-    //                 <div class="btn-group">
-    //                     <a class="btn btn-info btn-sm edit" href="' . route('tipe.edit', $item->id) . '">
-    //                         <i class="far fa-edit"></i> Edit
-    //                     </a>
-    //                     <a href="#" class="btn btn-danger btn-sm confirm-delete" style="margin-left:5px">
-    //                         <i class="far fa-trash-alt"></i> Hapus
-    //                     </a>
-
-    //                 </div>';
-    //             })
-    //             ->editColumn('photo', function($item){
-    //                 return $item->photo ? '<img src="'. Storage::url($item->photo).'" style="max-height: 70px;"/>' : '';
-    //             })
-    //             ->rawColumns(['action','photo'])
-    //             ->make();
-    //         }
-    //     return view('pages.admin.tipe.index');
-    // }
 
     public function index(){
         $room_types = RoomType::with('facilities:name')->get();
@@ -49,6 +23,7 @@ class RoomTypeController extends Controller
             'room_types' => $room_types
         ]);
     }
+
     public function create(){
         $facilities = Facility::all();
         return view('pages.admin.tipe.create',[
@@ -57,7 +32,6 @@ class RoomTypeController extends Controller
     }
 
     public function store(RoomTypeRequest $request){
-
         $data = new RoomType();
         $data->name = $request->input('name');
         $data->slug = Str::slug($request->name);
@@ -108,3 +82,30 @@ class RoomTypeController extends Controller
         return redirect()->route('tipe.index');
     }
 }
+
+    // public function index(){
+    //     if(request()->ajax()){
+    //         $query = RoomType::query();
+
+    //         return Datatables::of($query)
+    //             ->addIndexColumn()
+    //             ->addColumn('action', function($item){
+    //                 return '
+    //                 <div class="btn-group">
+    //                     <a class="btn btn-info btn-sm edit" href="' . route('tipe.edit', $item->id) . '">
+    //                         <i class="far fa-edit"></i> Edit
+    //                     </a>
+    //                     <a href="#" class="btn btn-danger btn-sm confirm-delete" style="margin-left:5px">
+    //                         <i class="far fa-trash-alt"></i> Hapus
+    //                     </a>
+
+    //                 </div>';
+    //             })
+    //             ->editColumn('photo', function($item){
+    //                 return $item->photo ? '<img src="'. Storage::url($item->photo).'" style="max-height: 70px;"/>' : '';
+    //             })
+    //             ->rawColumns(['action','photo'])
+    //             ->make();
+    //         }
+    //     return view('pages.admin.tipe.index');
+    // }
