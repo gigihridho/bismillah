@@ -45,7 +45,7 @@
                                     <td>{{ $tf->user->name }}</td>
                                     <td>{{ $tf->room->room_number }}</td>
                                     <td>{{ $tf->order_date }}</td>
-                                    <td>{{ $tf->total_price }}</td>
+                                    <td>Rp {{ number_format($tf->total_price) }}</td>
                                     <td>
                                         @if($tf->photo_payment != null)
                                             <img height="70px" src="{{ Storage::url($tf->photo_payment) }}" alt="">

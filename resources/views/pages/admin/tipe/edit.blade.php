@@ -84,14 +84,17 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                 <label class="d-block">Fasilitas</label>
-                                @foreach ($facilities as $facility)
+                                @forelse ($facilities as $facility)
                                     <div class="form-check mb-3">
                                         <label class="checkbox">
-                                            <input name="facilitity" value={{ $facility->name }} class="form-check-input" type="checkbox" id="defaultCheck1" data-toggle="checkbox">
-                                            @if ($data->facilities->contains($facility->id)) checked="" @endif>{{ $facility->name }}
+                                            <input name="facility[{{ $facility->id }}]" value={{ $facility->name }} class="form-check-input" type="checkbox">
+                                            @if ($data->facilities->contains($facility->id)) checked="" @endif>
+                                            {{ $facility->name }}
                                         </label>
                                     </div>
-                                @endforeach
+                                @empty
+                                <p>Maaf, Tidak ada fasilitas tersedia</p>
+                                @endforelse
                                 </div>
                             </div>
                         </div>

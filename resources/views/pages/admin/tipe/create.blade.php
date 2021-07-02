@@ -86,7 +86,7 @@
                                 @forelse($facilities as $facility)
                                     <div class="form-check mb-3">
                                         <label class="checkbox" name="facility" class="form-check-label">
-                                            <input name="facilitity[{{$facility->id}}]" value={{ $facility->name }} class="form-check-input" type="checkbox" data-toggle="checkbox">
+                                            <input name="facilitity[{{$facility->id}}]" value={{ $facility->name }} class="form-check-input" type="checkbox" data-toggle="checkbox" id="defaultCheck1" >
                                             {{ $facility->name }}
                                         </label>
                                     </div>

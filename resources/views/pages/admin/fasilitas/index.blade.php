@@ -29,6 +29,7 @@
                                 No
                                 </th>
                                 <th>Nama</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -37,6 +38,14 @@
                                 <tr style="text-align: center">
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $facility->name }}</td>
+                                    <td>
+                                        @if($facility->status == 1)
+                                            <button class="btn btn-success btn-sm btn-fill">Aktif</button>
+                                        @else
+                                            <button class="btn btn-default btn-sm btn-fill">Tidak Aktif
+                                            </button>
+                                        @endif
+                                    </td>
                                     <td>
                                         <form action="{{ route('fasilitas.destroy',$facility->id) }}" method="POST">
                                             <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('fasilitas.edit',$facility->id) }}">

@@ -46,6 +46,20 @@
                                     <input type="text" name="name" class="form-control">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="1"
+                                                @if (old('status') == '1') selected="selected" @endif>Aktif
+                                        </option>
+                                        <option value="0"
+                                                @if (old('status') == '0') selected="selected" @endif>
+                                            Tidak Aktif
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                             <div class="row">
                                 <div class="col text-right">

@@ -29,12 +29,8 @@ class UserSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('12345678'),
             'no_hp' => '08777777772',
-        ],[
-            'name' => 'Susi',
-            'email' => 'Susi@gmail.com',
-            'email_verified_at' => Carbon::now(),
-            'password' => bcrypt('12345678'),
-            'no_hp' => '0824147101402',
+            'address' => 'Jakarta',
+            'profession' => 'Guru',
         ]);
 
         $user->assignRole('user');

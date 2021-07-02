@@ -9,7 +9,7 @@ class Facility extends Model
     protected $table = 'facilities';
 
     protected $fillable = [
-        'name', 'slug',
+        'name', 'slug', 'status'
     ];
 
     protected $hidden = [

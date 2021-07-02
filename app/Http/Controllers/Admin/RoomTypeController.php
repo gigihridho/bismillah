@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\RoomTypeRequest;
 
 class RoomTypeController extends Controller
@@ -40,9 +41,11 @@ class RoomTypeController extends Controller
         $data->price = $request->input('price');
         $data->size = $request->input('size');
         $data->save();
+
         if($request->has('facility')){
             $data->facilities()->attach(array_keys($request->input('facility')));
         }
+
         Alert::success('SUCCESS','Data Tipe Kamar Berhasil Ditambah');
         return redirect()->route('tipe.index');
     }
@@ -56,22 +59,39 @@ class RoomTypeController extends Controller
         ]);
     }
 
-    public function update(RoomTypeRequest $request, $id){
-        $data = $request->all();
+    public function update(Request $request, $id){
+        $data = RoomType::find($id);
+        $rules = [
+            'name' => 'required|max:30|unique:room_types,name,'.$id,
+            'photo' => 'required|image',
+            'floor' => 'required|integer',
+            'price' => 'required|integer',
+            'size' => 'required|string',
+            'facility' => 'array',
+            'status' => 'required|boolean'
+        ];
 
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/roomtypes','public');
-        $data['floor'] = $request->floor;
-        $data['price'] = $request->price;
-        $data['size'] = $request->size;
-        $data['status'] = $request->status;
-        $data['facilities'] = $request->facility;
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput($request->all())
+                ->withErrors($validator);
+        }
 
-        $item = RoomType::findOrFail($id);
+        $data->name = $request->input('name');
+        $data->slug = Str::slug($request->name);
+        $data->photo = $request->file('photo')->store('assets/roomtypes','public');
+        $data->floor = $request->input('floor');
+        $data->price = $request->input('price');
+        $data->size = $request->input('size');
+        $data->status = $request->input('status');
+        $data->save();
 
-        $item->update($data);
+        $data->facilities()->sync(array_keys($request->input('facilites')));
+
         Alert::success('SUCCESS','Data Tipe Kamar Berhasil Diupdate');
         return redirect()->route('tipe.index');
+
     }
 
 
@@ -108,4 +128,21 @@ class RoomTypeController extends Controller
     //             ->make();
     //         }
     //     return view('pages.admin.tipe.index');
+    // }
+    // public function update(RoomTypeRequest $request, $id){
+    //     $data = $request->all();
+
+    //     $data['slug'] = Str::slug($request->name);
+    //     $data['photo'] = $request->file('photo')->store('assets/roomtypes','public');
+    //     $data['floor'] = $request->floor;
+    //     $data['price'] = $request->price;
+    //     $data['size'] = $request->size;
+    //     $data['status'] = $request->status;
+    //     $data['facilities'] = $request->facility;
+
+    //     $item = RoomType::findOrFail($id);
+
+    //     $item->update($data);
+    //     Alert::success('SUCCESS','Data Tipe Kamar Berhasil Diupdate');
+    //     return redirect()->route('tipe.index');
     // }

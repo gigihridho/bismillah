@@ -17,6 +17,7 @@ class CreateFacilitiesTable extends Migration
             $table->increments('id');
             $table->string('name',50)->unique();
             $table->string('slug');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

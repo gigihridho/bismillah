@@ -93,6 +93,8 @@
                             <option value="12">1 Tahun</option>
                         </select>
                     </div>
+                    <br>
+                    <br>
                     @auth
                     <button type="submit" class="btn btn-success px-5 text-white btn-block mb-3">
                         Pesan Kamar
@@ -121,15 +123,6 @@
                     <input type="hidden" name="id" value="{{ $room_type->room }}">
                     <div class="owner">{{ $room_type->name }}</div>
                     <div class="price">Rp {{ number_format($room_type->price) }} / Per Bulan</div>
-                    <div class="store-description">
-                    <div class="container">
-                        <div class="row">
-                        <div class="col-12 col-lg-8">
-                            <p>{!! $room_type->description !!}</p>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
                 </div>
                 @empty
                 <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
