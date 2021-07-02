@@ -2,7 +2,9 @@
 
 namespace App\Rules;
 
+use App\Rules\Booking;
 use Illuminate\Contracts\Validation\Rule;
+use Carbon\Carbon;
 
 class RoomAvailableRule implements Rule
 {

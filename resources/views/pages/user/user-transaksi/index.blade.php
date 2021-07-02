@@ -86,6 +86,7 @@
     <!-- Modal -->
     <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
+            @foreach ($transaction as $tf)
             <form action="{{ route('user-transaksi-upload',$tf->id) }}" method="POST" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
@@ -107,6 +108,7 @@
                         </div>
                 </div>
             </form>
+            @endforeach
         </div>
     </div>
 </div>
