@@ -85,7 +85,7 @@
     <!-- Modal -->
     <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form action="{{ route('user-transaksi-upload',$tf->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user-transaksi-upload') }}" method="POST" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Pembayaran</h5>
@@ -138,7 +138,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
                     },
-                    url: "/user/user-transaksi" + id,
+                    url: "/user/user-transaksi/" + id,
                     method: "post",
                     data: {
                         "_token": "{{ csrf_token() }}",
@@ -152,7 +152,7 @@
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "/user/user-transaksi"
+                                window.location.href = "/user/user-transaksi/"
                             }
                         });
                     },
@@ -162,7 +162,7 @@
                             text: 'Data tidak dapat di hapus!',
                             icon: 'warning',
                         });
-                        window.location.href = "/user/user-transaksi"
+                        window.location.href = "/user/user-transaksi/"
                     }
                 });
             }

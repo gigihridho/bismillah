@@ -60,7 +60,7 @@ class UserTransactionController extends Controller
         ]);
     }
 
-    public function upload(Request $request,$id){
+    public function upload(Request $request){
         $this->validate($request, [
             'photo_payment' => 'required|image|max:2048|mimes:png,jpg,jpeg',
         ],
@@ -69,10 +69,10 @@ class UserTransactionController extends Controller
             'photo_payment.max' => 'Bukti pembayaran melebihi 2MB',
             'photo_payment.mimes' => 'Format file tidak didukung'
         ]);
-        if($data == RoomBooking::where('id',$id)->first()){
-            $file = $request->file('photo_payment')->store('assets/transaction','public');
-            $data->save();
-        }
+        // if($data == RoomBooking::where('booking_id',$id)->first()){
+        //     $file = $request->file('photo_payment')->store('assets/transaction','public');
+        //     $data->save();
+        // }
         // $data = new RoomBooking();
         // $data->import($file);
 
@@ -81,14 +81,8 @@ class UserTransactionController extends Controller
         }
 
     public function destroy($id){
-        $item = RoomBooking::where('booking_id',$id)->exist();
-
-        if($item){
-            Alert::warning('Gagal','Data Transaksi tidak bisa dihapus');
-        }else{
-            $transaction = RoomBooking::findOrFail($id);
-            $transaction->delete();
-            Alert::success('Sukses','Data berhasil dihapus');
+        $transaction = RoomBooking::findOrFail($id);
+        $transaction->delete();
+        Alert::success('Sukses','Data berhasil dihapus');
         }
-    }
 }
