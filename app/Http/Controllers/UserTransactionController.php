@@ -19,6 +19,49 @@ class UserTransactionController extends Controller
         $this->middleware(['auth']);
     }
 
+    public function index(){
+        $transaction = RoomBooking::with('user','room')->where('user_id',Auth::user()->id)->get();
+        return view('pages.user.user-transaksi.index',[
+            'transaction' => $transaction
+        ]);
+    }
+
+    public function detail(Request $request, $id){
+        $item = RoomBooking::where('id',$id)->get();
+
+        return view('pages.user.user-transaksi.detail',[
+            'item' => $item,
+        ]);
+    }
+
+    public function upload(Request $request,$id){
+        $transaction = RoomBooking::where('id',$id)->first();
+        $this->validate($request, [
+            'photo_payment' => 'required|image|max:2048|mimes:png,jpg,jpeg',
+        ],
+        [
+            'photo_payment.required' => 'Bukti pembayaran tidak boleh kosong',
+            'photo_payment.max' => 'Bukti pembayaran melebihi 2MB',
+            'photo_payment.mimes' => 'Format file tidak didukung'
+        ]);
+
+        if($request->hasFile('photo_payment')){
+            $path = $request->file('photo_payment')->store('assets/transaction','public');
+            $transaction->photo_payment = $path;
+        }
+        $transaction->save();
+
+        Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
+        return redirect()->back();
+        }
+
+    public function destroy($id){
+        $transaction = RoomBooking::findOrFail($id);
+        $transaction->delete();
+        Alert::success('Sukses','Data berhasil dihapus');
+        }
+}
+
     // public function index(){
     //     if(request()->ajax()){
     //         $query = RoomBooking::with('user','room')->where('user_id', Auth::user()->id);
@@ -44,45 +87,3 @@ class UserTransactionController extends Controller
     //     }
     //     return view('pages.user.user-transaksi.index');
     // }
-
-    public function index(){
-        $transaction = RoomBooking::with('user','room')->where('user_id',Auth::user()->id)->get();
-        return view('pages.user.user-transaksi.index',[
-            'transaction' => $transaction
-        ]);
-    }
-
-    public function detail(Request $request, $id){
-        $item = RoomBooking::where('id',$id)->get();
-
-        return view('pages.user.user-transaksi.detail',[
-            'item' => $item,
-        ]);
-    }
-
-    public function upload(Request $request){
-        $this->validate($request, [
-            'photo_payment' => 'required|image|max:2048|mimes:png,jpg,jpeg',
-        ],
-        [
-            'photo_payment.required' => 'Bukti pembayaran tidak boleh kosong',
-            'photo_payment.max' => 'Bukti pembayaran melebihi 2MB',
-            'photo_payment.mimes' => 'Format file tidak didukung'
-        ]);
-        // if($data == RoomBooking::where('booking_id',$id)->first()){
-        //     $file = $request->file('photo_payment')->store('assets/transaction','public');
-        //     $data->save();
-        // }
-        // $data = new RoomBooking();
-        // $data->import($file);
-
-        Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
-        return redirect()->back();
-        }
-
-    public function destroy($id){
-        $transaction = RoomBooking::findOrFail($id);
-        $transaction->delete();
-        Alert::success('Sukses','Data berhasil dihapus');
-        }
-}
