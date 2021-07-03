@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Kost Griya Kenyo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Kost Griya Kenyo</title>
 
-  @include('includes.main.style')
+@include('includes.main.style')
 </head>
 <body>
 	@include('includes.main.navbar')
@@ -24,6 +24,6 @@
 
     @include('includes.main.footer')
 
- @include('includes.main.script')
+@include('includes.main.script')
 </body>
 </html>
