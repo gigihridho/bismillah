@@ -71,7 +71,6 @@ class BookingController extends Controller
         $booking = new Booking($room_type, $new_arrival_date, $new_departure_date);
         $room_booking->room_id = $booking->available_room_number();
         $room_booking->user_id = $user->id;
-        $room_booking->status = "Belum Terbayar";
         $room_booking->save();
 
         Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');

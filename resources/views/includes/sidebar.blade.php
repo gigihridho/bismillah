@@ -38,13 +38,13 @@
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-money-bill"></i><span>Booking</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                        <a href="{{ route('transaksi.index') }}"></i>Approve Booking</a>
+                    <li class="{{ (request()->is('admin/booking*')) ? 'active' : '' }}">
+                        <a href="{{ route('booking.index') }}"></i>Approve Booking</a>
                     </li>
                 </ul>
             </li>
           <li class="menu-header">Transaksi
-            <li class="{{ (request()->is('admin/transaksi/')) ? 'active' : '' }}">
+            <li class="{{ (request()->is('admin/booking/')) ? 'active' : '' }}">
                 <a href="{{ route('view') }}"></i>Data Booking</a>
             </li>
           </li>

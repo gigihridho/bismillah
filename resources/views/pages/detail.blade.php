@@ -138,7 +138,7 @@
                     @forelse ($room_type->facilities as $facility)
                     <div class="card-body">
                         <ul>
-                            <p>{{ $facility->name }}</p>
+                            <p>-> {{ $facility->name }}</p>
                         </ul>
                     </div>
                     @empty

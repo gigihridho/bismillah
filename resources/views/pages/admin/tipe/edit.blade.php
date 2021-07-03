@@ -92,7 +92,7 @@
                                         </label>
                                     </div>
                                 @empty
-                                <p>Maaf, Tidak ada fasilitas tersedia</p>
+                                    <p>Maaf, Tidak ada fasilitas tersedia</p>
                                 @endforelse
                                 </div>
                             </div>
@@ -113,9 +113,3 @@
     </section>
   </div>
 @endsection
-@push('addon-script')
-    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace( 'editor' );
-    </script>
-@endpush

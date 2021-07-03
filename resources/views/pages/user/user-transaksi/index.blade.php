@@ -25,13 +25,14 @@
                         <table class="table table-bordered" id="table-1">
                             <p>Pilih tombol <button class="btn btn-success"> <i class="fas fa-upload"></i></button> pada kolom Aksi untuk Upload Bukti Pembayaran </p>
                             <thead>
-                                <tr>
-                                    <th class="text-center">
-                                    #
+                                <tr style="text-align: center">
+                                    <th>
+                                    No
                                     </th>
-                                    <th>Nama Pemesan</th>
                                     <th>No Kamar</th>
                                     <th>Tanggal Pesan</th>
+                                    <th>Tanggal Masuk</th>
+                                    <th>Tanggal Keluar</th>
                                     <th>Total Harga</th>
                                     <th>Foto Pembayaran</th>
                                     <th>Status</th>
@@ -42,9 +43,10 @@
                                 @foreach ($transaction as $index => $tf)
                                 <tr style="text-align: center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $tf->user->name }}</td>
                                     <td>{{ $tf->room->room_number }}</td>
                                     <td>{{ $tf->order_date }}</td>
+                                    <td>{{ $tf->arrival_date }}</td>
+                                    <td>{{ $tf->departure_date }}</td>
                                     <td>Rp {{ number_format($tf->total_price) }}</td>
                                     <td>
                                         @if($tf->photo_payment != null)

@@ -23,7 +23,8 @@ class CreateRoomBookingsTable extends Migration
             $table->enum('duration',[1,6,12]);
             $table->date('arrival_date');
             $table->date('departure_date')->nullable();
-            $table->enum('status',['Lunas','Belum Terbayar'])->default('Belum Terbayar');
+            $table->enum('status',['Menunggu','Terisi','Keluar'])->default('Menunggu');
+            $table->boolean('payment')->default(false);
             $table->timestamps();
 
             $table->foreign('room_id')

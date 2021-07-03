@@ -36,49 +36,4 @@ class DetailController extends Controller
             'facilities' => $facilities,
         ]);
     }
-
-    public function add(Request $request, $room_type_id)
-    {
-        $request->validate([
-            'arrival_date' => 'required|date|after_or_equal:today',
-            'duration' => 'required|integer'
-        ],[
-            'arrival_date.required' => 'Tanggal masuk tidak boleh kosong',
-            'duration.required' => 'Lama waktu sewa tidak boleh kosong'
-        ]);
-
-        $duration = $request->duration;
-
-        if($duration == 1){
-            $departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
-        }elseif($duration == 6){
-            $departure_date = date('Y-m-d', strtotime('+6 month', strtotime($request->arrival_date)));
-        }else {
-            $departure_date = date('Y-m-d', strtotime('+12 month', strtotime($request->arrival_date)));
-        }
-
-        $price = $room->room_type->price;
-
-        if($duration == 1){
-            $total_price = $duration * $price;
-        } elseif($duration == 6){
-            $total_price = $duration * $price - (0.5 * $price);
-        } elseif($duration == 12){
-            $total_price = $duration * $price - (1 * $price);
-        }
-
-        $data = [
-            'user_id' => Auth::user()->id,
-            'room_id' => $request->room,
-            'order_date' => Carbon::now(),
-            'total_price' => $total_price,
-            'arrival_date' => $request->arrival_date,
-            'departure_date' => $departure_date,
-            'duration' => $duration,
-            'status' => 'Belum Konfirmasi',
-        ];
-
-        Transaction::create($data);
-        return redirect()->route('user-transaksi');
-    }
 }

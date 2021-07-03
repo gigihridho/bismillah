@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\RoomBooking;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class RoomBookingController extends Controller
 {
@@ -16,46 +17,40 @@ class RoomBookingController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function index()
-    {
-        if(request()->ajax()){
-            $query = RoomBooking::with('user','room');
-
-            return Datatables::of($query)
-                ->addIndexColumn()
-                ->addColumn('action', function($item){
-                    return '
-                        <div class="btn-group">
-                            <form action="'. route('confirmation',$item->id).'" enctype="multipart/form-data">
-                                '.method_field('PUT') .csrf_field() .'
-                            <button value="Konfirmasi" id="status" name="status" type="submit" class="btn btn-sm btn-info success">
-                                Konfirmasi
-                            </button>
-                            </form>
-                            <form action="' . route('transaksi.destroy', $item->id) . '" method="POST" style="margin-left:5px">
-                            ' . method_field('delete') . csrf_field() . '
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                Hapus
-                            </button>
-                        </form>
-                        </div>';
-                })
-                ->editColumn('photo_payment', function($item){
-                    return $item->photo_payment ? '<img src="'. Storage::url($item->photo_payment).'" style="max-height: 50px;"/>' : '';
-                })
-                ->rawColumns(['action','photo_payment'])
-                ->make();
-        }
-        return view('pages.admin.transaksi.index');
+    public function index(){
+        $room_bookings = RoomBooking::all();
+        return view('pages.admin.booking.index',[
+            'room_bookings' => $room_bookings
+        ]);
     }
 
-    public function confirmation(Request $request, $id){
-        $data = RoomBooking::where('id',$id)->first();
-        $data->status = $request->status;
-        $data->save();
-        Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
-        return redirect()->route('transaksi.index');
+    public function edit($id){
+        $room_booking = RoomBooking::findOrFail($id);
+        return view('pages.admin.booking.edit',[
+            'room_booking' => $room_booking
+        ]);
+    }
 
+    public function update(Request $request, $id){
+        $room_booking = RoomBooking::findOrFail($id);
+
+        $rules = [
+            'status' => 'in:Menunggu,Terisi,Keluar',
+            'payment' => 'boolean',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()){
+            return redirect()->back()
+                ->withInput($request->all())
+                ->withErrors($validator);
+        }
+
+        $room_booking->payment = $request->input('payment');
+        $room_booking->status = $request->input('status');
+        $room_booking->save();
+
+        Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
+        return redirect()->route('booking.index');
     }
 
     public function destroy($id){

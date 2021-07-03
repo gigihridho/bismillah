@@ -50,8 +50,9 @@ class Booking implements Rule
 
         foreach ($this->room_type->rooms as $room) {
             if($this->room_bookings_exist($room)){
-                if($this->room_bookings_check($room->room_bookings) == false)
+                if($this->room_bookings_check($room->room_bookings) == false){
                 continue;
+                }
             }
             return true;
         }

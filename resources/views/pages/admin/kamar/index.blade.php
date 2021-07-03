@@ -24,7 +24,7 @@
                   <div class="table-responsive">
                     <table class="table table-bordered" id="table-1">
                         <thead>
-                            <tr style="text-align:center">
+                            <tr style="text-align:center; text-transform: uppercase">
                               <th >
                                 #
                               </th>
