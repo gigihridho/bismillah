@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
-                <div class="card-icon bg-primary">
+                <div class="card-icon bg-primary" style="width: 70px">
                 <i class="far fa-user"></i>
                 </div>
                 <div class="card-wrap">
@@ -28,7 +28,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
-                <div class="card-icon bg-danger">
+                <div class="card-icon bg-danger" style="width: 70px">
                 <i class="fas fa-bed"></i>
                 </div>
                 <div class="card-wrap">
@@ -43,7 +43,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
-                <div class="card-icon bg-warning">
+                <div class="card-icon bg-warning" style="width: 70px">
                 <i class="fas fa-money-bill"></i>
                 </div>
                 <div class="card-wrap">
@@ -58,15 +58,15 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
-                <div class="card-icon bg-success">
-                <i class="fas fa-wallet"></i>
+                <div class="card-icon bg-success" style="width: 70px">
+                    <i class="fas fa-wallet"></i>
                 </div>
                 <div class="card-wrap">
                 <div class="card-header">
                     <h4>Total Transaksi</h4>
                 </div>
                 <div class="card-body">
-                    Rp {{ number_format($total_price) }}
+                    <h5> Rp {{ number_format($total_price) }} </h5>
                 </div>
                 </div>
             </div>

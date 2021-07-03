@@ -35,7 +35,7 @@
                                     <th>Tanggal Keluar</th>
                                     <th>Total Harga</th>
                                     <th>Foto Pembayaran</th>
-                                    <th>Status</th>
+                                    <th>Pembayaran</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -57,8 +57,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($tf->status == 1)
-                                            <button class="btn btn-success btn-sm" style="text-align:center">Lunas</button>
+                                        @if($tf->payment == 1)
+                                            <button class="btn btn-success btn-sm" style="text-align:center">Terbayar</button>
                                         @else
                                             <button class="btn btn-danger btn-sm" style="text-align:center">Belum Terbayar
                                             </button>

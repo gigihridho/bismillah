@@ -19,8 +19,8 @@ class DashboardController extends Controller
     public function index(){
         $user = User::role('user')->get()->count();
         $room = Room::count();
-        $transactions = RoomBooking::where('status','Lunas')->count();
-        $total_price = RoomBooking::where('status','Lunas')->sum('total_price');
+        $transactions = RoomBooking::where('payment',1)->count();
+        $total_price = RoomBooking::where('payment',1)->sum('total_price');
         $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         for($bulan = 1 ; $bulan < 12; $bulan++){
             $chart = collect(DB::select("SELECT count(id) as jumlah from room_bookings where month(created_at)='$bulan'"))->first();

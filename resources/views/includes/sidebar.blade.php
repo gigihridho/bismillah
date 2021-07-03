@@ -32,16 +32,10 @@
             <li class="{{ (request()->is('admin/tipe*')) ? 'active' : '' }}">
                 <a href="{{ route('tipe.index') }}" class="nav-link"><i class="fas fa-bed"></i> <span>Tipe Kamar</span></a>
             </li>
-            {{-- <li class="{{ (request()->is('admin/kamar*')) ? 'active' : '' }}">
-                <a href="{{ route('kamar.index') }}" class="nav-link"><i class="fas fa-bed"></i> <span>Kamar</span></a>
-            </li> --}}
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-money-bill"></i><span>Booking</span></a>
-                <ul class="dropdown-menu">
-                    <li class="{{ (request()->is('admin/booking*')) ? 'active' : '' }}">
-                        <a href="{{ route('booking.index') }}"></i>Approve Booking</a>
-                    </li>
-                </ul>
+                <li class="{{ (request()->is('admin/booking*')) ? 'active' : '' }}">
+                    <a href="{{ route('booking.index') }}"><i class="fas fa-book"></i></i>Data Booking</a>
+                </li>
             </li>
           <li class="menu-header">Transaksi
             <li class="{{ (request()->is('admin/booking/')) ? 'active' : '' }}">
