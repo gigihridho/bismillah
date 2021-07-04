@@ -22,11 +22,10 @@
             <div class="col-md-12">
                 <div style="text-align: center;">
                     <div>
-                        <strong>Bukti Pendapatan Booking HRI Hotel</strong>
+                        <strong>Bukti Pendapatan Kost Griyo Kenyo</strong>
                     </div>
-                    <small style="margin : 0px; display: block;">Alamat : Kp tenggek, Desa Cimande hilir Kecamatan caringin, Kabupaten bogor, kode POS : 16730</small>
-                    <small style="margin : 0px; display: block;">Linkedln : rizalihwan</small>
-                    <small style="margin : 0px; display: block;">Email : rizalihwan94@gmail.com</small>
+                    <small style="margin : 0px; display: block;">Alamat : Kentingan, Jebres, Surakarta</small>
+                    <small style="margin : 0px; display: block;">Owner : Anggito Galih Nuragam</small>
                     <p style="margin : 0px;">HP/WA : 085770254568</p>
                 </div>
             </div>
@@ -43,9 +42,11 @@
                         </tr>
                         @forelse ($transactions as $index => $transaction)
                             <tr>
-                                <th style="text-align : right;">{{ $index+1 }}</th>
+                                <th style="text-align: right;">{{ $index+1 }}</th>
                                 <td style="text-align: right">{{ $transaction->order_date }}</td>
-                                <td style="text-align : right;">Rp {{ number_format($transaction->room->room_type->price) }}</td>
+                                <td style="text-align: right;">
+                                    <span>Rp {{ number_format($transaction->room->room_type->price) }}</span>
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -61,10 +62,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   </body>
