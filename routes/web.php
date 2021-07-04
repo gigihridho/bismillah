@@ -54,7 +54,8 @@ Route::prefix('admin')
         Route::resource('booking', 'Admin\RoomBookingController')->except('Belum Terbayar');
         Route::get('booking/{id}/edit','Admin\RoomBookingController@edit');
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
-        Route::get('paid','Admin\RoomBookingController@paid')->name('view');
+
+        Route::get('transaksi','Admin\RoomBookingController@transaksi')->name('transaksi');
 
         Route::resource('reviews', 'Admin\ReviewsController');
 

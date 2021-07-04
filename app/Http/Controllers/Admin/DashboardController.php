@@ -19,7 +19,7 @@ class DashboardController extends Controller
     public function index(){
         $user = RoomBooking::with('user')->where('payment',1)->count();
         $room = Room::count();
-        $transactions = RoomBooking::where('payment',1)->count();
+        $transactions = RoomBooking::count();
         $total_price = RoomBooking::where('payment',1)->sum('total_price');
         $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         for($bulan = 1 ; $bulan < 12; $bulan++){

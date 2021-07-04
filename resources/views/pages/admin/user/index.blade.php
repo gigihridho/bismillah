@@ -30,6 +30,7 @@
                             </th>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>No Telepon</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
@@ -39,6 +40,7 @@
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>{{ $user->no_hp }}</td>
                                     <td>
                                     <form action="{{ route('user.destroy',$user->id) }}" method="POST">
                                         <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user.show',$user->id) }}">
