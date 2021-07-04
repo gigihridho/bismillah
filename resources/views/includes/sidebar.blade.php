@@ -38,8 +38,8 @@
                 </li>
             </li>
           <li class="menu-header">Transaksi
-            <li class="{{ (request()->is('admin/booking/')) ? 'active' : '' }}">
-                <a href="{{ route('view') }}"><i class="fas fa-money-bill"></i>Data Booking</a>
+            <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
+                <a href="{{ route('transaksi') }}"><i class="fas fa-money-bill"></i>Laporan Transaksi</a>
             </li>
           </li>
           <li class="menu-header">User

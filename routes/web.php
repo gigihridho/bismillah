@@ -55,7 +55,8 @@ Route::prefix('admin')
         Route::get('booking/{id}/edit','Admin\RoomBookingController@edit');
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
 
-        Route::get('transaksi','Admin\RoomBookingController@transaksi')->name('transaksi');
+        Route::get('transaksi','Admin\TransactionsController@index')->name('transaksi');
+        Route::get('transaksi/pdf','Admin\TransactionsController@pdf')->name('transaski-pdf');
 
         Route::resource('reviews', 'Admin\ReviewsController');
 

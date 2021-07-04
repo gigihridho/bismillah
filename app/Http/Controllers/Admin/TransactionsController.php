@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\RoomBooking;
-use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use RealRashid\SweetAlert\Facades\Alert;
-use Yajra\DataTables\Facades\DataTables;
 
 
 class TransactionsController extends Controller
@@ -18,10 +15,34 @@ class TransactionsController extends Controller
         $this->middleware(['auth']);
     }
 
+    protected function setPdfOption()
+    {
+        return [
+            'dpi' => 150,
+            'defaultFont' => 'sans-serif',
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true
+        ];
+    }
+
     public function index(){
-        $transaction = RoomBooking::all();
+        $transactions = RoomBooking::where('payment',1)->get();
+        // dd($transactions);
         return view('pages.admin.transaksi.index',[
-            'transaction' => $transaction
+            'transactions' => $transactions
         ]);
+    }
+    // PDF::setOptions($this->setPdfOption())->loadView('transaksi_pdf', [
+    public function pdf(){
+        $now = Carbon::now();
+        $transactions = RoomBooking::where('payment',1)->orderBy('order_date','ASC')->get();
+        $total_price = RoomBooking::where('payment',1)->sum('total_price');
+
+        $pdf = PDF::loadview('pages.admin.transaksi.transaksi_pdf',[
+            'now' => $now,
+            'total_price' => $total_price,
+            'transactions' => $transactions
+        ]);
+        return $pdf->download('laporan-transaksi.pdf');
     }
 }
