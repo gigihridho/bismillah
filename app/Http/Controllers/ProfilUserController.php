@@ -23,6 +23,7 @@ class ProfilUserController extends Controller
             'no_hp' => 'required|numeric',
             'profession' => 'required',
             'address' => 'required',
+            'photo_ktp' => 'image|max:2048|mimes:jpg,png,jpeg|required'
         ],
         [
             'name.required' => 'Nama tidak boleh kosong',

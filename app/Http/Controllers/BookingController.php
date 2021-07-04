@@ -28,6 +28,9 @@ class BookingController extends Controller
         ];
 
         $room_type = RoomType::findOrFail($room_type_id);
+
+        $code = 'KGK-' . mt_rand(0000,9999);
+
         $new_arrival_date = $request->input('arrival_date');
 
         $duration = $request->input('duration');
@@ -51,6 +54,7 @@ class BookingController extends Controller
         $room_booking = new RoomBooking();
         $user = Auth::user();
 
+        $room_booking->booking_code = $code;
         $room_booking->arrival_date = $request->input('arrival_date');
         $room_booking->departure_date = $new_departure_date;
         $room_booking->order_date = Carbon::now();

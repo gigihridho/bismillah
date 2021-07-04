@@ -34,7 +34,7 @@
             </li>
             <li class="nav-item dropdown">
                 <li class="{{ (request()->is('admin/booking*')) ? 'active' : '' }}">
-                    <a href="{{ route('booking.index') }}"><i class="fas fa-book"></i></i>Data Booking</a>
+                    <a href="{{ route('booking.index') }}"><i class="fas fa-sign-in-alt"></i></i>Data Booking</a>
                 </li>
             </li>
           <li class="menu-header">Transaksi
@@ -56,7 +56,7 @@
           @if(auth()->user()->hasRole('user'))
           <li class="menu-header">Dashboard</li>
             <li class="{{ (request()->is('user/user-transaksi*')) ? 'active' : '' }}">
-                <a href="{{ route('user-transaksi') }}" class="nav-link"><i class="fas fa-money-bill"></i> <span>Transaksi</span></a>
+                <a href="{{ route('user-transaksi') }}" class="nav-link"><i class="fas fa-sign-in-alt"></i> <span>Booking</span></a>
             </li>
             <li class="{{ (request()->is('user/review*')) ? 'active' : '' }}">
                 <a href="{{ route('review-user') }}" class="nav-link"><i class="fas fa-comments"></i> <span>Review</span></a>

@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    User Transaksi
+    User Booking
 @endsection
 
 @section('content')
@@ -29,8 +29,7 @@
                                     <th>
                                     No
                                     </th>
-                                    <th>No Kamar</th>
-                                    <th>Tanggal Pesan</th>
+                                    <th>Kamar</th>
                                     <th>Tanggal Masuk</th>
                                     <th>Tanggal Keluar</th>
                                     <th>Total Harga</th>
@@ -43,14 +42,14 @@
                                 @foreach ($transaction as $index => $tf)
                                 <tr style="text-align: center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $tf->room->room_number }}</td>
-                                    <td>{{ $tf->order_date }}</td>
+                                    <td><button class="btn btn-info btn-sm">{{ $tf->room->room_type->name }} ({{ $tf->room->room_number }})</button>
+                                    </td>
                                     <td>{{ $tf->arrival_date }}</td>
                                     <td>{{ $tf->departure_date }}</td>
                                     <td>Rp {{ number_format($tf->total_price) }}</td>
                                     <td>
                                         @if($tf->photo_payment != null)
-                                            <img height="70px" src="{{ Storage::url($tf->photo_payment) }}" alt="">
+                                            <img height="70px" width="50%" src="{{ Storage::url($tf->photo_payment) }}" alt="">
                                         @else
                                             <button class="btn btn-warning btn-sm" style="text-align:center">Belum Upload
                                             </button>

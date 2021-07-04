@@ -45,7 +45,7 @@
                                 <td>{{ $room_booking->room->room_type->name }}</td>
                                 <td>
                                     @if($room_booking->photo_payment != null)
-                                        <img height="70px" src="{{ Storage::url($room_booking->photo_payment) }}" alt="">
+                                        <img height="70px" width="60px" src="{{ Storage::url($room_booking->photo_payment) }}" alt="">
                                     @else
                                         <button class="btn btn-warning btn-sm" style="text-align:center">Belum Upload
                                         </button>
