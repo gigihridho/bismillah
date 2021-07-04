@@ -31,7 +31,7 @@
                             <th>No Kamar</th>
                             <th>Tipe</th>
                             <th>Bukti Transaksi</th>
-                            <th>Pembayaran</th>
+                            <th>Keterangan</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -53,9 +53,9 @@
                                 </td>
                                 <td>
                                     @if($room_booking->payment == 1)
-                                        <button class="btn btn-success btn-sm btn-fill">Terbayar</button>
+                                        <button class="btn btn-success btn-sm btn-fill">Sudah Bayar</button>
                                     @else
-                                        <button class="btn btn-danger btn-sm btn-fill">Belum Terbayar</button>
+                                        <button class="btn btn-danger btn-sm btn-fill">Belum Bayar</button>
                                     @endif
                                 </td>
                                 <td>

@@ -49,12 +49,12 @@ Route::prefix('admin')
         Route::resource('fasilitas', 'Admin\FacilityController');
 
         Route::resource('user', 'Admin\UserController');
-        Route::get('user/{id}/detail', 'Admin\UserController@detail')->name('detail-user');
+        // Route::get('user/{id}/detail', 'Admin\UserController@detail')->name('detail-user');
 
         Route::resource('booking', 'Admin\RoomBookingController')->except('Belum Terbayar');
         Route::get('booking/{id}/edit','Admin\RoomBookingController@edit');
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
-        Route::get('paid','Admin\RoomBooking@paid')->name('view');
+        Route::get('paid','Admin\RoomBookingController@paid')->name('view');
 
         Route::resource('reviews', 'Admin\ReviewsController');
 

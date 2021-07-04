@@ -34,6 +34,23 @@
                         </tr>
                         </thead>
                         <tbody>
+                            @foreach ($users as $index => $user)
+                                <tr>
+                                    <td>{{ $index+1 }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>
+                                    <form action="{{ route('user.destroy',$user->id) }}" method="POST">
+                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user.show',$user->id) }}">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $user->id }})">
+                                            <i class="far fa-trash-alt" style="color: white;"></i>
+                                        </a>
+                                    </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     </div>
@@ -47,27 +64,13 @@
 @endsection
 @push('addon-script')
 <script>
-    var datatable = $('#table-1').DataTable({
-        processing: true,
-        serverSide: true,
-        ordering: true,
-        ajax: {
-            url: '{!! url() -> current()!!}',
-        },
-        columns:[
-            {data: 'DT_RowIndex', name: 'id'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-            },
-        ],
-        "language":{
-            "emptyTable": "Tidak ada data yang ditampilkan"
-        }
-    });
+    $(document).ready( function () {
+        $('#table-1').DataTable({
+            responsive: true,
+            "language":{
+                "emptyTable": "Tidak ada data yang ditampilkan"
+            }
+        });
+    } );
 </script>
 @endpush

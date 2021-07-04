@@ -39,7 +39,7 @@
             </li>
           <li class="menu-header">Transaksi
             <li class="{{ (request()->is('admin/booking/')) ? 'active' : '' }}">
-                <a href="{{ route('view') }}"></i>Data Booking</a>
+                <a href="{{ route('view') }}"><i class="fas fa-money-bill"></i>Data Booking</a>
             </li>
           </li>
           <li class="menu-header">User
