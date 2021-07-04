@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col text-right">
+                                <div class="col text-center">
                                     <button type="submit" class="btn btn-success px-5">
                                         Simpan Data
                                     </button>

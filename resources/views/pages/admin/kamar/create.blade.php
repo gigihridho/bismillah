@@ -59,7 +59,7 @@
                             </div>
                         </div>
                             <div class="row">
-                                <div class="col text-right">
+                                <div class="col text-center">
                                     <button type="submit" class="btn btn-success px-5">
                                         Simpan Data
                                     </button>
@@ -74,9 +74,3 @@
     </section>
 </div>
 @endsection
-@push('addon-script')
-    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace( 'editor' );
-    </script>
-@endpush

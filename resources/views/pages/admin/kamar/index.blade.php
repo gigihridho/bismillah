@@ -26,7 +26,7 @@
                             <thead>
                                 <tr style="text-align:center; text-transform: uppercase">
                                 <th >
-                                    #
+                                    No
                                 </th>
                                 <th>Tipe Kamar</th>
                                 <th>Nomor Kamar</th>

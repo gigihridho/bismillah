@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                                 <div class="row">
-                                    <div class="col text-right">
+                                    <div class="col text-center">
                                         <button type="submit" id="submit" class="btn btn-success px-5 simpan">
                                             Simpan Data
                                         </button>

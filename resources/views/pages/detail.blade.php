@@ -77,6 +77,7 @@
                 <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
                     <form action="{{ route('booking',$room_type->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <input name="booking_validation" type="hidden" value="0">
                     <div class="form-group">
                         <label for="date">Pilih tanggal masuk</label>
                         <div class="input-group">
