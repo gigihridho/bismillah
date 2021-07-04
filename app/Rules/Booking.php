@@ -61,7 +61,6 @@ class Booking implements Rule
     public function available_room_number(){
         $this->room_exist();
         foreach ($this->room_type->rooms as $room) {
-
             if($this->room_bookings_exist($room)){
                 if($this->room_bookings_check($room->room_bookings) == false)
                 continue;
@@ -87,8 +86,8 @@ class Booking implements Rule
     protected function room_bookings_check($room_bookings)
     {
         foreach ($room_bookings as $room_booking) {
-            $old_arrival_date = Carbon::parse($room_booking->arrival_date)->format('Y/m/d');
-            $old_departure_date = Carbon::parse($room_booking->departure_date)->format('Y/m/d');
+            $old_arrival_date = Carbon::parse($room_booking->arrival_date);
+            $old_departure_date = Carbon::parse($room_booking->departure_date);
             if($this->new_arrival_date < $old_arrival_date){
                 if($this->new_departure_date > $old_departure_date){
                 return false;
@@ -100,9 +99,8 @@ class Booking implements Rule
             } elseif ($this->new_arrival_date == $old_arrival_date){
                 return false;
             }
-        return true;
         }
+        return true;
     }
-
-
 }
+

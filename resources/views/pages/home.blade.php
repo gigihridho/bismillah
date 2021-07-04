@@ -76,7 +76,7 @@
                     <div class="card-body">
                         <h3 class="card-explore__price">Rp {{ number_format($room_type->price) }} <sub>/ Per Bulan</sub></h3>
                         <h4 class="card-explore__title">{{ $room_type->name }}</></h4>
-                        <h6>Jumlah Kamar <h7 style="color: red">{!! $room_type->rooms->count() !!}</h7></h6>
+                        <h6>Jumlah Kamar Tersedia <h7 style="color: red">{{ count($room_type->rooms) }}</h7></h6>
                         <a class="card-explore__link" href="{{ route('detail-kost',$room_type->id) }}">Book Now <i class="ti-arrow-right"></i></a>
                     </div>
                     </div>

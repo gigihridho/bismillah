@@ -70,7 +70,7 @@
                                                 <i class="fas fa-upload" style="color: white;"></i>
                                             </a>
                                             <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Cancel" onClick="deleteConfirm({{ $tf->id }})">
-                                                <i class="far fa-trash-alt" style="color: white;"></i>
+                                                <i class="fas fa-minus" style="color: white;"></i>
                                             </a>
                                         </form>
                                     </td>

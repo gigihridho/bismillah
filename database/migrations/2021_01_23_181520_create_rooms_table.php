@@ -15,10 +15,10 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('room_type_id')->unsigned()->index();
+            $table->string('room_number',3)->unique();
             $table->boolean('available')->default(true);
             $table->boolean('status')->default(true);
-            $table->string('room_number',5)->unique();
+            $table->integer('room_type_id')->unsigned()->index();
             $table->timestamps();
 
             $table->foreign('room_type_id')

@@ -30,10 +30,12 @@ class HomeController extends Controller
         $users = User::all();
         $reviews = Review::all();
         $room_types = RoomType::all();
+        $rooms = RoomType::with('rooms')->where('status',true)->get();
         return view('pages.home',[
             'users' => $users,
             'reviews' => $reviews,
-            'room_types' => $room_types
+            'room_types' => $room_types,
+            'rooms' => $rooms
         ]);
     }
 }

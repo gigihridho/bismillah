@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
     public function index(){
-        $user = User::role('user')->get()->count();
+        $user = RoomBooking::with('user')->where('payment',1)->count();
         $room = Room::count();
         $transactions = RoomBooking::where('payment',1)->count();
         $total_price = RoomBooking::where('payment',1)->sum('total_price');
