@@ -475,6 +475,20 @@
             width: 100%;
             }
         }
+
+        .detail-content .breadcrumbs {
+            padding: 5rem 3rem;
+        }
+        .detail-1 .breadcrumbs{
+            padding: 5rem 3rem;
+            background: transparent;
+            padding: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+
+        /* Footer */
         .footer-2-2 .list-space {
             margin-bottom: 1.25rem;
         }

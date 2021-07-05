@@ -70,34 +70,6 @@
         </div>
         </div>
     </nav>
-    <div>
-        <div class="mx-auto d-flex flex-lg-row flex-column hero">
-            <!-- Left Column -->
-            <div
-                class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
-                <h1 class="title-text-big">
-                Punya Impian<br class="d-lg-block d-none" />
-                Rumah Kost Yang Nyaman
-                </h1>
-                <p>Kost Griyo Kenyo merupakan kost putri yang nyaman dan bersih. Bagi kamu yang ingin mendapat suasana tersebut, Ayo segera miliki kamar di sini.</p>
-                <div class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
-                <button class="btn d-inline-flex mb-md-0 btn-try text-white">
-                    Pesan Kamar
-                </button>
-                <button class="btn btn-outline">
-                    <div class="d-flex align-items-center">
-                    Daftar
-                    </div>
-                </button>
-                </div>
-            </div>
-            <!-- Right Column -->
-            <div class="right-column text-center d-flex justify-content-center pe-0">
-                <img id="img-fluid" class="h-auto mw-100"
-                src="{{ asset('fe/img/hero.png') }}"
-                alt="" />
-            </div>
-        </div>
-    </div>
 </div>
 </section>
+

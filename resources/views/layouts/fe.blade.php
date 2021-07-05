@@ -22,12 +22,13 @@
 </head>
 <body>
     {{-- Navbar --}}
-    @include('partials.navbar');
+    @include('partials.navbar')
 
     {{-- Page Content --}}
     @yield('content')
 
     {{-- Footer --}}
-    @include('partials.footer');
+    @include('partials.footer')
+    @include('partials.script')
 </body>
 </html>

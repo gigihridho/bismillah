@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::view('landing','landing');
+Route::view('detail-kost','detail-kost');
 
 Route::get('details/{id}', 'DetailController@detail')->name('detail-kost');
 Route::post('details/{id}/book', 'BookingController@booking')->name('booking');
