@@ -19,14 +19,16 @@
                 </h1>
                 <p>Kost Griyo Kenyo merupakan kost putri yang nyaman dan bersih. Bagi kamu yang ingin mendapat suasana tersebut, Ayo segera miliki kamar di sini.</p>
                 <div class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
-                <button class="btn d-inline-flex mb-md-0 btn-try text-white">
+                <a href="#kamar" class="btn d-inline-flex mb-md-0 btn-try text-white">
                     Pesan Kamar
-                </button>
-                <button class="btn btn-outline">
+                </a>
+                @guest
+                <a href="{{ route('register') }}" class="btn btn-outline">
                     <div class="d-flex align-items-center">
-                    Daftar
+                        Daftar
                     </div>
-                </button>
+                </a>
+                @endguest
                 </div>
             </div>
             <!-- Right Column -->
@@ -101,7 +103,7 @@
 </section>
 
 {{-- Room --}}
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="kamar">
     <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Pilihan Kamar Kost</h1>
@@ -123,7 +125,7 @@
                     <div class="card-body">
                         <h3 class="room-title">{{ $room_type->name }}</h3>
                         <p class="room-price">Rp {{number_format($room_type->price)}}/bulan</p>
-                        <a href="#" class="btn btn-fill text-white">Pesan Kamar</a>
+                        <a href="{{ route('detail-kost',$room_type->id) }}" class="btn btn-fill text-white">Pesan Kamar</a>
                     </div>
                     </div>
                 </div>
@@ -161,6 +163,5 @@
             @endforelse
         </div>
     </div>
-
 </section>
 @endsection

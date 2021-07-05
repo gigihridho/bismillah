@@ -574,12 +574,12 @@
         .footer-2-2 .footer-text-title {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #000000;
+            color: #fff;
             margin-bottom: 1.5rem;
         }
 
         .footer-2-2 .list-menu {
-            color: #c7c7c7;
+            color: #fff;
             text-decoration: none !important;
         }
 
@@ -594,20 +594,15 @@
         }
 
         .footer-2-2 .border-color {
-            color: #c7c7c7;
+            color: #fff;
         }
 
         .footer-2-2 .footer-link {
-            color: #c7c7c7;
+            color: #fff;
         }
 
         .footer-2-2 .footer-link:hover {
             color: #555252;
-        }
-
-        .footer-2-2 .social-media-c:hover circle,
-        .footer-2-2 .social-media-p:hover path {
-            fill: #555252;
         }
 
         .footer-2-2 .footer-info-space {

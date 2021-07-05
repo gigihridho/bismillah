@@ -41,7 +41,9 @@
                 </ul>
             </div>
             <div class="modal-footer border-0 gap-3" style="padding: 2rem; padding-top: 0.75rem">
-                <button class="btn btn-fill text-white">Masuk</button>
+                @guest
+                    <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
+                @endguest
             </div>
             </div>
         </div>
@@ -66,7 +68,9 @@
             </li>
         </ul>
         <div class="gap-3">
-            <button class="btn btn-fill text-white">Masuk</button>
+            @guest
+                <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
+            @endguest
         </div>
         </div>
     </nav>
