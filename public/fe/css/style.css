@@ -315,12 +315,7 @@
         .card-explore__img img {
             padding-bottom: 1px;
         }
-        .card-explore .card-body {
-        }
-        .card-explore__price {
-            color: red;
-            font-size: 30px;
-        }
+
         .card-explore__price sub {
             font-size: 18px;
         }
@@ -426,9 +421,7 @@
         .content-2-2 .grid-padding {
             padding: 0rem ;
         }
-        /* .content-2-2 .btn-book {
-            color: #6777ef;
-        } */
+
         .content-2-2 .btn-fill {
             font: 600 18px / normal Poppins, sans-serif;
             background-color: #6777ef;
@@ -446,11 +439,12 @@
         }
 
         .content-2-2 .btn-no-fill {
-        font: 300 18px/1.75rem Poppins, sans-serif;
-        color: #1d1e3c;
-        padding: 12px 32px;
-        transition: 0.3s;
+            font: 300 18px/1.75rem Poppins, sans-serif;
+            color: #1d1e3c;
+            padding: 12px 32px;
+            transition: 0.3s;
         }
+
         @media (min-width: 576px) {
             .content-2-2 .grid-padding {
             padding: 0rem 2rem 3rem;
@@ -481,13 +475,13 @@
             }
 
             .content-2-2 .column {
-            padding: 0rem 2.25rem;
+            padding: 0rem 1rem;
             }
         }
 
         @media (min-width: 1200px) {
             .content-2-2 .grid-padding {
-            padding: 1rem 10rem 3rem;
+            padding: 0rem 5rem 3rem;
             }
 
             .content-2-2 .card-block {
@@ -512,6 +506,55 @@
             }
         }
 
+        /* Review */
+        .review .btn:focus,
+        .review .btn:active {
+            outline: none !important;
+        }
+        .review {
+            padding: 5rem 3rem;
+        }
+        .review .title-text {
+            padding-top: 5rem;
+            margin-bottom: 3rem;
+        }
+
+        .review .text-title {
+            font: 600 2.25rem/2.5rem Poppins, sans-serif;
+            color: #121212;
+            margin-bottom: 0.625rem;
+        }
+
+        .review .text-caption{
+            font: 600 2rem/2rem Poppins, sans-serif;
+            color: #121212;
+            margin-bottom: 0.625rem;
+        }
+
+        .review .owl-carousel {
+            box-shadow: none !important;
+            outline: 0;
+        }
+
+        .review .testi-caroseul .owl-stage-outer{
+            padding: 50px 0;
+        }
+
+        .review .testi-carousel__img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .review .testi-carousel__intro h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        /* Detail */
+
         .detail-content .breadcrumbs {
             padding: 5rem 3rem;
         }
@@ -522,9 +565,6 @@
             padding-top: 10px;
             padding-bottom: 10px;
         }
-
-        .detail-content
-
 
         /* Footer */
         .footer-2-2 .list-space {

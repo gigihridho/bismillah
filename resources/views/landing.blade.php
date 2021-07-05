@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+{{-- Hero --}}
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
     <div class="container-xxl mx-auto p-0  position-relative header-2-2" style="font-family: 'Poppins', sans-serif">
     <div>
@@ -39,7 +40,8 @@
     </div>
 </section>
 
-<section class="h1-00 w-100 bg-white" style="box-sizing: border-box">
+{{-- Benefit --}}
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
     <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="d-flex flex-lg-row flex-column align-items-center">
         <!-- Left Column -->
@@ -97,6 +99,8 @@
         </div>
     </div>
 </section>
+
+{{-- Room --}}
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
     <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
@@ -104,31 +108,59 @@
             <p class="text-caption" style="margin-left: 3rem; margin-right: 3rem">
                 Setiap kamar kost memiliki harga yang berbeda
             </p>
-            </div>
+        </div>
 
-            <div class="grid-padding text-center">
-                <div class="row">
-                    @php $incrementRoomType = 0 @endphp
-                    @forelse ($room_types as $room_type)
-                    <div class="col-lg-4 column">
-                        <div class="card card-explore">
-                        <div class="card-explore__img">
-                            <img class="card-img" src="{{ Storage::url($room_type->photo) }}"
-                            alt="" />
-                        </div>
-                        <div class="card-body">
-                            <h3 class="room-title">{{ $room_type->name }}</h3>
-                            <p class="room-price">Rp {{number_format($room_type->price)}}/bulan</p>
-                            <a href="#" class="btn btn-fill text-white">Pesan Kamar</a>
-                        </div>
-                        </div>
+        <div class="grid-padding text-center">
+            <div class="row">
+                @php $incrementRoomType = 0 @endphp
+                @forelse ($room_types as $room_type)
+                <div class="col-lg-4 column">
+                    <div class="card card-explore">
+                    <div class="card-explore__img">
+                        <img class="card-img" src="{{ Storage::url($room_type->photo) }}"
+                        alt="" />
                     </div>
-                    @empty
-                        <p>Tidak ada Kamar</p>
-                    @endforelse
+                    <div class="card-body">
+                        <h3 class="room-title">{{ $room_type->name }}</h3>
+                        <p class="room-price">Rp {{number_format($room_type->price)}}/bulan</p>
+                        <a href="#" class="btn btn-fill text-white">Pesan Kamar</a>
+                    </div>
+                    </div>
                 </div>
+                @empty
+                    <p>Tidak ada Kamar</p>
+                @endforelse
             </div>
         </div>
     </div>
+</section>
+
+{{-- Review --}}
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+    <div class="review container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
+        <div class="text-center title-text">
+            <h1 class="text-title">Review Kost</h1>
+        </div>
+        <p>Haha</p>
+        <div class="owl-carousel owl-theme testi-carousel">
+            <div class="testi-carousel__item">
+                <div class="media">
+                @php $incrementRoomType = 0 @endphp
+                @forelse ($reviews as $review)
+                <div class="media-body">
+                    <p>Sangat bagus dan menyenangkan</p>
+                    <div class="testi-carousel__intro">
+                        <h3>Draken</h3>
+                        <p>Bos Toman</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            @empty
+                <p>Tidak ada data yang ditampilkan</p>
+            @endforelse
+        </div>
+    </div>
+
 </section>
 @endsection
