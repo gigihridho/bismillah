@@ -6,7 +6,7 @@
 
 @section('content')
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
-    <div class="detail-1 container-xxl mx-auto p-0  position-relative detail-content" style="font-family: 'Poppins', sans-serif">
+    <div class="detail-1 container mx-auto p-0  position-relative detail-content" style="font-family: 'Poppins', sans-serif">
         <div class="row">
             <nav aria-label="breadcrumb" class="breadcrumb">
                 <ol class="breadcrumb">
@@ -15,13 +15,13 @@
                 </ol>
             </nav>
         </div>
-    </div>
+
 
     <div class="kost-gallery" id="gallery">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <img src="{{ asset('fe/img/kamar1.png') }}" alt="">
+                    <img src="{{ asset('fe/img/kamar1.png') }}" alt="" width="70%">
                 </div>
                 <div class="col-lg-4">
                     <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
@@ -83,6 +83,6 @@
             </div>
         </section>
     </div>
-
+</div>
 </section>
 @endsection

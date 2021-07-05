@@ -107,39 +107,25 @@
             </div>
 
             <div class="grid-padding text-center">
-            <div class="row">
-                <div class="col-lg-4 column">
-                <div class="icon">
-                    <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-5.png"
-                    alt="" />
-                </div>
-                <h3 class="icon-title">Easy to Operate</h3>
-                <p class="icon-caption">
-                    This can easily help you to<br />
-                    grow up your business fast
-                </p>
-                </div>
-                <div class="col-lg-4 column">
-                <div class="icon">
-                    <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-6.png"
-                    alt="" />
-                </div>
-                <h3 class="icon-title">Real-Time Analytic</h3>
-                <p class="icon-caption">
-                    With real-time analytics, you<br />
-                    can check data in real time
-                </p>
-                </div>
-                <div class="col-lg-4 column">
-                <div class="icon">
-                    <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-7.png"
-                    alt="" />
-                </div>
-                <h3 class="icon-title">Very Full Secured</h3>
-                <p class="icon-caption">
-                    With real-time analytics, we<br />
-                    will guarantee your data
-                </p>
+                <div class="row">
+                    @php $incrementRoomType = 0 @endphp
+                    @forelse ($room_types as $room_type)
+                    <div class="col-lg-4 column">
+                        <div class="card card-explore">
+                        <div class="card-explore__img">
+                            <img class="card-img" src="{{ Storage::url($room_type->photo) }}"
+                            alt="" />
+                        </div>
+                        <div class="card-body">
+                            <h3 class="room-title">{{ $room_type->name }}</h3>
+                            <p class="room-price">Rp {{number_format($room_type->price)}}/bulan</p>
+                            <a href="#" class="btn btn-fill text-white">Pesan Kamar</a>
+                        </div>
+                        </div>
+                    </div>
+                    @empty
+                        <p>Tidak ada Kamar</p>
+                    @endforelse
                 </div>
             </div>
         </div>
