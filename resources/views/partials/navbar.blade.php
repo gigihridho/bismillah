@@ -1,6 +1,6 @@
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
 <div class="container-xxl mx-auto p-0  position-relative header-2-2" style="font-family: 'Poppins', sans-serif">
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
     <a href="#">
         <img style="margin-right: 0.75rem"
             src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-5.png" alt="" />
@@ -23,8 +23,8 @@
             </div>
             <div class="modal-body" style="padding: 2rem; padding-top: 0; padding-bottom: 0">
                 <ul class="navbar-nav responsive me-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Feature</a>
@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo">
         <ul class="navbar-nav me-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="{{ route('home') }}">Home</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#">Feature</a>

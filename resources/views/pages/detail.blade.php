@@ -58,7 +58,7 @@
       <section class="store-gallery mb-3" id="gallery">
         <div class="container">
           <div class="row">
-            {{-- @php $incrementRoomType = 0 @endphp --}}
+            @php $incrementRoomType = 0 @endphp
             @forelse ($room_types as $room_type)
             <div class="col-lg-8" data-aos="zoom-in">
               <transition name="slide-fade" mode="out-in">

@@ -20,13 +20,20 @@
     <div class="kost-gallery" id="gallery">
         <div class="container">
             <div class="row">
+                @php $incrementRoomType = 0 @endphp
+                @forelse ($room_types as $room_type)
                 <div class="col-lg-8">
-                    <img src="{{ asset('fe/img/kamar1.png') }}" alt="" width="70%">
+                    <img src="{{Storage::url($room_type->photo) }}" alt="" width="70%">
                 </div>
+                @empty
+                <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                  Tipe Kamar Tidak Ditemukan
+                </div>
+                @endforelse
                 <div class="col-lg-4">
                     <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
-                        <form action="#" method="POST" enctype="multipart/form-data">
-                        {{-- @csrf --}}
+                        <form action="{{ route('booking',$room_type->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <input name="booking_validation" type="hidden" value="0">
                         <div class="form-group">
                             <label for="date">Pilih tanggal masuk</label>
@@ -46,15 +53,15 @@
                         </div>
                         <br>
                         <br>
-                        {{-- @auth --}}
+                        @auth
                         <button type="submit" class="btn btn-success px-5 text-white btn-block mb-3">
                             Pesan Kamar
                         </button>
-                        {{-- @else
+                        @else
                         <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
                             Masuk Untuk Pesan
                         </a>
-                        @endauth --}}
+                        @endauth
                     </form>
                 </div>
             </div>
@@ -65,18 +72,39 @@
         <section class="kost-heading">
             <div class="container">
                 <div class="row">
+                    @php
+                    $incrementRoomTypes = 0
+                    @endphp
+                    @forelse ($room_types as $room_type)
                     <div class="col-lg-8">
                         <h4>Tipe Kamar</h4>
-                        <input type="hidden" name="id" value="1">
-                        <div class="owner">Agus</div>
-                        <div class="price">Rp 19.000 / Per Bulan</div>
+                        <input type="hidden" name="id" value="{{ $room_type->room }}">
+                        <div class="owner">{{ $room_type->name }}</div>
+                        <div class="price" style="color: red">Rp {{ number_format($room_type->price) }}/Bulan</div>
                     </div>
+                    @empty
+                    <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                        Tipe Kamar Tidak Ditemukan
+                    </div>
+                    @endforelse
                 </div>
                 <br>
                 <div class="row">
+                    @php $incrementRoomType = 0 @endphp
                     <div class="col-md-6">
                         <h5>Fasilitas</h5>
                         <p>Fasilitas yang tersedia</p>
+                        @forelse ($room_type->facilities as $facility)
+                        <div class="card-body">
+                            <ul>
+                                <p>-> {{ $facility->name }}</p>
+                            </ul>
+                        </div>
+                        @empty
+                        <div class="col-12 text-left" data-aos="fade-up" data-aos-delay="100">
+                            Data Fasilitas Tidak Ditemukan
+                        </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

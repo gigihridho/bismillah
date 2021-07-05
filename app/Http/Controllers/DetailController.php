@@ -29,7 +29,7 @@ class DetailController extends Controller
         $room_types = RoomType::where('id',$id)->get();
         // dd($room_types);
         $facilities = RoomType::with('facilities')->where('status',true)->get();
-        return view('pages.detail', [
+        return view('detail-kost', [
             'room_types' => $room_types,
             // 'price' => $price,
             // 'rooms' => $rooms,

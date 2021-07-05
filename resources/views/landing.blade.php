@@ -143,7 +143,6 @@
         <div class="text-center title-text">
             <h1 class="text-title">Review Kost</h1>
         </div>
-        <p>Haha</p>
         <div class="owl-carousel owl-theme testi-carousel">
             <div class="testi-carousel__item">
                 <div class="media">
