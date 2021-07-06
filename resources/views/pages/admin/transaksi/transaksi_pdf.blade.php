@@ -37,12 +37,14 @@
                     <table border="1" width="100%" cellspacing="0" cellpadding="10" class="table table-striped">
                         <tr>
                             <th>#</th>
+                            <th>Nama Pemesan</th>
                             <th>Tanggal Transaksi</th>
-                            <th>Total Harga</th>
+                            <th>Pemasukan</th>
                         </tr>
                         @forelse ($transactions as $index => $transaction)
                             <tr>
                                 <th style="text-align: right;">{{ $index+1 }}</th>
+                                <td style="text-align: right">{{ $transaction->user->name }}</td>
                                 <td style="text-align: right">{{ $transaction->order_date }}</td>
                                 <td style="text-align: right;">
                                     <span>Rp {{ number_format($transaction->room->room_type->price) }}</span>
@@ -50,12 +52,12 @@
                             </tr>
                         @empty
                             <tr>
-                                <th colspan="3" style="color: red; text-align: center;">Tidak ada data</th>
+                                <th colspan="4" style="color: red; text-align: center;">Tidak ada data</th>
                             </tr>
                         @endforelse
                             <tr>
-                                <td colspan="2" style="text-align: right;"><small>TOTAL :</small></td>
-                                <th style="text-align: right;"><span class="badge badge-danger justify-content-end">Rp {{ number_format($total_price) }}<span></th>
+                                <td colspan="3" style="text-align: right;"><small>TOTAL :</small></td>
+                                <th><span class="badge badge-danger justify-content-end">Rp {{ number_format($total_price) }}<span></th>
                             </tr>
                     </table>
                 </div>

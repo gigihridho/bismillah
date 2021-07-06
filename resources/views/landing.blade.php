@@ -6,7 +6,7 @@
 
 @section('content')
 {{-- Hero --}}
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="beranda">
     <div class="container-xxl mx-auto p-0  position-relative header-2-2" style="font-family: 'Poppins', sans-serif">
     <div>
         <div class="mx-auto d-flex flex-lg-row flex-column hero">
@@ -15,9 +15,9 @@
                 class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
                 <h1 class="title-text-big">
                 Punya Impian<br class="d-lg-block d-none" />
-                Rumah Kost Yang Nyaman
+                Kamar Kost Yang Nyaman
                 </h1>
-                <p>Kost Griyo Kenyo merupakan kost putri yang nyaman dan bersih. Bagi kamu yang ingin mendapat suasana tersebut, Ayo segera miliki kamar di sini.</p>
+                <p>Kost Griyo Kenyo merupakan kost <strong>putri</strong> yang nyaman dan bersih. Bagi kamu yang ingin mendapat suasana tersebut, Ayo segera miliki kamar di sini.</p>
                 <div class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
                 <a href="#kamar" class="btn d-inline-flex mb-md-0 btn-try text-white">
                     Pesan Kamar
@@ -43,13 +43,13 @@
 </section>
 
 {{-- Benefit --}}
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
     <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="d-flex flex-lg-row flex-column align-items-center">
         <!-- Left Column -->
         <div class="img-hero text-center justify-content-center d-flex">
             <img id="hero" class="img-fluid"
-            src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-1.png"
+            src="{{ asset('fe/img/Home-search.png') }}"
             alt="" />
         </div>
 
@@ -103,7 +103,7 @@
 </section>
 
 {{-- Room --}}
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="kamar">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="kamar" data-aos="fade-down">
     <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Pilihan Kamar Kost</h1>
@@ -137,29 +137,75 @@
     </div>
 </section>
 
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box" data-aos="fade-up">
+    <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
+        <div class="text-center title-text">
+            <h1 class="text-title">Cara Pembayaran</h1>
+            <p class="text-caption" style="margin-left: 3rem; margin-right: 3rem">
+                Tata Cara Pembayaran Melalui Website
+            </p>
+        </div>
+
+        <div class="grid-padding text-center">
+        <div class="row">
+            <div class="col-lg-4 column">
+            <div class="icon">
+                <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-5.png"
+                alt="" />
+            </div>
+            <h3 class="icon-title">Registrasi Akun</h3>
+            <p class="icon-caption">
+                Anda perlu mendaftar<br />
+                ke dalam sistem
+            </p>
+            </div>
+            <div class="col-lg-4 column">
+            <div class="icon">
+                <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-6.png"
+                alt="" />
+            </div>
+            <h3 class="icon-title">Transaksi</h3>
+            <p class="icon-caption">
+                Anda melakukan pemesanan kamar
+            </p>
+            </div>
+            <div class="col-lg-4 column">
+            <div class="icon">
+                <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-7.png"
+                alt="" />
+            </div>
+            <h3 class="icon-title">Konfirmasi</h3>
+            <p class="icon-caption">
+                Pesan anda akan dikonfirmasi Admin<br />
+                Anda bisa menempati kamar kost
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
 {{-- Review --}}
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="review" data-aos="fade-down">
     <div class="review container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Review Kost</h1>
+            <p>Berikut review dari mereka</p>
         </div>
-        <div class="owl-carousel owl-theme testi-carousel">
-            <div class="testi-carousel__item">
-                <div class="media">
-                @php $incrementRoomType = 0 @endphp
-                @forelse ($reviews as $review)
-                <div class="media-body">
-                    <p>Sangat bagus dan menyenangkan</p>
-                    <div class="testi-carousel__intro">
-                        <h3>Draken</h3>
-                        <p>Bos Toman</p>
-                    </div>
+        <div class="owl-carousel text-center">
+            <div class="row">
+                <div class="col-lg-4 column">
+                <div class="icon">
+                    <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-5.png"
+                    alt="" />
                 </div>
+                <h3 class="icon-title">Registrasi Akun</h3>
+                <p class="icon-caption">
+                    Anda perlu mendaftar<br />
+                    ke dalam sistem
+                </p>
                 </div>
             </div>
-            @empty
-                <p>Tidak ada data yang ditampilkan</p>
-            @endforelse
         </div>
     </div>
 </section>

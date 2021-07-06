@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    User Profil
+    Edit Profil
 @endsection
 
 @section('content')
@@ -16,9 +16,10 @@
         </div>
         <div class="section-body">
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        @if ($errors->any())
+                @php $no = 1; @endphp
+                @foreach ($user as $u)
+                <div class="container">
+                    @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -27,49 +28,118 @@
                                 </ul>
                             </div>
                         @endif
-                    <div class="card-header">
-                        <h4>Profil User</h4>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('change-profil-user-redirect','change-profil-user') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label for="name">Nama User</label>
-                                <input type="text" name="name" value="{{ auth()->user()->name }}" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" value="{{ auth()->user()->email }}" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="no_hp">No Telepon</label>
-                                <input type="text" name="no_hp" id="no_hp" value="{{ $user->no_hp }}" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Foto KTP</label>
-                                <input type="file" name="photo_ktp" value="{{ $user->photo_ktp }}" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Alamat</label>
-                                <input type="text" name="address" id="address" value="{{ $user->address }}" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="profession">Profesi</label>
-                                <input type="text" name="profession" id="profession" value="{{ $user->profession }}" class="form-control" required>
-                            </div>
-                            <div class="row">
-                                <div class="col text-right">
-                                    <button type="submit" class="btn btn-success px-5">
-                                        Simpan Data
-                                    </button>
+                    <form action="{{ route('change-profil-user-redirect','profil-user') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <i class="fas fa-user mr-2"></i> Foto KTP
+                                    <hr>
+                                    <div class="rounded">
+                                        @if ($u->photo_ktp != null)
+                                        <img id="img_ktp" src="{{ Storage::url($u->photo_ktp) }}" width="170px" height="170px" alt="foto"
+                                        style="display: block; margin:auto">
+                                        @else
+                                        <img id="phto_ktp" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
+                                        style="display: block; margin:auto">
+                                        @endif
+                                    </div>
+                                    <div style="text-align:center">
+                                        <label for="change_pic">Ganti Foto Profil</label>
+                                        <br>
+                                        <strong style=>Info!</strong> Maksimum ukuran foto : 2MB
+                                        <br>
+
+                                        <input id="photo_ktp" name="photo_ktp" type="file"><br>
+                                        @if($errors->has('photo_ktp'))
+                                            <span id="msg_ta" class="help-block">{{$errors->first('photo_ktp')}}</span>
+                                        @endif
+                                        <br>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="w-100 table-responsive">
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    <br>
+                                                    Nama
+                                                    <input type="text" name="name" value="{{ $u->name }}" class="form-control" style="margin-right:190px;">
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <br>
+                                                    Email
+                                                    <input type="email" name="email" value="{{ $u->email }}" class="form-control" style="margin-right:190px">
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <br>
+                                                    No Telepon
+                                                    <input type="number" name="no_hp" value="{{ $u->no_hp }}" class="form-control"  style="margin-right:190px">
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <br>
+                                                    Alamat
+                                                    <input type="text" name="address" value="{{ $u->address }}"class="form-control"  style="margin-right:190px">
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <br>
+                                                    Pekerjaan
+                                                    <input type="text" name="profession" value="{{ $u->profession }}" class="form-control"  style="margin-right:190px">
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="form-group"></div>
+                                    <td>
+                                        <button type="submit" class="btn btn-success px-5">
+                                            Simpan
+                                        </button>
+                                        <a href="{{ route('profil-user') }}" class="btn btn-danger px-5 text-white">
+                                            Batal
+                                        </a>
+                                    </td>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </div>
+                </form>
                 </div>
             </div>
+            @endforeach
         </div>
     </section>
 </div>
 @endsection
+@push('addon-script')
+<script type="text/javascript">
+    $(function () {
+        $("#photo_ktp").change(function () {
+            readURL(this);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img_ktp').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+@endpush

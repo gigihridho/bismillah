@@ -1,7 +1,7 @@
 @extends('layouts.fe')
 
 @section('title')
-    Kost Griyo Kenyo
+    Detail Kost
 @endsection
 
 @section('content')
@@ -10,107 +10,116 @@
         <div class="row">
             <nav aria-label="breadcrumb" class="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
                 </ol>
             </nav>
         </div>
 
-
-    <div class="kost-gallery" id="gallery">
-        <div class="container">
-            <div class="row">
-                @php $incrementRoomType = 0 @endphp
-                @forelse ($room_types as $room_type)
-                <div class="col-lg-8">
-                    <img src="{{Storage::url($room_type->photo) }}" alt="" width="70%">
-                </div>
-                @empty
-                <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                  Tipe Kamar Tidak Ditemukan
-                </div>
-                @endforelse
-                <div class="col-lg-4">
-                    <div class="card-body shadow-lg p-3 mb-5 bg-white rounde">
-                        <form action="{{ route('booking',$room_type->id) }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input name="booking_validation" type="hidden" value="0">
-                        <div class="form-group">
-                            <label for="date">Pilih tanggal masuk</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                </div>
-                                    <input type="date" class="form-control" id="datepicker" name="arrival_date" placeholder="DD/MM/YYYY">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="duration">Durasi Sewa</label>
-                            <select name="duration" id="duration" class="form-control">
-                                <option value="1">1 Bulan</option>
-                                <option value="6">6 Bulan</option>
-                                <option value="12">1 Tahun</option>
-                            </select>
-                        </div>
-                        <br>
-                        <br>
-                        @auth
-                        <button type="submit" class="btn btn-success px-5 text-white btn-block mb-3">
-                            Pesan Kamar
-                        </button>
-                        @else
-                        <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
-                            Masuk Untuk Pesan
-                        </a>
-                        @endauth
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="kost-detail">
-        <section class="kost-heading">
+        <div class="kost-gallery" id="gallery">
             <div class="container">
                 <div class="row">
-                    @php
-                    $incrementRoomTypes = 0
-                    @endphp
+                    @php $incrementRoomType = 0 @endphp
                     @forelse ($room_types as $room_type)
-                    <div class="col-lg-8">
-                        <h4>Tipe Kamar</h4>
-                        <input type="hidden" name="id" value="{{ $room_type->room }}">
-                        <div class="owner">{{ $room_type->name }}</div>
-                        <div class="price" style="color: red">Rp {{ number_format($room_type->price) }}/Bulan</div>
+                    <div class="col-lg-8" style="margin-bottom: 1rem">
+                        <img src="{{Storage::url($room_type->photo) }}" alt="" width="100%">
                     </div>
                     @empty
                     <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
                         Tipe Kamar Tidak Ditemukan
                     </div>
                     @endforelse
-                </div>
-                <br>
-                <div class="row">
-                    @php $incrementRoomType = 0 @endphp
-                    <div class="col-md-6">
-                        <h5>Fasilitas</h5>
-                        <p>Fasilitas yang tersedia</p>
-                        @forelse ($room_type->facilities as $facility)
-                        <div class="card-body">
-                            <ul>
-                                <p>-> {{ $facility->name }}</p>
-                            </ul>
+                    <div class="col-lg-4">
+                        <div class="card-body shadow-lg p-3 mb-5 bg-white rounded">
+                            <form action="{{ route('confirmation',$room_type->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input name="booking_validation" type="hidden" value="0">
+                            <div class="form-group" style="margin-bottom: 1rem">
+                                <label for="date" style="margin-bottom: 0.5rem">Pilih tanggal masuk</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                        <input type="date" class="form-control datepicker" id="arrival_date" name="arrival_date" placeholder="DD/MM/YYYY">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="duration" style="margin-bottom: 0.5rem">Durasi Sewa</label>
+                                <select name="duration" id="duration" class="form-control">
+                                    <option value="1">1 Bulan</option>
+                                    <option value="6">6 Bulan</option>
+                                    <option value="12">1 Tahun</option>
+                                </select>
+                            </div>
+                            <br>
+                            @if($errors->any())
+                                {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
+                            @endif
+                            <br>
+                            @auth
+                            <button type="submit" class="btn btn-success px-5 text-white btn-block mb-3" style="width: 100%">
+                                Pesan Kamar
+                            </button>
+                            @else
+                            <a href="{{ route('login') }}" class="btn btn-success text-white btn-block mb-3" style="width: 100%">
+                                Masuk Untuk Pesan
+                            </a>
+                            @endauth
+                            </form>
                         </div>
-                        @empty
-                        <div class="col-12 text-left" data-aos="fade-up" data-aos-delay="100">
-                            Data Fasilitas Tidak Ditemukan
-                        </div>
-                        @endforelse
                     </div>
                 </div>
             </div>
-            </div>
-        </section>
+        </div>
+        <div class="kost-detail">
+            <section class="kost-heading">
+                <div class="container">
+                    <div class="row">
+                        @php
+                        $incrementRoomTypes = 0
+                        @endphp
+                        @forelse ($room_types as $room_type)
+                        <div class="col-lg-8">
+                            <h4>Tipe Kamar</h4>
+                            <input type="hidden" name="id" value="{{ $room_type->room }}">
+                            <div class="owner" style="margin-bottom: 0.5rem">{{ $room_type->name }}</div>
+                            <div class="price" style="color: red">Rp {{ number_format($room_type->price) }}/Bulan</div>
+                        </div>
+                        @empty
+                        <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                            Tipe Kamar Tidak Ditemukan
+                        </div>
+                        @endforelse
+                    </div>
+                    <hr>
+                    <div class="row">
+                        @php $incrementRoomType = 0 @endphp
+                        <div class="col-md-6">
+                            <h5>Fasilitas</h5>
+                            @forelse ($room_type->facilities as $facility)
+                                <p>{{ $facility->name }}</p>
+                            @empty
+                            <div class="col-12 text-left" data-aos="fade-up" data-aos-delay="100">
+                                Data Fasilitas Tidak Ditemukan
+                            </div>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
 </section>
 @endsection
+@push('after-script')
+<script>
+    $(document).ready(function(){
+        minDate = new Date();
+        $("#arrival_date").datepicker({
+            showAnim: 'drop',
+            numberOfMonth: 1,
+            minDate: minDate,
+            dateFormat: 'mm/dd/yyyy',
+        })
+    })
+</script>
+@endpush

@@ -12,4 +12,3 @@
 
 <!-- JS Libraies -->
 <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>

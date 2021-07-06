@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.fe')
 
 @section('content')
-<div class="container mt-5 pt-5">
+<div class="container mb-5">
     <div class="row align-items-sm-center align-items-l-stretch">
         <div class="col-md-8">
             <div class="card">
@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-4">
             <div class="learning_img">
-                <center><a href="https://storyset.com/internet" target="_blank"><img src="{{asset('/assets/img/email-open.png')}}" height="70%" width="70%" alt="email logo" style=""></center>
+                <center><a href="https://storyset.com/internet" target="_blank"><img src="{{asset('fe/img/email.png')}}" height="70%" width="70%" alt="email logo" style=""></center>
             </div>
         </div>
     </div>

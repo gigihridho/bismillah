@@ -512,7 +512,7 @@
             outline: none !important;
         }
         .review {
-            padding: 5rem 3rem;
+            padding: 5rem 4rem;
         }
         .review .title-text {
             padding-top: 5rem;
@@ -530,10 +530,18 @@
             color: #121212;
             margin-bottom: 0.625rem;
         }
+        .review .grid-padding {
+            padding: 0rem ;
+        }
 
         .review .owl-carousel {
-            box-shadow: none !important;
+            padding: 0rem;
+            /* box-shadow: none !important; */
             outline: 0;
+        }
+
+        .reivew .owl-carousel {
+            margin-bottom: 15px
         }
 
         .review .testi-caroseul .owl-stage-outer{
@@ -553,6 +561,68 @@
             margin-bottom: 5px;
         }
 
+        @media (min-width: 576px) {
+            .review .owl-carousel {
+            padding: 0rem 2rem 3rem;
+            }
+
+            .review .card-block {
+            padding: 3rem 2rem 5rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .review .owl-carousel {
+            padding: 0rem 4rem 3rem;
+            }
+
+            .review .card-block {
+            padding: 3rem 4rem 5rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .review .owl-carousel {
+            padding: 1rem 6rem 3rem;
+            }
+
+            .review .card-block {
+            padding: 3rem 6rem 5rem;
+            }
+
+            .review .column {
+            padding: 0rem 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .review .owl-carousel {
+            padding: 0rem 5rem 3rem;
+            }
+
+            .review .card-block {
+            padding: 3rem 6rem 5rem;
+            }
+
+            .review .card-btn-space {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            }
+
+            .review .btn-card,
+            .review .btn-outline {
+            width: 95%;
+            float: right;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .review .card-btn-space {
+            width: 100%;
+            }
+        }
+
+
         /* Detail */
 
         .detail-content .breadcrumbs {
@@ -565,6 +635,9 @@
             padding-top: 10px;
             padding-bottom: 10px;
         }
+
+        /* Confirmation */
+
 
         /* Footer */
         .footer-2-2 .list-space {
@@ -614,7 +687,7 @@
         }
 
         .footer-2-2 .info-footer {
-            padding: 0 1rem 3rem;
+            padding: 0 1rem 1rem;
         }
 
         @media (min-width: 576px) {
@@ -643,6 +716,6 @@
             }
 
             .footer-2-2 .info-footer {
-                padding: 0 6rem 3rem;
+                padding: 0 3rem 2rem;
             }
         }

@@ -56,7 +56,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'photo_ktp' => ['required','file']
+            'no_hp' => ['required','numeric', 'digits_between:10,13', 'unique:users'],
+            'address' => ['required','string'],
+            'profession' => ['required','string'],
+            'photo_ktp' => ['required','file'],
         ]);
     }
 
@@ -66,6 +69,9 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'no_hp' => $data['no_hp'],
+            'address' => $data['address'],
+            'profession' => $data['profession'],
             'slug' => $data['name'],
         ]);
         if(request()->hasFile('photo_ktp')){

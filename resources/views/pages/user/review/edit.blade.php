@@ -29,7 +29,7 @@ Review
                         </div>
                     @endif
                     <div class="card-header">
-                        <h4>User Review</h4>
+                        <h4>Review</h4>
                         </div>
                     <div class="card-body">
                         <form action="{{ route('review-user-redirect','review-user') }}" method="POST" enctype="multipart/form-data">
@@ -40,7 +40,7 @@ Review
                             </div>
                             <div class="form-group">
                                 <label for="review">Review</label>
-                                <input type="text" name="review" id="review" value="{{ $review }}" class="form-control">
+                                <input type="text" name="review" id="review" value="{{ $user->review }}" class="form-control">
                             </div>
                             <div class="row">
                                 <div class="col text-right">

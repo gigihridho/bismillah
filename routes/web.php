@@ -19,9 +19,13 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::view('landing','landing');
 Route::view('detail-kost','detail-kost');
+Route::view('loginn','loginn');
 
 Route::get('details/{id}', 'DetailController@detail')->name('detail-kost');
+Route::post('details/{id}/confirmation', 'BookingController@confirmation')->name('confirmation');
 Route::post('details/{id}/book', 'BookingController@booking')->name('booking');
+
+Route::get('tentang','TentangController@index')->name('tentang');
 
 Route::get('checkout','CheckoutController@process')->name('checkout');
 
@@ -41,6 +45,7 @@ Route::prefix('user')
         Route::get('review', 'UserReviewController@review')->name('review-user');
         Route::post('review/{redirect}', 'UserReviewController@update')->name('review-user-redirect');
 
+        Route::get('view-profil','ProfilUserController@index')->name('profil-user');
         Route::get('change-profil-user', 'ProfilUserController@user')->name('change-profil-user');
         Route::post('change-profil-user/{redirect}', 'ProfilUserController@update')->name('change-profil-user-redirect');
     });

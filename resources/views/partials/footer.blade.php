@@ -12,58 +12,28 @@
                         <li class="list-space">
                             <p class="list-menu">Kost Griyo Kenyo</p>
                         </li>
-                        <li class="list-space">
-                            <a href="" class="list-menu">About</a>
-                        </li>
-                        <li class="list-space">
-                            <a href="" class="list-menu">Features</a>
-                        </li>
-                        <li class="list-space">
-                            <a href="" class="list-menu">Pricing</a>
-                        </li>
-                        <li class="list-space">
-                            <a href="" class="list-menu">Testimonial</a>
-                        </li>
-                        <li class="list-space">
-                            <a href="" class="list-menu">Help</a>
-                        </li>
                     </nav>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <h2 class="footer-text-title">Product</h2>
+                <h2 class="footer-text-title">Social Media</h2>
                 <nav class="list-unstyled">
                     <li class="list-space">
-                        <a href="" class="list-menu">Real Time Analytic</a>
+                        <a href="" class="list-menu">Facebook</a>
                     </li>
                     <li class="list-space">
-                        <a href="" class="list-menu">Easy to Operate</a>
-                    </li>
-                    <li class="list-space">
-                        <a href="" class="list-menu">Full Secured</a>
-                    </li>
-                    <li class="list-space">
-                        <a href="" class="list-menu">Analytic Tool</a>
-                    </li>
-                    <li class="list-space">
-                        <a href="" class="list-menu">Story</a>
+                        <a href="" class="list-menu">Instagram</a>
                     </li>
                 </nav>
             </div>
             <div class="col-lg-3 col-md-6">
-                <h2 class="footer-text-title">Company</h2>
+                <h2 class="footer-text-title">Jam Layanan</h2>
                 <nav class="list-unstyled">
                     <li class="list-space">
-                        <a href="" class="list-menu">Contact Us</a>
+                        <a href="" class="list-menu">Senin-Sabtu</a>
                     </li>
                     <li class="list-space">
-                        <a href="" class="list-menu">Blog</a>
-                    </li>
-                    <li class="list-space">
-                        <a href="" class="list-menu">Culture</a>
-                    </li>
-                    <li class="list-space">
-                        <a href="" class="list-menu">Security</a>
+                        <a href="" class="list-menu">08.00-20.00</a>
                     </li>
                 </nav>
             </div>
@@ -74,7 +44,10 @@
                         <a href="" class="list-menu"><i class="fas fa-home"></i><span> Jl. Kentingan, Jebres, Surakarta</span></a>
                     </li>
                     <li class="list-space">
-                        <a href="" class="list-menu">0842141231</a>
+                        <a href="" class="list-menu">Rekening BNI 084124xxx A/N Anggito</a>
+                    </li>
+                    <li class="list-space">
+                        <a href="" class="list-menu">081792482111</a>
                     </li>
                     <li class="list-space">
                         <a href="" class="list-menu">griyakenyo@gmail.com</a>

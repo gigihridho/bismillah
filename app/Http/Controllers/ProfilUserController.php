@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,8 +10,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfilUserController extends Controller
 {
+    public function index(){
+        $user = User::where('id',Auth::user()->id)->get();
+        return view('pages.user.profil.view',[
+            'user' => $user
+        ]);
+    }
     public function user(){
-        $user = auth()->user();
+        $user = User::where('id',Auth::user()->id)->get();
         return view('pages.user.profil.edit',[
             'user' => $user
             ]);
@@ -23,7 +30,6 @@ class ProfilUserController extends Controller
             'no_hp' => 'required|numeric',
             'profession' => 'required',
             'address' => 'required',
-            'photo_ktp' => 'image|max:2048|mimes:jpg,png,jpeg|required'
         ],
         [
             'name.required' => 'Nama tidak boleh kosong',

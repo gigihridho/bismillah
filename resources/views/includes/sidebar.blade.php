@@ -39,7 +39,7 @@
             </li>
           <li class="menu-header">Transaksi
             <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                <a href="{{ route('transaksi') }}"><i class="fas fa-money-bill"></i>Laporan Transaksi</a>
+                <a href="{{ route('transaksi') }}"><i class="fas fa-credit-card"></i>Laporan Transaksi</a>
             </li>
           </li>
           <li class="menu-header">User
@@ -61,9 +61,12 @@
             <li class="{{ (request()->is('user/review*')) ? 'active' : '' }}">
                 <a href="{{ route('review-user') }}" class="nav-link"><i class="fas fa-comments"></i> <span>Review</span></a>
             </li>
-            <li class="{{ (request()->is('user/change-profil-user*')) ? 'active' : '' }}">
-                <a href="{{ route('change-profil-user') }}" class="nav-link"><i class="fas fa-user"></i> <span>Profil</span></a>
+            <li class="{{ (request()->is('user/profil-user*')) ? 'active' : '' }}">
+                <a href="{{ route('profil-user') }}" class="nav-link"><i class="fas fa-user"></i> <span>Profil</span></a>
             </li>
+            {{-- <li>
+                <a href="{{ route('profil-user') }}" class="nav-link"><i class="fas fa-home"></i><span>User</span></a>
+            </li> --}}
           @endif
     </aside>
   </div>
