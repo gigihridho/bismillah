@@ -34,13 +34,14 @@ Review
                     <div class="card-body">
                         <form action="{{ route('review-user-redirect','review-user') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                             <div class="form-group">
-                                <label for="name">Nama User</label>
-                                <input type="text" name="name" value="{{ auth()->user()->name }}" class="form-control" disabled>
+                                <label for="name">Nama</label>
+                                <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="review">Review</label>
-                                <input type="text" name="review" id="review" value="{{ $user->review }}" class="form-control">
+                                <input type="text" name="review" id="review" value="{{ $review }}" class="form-control">
                             </div>
                             <div class="row">
                                 <div class="col text-right">

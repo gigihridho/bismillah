@@ -37,14 +37,11 @@
                                 <tr style="text-align:center">
                                     @php $no = 1; @endphp
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $review->name }}</td>
+                                        <td>{{ $review->user->name }}</td>
                                         <td>{{ $review->review }}</td>
                                         <td>
-                                            <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $d->id) }}">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                            <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="{{ route('tipe.index',$d->id,'kamar') }}"  >
-                                                <i class="far fa-bed"></i>
+                                            <a title="Hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm edit" href="{{ route('reviews.create',$review->id) }}"  >
+                                                <i class="far fa-trash-alt"></i>
                                             </a>
                                         </td>
                                 </tr>

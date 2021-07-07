@@ -195,17 +195,18 @@
         <div class="container">
             <div class="row">
                 <div class="owl-carousel featured-carousel owl-theme">
+                    @foreach ($reviews as $r)
                     <div class="item">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="icon-title">Registrasi Akun</h3>
+                                <h3 class="icon-title">{{ $r->user->name }}</h3>
                                 <p class="icon-caption">
-                                    Anda perlu mendaftar<br />
-                                    ke dalam sistem
+                                    {{ $r->review }}
                                 </p>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>

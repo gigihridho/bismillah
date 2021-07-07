@@ -18,8 +18,8 @@ class UserReviewController extends Controller
 
     public function review()
     {
-        $user = Review::where('user_id',Auth::user()->id)->first();
-        $review = Review::where('review',$user)->first();
+        $user = User::where('id',Auth::user()->id)->first()->id;
+        $review = Review::where('user_id',$user)->first()->review;
         return view('pages.user.review.edit',[
             'user' => $user,
             'review' => $review,
@@ -27,8 +27,8 @@ class UserReviewController extends Controller
     }
 
     public function update(Request $request, $redirect){
-        $user = Review::where('user_id',Auth::user()->id)->first();
-        $item = Review::where('review', $user)->first();
+        $user = User::where('id',Auth::user()->id)->first()->id;
+        $item = Review::where('user_id', $user)->first();
 
         if($item == null){
             $item = new Review();
