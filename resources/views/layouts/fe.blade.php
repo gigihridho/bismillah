@@ -7,7 +7,7 @@
     <meta name="author" content="" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ url('/seapalace/img/favicon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('fe/img/favicon.png') }}" type="image/png">
 
     <title>Kost Griya Kenyo</title>
 
