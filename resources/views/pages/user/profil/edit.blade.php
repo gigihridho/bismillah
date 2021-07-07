@@ -41,7 +41,7 @@
                                         <img id="img_ktp" src="{{ Storage::url($u->photo_ktp) }}" width="170px" height="170px" alt="foto"
                                         style="display: block; margin:auto">
                                         @else
-                                        <img id="phto_ktp" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
+                                        <img id="img_ktp" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
                                         style="display: block; margin:auto">
                                         @endif
                                     </div>

@@ -192,21 +192,43 @@
             <h1 class="text-title">Review Kost</h1>
             <p>Berikut review dari mereka</p>
         </div>
-        <div class="owl-carousel text-center">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-4 column">
-                <div class="icon">
-                    <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-5.png"
-                    alt="" />
-                </div>
-                <h3 class="icon-title">Registrasi Akun</h3>
-                <p class="icon-caption">
-                    Anda perlu mendaftar<br />
-                    ke dalam sistem
-                </p>
+                <div class="owl-carousel featured-carousel owl-theme">
+                    <div class="item">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="icon-title">Registrasi Akun</h3>
+                                <p class="icon-caption">
+                                    Anda perlu mendaftar<br />
+                                    ke dalam sistem
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 @endsection
+@push('after-script')
+<script>
+    $('.featured-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+</script>
+@endpush

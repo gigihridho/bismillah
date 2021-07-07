@@ -30,8 +30,8 @@
                                             <img src="{{ Storage::url($u->photo_ktp) }}" width="250px" height="250px" alt="foto"
                                             style="display: block; margin:auto">
                                         @else
-                                            <img src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
-                                            style="display: block;">
+                                            <img src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="250px" height="250px" alt="foto"
+                                            style="display: block; margin:auto">
                                         @endif
                                     </div>
                                     <br>
