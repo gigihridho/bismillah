@@ -43,7 +43,7 @@ Route::prefix('user')
         Route::delete('user-transaksi/{id}','UserTransactionController@destroy')->name('user-transaksi-delete');
 
         Route::get('review', 'UserReviewController@review')->name('review-user');
-        Route::post('review/{redirect}', 'UserReviewController@update')->name('review-user-redirect');
+        Route::post('review/{id}', 'UserReviewController@update')->name('review-user-update');
 
         Route::get('view-profil','ProfilUserController@index')->name('profil-user');
         Route::get('change-profil-user', 'ProfilUserController@user')->name('change-profil-user');

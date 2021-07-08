@@ -33,10 +33,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($reviews as $review)
+                            @foreach ($reviews as $index => $review)
                                 <tr style="text-align:center">
-                                    @php $no = 1; @endphp
-                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $index+1 }}</td>
                                         <td>{{ $review->user->name }}</td>
                                         <td>{{ $review->review }}</td>
                                         <td>

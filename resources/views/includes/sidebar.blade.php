@@ -47,7 +47,7 @@
                 <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-user"></i> <span>User</span></a>
             </li>
             <li class="{{ (request()->is('admin/reviews*')) ? 'active' : '' }}">
-                <a href="{{ route('reviews.index') }}" class="nav-link"><i class="fas fa-book"></i><span>Review User</span></a>
+                <a href="{{ route('reviews.index') }}" class="nav-link"><i class="fas fa-book"></i><span>Review</span></a>
             </li>
           </li>
 

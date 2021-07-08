@@ -7,10 +7,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha512-NqYds8su6jivy1/WLoW8x1tZMRD7/1ZfhWG/jcRQLOzV1k1rIODCpMgoBnar5QXshKJGV7vi0LXLNXPoFsM5Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
 
+<script src="{{ asset('fe/js/owl.carousel.js') }}"></script>
+<script src="{{ asset('fe/js/owl.carousel.min.js') }}"></script>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
 </script>
 
-<script src="{{ asset('fe/js/owl.carousel.js') }}"></script>
-<script src="{{ asset('fe/js/owl.carousel.min.js') }}"></script>

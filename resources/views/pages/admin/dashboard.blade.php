@@ -102,6 +102,7 @@
         data: {
             labels: <?php echo json_encode($label); ?>,
             datasets: [{
+                borderWidth: 3,
                 label: 'Jumlah transaksi',
                 backgroundColor: [
                     'rgba(229, 229, 229,1)',
@@ -109,6 +110,8 @@
                 borderColor: [
                     'rgba(229,229,229,1)',
                 ],
+                pointBackgroundColor: '#ffffff',
+                pointRadius: 4,
                 data: <?php echo json_encode($jumlah_transactions); ?>
             }]
         },
@@ -116,9 +119,10 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
                     }
-                }]
+                }],
+
             }
         }
     });

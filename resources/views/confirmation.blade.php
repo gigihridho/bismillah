@@ -5,14 +5,21 @@
 @endsection
 
 @section('content')
-
+<style>
+.btn-fill{
+    background-color: #6777ef;
+    border-radius: 12px;
+    padding: 12px 28px;
+    transition: 0.3s;
+}
+</style>
 <section class="h-100 w-100 bg-white pb-5" style="box-sizing: border-box">
     <div class="confirmation container mx-auto p-0  position-relative confirmation-content"
         style="font-family: 'Poppins', sans-serif">
         <div class="row">
             <nav aria-label="breadcrumb" class="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item">Home</li>
                     <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
                 </ol>
             </nav>
@@ -108,7 +115,7 @@
                             <input name="booking_validation" type="hidden" value="0">
                             <input type="date" class="form-control" id="datepicker" name="arrival_date" value="{{ $new_arrival_date }}" hidden>
                             <input name="duration" id="duration" class="form-control" value="{{ $duration }}" hidden>
-                            <button type="submit" class="btn btn-success">Pesan</button>
+                            <button type="submit" class="btn btn-fill text-white">Pesan</button>
                     </form>
                 </div>
             </div>

@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
 <div class="main-content">
     <section class="section">
         <div class="section-header">
@@ -35,6 +36,9 @@
                                         @endif
                                     </div>
                                     <br>
+                                        <div>
+                                            <a href="{{route('change-profil-user')}}" class="btn btn-info px-5" style="margin: 0 4em; border-radius:.5rem;">Ubah Profil</a>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -80,10 +84,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="form-group"></div>
-                                    <td>
-                                        <a href="{{route('change-profil-user')}}" class="btn btn-info px-5 py-2 text-white" style="display:block; height:40px; width:400px; text-decoration:none;" >Ubah Profil</a>
-                                    </td>
                                 </div>
                             </div>
                         </div>

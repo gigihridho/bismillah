@@ -5,6 +5,61 @@
 @endsection
 
 @section('content')
+<style>
+    .owl-carousel .owl-dots button:focus {
+  box-shadow: none !important;
+  outline: 0; }
+
+    .testi-carousel .owl-stage-outer {
+  padding: 50px 0; }
+
+.testi-carousel .owl-item {
+  overflow: hidden; }
+
+.testi-carousel__item {
+  background: #f7f9f9;
+  padding: 30px 25px;
+  transition: all .3s ease; }
+  .testi-carousel__item .media-body p {
+    margin-bottom: 12px; }
+  .testi-carousel__item::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-bottom: 15px solid #ffffff;
+    border-left: 500px solid rgba(255, 255, 255, 0.13);
+    /* Maintain smooth edge of triangle in FF */
+    -moz-transform: scale(0.9999); }
+  .testi-carousel__item:hover {
+    box-shadow: 0px 10px 20px 0px rgba(153, 153, 153, 0.2);
+    background: #fff; }
+
+.testi-carousel__img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 20px; }
+
+.testi-carousel__intro h3 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 5px; }
+
+.testi-carousel__intro p {
+  font-size: 14px;
+  color: #999999; }
+
+.testi-carousel .owl-dots .owl-dot span {
+  background: #cacccf; }
+
+.testi-carousel .owl-dots .owl-dot.active span {
+  width: 12px;
+  height: 12px;
+  background: #6777EF; }
+</style>
 {{-- Hero --}}
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="beranda">
     <div class="container-xxl mx-auto p-0  position-relative header-2-2" style="font-family: 'Poppins', sans-serif">
@@ -137,8 +192,9 @@
     </div>
 </section>
 
+{{-- Pembayaran --}}
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box" data-aos="fade-up">
-    <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
+    <div class="content-4-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Cara Pembayaran</h1>
             <p class="text-caption" style="margin-left: 3rem; margin-right: 3rem">
@@ -199,9 +255,13 @@
                     <div class="item">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="icon-title">{{ $r->user->name }}</h3>
-                                <p class="icon-caption">
-                                    {{ $r->review }}
+                                <h3 class="review-title" style="opacity: 0.2">
+                                    {{ $r->review }}</h3>
+                                <p class="review-caption">
+                                    {{ $r->user->name }}
+                                </p>
+                                <p class="review-caption">
+                                    {{ $r->user->profession }}
                                 </p>
                             </div>
                         </div>

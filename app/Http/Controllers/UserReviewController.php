@@ -16,13 +16,19 @@ class UserReviewController extends Controller
         $this->middleware('auth');
     }
 
-    public function review()
+    public function review(Request $request)
     {
-        $user = User::where('id',Auth::user()->id)->first()->id;
-        $review = Review::where('user_id',$user)->first()->review;
+        $user = User::where('id',Auth::user()->id)->get();
+        $review = Review::where('user_id',Auth::user()->id)->get();
+        // dd($review);
+        // if(!is_null($request->get('review'))){
+        //     $review->where('user_id',$request->get('review'));
+        // }
+
+        // $review->first();
         return view('pages.user.review.edit',[
-            'user' => $user,
             'review' => $review,
+            'user' => $user,
         ]);
     }
 

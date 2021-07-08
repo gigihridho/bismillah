@@ -86,9 +86,10 @@
     </section>
     <!-- Modal -->
     <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered" role="img">
             @foreach ($transaction as $tf)
             <form action="{{ route('user-transaksi-upload',$tf->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Pembayaran</h5>
@@ -97,16 +98,22 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    @csrf
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Pilih File</label>
-                                <p>Ukuran File Max 2 MB</p>
-                            <input type="file" name="photo_payment" class="form-control-file" id="exampleFormControlFile1">
+                    <div class="form-group">
+                        @if ($tf->photo_payment != null)
+                            <img id="img_payment" src="{{ Storage::url($tf->photo_payment) }}" width="170px" height="170px" alt="foto"
+                            style="display: block; margin:auto">
+                        @else
+                            <img id="img_payment" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
+                            style="display: block; margin:auto">
+                        @endif
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-success">Upload</button>
-                        </div>
+                    <h5 style="font-weight: 600" for="exampleFormControlFile1">Pilih File</h5>
+                        <p>Ukuran File Max 2 MB</p>
+                    <input type="file" name="photo_payment" class="form-control-file" id="input_payment">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success">Upload</button>
                 </div>
             </form>
             @endforeach
@@ -170,6 +177,23 @@
                 });
             }
         })
+    }
+
+    $(function () {
+        $("#input_payment").change(function () {
+            readURL(this);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img_payment').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 </script>
 @endpush

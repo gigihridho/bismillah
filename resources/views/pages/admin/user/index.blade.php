@@ -43,8 +43,8 @@
                                     <td>{{ $user->no_hp }}</td>
                                     <td>
                                     <form action="{{ route('user.destroy',$user->id) }}" method="POST">
-                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user.show',$user->id) }}">
-                                            <i class="far fa-edit"></i>
+                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user.show',$user->id) }}">
+                                            <i class="far fa-eye"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $user->id }})">
                                             <i class="far fa-trash-alt" style="color: white;"></i>

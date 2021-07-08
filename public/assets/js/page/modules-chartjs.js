@@ -24,7 +24,7 @@ var myChart = new Chart(ctx, {
       yAxes: [{
         gridLines: {
           drawBorder: false,
-          color: '#f2f2f2',
+          color: '#6777ef',
         },
         ticks: {
           beginAtZero: true,
@@ -54,7 +54,6 @@ var myChart = new Chart(ctx, {
       borderWidth: 2,
       backgroundColor: '#6777ef',
       borderColor: '#6777ef',
-      borderWidth: 2.5,
       pointBackgroundColor: '#ffffff',
       pointRadius: 4
     }]

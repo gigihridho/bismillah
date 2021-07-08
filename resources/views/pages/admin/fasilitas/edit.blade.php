@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
 <div class="main-content">
     <section class="section">
         <div class="section-header">
@@ -40,8 +41,8 @@
                         <input type="text" name="name" value="{{ $item->name }}" class="form-control">
                         </div>
                         <div class="row">
-                            <div class="col text-right">
-                                <button type="submit" class="btn btn-success px-5">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-success px-5" style="padding: 8px 16px">
                                     Simpan Data
                                 </button>
                             </div>
