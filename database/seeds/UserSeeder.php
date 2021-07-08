@@ -18,7 +18,10 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('12345678'),
+            'photo_ktp' => "https://dummyimage.com/600x400/000000/fff&text=image",
             'no_hp' => '088225035926',
+            'address' => 'Jakarta',
+            'profession' => 'Admin',
         ]);
 
         $admin->assignRole('admin');
@@ -29,6 +32,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('12345678'),
             'no_hp' => '08777777772',
+            'photo_ktp' => "https://dummyimage.com/600x400/000000/fff&text=image",
             'address' => 'Jakarta',
             'profession' => 'Guru',
         ],

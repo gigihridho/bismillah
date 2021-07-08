@@ -18,7 +18,7 @@
                     <div class="row">
                     <div class="form-group col-6">
                         <label for="name">Nama Lengkap</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="off" autofocus>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" :class="{'is_invalid' : this.email_unavailable}" name="email" value="{{ old('email') }}"  autocomplete="off" autofocus>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" :class="{'is_invalid' : this.email_unavailable}" name="email" value="{{ old('email') }}" required  autocomplete="off" autofocus>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
                     <div class="row">
                         <div class="form-group col-6">
                         <label for="address">Alamat Asal</label>
-                        <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address"  autocomplete="off" value="{{ old('address') }}"  autocomplete="off" autofocus>
+                        <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address"  autocomplete="off" value="{{ old('address') }}" required autocomplete="off" autofocus>
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="profession">Pekerjaan</label>
-                        <input id="profession" type="text" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}"  autocomplete="off" autofocus>
+                        <input id="profession" type="text" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}" required  autocomplete="off" autofocus>
                             @error('profession')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="no_hp">No Telepon</label>
-                        <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}"  autocomplete="off" autofocus>
+                        <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required  autocomplete="off" autofocus>
                             @error('no_hp')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

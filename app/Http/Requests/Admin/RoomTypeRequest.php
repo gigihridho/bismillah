@@ -25,7 +25,7 @@ class RoomTypeRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'photo' => 'required|image',
+            'photo' => 'required|image|max:2048|mimes:png,jpg,jpeg',
             'floor' => 'required|integer',
             'price' => 'required|integer',
             'size' => 'required|string',

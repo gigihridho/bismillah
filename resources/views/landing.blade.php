@@ -193,7 +193,7 @@
 </section>
 
 {{-- Pembayaran --}}
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box" data-aos="fade-up">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box; margin-bottom: 3rem" data-aos="fade-up">
     <div class="content-4-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Cara Pembayaran</h1>
@@ -202,7 +202,7 @@
             </p>
         </div>
 
-        <div class="grid-padding text-center">
+        <div class="grid-padding text-center" style="margin-top: 2rem">
         <div class="row">
             <div class="col-lg-4 column">
             <div class="icon">
@@ -242,29 +242,25 @@
 </section>
 
 {{-- Review --}}
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="review" data-aos="fade-down">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box;margin-top: 3rem" id="review" data-aos="fade-down">
     <div class="review container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Review Kost</h1>
             <p>Berikut review dari mereka</p>
         </div>
-        <div class="container">
+        <div class="container" style="margin-top: 4rem">
             <div class="row">
                 <div class="owl-carousel featured-carousel owl-theme">
                     @foreach ($reviews as $r)
                     <div class="item">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="review-title" style="opacity: 0.2">
-                                    {{ $r->review }}</h3>
-                                <p class="review-caption">
-                                    {{ $r->user->name }}
-                                </p>
-                                <p class="review-caption">
-                                    {{ $r->user->profession }}
-                                </p>
-                            </div>
-                        </div>
+                        <h3 class="review-title text-center" style="opacity: 0.5">
+                            {{ $r->review }}</h3>
+                        <h4 class="review-caption text-center">
+                            {{ $r->user->name }}
+                        </h4>
+                        <h6 class="review-caption text-center">
+                            {{ $r->user->profession }}
+                        </h6>
                     </div>
                     @endforeach
                 </div>
@@ -284,10 +280,10 @@
             items:1
         },
         600:{
-            items:3
+            items:1
         },
         1000:{
-            items:3
+            items:1
         }
     }
 })

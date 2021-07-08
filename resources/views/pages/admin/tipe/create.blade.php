@@ -80,11 +80,11 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <label class="d-block">Fasilitas</label>
-                                    <div class="form-group">
+                                <div class="col-md-6">
+                                    <h6>Fasilitas</h6>
+                                    <div class="form-group mt-2">
                                     @forelse($facilities as $facility)
-                                        <div class="form-check mb-3">
+                                        <div class="form-check">
                                             <label class="checkbox" name="facility">
                                                 <input name="facility[{{$facility->id}}]" value={{ $facility->name }} class="form-check-input" type="checkbox" data-toggle="checkbox" id="defaultCheck1" >
                                                 {{ $facility->name }}

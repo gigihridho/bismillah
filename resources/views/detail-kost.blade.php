@@ -48,7 +48,7 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     </div>
-                                        <input type="date" class="form-control datepicker" id="arrival_date" name="arrival_date" placeholder="DD/MM/YYYY">
+                                        <input type="date" class="form-control" id="arrival_date" name="arrival_date" placeholder="DD/MM/YYYY">
                                 </div>
                             </div>
                             <div class="form-group">

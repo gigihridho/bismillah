@@ -11,43 +11,44 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ProfilUserController extends Controller
 {
     public function index(){
-        $user = User::where('id',Auth::user()->id)->get();
+        $data = User::where('id',Auth::user()->id)->get();
         return view('pages.user.profil.view',[
-            'user' => $user
+            'data' => $data
         ]);
     }
     public function user(){
-        $user = User::where('id',Auth::user()->id)->get();
+        $data = User::where('id',Auth::user()->id)->get();
         return view('pages.user.profil.edit',[
-            'user' => $user
-            ]);
-        }
+            'data' => $data
+        ]);
+    }
 
-    public function update(Request $request, $redirect){
+    public function update(Request $request, $id){
         $this->validate($request,[
             'name' => 'required|string|max:255',
             'email' => 'required|email',
             'no_hp' => 'required|numeric',
-            'profession' => 'required',
-            'address' => 'required',
+            'profession' => 'required|string',
+            'photo_ktp' => 'image|max:2048|mimes:png,jpg,jpeg',
+            'address' => 'required|string',
         ],
         [
             'name.required' => 'Nama tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',
         ]);
-        $data = $request->all();
+        $data = User::where('id',$id)->first();
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->no_hp = $request->no_hp;
+        $data->profession = $request->profession;
+        $data->address = $request->address;
 
-        $data['name'] = Str::slug($request->name);
-        $data['email'] = $request->email;
-        $data['no_hp'] = $request->no_hp;
-        $data['photo_ktp'] = $request->file('photo_ktp')->store('assets/user','public');
-        $data['profession'] = $request->profession;
-        $data['address'] = $request->address;
-
-        $item = Auth::user();
-
-        $item->update($data);
+        if(request()->hasFile('photo_ktp')){
+            $photo_ktp = request()->file('photo_ktp')->store('assets/user','public');
+            $data->update(['photo_ktp' => $photo_ktp]);
+        }
+        $data->save();
         Alert::success('SUCCESS','Profil Berhasil diupdate');
-        return redirect()->route($redirect);
+        return redirect()->route('profil-user');
     }
 }

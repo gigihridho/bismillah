@@ -21,7 +21,6 @@ class CreateRoomTypesTable extends Migration
             $table->string('price');
             $table->string('size');
             $table->boolean('status')->default(true);
-            $table->string('slug');
             $table->timestamps();
         });
     }

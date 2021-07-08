@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'no_hp' => ['required','numeric', 'digits_between:10,13', 'unique:users'],
             'address' => ['required','string'],
             'profession' => ['required','string'],
-            'photo_ktp' => ['required','file'],
+            'photo_ktp' => ['required','image','mimes:png,jpg,jpeg'],
         ]);
     }
 
@@ -72,7 +72,6 @@ class RegisterController extends Controller
             'no_hp' => $data['no_hp'],
             'address' => $data['address'],
             'profession' => $data['profession'],
-            'slug' => $data['name'],
         ]);
         if(request()->hasFile('photo_ktp')){
             $photo_ktp = request()->file('photo_ktp')->store('assets/user','public');
@@ -80,6 +79,5 @@ class RegisterController extends Controller
         }
         $user->assignRole('user');
         return $user;
-
     }
 }

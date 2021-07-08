@@ -35,7 +35,6 @@ class RoomTypeController extends Controller
     public function store(RoomTypeRequest $request){
         $data = new RoomType();
         $data->name = $request->input('name');
-        $data->slug = Str::slug($request->name);
         $data->photo = $request->file('photo')->store('assets/roomtypes','public');
         $data->floor = $request->input('floor');
         $data->price = $request->input('price');
@@ -52,7 +51,7 @@ class RoomTypeController extends Controller
 
     public function edit($id){
         $facilities = Facility::all()->where('status',true);
-        $data = RoomType::findOrFail($id);
+        $data = RoomType::where('id',$id)->get();
         return view('pages.admin.tipe.edit',[
             'data' => $data,
             'facilities' => $facilities
@@ -60,10 +59,9 @@ class RoomTypeController extends Controller
     }
 
     public function update(Request $request, $id){
-        $data = RoomType::find($id);
         $rules = [
             'name' => 'required|max:30|unique:room_types,name,'.$id,
-            'photo' => 'required|image',
+            'photo' => 'image|max:2048|mimes:jpg,png,jpeg',
             'floor' => 'required|integer',
             'price' => 'required|integer',
             'size' => 'required|string',
@@ -74,17 +72,20 @@ class RoomTypeController extends Controller
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
             return redirect()->back()
-                ->withInput($request->all())
-                ->withErrors($validator);
+            ->withInput($request->all())
+            ->withErrors($validator);
         }
 
-        $data->name = $request->input('name');
-        $data->slug = Str::slug($request->name);
-        $data->photo = $request->file('photo')->store('assets/roomtypes','public');
-        $data->floor = $request->input('floor');
-        $data->price = $request->input('price');
-        $data->size = $request->input('size');
-        $data->status = $request->input('status');
+        $data = RoomType::where('id',$id)->first();
+        $data->name = $request->name;
+        $data->floor = $request->floor;
+        $data->price = $request->price;
+        $data->size = $request->size;
+        $data->status = $request->status;
+        if(request()->hasFile('photo')){
+            $photo = request()->file('photo')->store('assets/room_types','public');
+            $data->update(['photo' => $photo]);
+        }
         $data->save();
 
         $data->facilities()->sync(array_keys($request->input('facility')));

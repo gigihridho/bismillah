@@ -18,7 +18,7 @@
         <div class="section-body">
             <div class="row">
                 @php $no = 1; @endphp
-                @foreach ($user as $u)
+                @foreach ($data as $u)
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-4">

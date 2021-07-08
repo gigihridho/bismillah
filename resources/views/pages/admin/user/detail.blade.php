@@ -52,10 +52,11 @@
                                     @if ($u->photo_ktp != null)
                                         <img src="{{ Storage::url($u->photo_ktp) }}" width="180px" height="170px"
                                         style="display:block; margin-left:auto; margin-right:auto;">
-                                    @endif
+                                    @else
                                         <img src="{{ asset('assets/img/avatar/avatar-1.png') }}"  width="180px" height="170px"
                                         style="display:block; margin-left:auto; margin-right:auto;">
-                                </div>
+                                    @endif
+                                    </div>
                             </div>
                         @endforeach
                     </div>

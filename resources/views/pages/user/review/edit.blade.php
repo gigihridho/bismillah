@@ -51,7 +51,7 @@ Review
                             <div class="form-group">
                                 <label for="review">Review</label>
                                 <input type="text" name="review" id="review" class="form-control"
-                                value="kosong sip">
+                                value="">
                             </div>
                         @endif
                             <div class="row">

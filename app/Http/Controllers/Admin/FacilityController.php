@@ -30,7 +30,6 @@ class FacilityController extends Controller
     public function store(FacilityRequest $request){
         $data = $request->all();
 
-        $data['slug'] = $request->name;
         Facility::create($data);
         Alert::success('SUCCESS','Data Fasilitas Berhasil Ditambah');
         return redirect()->route('fasilitas.index');
@@ -46,8 +45,6 @@ class FacilityController extends Controller
 
     public function update(FacilityRequest $request, $id){
         $data = $request->all();
-
-        $data['slug'] = Str::slug($request->name);
 
         $item = Facility::findOrFail($id);
 

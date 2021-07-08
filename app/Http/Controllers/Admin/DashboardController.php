@@ -16,6 +16,7 @@ class DashboardController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index(){
         $user = RoomBooking::with('user')->where('payment',1)->count();
         $room = Room::count();
@@ -26,7 +27,6 @@ class DashboardController extends Controller
             $chart = collect(DB::select("SELECT count(id) as jumlah from room_bookings where month(created_at)='$bulan'"))->first();
             $jumlah_transactions[] = $chart->jumlah;
         }
-
         return view('pages.admin.dashboard',[
             'user' => $user,
             'room' => $room,

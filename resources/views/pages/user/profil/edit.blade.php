@@ -17,7 +17,7 @@
         <div class="section-body">
             <div class="row">
                 @php $no = 1; @endphp
-                @foreach ($user as $u)
+                @foreach ($data as $u)
                 <div class="container">
                     @if ($errors->any())
                             <div class="alert alert-danger">
@@ -28,8 +28,8 @@
                                 </ul>
                             </div>
                         @endif
-                    <form action="{{ route('change-profil-user-redirect','profil-user') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                    <form action="{{ route('change-profil-user-redirect',$u->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
                         <div class="col-4">
                             <div class="card">
@@ -37,12 +37,12 @@
                                     <i class="fas fa-user mr-2"></i> Foto KTP
                                     <hr>
                                     <div class="rounded">
-                                        @if ($u->photo_ktp != null)
-                                        <img id="img_ktp" src="{{ Storage::url($u->photo_ktp) }}" width="170px" height="170px" alt="foto"
-                                        style="display: block; margin:auto">
+                                        @if ($u->photo_ktp == null)
+                                            <img id="img_ktp" src="{{ asset('assets/img/avatar/avatar-1.png') }}" name="photo_ktp" width="170px" height="170px" alt="foto"
+                                            style="display: block; margin:auto">
                                         @else
-                                        <img id="img_ktp" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
-                                        style="display: block; margin:auto">
+                                            <img id="img_ktp" src="{{ Storage::url($u->photo_ktp) }}" name="photo_ktp" width="170px" height="170px" alt="foto"
+                                            style="display: block; margin:auto">
                                         @endif
                                     </div>
                                     <div style="text-align:center">
@@ -50,11 +50,7 @@
                                         <br>
                                         <strong style=>Info!</strong> Maksimum ukuran foto : 2MB
                                         <br>
-
                                         <input id="photo_ktp" name="photo_ktp" type="file"><br>
-                                        @if($errors->has('photo_ktp'))
-                                            <span id="msg_ta" class="help-block">{{$errors->first('photo_ktp')}}</span>
-                                        @endif
                                         <br>
                                     </div>
                                 </div>
