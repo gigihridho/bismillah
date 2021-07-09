@@ -59,7 +59,7 @@ Route::prefix('admin')
         Route::resource('user', 'Admin\UserController');
         // Route::get('user/{id}/detail', 'Admin\UserController@detail')->name('detail-user');
 
-        Route::resource('booking', 'Admin\RoomBookingController')->except('Belum Terbayar');
+        Route::resource('booking', 'Admin\RoomBookingController');
         Route::get('booking/{id}/edit','Admin\RoomBookingController@edit');
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
 
@@ -68,7 +68,9 @@ Route::prefix('admin')
 
         Route::resource('reviews', 'Admin\ReviewsController');
 
-        Route::resource('gallery', 'Admin\GalleryController');
+        Route::get('invoice', 'Admin\InvoiceController@index')->name('invoice');
+        Route::get('invoice/{id}','Admin\InvoiceController@create');
+        Route::post('invoice/{id}','Admin\InvoiceController@store');
 
         Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
         Route::post('change-pass', 'Admin\ChangePasswordController@update')->name('change-pass-update');

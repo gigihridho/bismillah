@@ -24,9 +24,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('tentang') }}">Tentang</a>
-                </li>
                 </ul>
             </div>
             @guest
@@ -43,9 +40,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('home') }}">Beranda</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('tentang') }}">Tentang</a>
-            </li>
+
         </ul>
         @guest
         <div class="gap-3">

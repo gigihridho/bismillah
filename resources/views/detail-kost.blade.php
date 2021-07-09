@@ -69,7 +69,7 @@
                                 Pesan Kamar
                             </button>
                             @else
-                            <a href="{{ route('login') }}" class="btn btn-success text-white btn-block mb-3" style="width: 100%">
+                            <a href="{{ route('login') }}" class="btn btn-fill text-white btn-block mb-3" style="width: 100%">
                                 Masuk Untuk Pesan
                             </a>
                             @endauth

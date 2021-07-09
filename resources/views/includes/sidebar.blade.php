@@ -32,19 +32,21 @@
             <li class="{{ (request()->is('admin/tipe*')) ? 'active' : '' }}">
                 <a href="{{ route('tipe.index') }}" class="nav-link"><i class="fas fa-bed"></i> <span>Tipe Kamar</span></a>
             </li>
-            <li class="nav-item dropdown">
-                <li class="{{ (request()->is('admin/booking*')) ? 'active' : '' }}">
-                    <a href="{{ route('booking.index') }}"><i class="fas fa-sign-in-alt"></i></i>Data Booking</a>
-                </li>
+            <li class="{{ (request()->is('admin/booking*')) ? 'active' : '' }}">
+                <a href="{{ route('booking.index') }}"><i class="fas fa-sign-in-alt"></i><span>Data Booking</span></a>
             </li>
           <li class="menu-header">Transaksi
             <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                <a href="{{ route('transaksi') }}"><i class="fas fa-credit-card"></i>Laporan Transaksi</a>
+                <a href="{{ route('transaksi') }}"><i class="fas fa-credit-card"></i><span>Laporan Transaksi</span></a>
+            </li>
+            <li class="{{ (request()->is('admin/invoice*')) ? 'active' : '' }}">
+                <a href="{{ route('invoice') }}"><i class="fas fa-file-invoice"></i><span>Invoice</span></a>
             </li>
           </li>
+
           <li class="menu-header">User
             <li class="{{ (request()->is('admin/user*')) ? 'active' : '' }}">
-                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-user"></i> <span>User</span></a>
+                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-user"></i><span>User</span></a>
             </li>
             <li class="{{ (request()->is('admin/reviews*')) ? 'active' : '' }}">
                 <a href="{{ route('reviews.index') }}" class="nav-link"><i class="fas fa-book"></i><span>Review</span></a>

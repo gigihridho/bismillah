@@ -94,7 +94,7 @@ class BookingController extends Controller
             return redirect()->back()
             ->withInput($request->all())
                 ->withErrors($validator);
-            }
+        }
 
         $room_booking = new RoomBooking();
         $user = Auth::user();

@@ -49,7 +49,7 @@
                                     <td>Rp {{ number_format($tf->total_price) }}</td>
                                     <td>
                                         @if($tf->photo_payment != null)
-                                            <img height="70px" width="50%" src="{{ Storage::url($tf->photo_payment) }}" alt="">
+                                            <img height="70px" width="60px" src="{{ Storage::url($tf->photo_payment) }}" alt="">
                                         @else
                                             <button class="btn btn-warning btn-sm" style="text-align:center">Belum Upload
                                             </button>

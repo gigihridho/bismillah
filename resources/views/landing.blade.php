@@ -206,7 +206,7 @@
         <div class="row">
             <div class="col-lg-4 column">
             <div class="icon">
-                <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-5.png"
+                <img src="{{ asset('fe/img/login.png') }}" style="width:200px; height:200px"
                 alt="" />
             </div>
             <h3 class="icon-title">Registrasi Akun</h3>
@@ -217,7 +217,7 @@
             </div>
             <div class="col-lg-4 column">
             <div class="icon">
-                <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-6.png"
+                <img src="{{ asset('fe/img/payment.png') }}" style="width:200px; height:200px"
                 alt="" />
             </div>
             <h3 class="icon-title">Transaksi</h3>
@@ -227,7 +227,7 @@
             </div>
             <div class="col-lg-4 column">
             <div class="icon">
-                <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-7.png"
+                <img src="{{ asset('fe/img/confirm.png') }}" style="width:200px; height:200px"
                 alt="" />
             </div>
             <h3 class="icon-title">Konfirmasi</h3>

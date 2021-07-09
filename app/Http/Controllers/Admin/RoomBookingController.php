@@ -38,6 +38,7 @@ class RoomBookingController extends Controller
             'status' => 'in:Menunggu,Terisi,Keluar',
             'payment' => 'boolean',
         ];
+
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()){
             return redirect()->back()
