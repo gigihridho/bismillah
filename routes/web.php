@@ -57,11 +57,11 @@ Route::prefix('admin')
         Route::resource('fasilitas', 'Admin\FacilityController');
 
         Route::resource('user', 'Admin\UserController');
-        // Route::get('user/{id}/detail', 'Admin\UserController@detail')->name('detail-user');
 
         Route::resource('booking', 'Admin\RoomBookingController');
         Route::get('booking/{id}/edit','Admin\RoomBookingController@edit');
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
+        Route::delete('booking/{id}','Admin\RoomBookingController@destroy');
 
         Route::get('transaksi','Admin\TransactionsController@index')->name('transaksi');
         Route::get('transaksi/pdf','Admin\TransactionsController@pdf')->name('transaski-pdf');

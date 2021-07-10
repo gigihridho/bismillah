@@ -14,11 +14,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
-            'name' => 'admin',
+            'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('12345678'),
-            'photo_ktp' => "https://dummyimage.com/600x400/000000/fff&text=image",
+            'photo_ktp' => "https://picsum.photos/200/150",
             'no_hp' => '088225035926',
             'address' => 'Jakarta',
             'profession' => 'Admin',
@@ -28,11 +28,11 @@ class UserSeeder extends Seeder
 
         $user = User::create([
             'name' => 'Andi',
-            'email' => 'andika@gmail.com',
+            'email' => 'andin@gmail.com',
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('12345678'),
             'no_hp' => '08777777772',
-            'photo_ktp' => "https://dummyimage.com/600x400/000000/fff&text=image",
+            'photo_ktp' => "https://picsum.photos/200/150",
             'address' => 'Jakarta',
             'profession' => 'Guru',
         ],

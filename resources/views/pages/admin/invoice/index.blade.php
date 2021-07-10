@@ -46,7 +46,7 @@
                                 <td>{{ $inv->departure_date }}</td>
                                 <td>
                                     <form action="{{ route('booking.destroy',$inv->id) }}" method="POST">
-                                        <a title="Buat Invoice" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/invoice/{{ $inv->id }}">
+                                        <a title="Buat Invoice" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/invoice/{{ $inv->user_id }}">
                                             <i class="fas fa-plus"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="#">

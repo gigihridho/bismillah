@@ -55,8 +55,8 @@ class RoomBookingController extends Controller
     }
 
     public function destroy($id){
-        $item = RoomBooking::findOrFail($id);
-        $item->delete();
-        return redirect()->route('transaksi.index');
+        $room_booking = RoomBooking::findOrFail($id);
+        $room_booking->delete();
+        return redirect()->route('booking.index');
     }
 }

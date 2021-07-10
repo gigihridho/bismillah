@@ -2,8 +2,8 @@
 <div class="container-xxl mx-auto p-0  position-relative header-2-2" style="font-family: 'Poppins', sans-serif">
     <nav class="navbar navbar-expand-lg navbar-light">
     <a href={{ route('home') }}>
-        <img style="margin-right: 0.75rem; width: 75px; height:80px"
-            src="{{ asset('fe/img/favicon.png') }}" alt="" />
+        <img style="margin-right: 0.75rem;"
+            src="{{ asset('fe/img/griyokenyo.png') }}" alt="" />
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal" data-bs-target="#targetModal-item">
         <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,6 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('home') }}">Beranda</a>
             </li>
-
         </ul>
         @guest
         <div class="gap-3">

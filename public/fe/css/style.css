@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
     .header-2-2 .modal-item.modal {
-    top: 1rem;
+    top: 0rem;
     }
 
     .header-2-2 .navbar,
@@ -978,3 +978,132 @@
                 padding: 0 3rem 2rem;
             }
         }
+
+        .login-brand {
+            margin: 20px 0;
+            margin-bottom: 40px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #666;
+            text-align: center; }
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+            background-color: #fff;
+            border-radius: 3px;
+            border: none;
+            position: relative;
+            margin-bottom: 30px; }
+
+        .card .card-header, .card .card-body, .card .card-footer {
+            background-color: transparent;
+            padding: 20px 25px; }
+
+        .card.card-primary {
+            border-top: 2px solid #6777ef; }
+
+        .card-body{
+            flex: 1 1 auto;
+            min-height: 1px;
+        }
+
+        .card .card-body {
+            padding-top: 20px;
+            padding-bottom: 20px; }
+            .card .card-body .section-title {
+              margin: 30px 0 10px 0;
+              font-size: 16px; }
+              .card .card-body .section-title:before {
+                margin-top: 8px; }
+            .card .card-body .section-title + .section-lead {
+              margin-top: -5px; }
+            .card .card-body p {
+              font-weight: 500; }
+          .card .card-header {
+            border-bottom-color: #f9f9f9;
+            line-height: 30px;
+            -ms-grid-row-align: center;
+            align-self: center;
+            width: 100%;
+            min-height: 70px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center; }
+            .card .card-header .btn {
+              margin-top: 1px;
+              padding: 2px 15px; }
+              .card .card-header .btn:not(.note-btn) {
+                border-radius: 30px; }
+              .card .card-header .btn:hover {
+                box-shadow: none; }
+            .card .card-header .form-control {
+              height: 31px;
+              font-size: 13px;
+              border-radius: 30px; }
+              .card .card-header .form-control + .input-group-btn .btn {
+                margin-top: -1px; }
+
+                .form-group {
+                    margin-bottom: 25px; }
+                    .form-group .control-label,
+                    .form-group > label {
+                      font-weight: 600;
+                      color: #34395e;
+                      font-size: 12px;
+                      letter-spacing: .5px; }
+                    .form-group.floating-addon {
+                      position: relative; }
+                      .form-group.floating-addon .input-group-prepend {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        z-index: 5; }
+                      .form-group.floating-addon:not(.floating-addon-not-append) .input-group-append {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 5;
+                        left: initial;
+                        right: 0; }
+                      .form-group.floating-addon .input-group-prepend .input-group-text, .form-group.floating-addon .input-group-append .input-group-text {
+                        border-color: transparent;
+                        background-color: transparent;
+                        font-size: 20px; }
+                      .form-group.floating-addon .form-control {
+                        border-radius: 3px;
+                        padding-left: 40px; }
+                        .form-group.floating-addon .form-control + .form-control {
+                          border-radius: 0 3px 3px 0;
+                          padding-left: 15px; }
+                          a {
+                            color: #6777ef;
+                            font-weight: 500;
+                            transition: all .5s;
+                            -webkit-transition: all .5s;
+                            -o-transition: all .5s; }
+                            .float-right{
+                                float: right !important;
+                            }
+                            .text-small{
+                                font-size: 12px;
+                                line-height: 20px;
+                            }
+                            .row{
+                                display: flex;
+                                flex-wrap: wrap;
+                                margin-right: -15px;
+                                margin-left: -15px;
+                            }
+
+                            .btn-primary, .btn-primary.disabled {
+                                box-shadow: 0 2px 6px #acb5f6;
+                                background-color: #6777ef;
+                                border-color: #6777ef; }
+                                .btn-primary:focus, .btn-primary.disabled:focus {
+                                  background-color: #394eea !important; }
+                                  .btn-primary:focus:active, .btn-primary.disabled:focus:active {
+                                    background-color: #394eea !important; }
+                                .btn-primary:active, .btn-primary:hover, .btn-primary.disabled:active, .btn-primary.disabled:hover {
+                                  background-color: #394eea !important; }
+

@@ -29,17 +29,23 @@ class InvoiceController extends Controller
         ]);
     }
 
-    public function create($id){
-        $invoice = RoomBooking::findOrFail($id);
+    public function create($user_id){
+        $invoice = RoomBooking::findOrFail($user_id);
+        dd($invoice);
         return view('pages.admin.invoice.create',[
             'invoice' => $invoice
         ]);
     }
 
-    public function store(Request $request, $room_type_id){
-        $user_id = RoomBooking::with('user')->first();
-        $data = RoomBooking::where('id', $user_id)->first();
-        dd($data);
+    public function store(Request $request, $room_type_id)
+    {
+        $user_id = $request->input('user_id');
+        $data = RoomBooking::join('users','room_bookings.user_id','=','users.id')
+            ->where('users.id', '=' ,$user_id)
+            ->select('users.*')
+            ->getQuery()
+            ->get();
+
         $room_type = RoomType::findOrFail($room_type_id);
 
         $duration = $request->input('duration');
@@ -61,17 +67,16 @@ class InvoiceController extends Controller
         }else {
             $new_departure_date = date('Y-m-d', strtotime('+12 month', strtotime($old_departure_date)));
         }
-        $rules['booking_validation'] = [new RoomAvailableRule($room_type,$new_arrival_date,$new_departure_date)];
+        // $rules['booking_validation'] = [new RoomAvailableRule($room_type,$new_arrival_date,$new_departure_date)];
 
-        $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()){
-            return redirect()->back()
-            ->withInput($request->all())
-                ->withErrors($validator);
-        }
+        // $validator = Validator::make($request->all(), $rules);
+        // if($validator->fails()){
+        //     return redirect()->back()
+        //     ->withInput($request->all())
+        //         ->withErrors($validator);
+        // }
 
         $booking = new RoomBooking();
-        $user = RoomBooking::where('id',Auth::user()->id)->first();
 
         $booking->arrival_date = $new_arrival_date;
         $booking->departure_date = $new_departure_date;
@@ -94,7 +99,7 @@ class InvoiceController extends Controller
         $room = Room::where('room_number', $booked->available_room_number())->first();
 
         $booking->room_id = $room->id;
-        $booking->user_id = $user->id;
+        $booking->user_id = $data->id;
 
         $booking->save();
 

@@ -81,7 +81,7 @@ class RoomTypeController extends Controller
         $data->size = $request->size;
         $data->status = $request->status;
         if(request()->hasFile('photo')){
-            $photo = request()->file('photo')->store('assets/room_types','public');
+            $photo = request()->file('photo')->store('assets/roomtypes','public');
             $data->update(['photo' => $photo]);
         }
         $data->save();

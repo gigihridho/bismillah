@@ -30,7 +30,7 @@
                         @endif
                     <div class="card">
                         <div class="card-body">
-                            <form id="invoice_store" action="{{ $invoice->id }}" method="POST" enctype="multipart/form-data">
+                            <form id="invoice_store" action="{{ $invoice->user_id }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
