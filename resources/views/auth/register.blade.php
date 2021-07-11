@@ -4,8 +4,8 @@
 <section class="section">
     <div class="d-flex flex-wrap align-items-stretch">
         <div class="col-lg-5 col-md-6 col-12 order-lg-1 min-vh-100 order-2" style="background: #6777ef">
-                <div class="text-white" style="margin-left:20px">
-                    <h1 class="text-white font-weight-600 mb-5 mt-3">Selamat Datang</h1>
+                <div class="text-white" style="margin-left:20px; margin-top:40px">
+                    <h1 class="text-white font-weight-600 mb-3 mt-3">Selamat Datang</h1>
                     <p class="text-white" style="mb-3 mt-3">Silakan daftar, supaya kamu dapat melakukan pemesanan</p>
                 </div>
 
