@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -29,8 +28,14 @@ class UserController extends Controller
     }
 
     public function destroy($id){
-        $item = User::findOrFail($id);
-        $item->delete();
+        $user = User::find($id);
+
+        foreach ($user->room_bookings as $booking) {
+            $booking->delete();
+            $booking->room->availability = 'available';
+        }
+        $user->room_bookings->room->availability = 'available';
+        $user->delete();
 
         return redirect()->route('user.index');
     }

@@ -19,6 +19,7 @@ class DashboardController extends Controller
 
     public function index(){
         $user = RoomBooking::with('user')->where('payment',1)->count();
+        $room_avail = Room::where('available',false)->count();
         $room = Room::count();
         $transactions = RoomBooking::count();
         $total_price = RoomBooking::where('payment',1)->sum('total_price');
@@ -29,6 +30,7 @@ class DashboardController extends Controller
         }
         return view('pages.admin.dashboard',[
             'user' => $user,
+            'room_avail' => $room_avail,
             'room' => $room,
             'label' => $label,
             'transactions' => $transactions,

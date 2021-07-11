@@ -4,7 +4,11 @@
 <section class="section">
     <div class="d-flex flex-wrap align-items-stretch">
         <div class="col-lg-5 col-md-6 col-12 order-lg-1 min-vh-100 order-2" style="background: #6777ef">
+<<<<<<< HEAD
                 <div class="text-white" style="margin-left:20px; margin-top:40px">
+=======
+                <div class="text-white" style="margin-left:20px; margin-top: 40px">
+>>>>>>> 774c3ccdf93a2c2bff82899b0a59816d0dc93421
                     <h1 class="text-white font-weight-600 mb-3 mt-3">Selamat Datang</h1>
                     <p class="text-white" style="mb-3 mt-3">Silakan daftar, supaya kamu dapat melakukan pemesanan</p>
                 </div>

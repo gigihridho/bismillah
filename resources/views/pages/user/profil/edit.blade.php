@@ -3,7 +3,7 @@
 @section('title')
     Edit Profil
 @endsection
-
+<link rel="stylesheet" href="{{ asset('assets/css/editProfil.css') }}" type="text/css">
 @section('content')
 <div class="main-content">
     <section class="section">
@@ -32,7 +32,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-4">
-                            <div class="card">
+                            <div class="card1">
                                 <div class="card-body">
                                     <i class="fas fa-user mr-2"></i> Foto KTP
                                     <hr>

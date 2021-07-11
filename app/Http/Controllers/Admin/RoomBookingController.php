@@ -56,7 +56,13 @@ class RoomBookingController extends Controller
 
     public function destroy($id){
         $room_booking = RoomBooking::findOrFail($id);
-        $room_booking->delete();
+
+        if($room_booking->room->available = true){
+            $room_booking->delete();
+        }
+        $room_booking->status = "Menunggu";
+        $room_booking->save();
+
         return redirect()->route('booking.index');
     }
 }

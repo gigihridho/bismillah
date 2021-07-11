@@ -10,7 +10,7 @@
     <meta name="author" content="" />
 
     <title>@yield('title')</title>
-    <link rel="icon" href="{{ asset('fe/img/favicon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('fe/img/GriyoKenyo.png') }}" type="image/png">
 
     {{-- Style --}}
     @stack('prepend-style')
