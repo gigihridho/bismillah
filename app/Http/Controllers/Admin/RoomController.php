@@ -69,17 +69,9 @@ class RoomController extends Controller
     }
 
     public function update($id, $room_id,Request $request){
-        // $data = $request->all();
-
-        // $data['slug'] = $request->name;
-        // $data['status'] = $request->status;
-        // $data['availability'] = $request->availability;
-
-        // $item = Room::findOrFail($id);
-
-        // $item->update($data);
         $rules = [
             'room_number' => 'required|numeric|max:99999|unique:rooms,room_number,'.$room_id,
+            'available' => 'boolean|required',
             'status' => 'boolean|required'
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -90,9 +82,7 @@ class RoomController extends Controller
         } else {
             $room = Room::find($room_id);
             $room->room_number = $request->input('room_number');
-            if($request->has('available')){
-                $room->available = $request->input('available');
-            }
+            $room->available = $request->input('available');
             $room->status = $request->input('status');
             $room->save();
 
@@ -102,15 +92,11 @@ class RoomController extends Controller
     }
 
     public function destroy($id, $room_id){
-        $room = Room::findOrFail($room_id);
-
+        $room = Room::findOrFail($id);
         foreach ($room->room_bookings as $booking) {
-            $booking->delete();
+            $booking->delete;
         }
-
-        if($room->delete()){
-            return redirect('/admin/tipe/'.$id.'/kamar/');
-        }
+        $room->delete();
         return redirect()->back()->withErrors(array('message' => 'Maaf, data kamar tidak terhapus'));
     }
 }

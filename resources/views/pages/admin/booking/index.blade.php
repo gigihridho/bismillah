@@ -23,14 +23,15 @@
                     <div class="table-responsive">
                     <table class="table table-striped" id="table-1">
                         <thead>
-                        <tr style="text-align: center; text-transform: uppercase">
+                        <tr style="text-align: center">
                             <th>
                             No
                             </th>
                             <th>Nama</th>
-                            <th>No Kamar</th>
-                            <th>Tipe</th>
+                            <th>Kamar</th>
                             <th>Bukti Transaksi</th>
+                            <th>Tanggal Masuk</th>
+                            <th>Tanggal Keluar</th>
                             <th>Keterangan</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -41,16 +42,17 @@
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $room_booking->user->name }}</td>
-                                <td>{{ $room_booking->room->room_number }}</td>
-                                <td>{{ $room_booking->room->room_type->name }}</td>
+                                <td><button class="btn btn-info btn-sm" style="text-align:center">{{ $room_booking->room->room_type->name }} ({{ $room_booking->room->room_number }})</button></td>
                                 <td>
                                     @if($room_booking->photo_payment != null)
-                                        <img height="60px" src="{{ Storage::url($room_booking->photo_payment) }}" alt="">
+                                        <img height="70px" src="{{ Storage::url($room_booking->photo_payment) }}" alt="" onclick="blank">
                                     @else
                                         <button class="btn btn-warning btn-sm" style="text-align:center">Belum Upload
                                         </button>
                                     @endif
                                 </td>
+                                <td>{{ $room_booking->arrival_date }}</td>
+                                <td>{{ $room_booking->departure_date }}</td>
                                 <td>
                                     @if($room_booking->payment == 1)
                                         <button class="btn btn-success btn-sm btn-fill">Sudah Bayar</button>

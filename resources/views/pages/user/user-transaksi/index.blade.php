@@ -35,6 +35,7 @@
                                     <th>Total Harga</th>
                                     <th>Foto Pembayaran</th>
                                     <th>Keterangan</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -61,6 +62,15 @@
                                         @else
                                             <button class="btn btn-danger btn-sm" style="text-align:center">Belum Bayar
                                             </button>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($tf->status == "Menunggu")
+                                            <button class="btn btn-warning btn-sm" style="text-align:center">Menunggu</button>
+                                        @elseif($tf->status == "Terisi")
+                                            <button class="btn btn-success btn-sm" style="text-align:center">Terisi</button>
+                                        @elseif($tf->status == "Keluar")
+                                            <button class="btn btn-danger btn-sm" style="text-align:center">Keluar</button>
                                         @endif
                                     </td>
                                     <td>
@@ -158,7 +168,7 @@
                     success: function (data) {
                         Swal.fire({
                             title: 'Berhasil!',
-                            text: 'Data berhasil di hapus!',
+                            text: 'Pemesanan berhasil dicancel',
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
@@ -169,7 +179,7 @@
                     error: function () {
                         Swal.fire({
                             title: 'Gagal!',
-                            text: 'Data tidak dapat di hapus!',
+                            text: 'Pemesanan tidak dapat di hapus!',
                             icon: 'warning',
                         });
                         window.location.href = "/user/user-transaksi/"

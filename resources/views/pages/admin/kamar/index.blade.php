@@ -24,7 +24,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
                             <thead>
-                                <tr style="text-align:center; text-transform: uppercase">
+                                <tr style="text-align:center">
                                 <th >
                                     No
                                 </th>
@@ -61,7 +61,7 @@
                                                 <i class="far fa-edit"></i>
                                             </a>
                                             <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $room->id }})">
-                                            <i class="far fa-trash-alt" style="color: white;"></i>
+                                                <i class="far fa-trash-alt" style="color: white;"></i>
                                             </a>
                                         </form>
                                     </td>

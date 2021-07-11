@@ -24,7 +24,7 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="table-1" cellspacing="0" style="width: 100%">
                             <thead>
-                            <tr style="text-align:center; text-transform: uppercase">
+                            <tr style="text-align:center">
                                 <th class="text-center" style="width: 5%">
                                 No
                                 </th>

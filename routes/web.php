@@ -40,7 +40,7 @@ Route::prefix('user')
         Route::get('user-transaksi', 'UserTransactionController@index')->name('user-transaksi');
         Route::get('user-transaksi/{id}', 'UserTransactionController@detail')->name('user-transaksi-detail');
         Route::post('user-transaksi/{id}', 'UserTransactionController@upload')->name('user-transaksi-upload');
-        Route::delete('user-transaksi/{id}','UserTransactionController@destroy')->name('user-transaksi-delete');
+        Route::delete('user-transaksi/{id}','UserTransactionController@cancel')->name('user-transaksi-delete');
 
         Route::get('review', 'UserReviewController@review')->name('review-user');
         Route::post('review/{id}', 'UserReviewController@update')->name('review-user-update');

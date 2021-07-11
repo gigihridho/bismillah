@@ -58,6 +58,21 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Status</label>
+                                        <select name="available" id="available" class="form-control">
+                                            <option value="1"
+                                            @if (old('availabe') == '1')selected="selected" @endif" >
+                                            Available
+                                            </option>
+                                            <option value="0"
+                                                @if (old('available') == '0')selected="selected" @endif" >
+                                            Booked
+                                        </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
                                         <select name="status" id="status" class="form-control">
                                             <option value="1"
                                             @if (old('status') == '1')selected="selected" @endif" >

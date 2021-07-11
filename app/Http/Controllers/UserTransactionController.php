@@ -55,35 +55,30 @@ class UserTransactionController extends Controller
         return redirect()->back();
         }
 
-    public function destroy($id){
+    public function cancel(Request $request, $id){
+
         $transaction = RoomBooking::findOrFail($id);
-        $transaction->delete();
+        $transaction->room->availability = $request->availability(true);
+        // $transaction->delete();
+        if($transaction->payment == true){
+            return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
+        }
+
+        if($transaction->status == "Terisi"){
+            return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
+        }
+        if($transaction->status == "Keluar"){
+            return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
+        }
+        if($transaction->status == "Menunggu"){
+            return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
+        }
+
+        $transaction->status = "Menunggu";
+
+        $transaction->save();
+
         Alert::success('Sukses','Data berhasil dihapus');
+        return redirect()->route('user-transaksi');
         }
 }
-
-    // public function index(){
-    //     if(request()->ajax()){
-    //         $query = RoomBooking::with('user','room')->where('user_id', Auth::user()->id);
-
-    //         return Datatables::of($query)
-    //             ->addIndexColumn()
-    //             ->addColumn('action', function($item){
-    //                 return '
-    //                     <div class="btn-group">
-    //                         <a class="btn btn-info btn-sm edit" href="' . route('user-transaksi-detail', $item->id) . '"  >
-    //                             <i class="far fa-eye"></i> Detail
-    //                         </a>
-    //                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uploadBukti" style="margin-left:5px">
-    //                             <i class="fas fa-upload"></i>
-    //                         </button>
-    //                     </div>';
-    //             })
-    //             ->editColumn('photo_payment', function($item){
-    //                 return $item->photo_payment ? '<img src="'. Storage::url($item->photo_payment).'" style="max-height: 50px;"/>' : '';
-    //             })
-    //             ->rawColumns(['action','photo_payment'])
-    //             ->make();
-    //     }
-    //     return view('pages.user.user-transaksi.index');
-    // }

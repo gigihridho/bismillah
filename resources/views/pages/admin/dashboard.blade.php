@@ -33,10 +33,10 @@
                 </div>
                 <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Total Kamar</h4>
+                    <h4>Kamar Tersedia</h4>
                 </div>
                 <div class="card-body">
-                    {{ $room }}
+                    {{ $room_avail }}
                 </div>
                 </div>
             </div>

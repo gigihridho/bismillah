@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'no_hp' => ['required','numeric', 'digits_between:10,13', 'unique:users'],
             'address' => ['required','string'],
             'profession' => ['required','string'],
-            'photo_ktp' => ['required','image','mimes:png,jpg,jpeg'],
+            'photo_ktp' => ['required','image','mimes:png,jpg,jpeg','max:2048'],
         ]);
     }
 
