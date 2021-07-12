@@ -67,6 +67,7 @@ Route::prefix('admin')
         Route::get('transaksi/pdf','Admin\TransactionsController@pdf')->name('transaski-pdf');
 
         Route::resource('pengeluaran','Admin\ExpenseController');
+        Route::get('pdf','Admin\ExpenseController@ex_pdf')->name('pengeluaran-pdf');
 
         Route::resource('reviews', 'Admin\ReviewsController');
 

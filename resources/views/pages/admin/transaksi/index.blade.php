@@ -20,7 +20,7 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('transaski-pdf') }}" class="btn btn-primary mb-3" id="cetakPDF"><span i class="fas fa-print"></span> Print PDF</a>
+                    <a href="{{ route('transaski-pdf') }}" class="btn btn-success mb-3" id="cetakPDF"><span i class="fas fa-print"></span> Print PDF</a>
                     <div class="table-responsive">
                     <table class="table table-striped" id="table-1">
                         <thead>

@@ -36,8 +36,8 @@
                     <a href="{{ route('booking.index') }}"><i class="fas fa-sign-in-alt"></i><span>Data Booking</span></a>
                 </li>
             <li class="menu-header">Transaksi
-                <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                    <a href="{{ route('transaksi') }}"><i class="fas fa-credit-card"></i><span>Laporan Transaksi</span></a>
+                <li class="{{ (request()->is('admin/pemasukan*')) ? 'active' : '' }}">
+                    <a href="{{ route('transaksi') }}"><i class="fas fa-credit-card"></i><span>Laporan Pemasukan</span></a>
                 </li>
                 <li class="{{ (request()->is('admin/pengeluaran*')) ? 'active' : '' }}">
                     <a href="{{ route('pengeluaran.index') }}"><i class="fas fa-credit-card"></i><span>Laporan Pengeluaran</span></a>

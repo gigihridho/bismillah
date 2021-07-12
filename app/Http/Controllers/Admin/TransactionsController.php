@@ -43,6 +43,6 @@ class TransactionsController extends Controller
             'total_price' => $total_price,
             'transactions' => $transactions
         ]);
-        return $pdf->download('laporan-transaksi.pdf');
+        return $pdf->download('laporan-pemasukan.pdf');
     }
 }

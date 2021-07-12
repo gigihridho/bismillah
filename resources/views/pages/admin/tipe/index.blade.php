@@ -30,11 +30,11 @@
                             </th>
                             <th>Nama</th>
                             <th>Foto</th>
-                            <th style="width: 20px">Lantai</th>
-                            <th style="width: 20px">Harga</th>
-                            <th style="width: 20px">Ukuran</th>
+                            <th>Lantai</th>
+                            <th>Harga</th>
+                            <th>Ukuran</th>
                             <th>Status</th>
-                            <th style="width: 100px">Aksi</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>

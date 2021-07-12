@@ -93,18 +93,21 @@ class RoomTypeController extends Controller
 
 
     public function destroy($id){
-        $room_type = RoomType::findOrFail($id);
-        if($room_type->room()->count()){
-            return back()->withErrors('error','Maaf tipe kamar tidak bisa dihapus');
-        }
-        foreach ($room_type as $room) {
-            foreach ($room as $room_bookings => $booking) {
+        $room_type = RoomType::find($id);
+
+        // if($room_type->room()->count()){
+        //     return back()->withErrors('error','Maaf tipe kamar tidak bisa dihapus');
+        // }
+        foreach ($room_type->room as $room) {
+
+            foreach ($room->room_bookings as $booking) {
                 $booking->delete();
             }
             $room->delete();
         }
         $room_type->delete();
 
+        Alert::success('Success','Tipe Kamar berhasil dihapus');
         return redirect()->route('tipe.index');
     }
 }

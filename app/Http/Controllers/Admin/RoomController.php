@@ -92,10 +92,10 @@ class RoomController extends Controller
     }
 
     public function destroy($id, $room_id){
-        $room = Room::findOrFail($id);
-        foreach ($room->room_bookings as $booking) {
-            $booking->delete;
-        }
+        $room = Room::findOrFail($room_id);
+        // foreach ($room->room_bookings as $booking) {
+        //     $booking->delete;
+        // }
         $room->delete();
         return redirect()->back()->withErrors(array('message' => 'Maaf, data kamar tidak terhapus'));
     }

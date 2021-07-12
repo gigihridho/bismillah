@@ -38,7 +38,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tipe Kamar</label>
-                                        <input type="text" name="name" class="form-control">
+                                        <input type="text" name="name" class="form-control" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -50,19 +50,19 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Lantai</label>
-                                        <input type="number" name="floor" class="form-control">
+                                        <input type="number" name="floor" class="form-control" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Harga</label>
-                                        <input type="number" name="price" class="form-control">
+                                        <input type="number" name="price" class="form-control" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Luas</label>
-                                        <input type="text" name="size" class="form-control">
+                                        <input type="text" name="size" class="form-control" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

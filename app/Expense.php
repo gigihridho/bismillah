@@ -9,7 +9,7 @@ class Expense extends Model
     protected $table = 'expenses';
 
     protected $fillable = [
-        'pengeluaran','nominal','status','keterangan'
+        'pengeluaran','date','nominal','status','keterangan'
     ];
 
     protected $hidden = [

@@ -45,6 +45,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label>Tanggal Transaksi</label>
+                                    <input type="date" name="date" class="form-control"
+                                    value="{{$item->date  }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label>Nominal</label>
                                     <input type="number" name="nominal" class="form-control"
                                     value="{{ $item->nominal }}">

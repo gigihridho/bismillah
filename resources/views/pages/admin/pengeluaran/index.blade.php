@@ -20,14 +20,16 @@
                 <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('pengeluaran.create') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Kamar</a>
-                    <div class="table-responsive">
+                        <a href="{{ route('pengeluaran.create') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Pengeluaran</a>
+                        <a href="{{ route('pengeluaran-pdf') }}" class="btn btn-success mb-3" id="cetakPDF"><span i class="fas fa-print"></span> Print PDF</a>
+                        <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
                             <thead>
                                 <tr style="text-align:center">
                                 <th >
                                     No
                                 </th>
+                                <th>Tanggal</th>
                                 <th>Pengeluaran</th>
                                 <th>Nominal</th>
                                 <th>Status</th>
@@ -38,6 +40,7 @@
                                 @foreach ($pengeluaran as $index => $p)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
+                                    <td>{{ $p->date }}</td>
                                     <td>{{ $p->pengeluaran}}</td>
                                     <td>Rp{{ number_format($p->nominal) }}</td>
                                     <td>

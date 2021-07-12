@@ -3,8 +3,8 @@
 @section('title')
     Kamar
 @endsection
-
 @section('content')
+{{-- <link rel="stylesheet" href="{{ asset('izitoast/dist/css/iziToast.min.css') }}"> --}}
 <div class="main-content">
     <section class="section">
         <div class="section-header">
@@ -79,7 +79,12 @@
 </div>
 @endsection
 @push('addon-script')
+{{-- <script src="{{ asset('izitoast/dist/js/iziToast.min.js') }}" type="text/javascript"></script> --}}
 <script>
+//     iziToast.show({
+//     title: 'Success',
+//     message: 'Data berhasil dihapus'
+// });
     $(document).ready( function () {
         $('#table-1').DataTable({
             responsive: true,
@@ -118,7 +123,7 @@
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "/admin/tipe/{{ $room_type->id }}/kamar"
+                                window.location.href = "/admin/tipe/{{ $room_type->id }}/kamar/"
                             }
                         });
                     },
@@ -128,7 +133,7 @@
                             text: 'Data tidak dapat di hapus!',
                             icon: 'warning',
                         });
-                        window.location.href = "/admin/tipe/{{ $room_type->id }}/kamar"
+                        window.location.href = "/admin/tipe/{{ $room_type->id }}/kamar/"
                     }
                 });
             }

@@ -16,6 +16,7 @@ class CreateExpensesTable extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pengeluaran');
+            $table->date('date');
             $table->string('nominal');
             $table->boolean('status')->default(false);
             $table->string('keterangan');

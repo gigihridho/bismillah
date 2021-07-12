@@ -27,6 +27,7 @@
         "datatables.net-dt": "^1.1.0",
         "glob-parent": "^6.0.0",
         "is-svg": "^4.3.1",
+        "izitoast": "^1.4.0",
         "moment": "^2.29.1",
         "sweetalert2": "^10.16.9"
     }

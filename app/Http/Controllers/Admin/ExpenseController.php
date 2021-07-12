@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Expense;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\PDF as pdf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -48,6 +50,18 @@ class ExpenseController extends Controller
         $item->update($data);
         Alert::success('SUCCESS','Data Pengeluaran Berhasil Diupdate');
         return redirect()->route('pengeluaran.index');
+    }
+    public function ex_pdf(){
+        $now = Carbon::now();
+        $pengeluaran = Expense::where('status',1)->orderBy('order_date','ASC')->get();
+        $nominal = Expense::where('status',1)->sum('nominal');
+
+        $pdf = PDF::loadview('pages.admin.transaksi.transaksi_pdf',[
+            'now' => $now,
+            'nominal' => $nominal,
+            'pengeluaran' => $pengeluaran
+        ]);
+        return $pdf->download('laporan-pengeluaran.pdf');
     }
 
     public function destroy($id){

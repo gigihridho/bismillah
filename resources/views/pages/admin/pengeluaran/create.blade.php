@@ -44,6 +44,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label>Tanggal Transaksi</label>
+                                    <input type="date" name="date" class="form-control"
+                                    value="{{ old('date') }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label>Nominal</label>
                                     <input type="number" name="nominal" class="form-control"
                                     placeholder="10000" value="{{ old('nominal') }}">
