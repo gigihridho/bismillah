@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Laporan Transaksi
+    Laporan Pemasukan
 @endsection
 
 @section('content')

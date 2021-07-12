@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Expense;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\PDF as pdf;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -53,13 +53,13 @@ class ExpenseController extends Controller
     }
     public function ex_pdf(){
         $now = Carbon::now();
-        $pengeluaran = Expense::where('status',1)->orderBy('order_date','ASC')->get();
+        $pengeluaran = Expense::where('status',1)->orderBy('date','ASC')->get();
         $nominal = Expense::where('status',1)->sum('nominal');
 
-        $pdf = PDF::loadview('pages.admin.transaksi.transaksi_pdf',[
+        $pdf = PDF::loadview('pages.admin.pengeluaran.pengeluaran_pdf',[
             'now' => $now,
-            'nominal' => $nominal,
-            'pengeluaran' => $pengeluaran
+            'pengeluaran' => $pengeluaran,
+            'nominal' => $nominal
         ]);
         return $pdf->download('laporan-pengeluaran.pdf');
     }

@@ -27,12 +27,11 @@ class TransactionsController extends Controller
 
     public function index(){
         $transactions = RoomBooking::where('payment',1)->get();
-        // dd($transactions);
         return view('pages.admin.transaksi.index',[
             'transactions' => $transactions
         ]);
     }
-    // PDF::setOptions($this->setPdfOption())->loadView('transaksi_pdf', [
+
     public function pdf(){
         $now = Carbon::now();
         $transactions = RoomBooking::where('payment',1)->orderBy('order_date','ASC')->get();

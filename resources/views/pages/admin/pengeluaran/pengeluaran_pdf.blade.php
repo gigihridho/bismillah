@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <div style="text-align: center;">
                     <div>
-                        <strong>Bukti Pendapatan Kost Griyo Kenyo</strong>
+                        <strong>Bukti Pengeluaran Kost Griyo Kenyo</strong>
                     </div>
                     <small style="margin : 0px; display: block;">Alamat : Kentingan, Jebres, Surakarta</small>
                     <small style="margin : 0px; display: block;">Owner : Anggito Galih Nuragam</small>
@@ -37,27 +37,37 @@
                     <table border="1" width="100%" cellspacing="0" cellpadding="10" class="table table-striped">
                         <tr>
                             <th>#</th>
-                            <th>Nama Pemesan</th>
                             <th>Tanggal Transaksi</th>
-                            <th>Pemasukan</th>
+                            <th>Jenis Pengeluaran</th>
+                            <th>Status</th>
+                            <th>Keterangan</th>
+                            <th>Nominal</th>
                         </tr>
-                        @forelse ($transactions as $index => $transaction)
+                        @forelse ($pengeluaran as $index => $p)
                             <tr>
                                 <th>{{ $index+1 }}</th>
-                                <td>{{ $transaction->user->name }}</td>
-                                <td>{{ $transaction->order_date }}</td>
+                                <td>{{ $p->date}}</td>
+                                <td>{{ $p->pengeluaran }}</td>
+                                <td>
+                                    @if($p->status == 1)
+                                    <p>Lunas</p>
+                                    @else
+                                    <p>Belum Lunas</p>
+                                    @endif
+                                </td>
+                                <td>{{ $p->keterangan }}</td>
                                 <td style="text-align: right;">
-                                    <span>Rp {{ number_format($transaction->room->room_type->price) }}</span>
+                                    <span>Rp {{ number_format($p->nominal) }}</span>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <th colspan="4" style="color: red; text-align: center;">Tidak ada data</th>
+                                <th colspan="6" style="color: red; text-align: center;">Tidak ada data</th>
                             </tr>
                         @endforelse
                             <tr>
-                                <td colspan="3" style="text-align: right;"><small>TOTAL :</small></td>
-                                <th><span class="badge badge-danger justify-content-end">Rp {{ number_format($total_price) }}<span></th>
+                                <td colspan="5" style="text-align: right;"><small>TOTAL :</small></td>
+                                <th><span class="badge badge-danger justify-content-end">Rp {{ number_format($nominal) }}<span></th>
                             </tr>
                     </table>
                 </div>
