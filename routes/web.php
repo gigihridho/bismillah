@@ -66,6 +66,8 @@ Route::prefix('admin')
         Route::get('transaksi','Admin\TransactionsController@index')->name('transaksi');
         Route::get('transaksi/pdf','Admin\TransactionsController@pdf')->name('transaski-pdf');
 
+        Route::resource('pengeluaran','Admin\ExpenseController');
+
         Route::resource('reviews', 'Admin\ReviewsController');
 
         Route::get('invoice', 'Admin\InvoiceController@index')->name('invoice');

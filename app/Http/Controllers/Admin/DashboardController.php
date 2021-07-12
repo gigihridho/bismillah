@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Room;
 use App\User;
+use App\Expense;
 use App\RoomBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Room;
 
 class DashboardController extends Controller
 {
@@ -18,11 +19,15 @@ class DashboardController extends Controller
     }
 
     public function index(){
+        $keuntungan = 0;
+        $pengeluaran = 0;
         $user = RoomBooking::with('user')->where('payment',1)->count();
-        $room_avail = Room::where('available',false)->count();
+        $room_avail = Room::where('available',true)->count();
         $room = Room::count();
         $transactions = RoomBooking::count();
         $total_price = RoomBooking::where('payment',1)->sum('total_price');
+        $pengeluaran = Expense::where('status',1)->sum('nominal');
+        $keuntungan = $total_price - $pengeluaran;
         $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         for($bulan = 1 ; $bulan < 12; $bulan++){
             $chart = collect(DB::select("SELECT count(id) as jumlah from room_bookings where month(created_at)='$bulan'"))->first();
@@ -36,6 +41,8 @@ class DashboardController extends Controller
             'transactions' => $transactions,
             'jumlah_transactions' => $jumlah_transactions,
             'total_price' => $total_price,
+            'keuntungan' => $keuntungan,
+            'pengeluaran' => $pengeluaran
         ]);
     }
 }

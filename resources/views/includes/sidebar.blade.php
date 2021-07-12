@@ -39,6 +39,9 @@
                 <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
                     <a href="{{ route('transaksi') }}"><i class="fas fa-credit-card"></i><span>Laporan Transaksi</span></a>
                 </li>
+                <li class="{{ (request()->is('admin/pengeluaran*')) ? 'active' : '' }}">
+                    <a href="{{ route('pengeluaran.index') }}"><i class="fas fa-credit-card"></i><span>Laporan Pengeluaran</span></a>
+                </li>
                 {{-- <li class="{{ (request()->is('admin/invoice*')) ? 'active' : '' }}">
                     <a href="{{ route('invoice') }}"><i class="fas fa-file-invoice"></i><span>Invoice</span></a>
                 </li> --}}

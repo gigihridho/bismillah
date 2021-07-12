@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookedMail;
 use App\Room;
 use App\Rules\Booking;
 use App\RoomType;
@@ -12,6 +13,7 @@ use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -126,7 +128,7 @@ class BookingController extends Controller
 
         $room->available = 0;
         $room->save();
-
+        // Mail::to($user->email)->send(new BookedMail());
         Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');
         return redirect()->route('user-transaksi');
     }

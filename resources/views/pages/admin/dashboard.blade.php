@@ -11,7 +11,7 @@
             <h1>Dashboard</h1>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-primary" style="width: 70px">
                 <i class="far fa-user"></i>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-danger" style="width: 70px">
                 <i class="fas fa-bed"></i>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-warning" style="width: 70px">
                 <i class="fas fa-money-bill"></i>
@@ -56,17 +56,49 @@
                 </div>
             </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-success" style="width: 70px">
-                    <i class="fas fa-wallet"></i>
+                <i class="fas fa-wallet"></i>
                 </div>
                 <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Total Transaksi</h4>
+                    <h4>Pemasukan</h4>
                 </div>
                 <div class="card-body">
-                    <h5> Rp {{ number_format($total_price) }} </h5>
+                    Rp{{ number_format($total_price) }}
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-info" style="width: 70px">
+                <i class="fas fa-money-bill-alt"></i>
+                </div>
+                <div class="card-wrap">
+                <div class="card-header">
+                    <h4>Keuntungan</h4>
+                </div>
+                <div class="card-body">
+                    Rp{{ number_format($keuntungan) }}
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-danger" style="width: 70px">
+                <i class="fas fa-money-bill"></i>
+                </div>
+                <div class="card-wrap">
+                <div class="card-header">
+                    <h4>Pengeluaran</h4>
+                </div>
+                <div class="card-body">
+                    Rp{{ number_format($pengeluaran) }}
                 </div>
                 </div>
             </div>
@@ -77,12 +109,6 @@
             <div class="card">
                 <div class="card-header">
                 <h4>Statistik Jumlah Transaksi Setiap Bulan</h4>
-                {{-- <div class="card-header-action">
-                    <div class="btn-group">
-                    <a href="#" class="btn btn-primary">Week</a>
-                    <a href="#" class="btn">Month</a>
-                    </div>
-                </div> --}}
                 </div>
                 <div class="card-body">
                 <canvas id="myChart" height="150"></canvas>

@@ -58,25 +58,25 @@ class UserTransactionController extends Controller
     public function cancel(Request $request, $id){
 
         $transaction = RoomBooking::findOrFail($id);
-        $transaction->room->availability = $request->availability(true);
-        // $transaction->delete();
-        if($transaction->payment == true){
-            return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
-        }
+        // $transaction->room->availability = $request->availability(true);
+        $transaction->delete();
+        // if($transaction->payment == true){
+        //     return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
+        // }
 
-        if($transaction->status == "Terisi"){
-            return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
-        }
-        if($transaction->status == "Keluar"){
-            return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
-        }
-        if($transaction->status == "Menunggu"){
-            return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
-        }
+        // if($transaction->status == "Terisi"){
+        //     return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
+        // }
+        // if($transaction->status == "Keluar"){
+        //     return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
+        // }
+        // if($transaction->status == "Menunggu"){
+        //     return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
+        // }
 
-        $transaction->status = "Menunggu";
+        // $transaction->status = "Menunggu";
 
-        $transaction->save();
+        // $transaction->save();
 
         Alert::success('Sukses','Data berhasil dihapus');
         return redirect()->route('user-transaksi');

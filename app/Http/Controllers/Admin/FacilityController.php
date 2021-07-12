@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Facility;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FacilityRequest;
 use RealRashid\SweetAlert\Facades\Alert;
