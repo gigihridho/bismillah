@@ -13,7 +13,7 @@ class CreateExpensesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Expense', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pengeluaran');
             $table->string('nominal');

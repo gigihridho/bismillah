@@ -46,7 +46,7 @@
                                         @endif
                                     </div>
                                     <div style="text-align:center">
-                                        <label for="change_pic">Ganti Foto Profil</label>
+                                        <label for="change_pic">Ganti Foto KTP</label>
                                         <br>
                                         <strong style=>Info!</strong> Maksimum ukuran foto : 2MB
                                         <br>

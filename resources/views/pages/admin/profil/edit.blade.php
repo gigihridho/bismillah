@@ -46,7 +46,7 @@
                                 <input type="text" name="no_hp" id="no_hp" value="{{ $user->no_hp }}" class="form-control">
                             </div>
                             <div class="row">
-                                <div class="col text-right">
+                                <div class="col text-center">
                                     <button type="submit" class="btn btn-success px-5">
                                         Simpan Data
                                     </button>

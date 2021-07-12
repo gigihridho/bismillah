@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Room;
-use App\User;
 use App\Expense;
 use App\RoomBooking;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 

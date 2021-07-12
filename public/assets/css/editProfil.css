@@ -1,3 +1,16 @@
+.card1{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+}
+[type="file"]{
+    margin-left: 1em;
+}
+
 @media screen and (width: 768px) {
     .card1{
         position: relative;
