@@ -5,14 +5,27 @@
 @endsection
 
 @section('content')
-<style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.theme.min.css" integrity="sha512-9h7XRlUeUwcHUf9bNiWSTO9ovOWFELxTlViP801e5BbwNJ5ir9ua6L20tEroWZdm+HFBAWBLx2qH4l4QHHlRyg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" integrity="sha512-+0Vhbu8sRUlg+R/NKgTv7ahM+szPDF10G6J5PcHb1tOrAaquZIUiKUV3TH16mi6fuH4NjvHqlok6ppBhR6Nxuw==" crossorigin="anonymous" referrerpolicy="no-referrer" /><style>
 .btn-fill{
     background-color: #6777ef;
     border-radius: 12px;
     padding: 12px 28px;
     transition: 0.3s;
 }
-
+p.pfield-wrapper input {
+  float: right;
+}
+p.pfield-wrapper::after {
+  content: "\00a0\00a0 "; /* keeps spacing consistent */
+  float: right;
+}
+p.required-field::after {
+  content: "*";
+  float: right;
+  margin-left: -3%;
+  color: red;
+}
 </style>
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
     <div class="detail-1 container mx-auto p-0  position-relative detail-content" style="font-family: 'Poppins', sans-serif">
@@ -48,7 +61,7 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     </div>
-                                        <input type="date" class="form-control" id="arrival_date" name="arrival_date" placeholder="DD/MM/YYYY">
+                                        <input type="text" data-provide="datepicker" class="form-control" id="arrival_date" name="arrival_date" placeholder="Tanggal Masuk" value="" readonly="">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -119,3 +132,22 @@
     </div>
 </section>
 @endsection
+@push('after-script')
+<script>
+    $(document).ready(function(){
+        $('#arrival_date').datepicker({
+            onSelect: function(dateText, inst){
+                var today = new Date();
+                today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
+
+                var selDate = Date.parse(dateText);
+
+                if(selDate < today){
+                    $('#arrival_date').val('');
+                    $(inst).datepicker('show');
+                }
+            }
+        })
+    })
+</script>
+@endpush
