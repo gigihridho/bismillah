@@ -57,11 +57,12 @@
                                     </td>
                                     <td>
                                         <form action="/admin/tipe/{{ $room_type->id }}/kamar/{{ $room->id }}" method="POST">
+                                            @csrf
                                             <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/tipe/{{ $room_type->id }}/kamar/{{ $room->id }}/edit">
                                                 <i class="far fa-edit"></i>
                                             </a>
                                             <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $room->id }})">
-                                                <i class="far fa-trash-alt" style="color: white;"></i>
+                                                <i class="far fa-trash-alt delete" style="color: white;"></i>
                                             </a>
                                         </form>
                                     </td>
@@ -79,12 +80,7 @@
 </div>
 @endsection
 @push('addon-script')
-{{-- <script src="{{ asset('izitoast/dist/js/iziToast.min.js') }}" type="text/javascript"></script> --}}
 <script>
-//     iziToast.show({
-//     title: 'Success',
-//     message: 'Data berhasil dihapus'
-// });
     $(document).ready( function () {
         $('#table-1').DataTable({
             responsive: true,
@@ -109,7 +105,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
                     },
-                    url: "admin/tipe/{{ $room_type->id }}/kamar/" + id,
+                    url: "/admin/tipe/{{ $room_type->id }}/kamar/" + id,
                     method: "post",
                     data: {
                         "_token": "{{ csrf_token() }}",

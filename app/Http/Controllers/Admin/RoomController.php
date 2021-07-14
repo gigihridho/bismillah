@@ -6,6 +6,7 @@ use App\Room;
 use App\RoomType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Admin\RoomRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
@@ -93,10 +94,14 @@ class RoomController extends Controller
 
     public function destroy($id, $room_id){
         $room = Room::findOrFail($room_id);
-        // foreach ($room->room_bookings as $booking) {
-        //     $booking->delete;
-        // }
-        $room->delete();
+
+        foreach ($room->room_bookings as $booking) {
+            $booking->delete();
+        }
+        if($room->delete()){
+
+            return redirect('/admin/tipe/'.$id.'/kamar');
+        }
         return redirect()->back()->withErrors(array('message' => 'Maaf, data kamar tidak terhapus'));
     }
 }

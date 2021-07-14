@@ -113,7 +113,7 @@
                             <img id="img_payment" src="{{ Storage::url($tf->photo_payment) }}" width="170px" height="170px" alt="foto"
                             style="display: block; margin:auto">
                         @else
-                            <img id="img_payment" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
+                            <img id="img_payment" src="{{ asset('fe/img/png-kosong.png') }}" width="170px" height="170px" alt="foto"
                             style="display: block; margin:auto">
                         @endif
                         </div>

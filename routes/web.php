@@ -27,8 +27,6 @@ Route::post('details/{id}/book', 'BookingController@booking')->name('booking');
 
 Route::get('tentang','TentangController@index')->name('tentang');
 
-Route::get('checkout','CheckoutController@process')->name('checkout');
-
 Route::prefix('user')
     ->middleware(['auth', 'role:user', 'verified'])
     ->group(function () {
@@ -90,7 +88,7 @@ Route::prefix('admin')
                 Route::post('/{id}/kamar', 'Admin\RoomController@store');
                 Route::get('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@edit');
                 Route::put('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@update');
-                Route::delete('/{id}/room/{room_id}', 'Admin\RoomController@destroy');
+                Route::delete('/{id}/kamar/{room_id}', 'Admin\RoomController@destroy');
 
 
         });

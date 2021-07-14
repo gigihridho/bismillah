@@ -43,7 +43,7 @@
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $room_type->name }}</td>
                                     <td>
-                                        <img height="70px" src="{{ Storage::url($room_type->photo) }}" alt="">
+                                        <img height="100px" src="{{ Storage::url($room_type->photo) }}" alt="">
                                     </td>
                                     <td>{{ $room_type->floor }}</td>
                                     <td>{{ $room_type->price }}</td>
@@ -58,6 +58,8 @@
                                     </td>
                                     <td>
                                         <form action="/admin/tipe/{{ $room_type->id }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
                                             <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $room_type->id) }}">
                                                 <i class="far fa-edit"></i>
                                             </a>
@@ -122,7 +124,7 @@
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "/admin/tipe/"
+                                window.location.href = "tipe/"
                             }
                         });
                     },
@@ -132,7 +134,7 @@
                             text: 'Data tidak dapat di hapus!',
                             icon: 'warning',
                         });
-                        window.location.href = "/admin/tipe/"
+                        window.location.href = "tipe/"
                     }
                 });
             }

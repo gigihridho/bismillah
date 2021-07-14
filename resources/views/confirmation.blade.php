@@ -110,7 +110,7 @@
                         </li>
                     </ul>
 
-                    <form class="card p-2" action="{{ route('booking', $room_type_id) }}" method="post">
+                    <form class="card p-2" action="{{ route('booking', $room_type_id) }}" method="POST">
                         @csrf
                             <input name="booking_validation" type="hidden" value="0">
                             <input type="date" class="form-control" id="datepicker" name="arrival_date" value="{{ $new_arrival_date }}" hidden>

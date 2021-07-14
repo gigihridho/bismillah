@@ -134,20 +134,18 @@ p.required-field::after {
 @endsection
 @push('after-script')
 <script>
-    $(document).ready(function(){
-        $('#arrival_date').datepicker({
-            onSelect: function(dateText, inst){
-                var today = new Date();
-                today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
+    $(function () {
+    var $dp1 = $("#arrival_date");
+      $(document).ready(function () {
 
-                var selDate = Date.parse(dateText);
-
-                if(selDate < today){
-                    $('#arrival_date').val('');
-                    $(inst).datepicker('show');
-                }
-            }
-        })
-    })
+      $dp1.datepicker({
+        changeYear: true,
+        changeMonth: true,
+            minDate: '0',
+        dateFormat: "yy-mm-dd",
+        yearRange: "-100:+20",
+      });
+     });
+});
 </script>
 @endpush
