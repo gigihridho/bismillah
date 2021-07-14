@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ExpenseRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ExpenseController extends Controller
@@ -27,7 +28,7 @@ class ExpenseController extends Controller
         return view('pages.admin.pengeluaran.create');
     }
 
-    public function store(Request $request){
+    public function store(ExpenseRequest $request){
         $data = $request->all();
 
         Expense::create($data);
@@ -42,7 +43,7 @@ class ExpenseController extends Controller
             'item' => $item,
         ]);
     }
-    public function update(Request $request,$id){
+    public function update(ExpenseRequest $request,$id){
         $data = $request->all();
 
         $item = Expense::findOrFail($id);

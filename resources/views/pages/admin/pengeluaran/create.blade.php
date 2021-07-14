@@ -19,13 +19,18 @@
             <div class="row">
                 <div class="col-12">
                     @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
                     @endif
                     <div class="card">
                     <div class="card-header">
@@ -39,22 +44,21 @@
                                 <div class="form-group">
                                     <label>Pengeluaran</label>
                                     <input type="text" name="pengeluaran" class="form-control"
-                                    placeholder="Masukkan Jenis Pengeluaran" value="{{ old('pengeluaran') }}" autocomplete="off">
+                                    placeholder="Masukkan Jenis Pengeluaran" autocomplete="off">
                                     <small>Contoh: Air, Listrik, Wifi</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Transaksi</label>
-                                    <input type="date" name="date" class="form-control"
-                                    value="{{ old('date') }}">
+                                    <input type="date" name="date" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nominal</label>
                                     <input type="number" name="nominal" class="form-control"
-                                    placeholder="Masukkan Nominal" value="{{ old('nominal') }}" autocomplete="off">
+                                    placeholder="Masukkan Nominal" autocomplete="off">
                                     <small>Contoh: 10000</small>
                                 </div>
                             </div>
@@ -77,7 +81,7 @@
                                 <div class="form-group">
                                     <label>Keterangan</label>
                                     <input type="text" name="keterangan" class="form-control"
-                                    placeholder="Masukkan keterangan pengeluaran" value="{{ old('keterangan') }}" autocomplete="off">
+                                    placeholder="Masukkan keterangan pengeluaran" autocomplete="off">
                                     <small>Contoh: Pembayaran Air Minggu Pertama</small>
                                 </div>
                             </div>

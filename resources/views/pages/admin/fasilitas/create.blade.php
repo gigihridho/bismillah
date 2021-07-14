@@ -43,7 +43,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Fasilitas</label>
-                                        <input type="text" name="name" class="form-control" autocomplete="off">
+                                        <input type="text" name="name" class="form-control" autocomplete="off" placeholder="Masukkan Fasilitas"
                                     </div>
                                 </div>
                                 <div class="col-md-6">
