@@ -1,14 +1,14 @@
 @extends('layouts.user')
 
 @section('title')
-    User Booking
+    Booking
 @endsection
 
 @section('content')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Table @yield('title')</h1>
+            <h1>Data @yield('title')</h1>
             <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
             <div class="breadcrumb-item">@yield('title')</div>

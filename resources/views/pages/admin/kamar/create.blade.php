@@ -8,7 +8,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Table @yield('title')</h1>
+            <h1>Tambah @yield('title')</h1>
             <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
@@ -39,7 +39,8 @@
                                 <div class="form-group">
                                     <label>Nomor Kamar</label>
                                     <input type="text" name="room_number" class="form-control"
-                                    placeholder="" value="{{ old('room_number') }}">
+                                    placeholder="Masukkan Nomor Kamar" value="{{ old('room_number') }}" autocomplete="off">
+                                    <small>Contoh: 1</small>
                                 </div>
                             </div>
                             <div class="col-md-6">

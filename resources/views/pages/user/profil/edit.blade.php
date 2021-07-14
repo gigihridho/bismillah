@@ -65,35 +65,35 @@
                                                 <th>
                                                     <br>
                                                     Nama
-                                                    <input type="text" name="name" value="{{ $u->name }}" class="form-control" style="margin-right:190px;">
+                                                    <input type="text" name="name" value="{{ $u->name }}" class="form-control" style="margin-right:190px;" autocomplete="off">
                                                 </th>
                                             </tr>
                                             <tr>
                                                 <th>
                                                     <br>
                                                     Email
-                                                    <input type="email" name="email" value="{{ $u->email }}" class="form-control" style="margin-right:190px">
+                                                    <input type="email" name="email" value="{{ $u->email }}" class="form-control" style="margin-right:190px" autocomplete="off">
                                                 </th>
                                             </tr>
                                             <tr>
                                                 <th>
                                                     <br>
                                                     No Telepon
-                                                    <input type="number" name="no_hp" value="{{ $u->no_hp }}" class="form-control"  style="margin-right:190px">
+                                                    <input type="number" name="no_hp" value="{{ $u->no_hp }}" class="form-control"  style="margin-right:190px" autocomplete="off">
                                                 </th>
                                             </tr>
                                             <tr>
                                                 <th>
                                                     <br>
                                                     Alamat
-                                                    <input type="text" name="address" value="{{ $u->address }}"class="form-control"  style="margin-right:190px">
+                                                    <input type="text" name="address" value="{{ $u->address }}"class="form-control"  style="margin-right:190px" autocomplete="off">
                                                 </th>
                                             </tr>
                                             <tr>
                                                 <th>
                                                     <br>
                                                     Pekerjaan
-                                                    <input type="text" name="profession" value="{{ $u->profession }}" class="form-control"  style="margin-right:190px">
+                                                    <input type="text" name="profession" value="{{ $u->profession }}" class="form-control"  style="margin-right:190px" autocomplete="off">
                                                 </th>
                                             </tr>
                                         </tbody>

@@ -44,14 +44,16 @@ Review
                             <div class="form-group">
                                 <label for="review">Review</label>
                                 <input type="text" name="review" id="review" class="form-control"
-                                value="{{ $revv->review }}">
+                                value="{{ $revv->review }}" autocomplete="off" placeholder="Masukkan Review">
+                                <small>Contoh: Kost bersih dan nyaman</small>
                             </div>
                             @endforeach
                         @else
                             <div class="form-group">
                                 <label for="review">Review</label>
                                 <input type="text" name="review" id="review" class="form-control"
-                                value="">
+                                value="" autocomplete="off" placeholder="Masukkan Review">
+                                <small>Contoh: Kost bersih dan nyaman</small>
                             </div>
                         @endif
                             <div class="row">

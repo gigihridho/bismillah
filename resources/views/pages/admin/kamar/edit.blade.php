@@ -8,7 +8,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Table @yield('title')</h1>
+            <h1>Edit @yield('title')</h1>
             <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
             <div class="breadcrumb-item">Table @yield('title')</div>
@@ -29,7 +29,7 @@
                             </div>
                         @endif
                     <div class="card-header">
-                        <h4>Edit Data Kamar</h4>
+                        <h4>Edit Kamar</h4>
                     </div>
                     <div class="card-body">
                         <form action="/admin/tipe/{{ $room_type->id }}/kamar/{{ $room->id }}/edit" method="POST" enctype="multipart/form-data">

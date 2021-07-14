@@ -8,7 +8,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Table @yield('title')</h1>
+            <h1>Tambah @yield('title')</h1>
             <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
@@ -38,7 +38,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tipe Kamar</label>
-                                        <input type="text" name="name" class="form-control" autocomplete="off">
+                                        <input type="text" name="name" class="form-control" placeholder="Masukkan nama kamar" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -50,19 +50,22 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Lantai</label>
-                                        <input type="number" name="floor" class="form-control" autocomplete="off">
+                                        <input type="number" name="floor" class="form-control" placeholder="Masukkan lantai kamar" autocomplete="off">
+                                        <small>Contoh: 1</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Harga</label>
-                                        <input type="number" name="price" class="form-control" autocomplete="off">
+                                        <input type="number" name="price" class="form-control" placeholder="Masukkan Harga Kamar" autocomplete="off">
+                                        <small>Contoh: 500000</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Luas</label>
-                                        <input type="text" name="size" class="form-control" autocomplete="off">
+                                        <input type="text" name="size" class="form-control" placeholder="Masukkan Ukuran Kamar" autocomplete="off">
+                                        <small>Contoh: 3 x 3</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

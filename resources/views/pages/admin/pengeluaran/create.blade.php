@@ -8,7 +8,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Table @yield('title')</h1>
+            <h1>Tambah @yield('title')</h1>
             <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
@@ -39,7 +39,8 @@
                                 <div class="form-group">
                                     <label>Pengeluaran</label>
                                     <input type="text" name="pengeluaran" class="form-control"
-                                    placeholder="Masukkan Jenis Pengeluaran" value="{{ old('pengeluaran') }}">
+                                    placeholder="Masukkan Jenis Pengeluaran" value="{{ old('pengeluaran') }}" autocomplete="off">
+                                    <small>Contoh: Air, Listrik, Wifi</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -53,7 +54,8 @@
                                 <div class="form-group">
                                     <label>Nominal</label>
                                     <input type="number" name="nominal" class="form-control"
-                                    placeholder="10000" value="{{ old('nominal') }}">
+                                    placeholder="Masukkan Nominal" value="{{ old('nominal') }}" autocomplete="off">
+                                    <small>Contoh: 10000</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -75,7 +77,8 @@
                                 <div class="form-group">
                                     <label>Keterangan</label>
                                     <input type="text" name="keterangan" class="form-control"
-                                    placeholder="Masukkan keterangan pengeluaran" value="{{ old('keterangan') }}">
+                                    placeholder="Masukkan keterangan pengeluaran" value="{{ old('keterangan') }}" autocomplete="off">
+                                    <small>Contoh: Pembayaran Air Minggu Pertama</small>
                                 </div>
                             </div>
                         </div>
