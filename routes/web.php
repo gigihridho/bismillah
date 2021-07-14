@@ -61,8 +61,8 @@ Route::prefix('admin')
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
         Route::delete('booking/{id}','Admin\RoomBookingController@destroy');
 
-        Route::resource('transaksi','Admin\TransactionsController');
-        Route::get('transaksi/pdf','Admin\TransactionsController@pdf')->name('transaski-pdf');
+        Route::get('transaksi','Admin\TransactionsController@index')->name('transaksi');
+        Route::get('transaksi/transaksi-pdf','Admin\TransactionsController@pdf')->name('transaksi-pdf');
 
         Route::resource('pengeluaran','Admin\ExpenseController');
         Route::get('pdf','Admin\ExpenseController@ex_pdf')->name('pengeluaran-pdf');
