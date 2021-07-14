@@ -5,7 +5,7 @@
         <img style="margin-right: 0.75rem;"
             src="{{ asset('fe/img/GriyoKenyo.png') }}" alt="" />
         </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal" data-bs-target="#targetModal">
+        <button class="navbar-toggler border-0" type="button" data-toggle="modal" data-target="#targetModal">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -15,10 +15,10 @@
                 <div class="modal-content bg-white border-0">
                     <div class="modal-header border-0" style="padding: 2rem; padding-bottom: 0">
                         <a class="modal-title" id="targetModalLabel">
-                        <img style="margin-top: 0.5rem; width: 50px; height:70px"
-                        src="{{ asset('fe/img/favicon.png') }}" alt="" />
+                        <img style="margin-top: 0.5rem; width: 100px; height:70px"
+                        src="{{ asset('fe/img/GriyoKenyo.png') }}" alt="" />
                         </a>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" style="padding: 2rem; padding-top: 0; padding-bottom: 0">
                         <ul class="navbar-nav responsive me-auto mt-2 mt-lg-0">

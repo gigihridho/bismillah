@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Penghuni
+    Data Penghuni Tidak Aktif
 @endsection
 
 @section('content')
@@ -14,8 +14,8 @@
             <div class="breadcrumb-item">@yield('title')</div>
             </div>
         </div>
-        {{-- @include('pages.admin.user.navbarr') --}}
-        <div class="section-body">
+        @include('pages.admin.user.navbarr')
+        <div class="section-body" style="margin-top: 100px">
             <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -30,34 +30,24 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>No Telepon</th>
-                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $index => $user)
+                            @foreach ($data as $index => $d)
                                 <tr style="text-align: center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->no_hp }}</td>
+                                    <td>{{ $d->name }}</td>
+                                    <td>{{ $d->email }}</td>
+                                    <td>{{ $d->no_hp }}</td>
                                     <td>
-                                        @if($user->status == 1)
-                                        <button class="btn btn-success btn-sm btn-fill">Aktif</button>
-                                        @endif
-                                    </td>
-                                    <td>
-                                    <form action="#" method="POST" enctype="multipart/form-data">
-                                        @method('PUT')
-                                        @csrf
-                                        <input style="display:none" value="0" id="status"
-                                        name="status"></input>
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user.show',$user->id) }}">
+                                    <form action="{{ route('user.destroy',$d->id) }}" method="POST">
+                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user.show',$d->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        {{-- <button ty class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="return confirm('Anda yakin mau menonaktifkan siswa?')">
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $d->id }})">
                                             <i class="far fa-trash-alt" style="color: white;"></i>
-                                        </button> --}}
+                                        </a>
                                     </form>
                                     </td>
                                 </tr>
@@ -87,7 +77,7 @@
     function deleteConfirm(id) {
         Swal.fire({
             title: 'Harap Konfirmasi',
-            text: "Anda akan menonaktifkan user!",
+            text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -99,7 +89,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
                     },
-                    url: "user/" + id,
+                    url: "d/" + id,
                     method: "post",
                     data: {
                         "_token": "{{ csrf_token() }}",
@@ -113,7 +103,7 @@
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "/admin/tidakAktif/"
+                                window.location.href = "/admin/d/"
                             }
                         });
                     },
@@ -123,7 +113,7 @@
                             text: 'Data tidak dapat di hapus!',
                             icon: 'warning',
                         });
-                        window.location.href = "/admin/user/"
+                        window.location.href = "/admin/d/"
                     }
                 });
             }

@@ -63,16 +63,10 @@ Route::prefix('admin')
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
         Route::delete('booking/{id}','Admin\RoomBookingController@destroy');
 
-        Route::get('transaksi','Admin\TransactionsController@index')->name('transaksi');
+        Route::resource('transaksi','Admin\TransactionsController');
         Route::get('transaksi/pdf','Admin\TransactionsController@pdf')->name('transaski-pdf');
 
         Route::resource('pengeluaran','Admin\ExpenseController');
-        // Route::get('pengeluaran','Admin\ExpenseController@index')->name('pengeluaran');
-        // Route::get('pengeluaran/create','Admin\ExpenseController@create')->name('pengeluaran-create');
-        // Route::post('pengeluaran/{id}','Admin\ExpenseController@store')->name('pengeluaran-store');
-        // Route::get('pengeluaran/{id}/edit','Admin\ExpenseController@edit')->name('pengeluaran-edit');
-        // Route::put('pengeluaran/{id}/edit','Admin\ExpenseController@update')->name('pengeluaran-update');
-        // Route::delete('pengeluaran/{id}','Admin\ExpenseController@destroy')->name('pengeluaran-destroy');
         Route::get('pdf','Admin\ExpenseController@ex_pdf')->name('pengeluaran-pdf');
 
         Route::resource('reviews', 'Admin\ReviewsController');

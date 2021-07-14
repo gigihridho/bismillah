@@ -99,7 +99,7 @@ class RoomTypeController extends Controller
         //     return back()->withErrors('error','Maaf tipe kamar tidak bisa dihapus');
         // }
         foreach ($room_type->room as $room) {
-
+            dd($room_type);
             foreach ($room->room_bookings as $booking) {
                 $booking->delete();
             }

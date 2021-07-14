@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
-                <div class="card-icon bg-success" style="width: 70px">
+                <div class="card-icon bg-info" style="width: 70px">
                 <i class="fas fa-wallet"></i>
                 </div>
                 <div class="card-wrap">
@@ -75,7 +75,7 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
-                <div class="card-icon bg-info" style="width: 70px">
+                <div class="card-icon bg-success" style="width: 70px">
                 <i class="fas fa-money-bill-alt"></i>
                 </div>
                 <div class="card-wrap">

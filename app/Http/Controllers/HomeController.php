@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $users = User::all();
         $reviews = Review::all();
-        $room_types = RoomType::all();
+        $room_types = RoomType::where('status',1)->get();
         $rooms = RoomType::with('rooms')->where('status',true)->get();
         return view('landing',[
             'users' => $users,

@@ -37,7 +37,7 @@
                 </li>
             <li class="menu-header">Transaksi
                 <li class="{{ (request()->is('admin/pemasukan*')) ? 'active' : '' }}">
-                    <a href="{{ route('transaksi') }}"><i class="fas fa-credit-card"></i><span>Laporan Pemasukan</span></a>
+                    <a href="{{ route('transaksi.index') }}"><i class="fas fa-credit-card"></i><span>Laporan Pemasukan</span></a>
                 </li>
                 <li class="{{ (request()->is('admin/pengeluaran*')) ? 'active' : '' }}">
                     <a href="{{ route('pengeluaran.index') }}"><i class="fas fa-receipt"></i><span>Laporan Pengeluaran</span></a>
