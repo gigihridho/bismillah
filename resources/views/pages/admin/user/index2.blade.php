@@ -41,8 +41,8 @@
                                     <td>{{ $d->email }}</td>
                                     <td>{{ $d->no_hp }}</td>
                                     <td>
-                                    <form action="{{ route('user.destroy',$d->id) }}" method="POST">
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user.show',$d->id) }}">
+                                    <form action="#" method="POST">
+                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user-detail',$d->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $d->id }})">

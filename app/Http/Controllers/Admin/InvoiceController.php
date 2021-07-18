@@ -29,9 +29,9 @@ class InvoiceController extends Controller
         ]);
     }
 
-    public function create($user_id){
-        $invoice = RoomBooking::findOrFail($user_id);
-        dd($invoice);
+    public function create($id){
+        $invoice = RoomBooking::findOrFail($id);
+        // dd($invoice);
         return view('pages.admin.invoice.create',[
             'invoice' => $invoice
         ]);
@@ -39,13 +39,15 @@ class InvoiceController extends Controller
 
     public function store(Request $request, $room_type_id)
     {
-        $user_id = $request->input('user_id');
-        $data = RoomBooking::join('users','room_bookings.user_id','=','users.id')
-            ->where('users.id', '=' ,$user_id)
-            ->select('users.*')
-            ->getQuery()
-            ->get();
-
+        // $request = $this->request;
+        $data = RoomBooking::with('user','room')->first();
+        // dd($id);
+        // $data = RoomBooking::join('users','room_bookings.user_id','=','users.id')
+        //     ->where('users.id', '=' ,$id)
+        //     ->select('users.*')
+        //     ->getQuery()
+        //     ->get();
+        // dd($id);
         $room_type = RoomType::findOrFail($room_type_id);
 
         $duration = $request->input('duration');
@@ -94,12 +96,12 @@ class InvoiceController extends Controller
 
         $booking->total_price = $total_price;
 
-        $booked = new Booking($room_type, $new_arrival_date, $new_departure_date);
-
-        $room = Room::where('room_number', $booked->available_room_number())->first();
-
+        // $booked = new Booking($room_type, $new_arrival_date, $new_departure_date);
+        // $user_id = RoomBooking::with('user')->where('id','user_id')->first();
+        // dd($user_id);
+        $room = RoomBooking::with('room')->where('room_id','id')->get();
         $booking->room_id = $room->id;
-        $booking->user_id = $data->id;
+        $booking->id= $data->user_id;
 
         $booking->save();
 

@@ -29,8 +29,11 @@
                             </div>
                         @endif
                     <div class="card">
+                        <div class="card-header">
+                            <h4>Perpanjangan Sewa</h4>
+                        </div>
                         <div class="card-body">
-                            <form id="invoice_store" action="{{ $invoice->user_id }}" method="POST" enctype="multipart/form-data">
+                            <form id="invoice_store" action="{{ $invoice->id }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -42,6 +45,7 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <span class="text-muted"></span>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>No Kamar</label>
@@ -62,6 +66,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label for="departure_date">Tanggal Keluar</label>
+                                            <input type="text" class="form-control" value="{{ $invoice->departure_date }}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <label>Lama Sewa</label>
                                             <select name="duration" id="duration" class="form-control">
                                                 <option value="1">1 Bulan</option>
@@ -71,6 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- <input type="date" class="form-control" id="datepicker" name="arrival_date" value="{{ $new_arrival_date }}" hidden> --}}
                                 <div class="row">
                                     <div class="col text-center">
                                         <button type="submit" id="submit" class="btn btn-success px-5 simpan" style="padding: 8px 16px;">

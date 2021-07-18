@@ -38,7 +38,7 @@ p.required-field::after {
             </nav>
         </div>
 
-        <div class="kost-gallery" id="gallery">
+        <div class="kost-gallery mt-3" id="gallery">
             <div class="container">
                 <div class="row">
                     @php $incrementRoomType = 0 @endphp
@@ -82,7 +82,8 @@ p.required-field::after {
                                 Pesan Kamar
                             </button>
                             @else
-                            <a href="{{ route('login') }}" class="btn btn-fill text-white btn-block mb-3" style="width: 100%">
+                            <a href="{{ route('login') }}" class="btn btn-danger px-5 text-white btn-block mb-3" style="width: 100%; border-radius: 12px;
+                            padding: 12px 28px;">
                                 Masuk Untuk Pesan
                             </a>
                             @endauth
@@ -92,7 +93,7 @@ p.required-field::after {
                 </div>
             </div>
         </div>
-        <div class="kost-detail">
+        <div class="kost-detail mb-4">
             <section class="kost-heading">
                 <div class="container">
                     <div class="row">
@@ -120,7 +121,7 @@ p.required-field::after {
                             @forelse ($room_type->facilities as $facility)
                                 <p>{{ $facility->name }}</p>
                             @empty
-                            <div class="col-12 text-left" data-aos="fade-up" data-aos-delay="100">
+                            <div class="col-12 text-left">
                                 Data Fasilitas Tidak Ditemukan
                             </div>
                             @endforelse
@@ -142,6 +143,7 @@ p.required-field::after {
         changeYear: true,
         changeMonth: true,
             minDate: '0',
+            maxDate: '2m',
         dateFormat: "yy-mm-dd",
         yearRange: "-100:+20",
       });
