@@ -26,12 +26,9 @@
         </div>
 
         <div class="container-fluid">
-            <div class="row" style="margin-bottom:1rem;">
-                <h3>Pengajuan Sewa</h3>
-            </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="card" style="width: 100%;">
+                    <div class="card" style="width: 80%;">
                         <img src="{{ Storage::url($room_type->photo) }}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">Tipe Kamar {{ $room_type->name }}</h5>
@@ -102,12 +99,12 @@
                             <div>
                                 <h6 class="my-0">{{ $duration }} Bulan</h6>
                             </div>
-                            <span class="text-muted">Rp. {{ $total_price }}</span>
+                            <span class="text-muted">Rp. {{ number_format($total_price,2,',','.') }}</span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-betweeb lh-condensed">
+                        {{-- <li class="list-group-item d-flex justify-content-betweeb lh-condensed">
                             <h6>Rekening Tujuan</h6>
                                 <h6 class="text-muted" style="margin-left: auto">08164282</h6>
-                        </li>
+                        </li> --}}
                     </ul>
 
                     <form class="card p-2" action="{{ route('booking', $room_type_id) }}" method="POST">

@@ -26,6 +26,15 @@ class UserTransactionController extends Controller
         ]);
     }
 
+    public function lanjut(Request $request){
+        return view('pages.user.user-transaksi.create',[
+        ]);
+    }
+
+    public function save(Request $request){
+        $transaction = RoomBooking::where('user_id',Auth::user()->id)->get();
+
+    }
     public function detail(Request $request, $id){
         $item = RoomBooking::where('id',$id)->get();
 
@@ -53,30 +62,13 @@ class UserTransactionController extends Controller
 
         Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
         return redirect()->back();
-        }
+    }
 
     public function cancel(Request $request, $id){
 
         $transaction = RoomBooking::findOrFail($id);
         // $transaction->room->availability = $request->availability(true);
         $transaction->delete();
-        // if($transaction->payment == true){
-        //     return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
-        // }
-
-        // if($transaction->status == "Terisi"){
-        //     return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
-        // }
-        // if($transaction->status == "Keluar"){
-        //     return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
-        // }
-        // if($transaction->status == "Menunggu"){
-        //     return back()->withErrors('Maaf Anda tidak bisa membatalkan pesanan yang telah dibayar. Silakan hubungi admin');
-        // }
-
-        // $transaction->status = "Menunggu";
-
-        // $transaction->save();
 
         Alert::success('Sukses','Data berhasil dihapus');
         return redirect()->route('user-transaksi');

@@ -23,7 +23,10 @@
                         {{-- <a href="{{ route('user-transaksi.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Transaksi</a> --}}
                     <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
-                            <p>Pilih tombol <button class="btn btn-success"> <i class="fas fa-upload"></i></button> pada kolom Aksi untuk Upload Bukti Pembayaran </p>
+                            <p>Klik tombol <button class="btn btn-success"> <i class="fas fa-upload"></i></button> untuk Upload Bukti Pembayaran </p>
+                            @foreach ($transaction as $tf)
+                            <a href="{{ route('lanjut-sewa') }}" class="btn btn-primary mb-3"><span i class="fas fa-plus"></span> Perpanjang Sewa</a>
+                            @endforeach
                             <thead>
                                 <tr style="text-align: center">
                                     <th>
@@ -34,7 +37,6 @@
                                     <th>Tanggal Keluar</th>
                                     <th>Total Harga</th>
                                     <th>Foto Pembayaran</th>
-                                    <th>Keterangan</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -52,16 +54,9 @@
                                         @if($tf->photo_payment != null)
                                             <img height="70px" width="60px" src="{{ Storage::url($tf->photo_payment) }}" alt="">
                                         @else
-                                            <button class="btn btn-warning btn-sm" style="text-align:center">Belum Upload
-                                            </button>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($tf->payment == 1)
-                                            <button class="btn btn-success btn-sm" style="text-align:center">Sudah Bayar</button>
-                                        @else
-                                            <button class="btn btn-danger btn-sm" style="text-align:center">Belum Bayar
-                                            </button>
+                                        <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
+                                            <i class="fas fa-upload" style="color: white;"></i>
+                                        </a>
                                         @endif
                                     </td>
                                     <td>
@@ -75,9 +70,13 @@
                                     </td>
                                     <td>
                                         <form action="{{ route('user-transaksi-delete',$tf->id) }}" method="POST">
+                                            {{-- @if($tf->photo_payment != null)
                                             <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
                                                 <i class="fas fa-upload" style="color: white;"></i>
                                             </a>
+                                            @else
+                                            <a href="#" class="btn btn-success">Hai</a>
+                                            @endif --}}
                                             <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Cancel" onClick="deleteConfirm({{ $tf->id }})">
                                                 <i class="fas fa-minus" style="color: white;"></i>
                                             </a>
@@ -116,7 +115,7 @@
                             <img id="img_payment" src="{{ asset('fe/img/png-kosong.png') }}" width="170px" height="170px" alt="foto"
                             style="display: block; margin:auto">
                         @endif
-                        </div>
+                    </div>
                     <h5 style="font-weight: 600" for="exampleFormControlFile1">Pilih File</h5>
                         <p>Ukuran File Max 2 MB</p>
                     <input type="file" name="photo_payment" class="form-control-file" id="input_payment">

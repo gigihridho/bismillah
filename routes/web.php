@@ -17,15 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::view('landing','landing');
-Route::view('detail-kost','detail-kost');
-Route::view('loginn','loginn');
-
 Route::get('details/{id}', 'DetailController@detail')->name('detail-kost');
 Route::post('details/{id}/confirmation', 'BookingController@confirmation')->name('confirmation');
 Route::post('details/{id}/book', 'BookingController@booking')->name('booking');
-
-Route::get('tentang','TentangController@index')->name('tentang');
+Route::get('invoice','BookingController@show')->name('upload');
+Route::post('upload/{id}','BookingController@upload')->name('upload-pembayaran');
 
 Route::prefix('user')
     ->middleware(['auth', 'role:user', 'verified'])
@@ -36,6 +32,8 @@ Route::prefix('user')
         Route::post('change-pass','ChangePassController@update')->name('change-pass-user-update');
 
         Route::get('user-transaksi', 'UserTransactionController@index')->name('user-transaksi');
+        Route::get('lanjut-sewa','UserTransactionController@lanjut')->name('lanjut-sewa');
+        Route::post('user-transaksi','UserTransactionController@save')->name('save-lanjut-sewa');
         Route::get('user-transaksi/{id}', 'UserTransactionController@detail')->name('user-transaksi-detail');
         Route::post('user-transaksi/{id}', 'UserTransactionController@upload')->name('user-transaksi-upload');
         Route::delete('user-transaksi/{id}','UserTransactionController@cancel')->name('user-transaksi-delete');

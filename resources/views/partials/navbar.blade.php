@@ -5,7 +5,7 @@
         <img style="margin-right: 0.75rem;"
             src="{{ asset('fe/img/GriyoKenyo.png') }}" alt="" />
         </a>
-        <button class="navbar-toggler border-0" type="button" data-toggle="modal" data-target="#targetModal">
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal" data-bs-target="#targetModal">
             <span class="navbar-toggler-icon"></span>
         </button>
 

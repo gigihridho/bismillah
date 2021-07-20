@@ -6,7 +6,8 @@
 
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.theme.min.css" integrity="sha512-9h7XRlUeUwcHUf9bNiWSTO9ovOWFELxTlViP801e5BbwNJ5ir9ua6L20tEroWZdm+HFBAWBLx2qH4l4QHHlRyg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" integrity="sha512-+0Vhbu8sRUlg+R/NKgTv7ahM+szPDF10G6J5PcHb1tOrAaquZIUiKUV3TH16mi6fuH4NjvHqlok6ppBhR6Nxuw==" crossorigin="anonymous" referrerpolicy="no-referrer" /><style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" integrity="sha512-+0Vhbu8sRUlg+R/NKgTv7ahM+szPDF10G6J5PcHb1tOrAaquZIUiKUV3TH16mi6fuH4NjvHqlok6ppBhR6Nxuw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
 .btn-fill{
     background-color: #6777ef;
     border-radius: 12px;
@@ -27,12 +28,12 @@ p.required-field::after {
   color: red;
 }
 </style>
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+<section class="h-100 w-100 bg-white pb-5" style="box-sizing: border-box">
     <div class="detail-1 container mx-auto p-0  position-relative detail-content" style="font-family: 'Poppins', sans-serif">
         <div class="row">
             <nav aria-label="breadcrumb" class="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item">Home</li>
                     <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
                 </ol>
             </nav>
@@ -44,7 +45,7 @@ p.required-field::after {
                     @php $incrementRoomType = 0 @endphp
                     @forelse ($room_types as $room_type)
                     <div class="col-lg-8" style="margin-bottom: 1rem">
-                        <img src="{{Storage::url($room_type->photo) }}" alt="" width="100%">
+                        <img src="{{Storage::url($room_type->photo) }}" alt="" width="80%">
                     </div>
                     @empty
                     <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">

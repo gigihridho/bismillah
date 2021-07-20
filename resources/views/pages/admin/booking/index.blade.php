@@ -74,9 +74,9 @@
                                         <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $room_booking->id }}/edit">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{$room_booking->id}})">
+                                        {{-- <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{$room_booking->id}})">
                                             <i class="far fa-trash-alt" style="color: white;"></i>
-                                        </a>
+                                        </a> --}}
                                     </form>
                                 </td>
                             </tr>

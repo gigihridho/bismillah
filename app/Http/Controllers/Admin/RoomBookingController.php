@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\RoomBooking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
-use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class RoomBookingController extends Controller
@@ -56,13 +54,9 @@ class RoomBookingController extends Controller
 
     public function destroy($id){
         $room_booking = RoomBooking::findOrFail($id);
+        dd($room_booking);
 
-        if($room_booking->room->available = true){
-            $room_booking->delete();
-        }
-        $room_booking->status = "Menunggu";
-        $room_booking->save();
-
-        return redirect()->route('booking.index');
+        $room_booking->delete();
+        return redirect()->back();
     }
 }
