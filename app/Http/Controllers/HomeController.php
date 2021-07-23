@@ -27,12 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
         $reviews = Review::all();
         $room_types = RoomType::where('status',1)->get();
         $rooms = RoomType::with('rooms')->where('status',true)->get();
         return view('landing',[
-            'users' => $users,
             'reviews' => $reviews,
             'room_types' => $room_types,
             'rooms' => $rooms

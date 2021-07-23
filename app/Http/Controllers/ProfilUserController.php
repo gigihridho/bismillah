@@ -31,10 +31,6 @@ class ProfilUserController extends Controller
             'profession' => 'required|string',
             'photo_ktp' => 'image|max:2048|mimes:png,jpg,jpeg',
             'address' => 'required|string',
-        ],
-        [
-            'name.required' => 'Nama tidak boleh kosong',
-            'email.required' => 'Email tidak boleh kosong',
         ]);
         $data = User::where('id',$id)->first();
         $data->name = $request->name;

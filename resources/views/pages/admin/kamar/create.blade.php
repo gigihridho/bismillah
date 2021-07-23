@@ -61,7 +61,7 @@
                         </div>
                             <div class="row">
                                 <div class="col text-center">
-                                    <button type="submit" class="btn btn-success px-5" style="padding: 8px 16px">
+                                    <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
                                         Simpan Data
                                     </button>
                                 </div>

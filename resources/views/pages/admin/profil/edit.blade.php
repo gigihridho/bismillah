@@ -47,7 +47,7 @@
                             </div>
                             <div class="row">
                                 <div class="col text-center">
-                                    <button type="submit" class="btn btn-success px-5">
+                                    <button type="submit" class="btn btn-primary px-5">
                                         Simpan Data
                                     </button>
                                 </div>

@@ -100,7 +100,7 @@
                                     </table>
                                     <div class="form-group"></div>
                                     <td>
-                                        <button type="submit" class="btn btn-success px-5">
+                                        <button type="submit" class="btn btn-primary px-5">
                                             Simpan
                                         </button>
                                         <a href="{{ route('profil-user') }}" class="btn btn-danger px-5 text-white">

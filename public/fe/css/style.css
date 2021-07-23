@@ -251,8 +251,13 @@
         }
 
         @media (min-width: 992px) {
-            .content-3-2 .left-column {
+            .content-3-2 .img-hero {
             width: 50%;
+            margin-bottom: 0;
+            }
+
+            .content-3-2 .left-column{
+                width: 50%;
             }
 
             .content-3-2 .right-column {

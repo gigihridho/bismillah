@@ -20,7 +20,8 @@ class UserTransactionController extends Controller
     }
 
     public function index(){
-        $transaction = RoomBooking::with('user','room')->where('user_id',Auth::user()->id)->get();
+        $transaction = RoomBooking::with('user','room')
+            ->where('user_id',Auth::user()->id)->get();
         return view('pages.user.user-transaksi.index',[
             'transaction' => $transaction
         ]);

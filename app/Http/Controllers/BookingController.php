@@ -30,11 +30,8 @@ class BookingController extends Controller
         ];
 
         $room_type = RoomType::findOrFail($room_type_id);
-
         $price = $room_type->price;
-
         $new_arrival_date = $request->input('arrival_date');
-
         $duration = $request->input('duration');
 
         if($duration == 1){
@@ -49,22 +46,16 @@ class BookingController extends Controller
         }
 
         $rules['booking_validation'] = [new RoomAvailableRule($room_type,$new_arrival_date,$new_departure_date)];
-
         $validator = Validator::make($request->all(), $rules);
-
         if($validator->fails()){
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         }
-
         $booking = new Booking($room_type, $new_arrival_date, $new_departure_date);
 
         return view('confirmation', [
-            'room_type_id' => $room_type_id,
-            'new_arrival_date' => $new_arrival_date,
-            'new_departure_date' => $new_departure_date,
-            'room_type' => $room_type,
-            'room_number' => $booking->available_room_number(),
-            'duration' => $duration,
+            'room_type_id' => $room_type_id,'new_arrival_date' => $new_arrival_date,
+            'new_departure_date' => $new_departure_date,'room_type' => $room_type,
+            'room_number' => $booking->available_room_number(),'duration' => $duration,
             'total_price' => $total_price
         ]);
     }
@@ -73,13 +64,8 @@ class BookingController extends Controller
         $rules = [
             'arrival_date' => 'required|date|after_or_equal:today',
         ];
-
         $room_type = RoomType::findOrFail($room_type_id);
-
-        $code = 'KGK-' . mt_rand(0000,9999);
-
         $new_arrival_date = $request->input('arrival_date');
-
         $duration = $request->input('duration');
 
         if($duration == 1){
@@ -106,7 +92,6 @@ class BookingController extends Controller
         $room_booking->order_date = Carbon::now();
 
         $price = $room_type->price;
-
         if($duration == 1){
             $total_price = $duration * $price;
         } elseif($duration == 6){

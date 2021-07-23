@@ -28,19 +28,15 @@ class RoomController extends Controller
     }
     public function create($id){
         $room_type = RoomType::find($id);
-
         return view('pages.admin.kamar.create',[
             'room_type' => $room_type
         ]);
     }
-
     public function store($id, Request $request){
         $rules = [
             'room_number' => 'required|numeric|max:99999|unique:rooms,room_number',
-            'description' => 'max:200',
             'status' => 'boolean|required'
         ];
-
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()

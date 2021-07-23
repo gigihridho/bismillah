@@ -16,12 +16,10 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
+
     public function index(){
-        $keuntungan = 0;
-        $pengeluaran = 0;
         $user = RoomBooking::with('user')->where('payment',1)->count();
         $room_avail = Room::where('available',true)->count();
-        $room = Room::count();
         $transactions = RoomBooking::count();
         $total_price = RoomBooking::where('payment',1)->sum('total_price');
         $pengeluaran = Expense::where('status',1)->sum('nominal');
@@ -34,7 +32,6 @@ class DashboardController extends Controller
         return view('pages.admin.dashboard',[
             'user' => $user,
             'room_avail' => $room_avail,
-            'room' => $room,
             'label' => $label,
             'transactions' => $transactions,
             'jumlah_transactions' => $jumlah_transactions,

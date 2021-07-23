@@ -40,15 +40,17 @@
         <h4 class="d-flex justify-content-center mb-3">Silakan unggah bukti pembayaran ya</h4>
         <div class="d-flex flex-lg-row flex-column align-items-center">
         <!-- Left Column -->
-        <div class="left-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
-            <h4 class="title-text">Cara Pembayaran</h4>
-            <ul style="padding: 0; margin: 0 0 0 30px">
-            <li class="list-unstyled">
+        <div class="col-lg-6 left-column d-flex flex-column align-items-lg-start text-lg-start text-center">
+            <h6>Hai</h6>
+            @foreach ($transaction as $tf)
+            <form action="{{ route('upload-pembayaran',$tf->id) }}" method="POST" enctype="multipart/form-data">
                 <input type="file" name="photo_payment">
-            </ul>
+                <button type="submit">Kirim</button>
+            </form>
+            @endforeach
         </div>
         <!-- Right Column -->
-        <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
+        <div class="col-lg-6 right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
             <h4 class="title-text">Cara Pembayaran</h4>
             <ul style="padding: 0; margin: 0 30px">
             <li class="list-unstyled">

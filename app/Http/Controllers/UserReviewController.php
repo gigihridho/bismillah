@@ -20,12 +20,6 @@ class UserReviewController extends Controller
     {
         $user = User::where('id',Auth::user()->id)->get();
         $review = Review::where('user_id',Auth::user()->id)->get();
-        // dd($review);
-        // if(!is_null($request->get('review'))){
-        //     $review->where('user_id',$request->get('review'));
-        // }
-
-        // $review->first();
         return view('pages.user.review.edit',[
             'review' => $review,
             'user' => $user,
@@ -35,7 +29,6 @@ class UserReviewController extends Controller
     public function update(Request $request, $redirect){
         $user = User::where('id',Auth::user()->id)->first()->id;
         $item = Review::where('user_id', $user)->first();
-
         if($item == null){
             $item = new Review();
             $item->review = $request->review;
@@ -48,8 +41,13 @@ class UserReviewController extends Controller
                 $item->save();
             }
         }
-
         Alert::success('SUCCESS','Review Berhasil ditambah');
         return redirect()->route($redirect);
     }
 }
+// dd($review);
+        // if(!is_null($request->get('review'))){
+        //     $review->where('user_id',$request->get('review'));
+        // }
+
+        // $review->first();

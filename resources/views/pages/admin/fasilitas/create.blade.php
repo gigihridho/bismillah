@@ -43,7 +43,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Fasilitas</label>
-                                        <input type="text" name="name" class="form-control" autocomplete="off" placeholder="Masukkan Fasilitas"
+                                        <input type="text" name="name" class="form-control" autocomplete="off" placeholder="Masukkan Fasilitas"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -63,12 +63,13 @@
                             </div>
                                 <div class="row">
                                     <div class="col text-center">
-                                        <button type="submit" id="submit" class="btn btn-success px-5 simpan" style="padding: 8px 16px;">
+                                        <button type="submit" id="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px;">
                                             Simpan Data
                                         </button>
                                     </div>
                                 </div>
                             </form>
+                        </div>
                         </div>
                 </div>
             </div>

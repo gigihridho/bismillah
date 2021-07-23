@@ -36,13 +36,31 @@
                         <form action="{{ route('fasilitas.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                             @method("PUT")
                             @csrf
-                        <div class="form-group">
-                        <label>Nama Fasilitas</label>
-                        <input type="text" name="name" value="{{ $item->name }}" class="form-control" autocomplete="off">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nama Fasilitas</label>
+                                    <input type="text" name="name" value="{{ $item->name }}" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="1"
+                                                @if (old('status') == '1') selected="selected" @endif>Aktif
+                                        </option>
+                                        <option value="0"
+                                                @if (old('status') == '0') selected="selected" @endif>
+                                            Tidak Aktif
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col text-center">
-                                <button type="submit" class="btn btn-success px-5" style="padding: 8px 16px">
+                                <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
                                     Simpan Data
                                 </button>
                             </div>

@@ -42,9 +42,9 @@
                 <li class="{{ (request()->is('admin/pengeluaran*')) ? 'active' : '' }}">
                     <a href="{{ route('pengeluaran.index') }}"><i class="fas fa-receipt"></i><span>Laporan Pengeluaran</span></a>
                 </li>
-                <li class="{{ (request()->is('admin/invoice*')) ? 'active' : '' }}">
+                {{-- <li class="{{ (request()->is('admin/invoice*')) ? 'active' : '' }}">
                     <a href="{{ route('invoice') }}"><i class="fas fa-file-invoice"></i><span>Invoice</span></a>
-                </li>
+                </li> --}}
             </li>
             <li class="menu-header">User
                 <li class="{{ (request()->is('admin/user*')) ? 'active' : '' }}">
