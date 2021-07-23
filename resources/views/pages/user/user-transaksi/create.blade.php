@@ -32,8 +32,9 @@
                         <h4>Perpanjangan sewa</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('save-lanjut-sewa') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('save-lanjut-sewa') }}" id="form-sewa" method="POST" enctype="multipart/form-data">
                             @csrf
+                        <input type="hidden" name="transaction" value="{{ $transaction }}">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -43,6 +44,13 @@
                                         <option value="6">6 Bulan</option>
                                         <option value="12">1 Tahun</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Total Harga</label>
+                                    <input type="hidden" name="total" id="total" value="{{ $room_type->price }}">
+                                    <input type="text" name="total_price" id="total_price" class="form-control" readonly value="{{ number_format($room_type->price) }}">
                                 </div>
                             </div>
                         </div>
@@ -62,3 +70,29 @@
     </section>
 </div>
 @endsection
+@push('addon-script')
+<script>
+    let price = {!! $room_type->price !!}
+    let selectedDuration = $("#duration");
+    selectedDuration.on('change', (event) => {
+        let duration = event.target.value;
+        let total = updatePrice(duration, price);
+
+        $("#total").val(total);
+        $("#total_price").val(total.toLocaleString());
+    })
+
+    function updatePrice(duration, price) {
+        let total_price = 0 ;
+
+        if (duration == 1){
+            total_price = duration * price;
+        } else if (duration == 6){
+            total_price = duration * price - (0.5 * price);
+        } else if(duration == 12){
+            total_price = duration * price - (1 * price);
+        }
+        return total_price;
+    }
+</script>
+@endpush
