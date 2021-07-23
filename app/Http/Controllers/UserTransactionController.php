@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\RoomBooking;
 use App\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -28,14 +29,50 @@ class UserTransactionController extends Controller
     }
 
     public function lanjut(Request $request){
+        $transaction = RoomBooking::with('user','room')
+            ->where('user_id',Auth::user()->id)
+            ->latest()
+            ->first();
+        if ($transaction->payment == 0) {
+            return redirect()->back()->withErrors('Silahkan konfirmasi pembayaran terlebih dahulu');
+        }
+        $room_type =  $transaction->room->room_type;
+
         return view('pages.user.user-transaksi.create',[
+            'transaction' => $transaction,
+            'room_type' => $room_type
         ]);
     }
 
     public function save(Request $request){
-        $transaction = RoomBooking::where('user_id',Auth::user()->id)->get();
+        $old_room_booking = json_decode($request->transaction);
+        $new_arrival_date = $old_room_booking->departure_date;
+        $duration = $request->input('duration');
+        $total_price = $request->input('total');
 
+        if ($duration == 1) {
+            $new_departure_date = date('Y-m-d', strtotime('+1 month', strtotime($new_arrival_date)));
+        } elseif ($duration == 6){
+            $new_departure_date = date('Y-m-d', strtotime('+6 month', strtotime($new_arrival_date)));
+        } else {
+            $new_departure_date = date('Y-m-d', strtotime('+12 month', strtotime($new_arrival_date)));
+        }
+
+        $user = Auth::user();
+        $room_booking = new RoomBooking();
+        $room_booking->duration = $duration;
+        $room_booking->arrival_date = $new_arrival_date;
+        $room_booking->departure_date = $new_departure_date;
+        $room_booking->order_date = Carbon::now();
+        $room_booking->total_price = $total_price;
+        $room_booking->room_id = $old_room_booking->room_id;
+        $room_booking->user_id = $user->id;
+        $room_booking->save();
+
+        Alert::success('SUCCESS','Berhasil melakukan perpanjangan sewa kamar');
+        return redirect()->route('user-transaksi');
     }
+
     public function detail(Request $request, $id){
         $item = RoomBooking::where('id',$id)->get();
 

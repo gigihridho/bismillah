@@ -15,6 +15,12 @@
             </div>
         </div>
 
+        @if($errors->any())
+        <div class="alert alert-warning">
+            <h4>{{$errors->first()}}</h4>
+        </div>
+        @endif
+
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
@@ -24,9 +30,9 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
                             <p>Klik tombol <button class="btn btn-success"> <i class="fas fa-upload"></i></button> untuk Upload Bukti Pembayaran </p>
-                            @foreach ($transaction as $tf)
+                            @if ($transaction->count() > 0)
                             <a href="{{ route('lanjut-sewa') }}" class="btn btn-primary mb-3"><span i class="fas fa-plus"></span> Perpanjang Sewa</a>
-                            @endforeach
+                            @endif
                             <thead>
                                 <tr style="text-align: center">
                                     <th>
