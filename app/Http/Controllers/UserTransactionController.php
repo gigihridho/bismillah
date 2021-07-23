@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Booking;
 use App\RoomBooking;
-use App\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
-use Yajra\DataTables\Facades\DataTables;
-
 
 class UserTransactionController extends Controller
 {

@@ -14,6 +14,9 @@
 	position: absolute;
 	z-index: -1;
 }
+input[type="file"]{
+    display: none;
+}
 .inputfile + label {
     font-size: 1.25em;
     font-weight: 700;
@@ -34,6 +37,32 @@
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
 }
+.image-preview {
+    width: 250px;
+    min-height: 170px;
+    border: 2px dashed #afeeee;
+    margin-top: 15px;
+    margin-left: 9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #cccccc;
+}
+.image-preview__image{
+    display: none;
+    width: 100%;
+}
+.image-preview__default-text {
+    color:#87ceeb;
+
+}
+#inpFile {
+    margin-left: 10em;
+}
+.invoice h6{
+    margin-left: 3rem;
+}
 </style>
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
     <div class="content-3-2 container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
@@ -41,10 +70,20 @@
         <div class="d-flex flex-lg-row flex-column align-items-center">
         <!-- Left Column -->
         <div class="col-lg-6 left-column d-flex flex-column align-items-lg-start text-lg-start text-center">
-            <h6>Hai</h6>
             @foreach ($transaction as $tf)
-            <form action="{{ route('upload-pembayaran',$tf->id) }}" method="POST" enctype="multipart/form-data">
-                <input type="file" name="photo_payment">
+            <div class="invoice">
+                <h6>Total Tagihan Pembayaran Anda</h6>
+                <h6>Rp {{ number_format($tf->total_price,2,',','.') }}</h6>
+            </div>
+            <form action="{{ route('upload-pembayaran',$tf->id) }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="image-preview" id="imagePreview">
+                    <img src="" id="imagePreview" alt="Image Preview" class="image-preview__image">
+                        <span class="image-preview__default-text">
+                        +</span>
+                </div>
+                <input type="file" name="photo_payment" id="inpFile">
                 <button type="submit">Kirim</button>
             </form>
             @endforeach
@@ -123,21 +162,31 @@
 @push('after-script')
     <script src="{{ asset('dropzone/dist/dropzone.js') }}"></script>
     <script type="text/javascript">
-    $(function () {
-        $("#photo_payment").change(function () {
-            readURL(this);
-        });
-    });
+    const inpFile = document.getElementById("inpFile");
+    const previewContainer = document.getElementById("imagePreview");
+    const previewImage = previewContainer.querySelector(".image-preview__image");
+    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+    inpFile.addEventListener("change", function(){
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+        const file = this.files[0];
 
-            reader.onload = function (e) {
-                $('#img_payment').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
+        if (file){
+            const reader = new FileReader();
+
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+
+            reader.addEventListener("load", function(){
+
+                previewImage.setAttribute("src", this.result);
+            });
+
+            reader.readAsDataURL(file);
+        }else {
+            previewDefaultText.style.display = null;
+            previewImage.style.display = null;
+            previewImage.setAttribute("src", "");
         }
-    }
+        });
     </script>
 @endpush

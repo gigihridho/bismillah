@@ -118,7 +118,7 @@ class BookingController extends Controller
     }
 
     public function show(){
-        $transaction = RoomBooking::with('user','room')->where('id',Auth::user()->id)->get();
+        $transaction = RoomBooking::with('user','room')->where('user_id',Auth::user()->id)->get();
         return view('pages.unggah',[
             'transaction' => $transaction
         ]);
