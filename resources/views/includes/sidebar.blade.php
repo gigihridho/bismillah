@@ -32,9 +32,18 @@
                 <li class="{{ (request()->is('admin/tipe*')) ? 'active' : '' }}">
                     <a href="{{ route('tipe.index') }}" class="nav-link"><i class="fas fa-bed"></i> <span>Tipe Kamar</span></a>
                 </li>
-                <li class="{{ (request()->is('admin/booking*')) ? 'active' : '' }}">
-                    <a href="{{ route('booking.index') }}"><i class="fas fa-sign-in-alt"></i><span>Data Booking</span></a>
+            <li class="menu-header">Data Booking</li>
+                <li class="nav-item dropdown active">
+                    {{-- <ul class="dropdown-menu"> --}}
+                        <li class="{{ (request()->is('admin/booking/')) ? 'active' : '' }}">
+                            <a href="{{ route('booking.index') }}"><i class="nav-link fas fa-sign-in-alt"></i><span>Booking Sudah Terbayar</span></a>
+                        </li>
+                        <li class="{{ (request()->is('admin/booking/show')) ? 'active' : '' }}">
+                            <a href="{{ route('belum-dibayar') }}"><i class="nav-link fas fa-sign-in-alt"></i><span>Booking Belum Dibayar</span></a>
+                        </li>
+                    {{-- </ul> --}}
                 </li>
+            </li>
             <li class="menu-header">Transaksi
                 <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
                     <a href="{{ route('transaksi') }}"><i class="fas fa-credit-card"></i><span>Laporan Pemasukan</span></a>

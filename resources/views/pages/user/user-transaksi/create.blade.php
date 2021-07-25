@@ -54,6 +54,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="image-preview" id="imagePreview">
+                            <img src="" id="imagePreview" alt="Image Preview" class="image-preview__image">
+                                <span class="image-preview__default-text">
+                                +</span>
+                        </div>
+                        <input type="file" name="photo_payment" id="inpFile">
                             <div class="row">
                                 <div class="col text-center">
                                     <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
@@ -94,5 +100,32 @@
         }
         return total_price;
     }
+
+    const inpFile = document.getElementById("inpFile");
+    const previewContainer = document.getElementById("imagePreview");
+    const previewImage = previewContainer.querySelector(".image-preview__image");
+    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+    inpFile.addEventListener("change", function(){
+
+        const file = this.files[0];
+
+        if (file){
+            const reader = new FileReader();
+
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+
+            reader.addEventListener("load", function(){
+
+                previewImage.setAttribute("src", this.result);
+            });
+
+            reader.readAsDataURL(file);
+        }else {
+            previewDefaultText.style.display = null;
+            previewImage.style.display = null;
+            previewImage.setAttribute("src", "");
+        }
+        });
 </script>
 @endpush

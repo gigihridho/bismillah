@@ -62,6 +62,10 @@ class UserTransactionController extends Controller
         $room_booking->total_price = $total_price;
         $room_booking->room_id = $old_room_booking->room_id;
         $room_booking->user_id = $user->id;
+        if($request->hasFile('photo_payment')){
+            $path = $request->file('photo_payment')->store('assets/transaction','public');
+            $room_booking->photo_payment = $path;
+        }
         $room_booking->save();
 
         Alert::success('SUCCESS','Berhasil melakukan perpanjangan sewa kamar');

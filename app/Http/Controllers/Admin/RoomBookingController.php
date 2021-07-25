@@ -16,8 +16,15 @@ class RoomBookingController extends Controller
     }
 
     public function index(){
-        $room_bookings = RoomBooking::all();
+        $room_bookings = RoomBooking::where('payment',1)->get();
         return view('pages.admin.booking.index',[
+            'room_bookings' => $room_bookings
+        ]);
+    }
+
+    public function show(){
+        $room_bookings = RoomBooking::where('payment',0)->get();
+        return view('pages.admin.booking.belum',[
             'room_bookings' => $room_bookings
         ]);
     }
