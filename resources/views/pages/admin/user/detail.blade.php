@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Penghuni
+    User
 @endsection
 
 @section('content')

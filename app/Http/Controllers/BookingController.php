@@ -58,7 +58,7 @@ class BookingController extends Controller
             'new_departure_date' => $new_departure_date,'room_type' => $room_type,
             'room_number' => $booking->available_room_number(),'duration' => $duration,
             'total_price' => $total_price,
-            'kode' => $kode
+            'kode' => $kode,
         ]);
     }
 
