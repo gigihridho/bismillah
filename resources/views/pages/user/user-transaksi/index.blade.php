@@ -109,7 +109,6 @@ label:hover {
                 <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        {{-- <a href="{{ route('user-transaksi.create') }}" class="btn btn-sm btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Transaksi</a> --}}
                     <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
                             <p>Klik tombol <button class="btn btn-success"> <i class="fas fa-upload"></i></button> untuk Upload Bukti Pembayaran </p>
@@ -121,6 +120,7 @@ label:hover {
                                     <th>
                                     No
                                     </th>
+                                    <th>Kode</th>
                                     <th>Kamar</th>
                                     <th>Tanggal Masuk</th>
                                     <th>Tanggal Keluar</th>
@@ -134,6 +134,7 @@ label:hover {
                                 @foreach ($transaction as $tf)
                                 <tr style="text-align: center">
                                     <td>{{ $no++ }}</td>
+                                    <td>{{ $tf->kode }}</td>
                                     <td><span class="badge badge-info">{{ $tf->room->room_type->name }} ({{ $tf->room->room_number }})</span>
                                     </td>
                                     <td>{{ $tf->arrival_date }}</td>
@@ -176,9 +177,9 @@ label:hover {
         </div>
     </section>
     <!-- Modal -->
+    @foreach ($transaction as $tf)
     <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="img">
-            @foreach ($transaction as $tf)
             <form action="{{ route('user-transaksi-upload',$tf->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-content">
@@ -196,21 +197,21 @@ label:hover {
                     </div>
                     <input type="file" name="photo_payment" id="inpFile">
                     <label for="inpFile" style="color: white;
-                    height: 35px;
-                    width: 105px;
-                    background-color: #03a9f4;
-                    position: absolute;
-                    margin-left: 8.5em;
-                    padding: 10px;
-                    border-radius: 10px;
-                    padding-top: 8px;
-                    padding-left: 20px;
-                    font-weight: lighter;
-                    font-size: 12px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    margin-top: 1em;">
+                        height: 35px;
+                        width: 105px;
+                        background-color: #03a9f4;
+                        position: absolute;
+                        margin-left: 8.5em;
+                        padding: 10px;
+                        border-radius: 10px;
+                        padding-top: 8px;
+                        padding-left: 20px;
+                        font-weight: lighter;
+                        font-size: 12px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 1em;">
                     <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
                         Pilih foto
                     </label>
@@ -220,9 +221,9 @@ label:hover {
                     <button type="submit" class="btn btn-primary">Upload</button>
                 </div>
             </form>
-            @endforeach
         </div>
     </div>
+    @endforeach
 </div>
 @endsection
 @push('addon-script')

@@ -28,6 +28,7 @@
                             <th style="width: 10px" class="text-center">
                             No
                             </th>
+                            <th>Kode Pemesanan</th>
                             <th>Nama Pemesan</th>
                             <th>Tanggal Transaksi</th>
                             <th>Pemasukan</th>
@@ -37,6 +38,7 @@
                             @foreach ($transactions as $index => $transaction)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
+                                    <td>{{ $transaction->kode }}</td>
                                     <td>{{ $transaction->user->name }}</td>
                                     <td>{{ $transaction->order_date }}</td>
                                     <td>Rp {{ number_format($transaction->room->room_type->price,2,',','.') }}</td>

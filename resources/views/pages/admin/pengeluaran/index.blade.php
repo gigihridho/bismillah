@@ -43,13 +43,13 @@
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $p->date }}</td>
                                     <td>{{ $p->pengeluaran}}</td>
-                                    <td>Rp {{ number_format($p->nominal,2,',','.') }}</td>
+                                    <td>Rp{{ number_format($p->nominal,2,',','.') }}</td>
                                     <td>{{ $p->keterangan }}</td>
                                     <td>
                                         @if($p->status == 1)
-                                        <button class="btn btn-success btn-xs btn-fill">Lunas</button>
+                                            <span class="badge badge-success">Lunas</span>
                                         @else
-                                        <button class="btn btn-default btn-xs btn-fill">Belum Lunas</button>
+                                            <span class="badge badge-danger">Belum Lunas</span>
                                         @endif
                                     </td>
                                     <td>

@@ -17,6 +17,7 @@ class CreateRoomBookingsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('room_id')->unsigned()->index();
+            $table->string('kode')->unique();
             $table->string('photo_payment')->nullable();
             $table->date('order_date');
             $table->integer('total_price');

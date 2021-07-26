@@ -9,7 +9,7 @@ class Review extends Model
     protected $table = 'reviews';
 
     protected $fillable = [
-        'review','user_id'
+        'review','user_id',
     ];
 
     protected $hidden = [

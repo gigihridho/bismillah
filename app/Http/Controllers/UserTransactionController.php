@@ -90,8 +90,9 @@ class UserTransactionController extends Controller
             'photo_payment.max' => 'Bukti pembayaran melebihi 2MB',
             'photo_payment.mimes' => 'Format file tidak didukung'
         ]);
+        $user = Auth::user();
 
-        $transaction = RoomBooking::where('id',$id)->first();
+        $transaction = RoomBooking::with('user','room')->where('user_id', Auth::user()->id)->latest()->first();
         if($request->hasFile('photo_payment')){
             $path = $request->file('photo_payment')->store('assets/transaction','public');
             $transaction->photo_payment = $path;
