@@ -16,8 +16,7 @@ class UserTransactionController extends Controller
     }
 
     public function index(){
-        $transaction = RoomBooking::with('user','room')
-            ->where('user_id',Auth::user()->id)->get();
+        $transaction = RoomBooking::where('user_id','=',Auth::user()->id)->get();
         return view('pages.user.user-transaksi.index',[
             'transaction' => $transaction
         ]);
@@ -29,7 +28,7 @@ class UserTransactionController extends Controller
             ->latest()
             ->first();
         if ($transaction->payment == 0) {
-            return redirect()->back()->withErrors('Silahkan konfirmasi pembayaran terlebih dahulu');
+            return redirect()->back()->withErrors('Menunggu admin melakukan konfirmasi pembayaran sebelumnya');
         }
         $room_type =  $transaction->room->room_type;
 
@@ -44,6 +43,7 @@ class UserTransactionController extends Controller
         $new_arrival_date = $old_room_booking->departure_date;
         $duration = $request->input('duration');
         $total_price = $request->input('total');
+        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
 
         if ($duration == 1) {
             $new_departure_date = date('Y-m-d', strtotime('+1 month', strtotime($new_arrival_date)));
@@ -62,6 +62,7 @@ class UserTransactionController extends Controller
         $room_booking->total_price = $total_price;
         $room_booking->room_id = $old_room_booking->room_id;
         $room_booking->user_id = $user->id;
+        $room_booking->kode = $kode;
         if($request->hasFile('photo_payment')){
             $path = $request->file('photo_payment')->store('assets/transaction','public');
             $room_booking->photo_payment = $path;
@@ -81,7 +82,6 @@ class UserTransactionController extends Controller
     }
 
     public function upload(Request $request,$id){
-        $transaction = RoomBooking::where('id',$id)->first();
         $this->validate($request, [
             'photo_payment' => 'required|image|max:2048|mimes:png,jpg,jpeg',
         ],
@@ -91,13 +91,14 @@ class UserTransactionController extends Controller
             'photo_payment.mimes' => 'Format file tidak didukung'
         ]);
 
+        $transaction = RoomBooking::where('id',$id)->first();
         if($request->hasFile('photo_payment')){
             $path = $request->file('photo_payment')->store('assets/transaction','public');
             $transaction->photo_payment = $path;
         }
         $transaction->save();
 
-        Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
+        Alert::success('SUCCESS','Bukti pembayaran berhasil disimpan');
         return redirect()->back();
     }
 

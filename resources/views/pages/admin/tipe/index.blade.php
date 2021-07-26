@@ -46,14 +46,14 @@
                                         <img height="100px" src="{{ Storage::url($room_type->photo) }}" alt="">
                                     </td>
                                     <td>{{ $room_type->floor }}</td>
-                                    <td>{{ $room_type->price }}</td>
+                                    <td>Rp{{ number_format($room_type->price,2,',','.') }}</td>
                                     <td>{{ $room_type->size }}</td>
                                     <td>
                                         @if($room_type->status == 1)
-                                            <button class="btn btn-success btn-sm" style="text-align:center">Aktif</button>
+                                            <span class="badge badge-success" style="text-align:center">Aktif</span>
                                         @else
-                                            <button class="btn btn-danger btn-sm" style="text-align:center">Tidak Aktif
-                                            </button>
+                                            <span class="badge badge-danger" style="text-align:center">Tidak Aktif
+                                            </span>
                                         @endif
                                     </td>
                                     <td>

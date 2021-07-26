@@ -47,7 +47,7 @@
                                     <td>{{ $it->room->room_number }}</td>
                                     <td><img src="{{ Storage::url($it->photo_payment) }}" width="80px" height="auto"></td>
                                     <td>{{ $it->order_date }}</td>
-                                    <td>{{ $it->total_price }}</td>
+                                    <td>Rp{{ number_format($it->total_price,2,',','.') }}</td>
                                     <td>{{ $it->duration }}</td>
                                     <td>{{ $it->arrival_date }}</td>
                                     <td>{{ $it->departure_date }}</td>

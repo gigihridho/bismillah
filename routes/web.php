@@ -53,12 +53,10 @@ Route::prefix('admin')
         Route::resource('fasilitas', 'Admin\FacilityController');
 
         Route::resource('user', 'Admin\UserController');
-        // Route::get('user-tidak-aktif', 'Admin\UserController@userTidakAktif')->name('user-tidak-aktif');
-        // Route::get('user-detail/{id}','Admin\UserController@show')->name('user-detail');
-        // Route::get('user-status/{id}','Admin\UserController@update')->name('user-status');
 
         Route::resource('booking', 'Admin\RoomBookingController');
         Route::get('booking/belum','Admin\RoomBookingController@show')->name('belum-dibayar');
+        Route::get('booking/detail/{id}','Admin\RoombookingController@detail')->name('detail-booking');
         Route::get('booking/{id}/edit','Admin\RoomBookingController@edit');
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
         Route::delete('booking/{id}','Admin\RoomBookingController@destroy');

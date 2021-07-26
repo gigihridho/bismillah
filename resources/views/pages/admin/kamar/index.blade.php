@@ -43,16 +43,16 @@
                                     <td>{{ $room->room_number }}</td>
                                     <td>
                                         @if($room->available == 1)
-                                        <button class="btn btn-secondary btn-xs btn-fill">Available</button>
+                                        <span class="badge badge-secondary">Available</span>
                                         @else
-                                        <button class="btn btn-danger btn-xs btn-fill">Booked</button>
+                                        <span class="badge badge-danger">Booked</span>
                                         @endif
                                     </td>
                                     <td>
                                         @if($room->status == 1)
-                                        <button class="btn btn-success btn-xs btn-fill">Aktif</button>
+                                            <span class="badge badge-success">Aktif</span>
                                         @else
-                                        <button class="btn btn-default btn-xs btn-fill">Tidak Aktif</button>
+                                            <span class="badge badge-danger">Tidak Aktif</span>
                                         @endif
                                     </td>
                                     <td>

@@ -28,10 +28,11 @@
                             No
                             </th>
                             <th>Nama</th>
-                            <th>Kamar</th>
+                            {{-- <th>Kamar</th> --}}
+                            <th>Kode Pemesanan</th>
                             <th>Bukti Transaksi</th>
-                            <th>Tanggal Masuk</th>
-                            <th>Tanggal Keluar</th>
+                            {{-- <th>Tanggal Masuk</th>
+                            <th>Tanggal Keluar</th> --}}
                             <th>Keterangan</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -42,31 +43,31 @@
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $room_booking->user->name }}</td>
-                                <td><button class="btn btn-info btn-sm" style="text-align:center">{{ $room_booking->room->room_type->name }} ({{ $room_booking->room->room_number }})</button></td>
+                                {{-- <td><button class="btn btn-info btn-sm" style="text-align:center">{{ $room_booking->room->room_type->name }} ({{ $room_booking->room->room_number }})</button></td> --}}
+                                <td>{{ $room_booking->kode }}</td>
                                 <td>
                                     @if($room_booking->photo_payment != null)
                                         <img height="100px" src="{{ Storage::url($room_booking->photo_payment) }}" alt="" onclick="blank">
                                     @else
-                                        <button class="btn btn-warning btn-sm" style="text-align:center">Belum Upload
-                                        </button>
+                                        <span class="badge badge-warning">Belum Upload</span>
                                     @endif
                                 </td>
-                                <td>{{ $room_booking->arrival_date }}</td>
-                                <td>{{ $room_booking->departure_date }}</td>
+                                {{-- <td>{{ $room_booking->arrival_date }}</td>
+                                <td>{{ $room_booking->departure_date }}</td> --}}
                                 <td>
                                     @if($room_booking->payment == 1)
-                                        <button class="btn btn-success btn-sm btn-fill">Sudah Bayar</button>
+                                        <span class="badge badge-success">Sudah Bayar</span>
                                     @else
-                                        <button class="btn btn-danger btn-sm btn-fill">Belum Bayar</button>
+                                        <span class="badge badge-warning">Belum Bayar</span>
                                     @endif
                                 </td>
                                 <td>
                                     @if($room_booking->status == "Menunggu")
-                                        <button class="btn btn-warning btn-sm" style="text-align:center">Menunggu</button>
+                                        <span class="badge badge-warning">Menunggu</span>
                                     @elseif($room_booking->status == "Terisi")
-                                        <button class="btn btn-success btn-sm" style="text-align:center">Terisi</button>
+                                        <span class="badge badge-success">Terisi</span>
                                     @elseif($room_booking->status == "Keluar")
-                                        <button class="btn btn-danger btn-sm" style="text-align:center">Keluar</button>
+                                        <span class="badge badge-danger">Keluar</span>
                                     @endif
                                 </td>
                                 <td>
@@ -74,9 +75,9 @@
                                         <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $room_booking->id }}/edit">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        {{-- <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{$room_booking->id}})">
-                                            <i class="far fa-trash-alt" style="color: white;"></i>
-                                        </a> --}}
+                                        <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$room_booking->id) }}"">
+                                            <i class="far fa-eye" style="color: white;"></i>
+                                        </a>
                                     </form>
                                 </td>
                             </tr>

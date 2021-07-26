@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Room;
+use App\User;
 use App\Expense;
 use App\RoomBooking;
 use Illuminate\Support\Facades\DB;
@@ -18,9 +19,11 @@ class DashboardController extends Controller
 
 
     public function index(){
-        $user = RoomBooking::with('user')->where('payment',1)->count();
+        $user = User::role('user')->count();
         $room_avail = Room::where('available',true)->count();
+        $rom = Room::count();
         $transactions = RoomBooking::count();
+        $transactionss = RoomBooking::where('payment',1)->count();
         $total_price = RoomBooking::where('payment',1)->sum('total_price');
         $pengeluaran = Expense::where('status',1)->sum('nominal');
         $keuntungan = $total_price - $pengeluaran;
@@ -37,7 +40,9 @@ class DashboardController extends Controller
             'jumlah_transactions' => $jumlah_transactions,
             'total_price' => $total_price,
             'keuntungan' => $keuntungan,
-            'pengeluaran' => $pengeluaran
+            'pengeluaran' => $pengeluaran,
+            'rom' => $rom,
+            'transactionss' => $transactionss
         ]);
     }
 }

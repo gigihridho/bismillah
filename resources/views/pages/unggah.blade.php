@@ -6,6 +6,13 @@
 
 @section('content')
 <style>
+    .invoice h6{
+        margin-left: 3rem;
+        line-height: 3em;
+        font: 500 1.5rem/1.5rem Poppins, sans-serif;
+        margin-bottom: 1.25rem;
+        color: #121212;
+    }
     .inputfile {
 	width: 0.1px;
 	height: 0.1px;
@@ -18,11 +25,12 @@ input[type="file"]{
     display: none;
 }
 .inputfile + label {
-    font-size: 1.25em;
-    font-weight: 700;
     color: white;
+    font: 500 1.5rem/1.5rem Poppins, sans-serif;
     background-color: black;
     display: inline-block;
+    margin-left: 3rem;
+    margin-top: 2rem;
 }
 
 .inputfile:focus + label,
@@ -57,11 +65,44 @@ input[type="file"]{
     color:#87ceeb;
 
 }
-#inpFile {
-    margin-left: 10em;
-}
-.invoice h6{
+.inpFile {
     margin-left: 3rem;
+    margin-top: 2rem;
+    color: #000;
+}
+.btn-primary{
+    margin-top:5rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    margin-left: 12em;
+    display: table;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-color: #fff;
+}
+label {
+    margin-top: 1em;
+    color: white;
+    height: 40px;
+    width: 120px;
+    background-color: #03a9f4;
+    position: absolute;
+    font: 200 1rem/1rem Poppins, sans-serif;
+    margin-left: 9em;
+    margin-bottom: 5rem;
+    padding: 10px;
+    border-radius: 10px;
+    padding-top: 8px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label:hover {
+    opacity: 80%;
 }
 </style>
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
@@ -84,7 +125,10 @@ input[type="file"]{
                         +</span>
                 </div>
                 <input type="file" name="photo_payment" id="inpFile">
-                <button type="submit">Kirim</button>
+                <label for="inpFile"><i class="fas fa-upload" aria-hidden="false"></i>&nbsp;
+                    Pilih foto
+                </label>
+                <button type="submit" class="btn btn-primary">Kirim</button>
             </form>
             @endforeach
         </div>

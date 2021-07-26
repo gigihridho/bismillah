@@ -33,6 +33,7 @@ class BookingController extends Controller
         $price = $room_type->price;
         $new_arrival_date = $request->input('arrival_date');
         $duration = $request->input('duration');
+        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
 
         if($duration == 1){
             $new_departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
@@ -56,7 +57,8 @@ class BookingController extends Controller
             'room_type_id' => $room_type_id,'new_arrival_date' => $new_arrival_date,
             'new_departure_date' => $new_departure_date,'room_type' => $room_type,
             'room_number' => $booking->available_room_number(),'duration' => $duration,
-            'total_price' => $total_price
+            'total_price' => $total_price,
+            'kode' => $kode
         ]);
     }
 
@@ -67,6 +69,7 @@ class BookingController extends Controller
         $room_type = RoomType::findOrFail($room_type_id);
         $new_arrival_date = $request->input('arrival_date');
         $duration = $request->input('duration');
+        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
 
         if($duration == 1){
             $new_departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
@@ -86,7 +89,7 @@ class BookingController extends Controller
 
         $room_booking = new RoomBooking();
         $user = Auth::user();
-
+        $room_booking->kode = $kode;
         $room_booking->arrival_date = $request->input('arrival_date');
         $room_booking->departure_date = $new_departure_date;
         $room_booking->order_date = Carbon::now();

@@ -191,6 +191,162 @@
         line-height: 1.2;
     }
     }
+    .content-3-7 .btn:focus,
+      .content-3-7 .btn:active {
+        outline: none !important;
+      }
+
+      .content-3-7 {
+        padding: 5rem 2rem 7rem;
+      }
+
+      .content-3-7 .title-text {
+        font: 800 1.875rem/2.25rem Poppins, sans-serif;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+        color: #2e3a53;
+      }
+
+      .content-3-7 .caption-text {
+        font: 400 1rem/1.5rem Poppins, sans-serif;
+        letter-spacing: 0.025em;
+        color: #8e8fad;
+        margin-bottom: 0;
+      }
+
+      .content-3-7 .card-item {
+        transition: 0.4s;
+        top: 0px;
+        left: 0px;
+        padding: 1rem 0;
+      }
+
+      .content-3-7 .card-item:hover {
+        top: -3px;
+        left: -3px;
+        transition: 0.4s;
+      }
+
+      .content-3-7 .card-item-outline {
+        border: 1px solid #e5ebf9;
+        padding: 2rem 2.75rem;
+        border-radius: 1rem;
+      }
+
+      .content-3-7 .price-title {
+        font: 500 1.25rem/1.75rem Poppins, sans-serif;
+        color: #141c2e;
+        letter-spacing: 0.025em;
+        margin-bottom: 0.75rem;
+      }
+
+      .content-3-7 .price-value {
+        font: 500 1.65rem/1.65rem Poppins, sans-serif;
+        letter-spacing: 0.025em;
+        margin-bottom: 0.75rem;
+        color: #2e3a53;
+      }
+      .content-3-7 .price-mulai {
+        font: 400 1rem/1.5rem Poppins, sans-serif;
+        letter-spacing: 0.025em;
+        margin-bottom: 0.625rem;
+        color: #c3c3c8;
+      }
+      .content-3-7 .price-duration {
+        font: 400 1rem/1.5rem Poppins, sans-serif;
+        margin: 0.625rem;
+        color: #9e9e9e;
+      }
+
+      .content-3-7 .price-caption {
+        font: 400 1rem/1.5rem Poppins, sans-serif;
+        letter-spacing: 0.025em;
+        margin-bottom: 2.5rem;
+        color: #c3c3c8;
+      }
+
+      .content-3-7 .price-list .check {
+        font: 400 0.875rem/1.25rem Poppins, sans-serif;
+        color: #2e3a53;
+        letter-spacing: 0.025em;
+        margin-bottom: 1.75rem;
+      }
+
+      .content-3-7 .price-list .no-check {
+        font: 400 0.875rem/1.25rem Poppins, sans-serif;
+        color: #e1e1e1;
+        letter-spacing: 0.025em;
+        margin-bottom: 1.75rem;
+      }
+
+      .content-3-7 .span-icon {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.75rem;
+      }
+
+      .content-3-7 .btn-outline {
+        border: 1px solid #2ec49c;
+        color: #2ec49c;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.025em;
+        border-radius: 0.5rem;
+      }
+
+      .content-3-7 .btn-outline:hover {
+        background-color: #2ec49c;
+        color: #ffffff;
+      }
+
+      .content-3-7 .btn-fill {
+        background-image: linear-gradient(rgba(91, 203, 173, 1),
+            rgba(39, 194, 153, 1));
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.025em;
+        border-radius: 0.5rem;
+      }
+
+      .content-3-7 .btn-fill:hover {
+        background-image: linear-gradient(#29b18d, #29b18d);
+      }
+
+      @media (min-width: 576px) {
+        .content-3-7 .title-text {
+          font: 800 2.25rem/2.5rem Poppins, sans-serif;
+        }
+
+        .content-3-7 .card-item {
+          padding: 1rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .content-3-7 {
+          padding-left: 3.5rem;
+          padding-right: 3.5rem;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .content-3-7 .caption-text {
+          width: 66.666667%;
+        }
+
+        .content-3-7 .card-item {
+          width: 33.333333%;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .content-3-7 {
+          padding-left: 9rem;
+          padding-right: 9rem;
+        }
+      }
     /* Content1 */
     .content-3-2 .btn:focus,
         .content-3-2 .btn:active {
@@ -277,6 +433,7 @@
         }
         .content-2-2 {
             padding: 5rem 3rem;
+            background: #F2F6FF;
         }
         .content-2-2 .title-text {
             padding-top: 5rem;
@@ -766,8 +923,9 @@
         }
         .review {
             padding: 6rem 4rem;
+            background: #F2F6FF;
         }
-        .review .review-text {
+        .review .title-text {
             padding-top: 5rem;
             margin-bottom: 3rem;
         }
@@ -778,12 +936,12 @@
             margin-bottom: 0.625rem;
         } */
 
-        /* .review .text-caption{
+        .review .text-caption{
             font: 200 2rem/2rem Poppins, sans-serif;
             color: #999;
             text-transform: uppercase;
             margin-bottom: 0.625rem;
-        } */
+        }
         .review .grid-padding {
             padding: 0rem ;
         }
@@ -875,6 +1033,7 @@
             width: 100%;
             }
         }
+
 
 
         /* Detail */

@@ -29,6 +29,13 @@ class RoomBookingController extends Controller
         ]);
     }
 
+    public function detail($id){
+        $room_bookings = RoomBooking::where('id',$id)->get();
+        return view('pages.admin.booking.detail',[
+            'room_bookings' => $room_bookings
+        ]);
+    }
+
     public function edit($id){
         $room_booking = RoomBooking::findOrFail($id);
         return view('pages.admin.booking.edit',[

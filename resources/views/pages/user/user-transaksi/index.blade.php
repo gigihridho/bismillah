@@ -5,6 +5,89 @@
 @endsection
 
 @section('content')
+<style>
+        .inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+input[type="file"]{
+    display: none;
+}
+.inputfile + label {
+    color: white;
+    font: 500 1.5rem/1.5rem Poppins, sans-serif;
+    background-color: black;
+    display: inline-block;
+    margin-left: 3rem;
+    margin-top: 2rem;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+.image-preview {
+    width: 250px;
+    min-height: 170px;
+    border: 2px dashed #afeeee;
+    margin-top: 15px;
+    margin-left: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #cccccc;
+}
+.image-preview__image{
+    display: none;
+    width: 100%;
+}
+.image-preview__default-text {
+    color:#87ceeb;
+
+}
+.inpFile {
+    margin-left: 3rem;
+    margin-top: 2rem;
+    color: #000;
+}
+input[type="file"]{
+    display: none;
+}
+/* label {
+    color: white;
+    height: 35px;
+    width: 105px;
+    background-color: #03a9f4;
+    position: absolute;
+    margin-left: 8.5em;
+    padding: 10px;
+    border-radius: 10px;
+    padding-top: 8px;
+    padding-left: 20px;
+    font-weight: lighter;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+} */
+label:hover {
+    opacity: 80%;
+}
+</style>
 <div class="main-content">
     <section class="section">
         <div class="section-header">
@@ -16,8 +99,8 @@
         </div>
 
         @if($errors->any())
-        <div class="alert alert-warning">
-            <h4>{{$errors->first()}}</h4>
+        <div class="alert alert-danger">
+            <h6>{{$errors->first()}}</h6>
         </div>
         @endif
 
@@ -44,18 +127,18 @@
                                     <th>Total Harga</th>
                                     <th>Foto Pembayaran</th>
                                     <th>Status</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($transaction as $index => $tf)
+                                @php $no = 1; @endphp
+                                @foreach ($transaction as $tf)
                                 <tr style="text-align: center">
-                                    <td>{{ $index+1 }}</td>
-                                    <td><button class="btn btn-info btn-sm">{{ $tf->room->room_type->name }} ({{ $tf->room->room_number }})</button>
+                                    <td>{{ $no++ }}</td>
+                                    <td><span class="badge badge-info">{{ $tf->room->room_type->name }} ({{ $tf->room->room_number }})</span>
                                     </td>
                                     <td>{{ $tf->arrival_date }}</td>
                                     <td>{{ $tf->departure_date }}</td>
-                                    <td>Rp {{ number_format($tf->total_price) }}</td>
+                                    <td>Rp{{ number_format($tf->total_price,2,',','.') }}</td>
                                     <td>
                                         @if($tf->photo_payment != null)
                                             <img height="70px" width="60px" src="{{ Storage::url($tf->photo_payment) }}" alt="">
@@ -67,27 +150,20 @@
                                     </td>
                                     <td>
                                         @if($tf->status == "Menunggu")
-                                            <button class="btn btn-warning btn-sm" style="text-align:center">Menunggu</button>
+                                            <span class="badge badge-warning">Menunggu</span>
                                         @elseif($tf->status == "Terisi")
-                                            <button class="btn btn-success btn-sm" style="text-align:center">Terisi</button>
+                                            <span class="badge badge-success">Terisi</span>
                                         @elseif($tf->status == "Keluar")
-                                            <button class="btn btn-danger btn-sm" style="text-align:center">Keluar</button>
+                                            <span class="badge badge-danger">Keluar</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         <form action="{{ route('user-transaksi-delete',$tf->id) }}" method="POST">
-                                            {{-- @if($tf->photo_payment != null)
-                                            <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
-                                                <i class="fas fa-upload" style="color: white;"></i>
-                                            </a>
-                                            @else
-                                            <a href="#" class="btn btn-success">Hai</a>
-                                            @endif --}}
                                             <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Cancel" onClick="deleteConfirm({{ $tf->id }})">
                                                 <i class="fas fa-minus" style="color: white;"></i>
                                             </a>
                                         </form>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -113,22 +189,35 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        @if ($tf->photo_payment != null)
-                            <img id="img_payment" src="{{ Storage::url($tf->photo_payment) }}" width="170px" height="170px" alt="foto"
-                            style="display: block; margin:auto">
-                        @else
-                            <img id="img_payment" src="{{ asset('fe/img/png-kosong.png') }}" width="170px" height="170px" alt="foto"
-                            style="display: block; margin:auto">
-                        @endif
+                    <div class="image-preview" id="imagePreview">
+                        <img src="" alt="Image Preview" class="image-preview__image">
+                            <span class="image-preview__default-text">
+                            +</span>
                     </div>
-                    <h5 style="font-weight: 600" for="exampleFormControlFile1">Pilih File</h5>
-                        <p>Ukuran File Max 2 MB</p>
-                    <input type="file" name="photo_payment" class="form-control-file" id="input_payment">
+                    <input type="file" name="photo_payment" id="inpFile">
+                    <label for="inpFile" style="color: white;
+                    height: 35px;
+                    width: 105px;
+                    background-color: #03a9f4;
+                    position: absolute;
+                    margin-left: 8.5em;
+                    padding: 10px;
+                    border-radius: 10px;
+                    padding-top: 8px;
+                    padding-left: 20px;
+                    font-weight: lighter;
+                    font-size: 12px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 1em;">
+                    <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
+                        Pilih foto
+                    </label>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer mt-3">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success">Upload</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
                 </div>
             </form>
             @endforeach
@@ -194,21 +283,32 @@
         })
     }
 
-    $(function () {
-        $("#input_payment").change(function () {
-            readURL(this);
-        });
-    });
+    const inpFile = document.getElementById("inpFile");
+    const previewContainer = document.getElementById("imagePreview");
+    const previewImage = previewContainer.querySelector(".image-preview__image");
+    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+    inpFile.addEventListener("change", function(){
 
-            reader.onload = function (e) {
-                $('#img_payment').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
+        const file = this.files[0];
+
+        if (file){
+            const reader = new FileReader();
+
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+
+            reader.addEventListener("load", function(){
+
+                previewImage.setAttribute("src", this.result);
+            });
+
+            reader.readAsDataURL(file);
+        }else {
+            previewDefaultText.style.display = null;
+            previewImage.style.display = null;
+            previewImage.setAttribute("src", "");
         }
-    }
+    });
 </script>
 @endpush

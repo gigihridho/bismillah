@@ -39,7 +39,7 @@
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $transaction->user->name }}</td>
                                     <td>{{ $transaction->order_date }}</td>
-                                    <td>Rp {{ number_format($transaction->room->room_type->price) }}</td>
+                                    <td>Rp {{ number_format($transaction->room->room_type->price,2,',','.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

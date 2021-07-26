@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Total Penghuni</h4>
+                    <h4>Total User</h4>
                 </div>
                 <div class="card-body">
                     {{ $user }}
@@ -38,6 +38,7 @@
                 <div class="card-body">
                     {{ $room_avail }}
                 </div>
+                <p>Dari total {{ $rom }} kamar</p>
                 </div>
             </div>
             </div>
@@ -53,6 +54,7 @@
                 <div class="card-body">
                     {{ $transactions }}
                 </div>
+                {{-- <p>Dari total {{ $transactionss }} kamar</p> --}}
                 </div>
             </div>
             </div>
@@ -68,7 +70,7 @@
                     <h4>Pemasukan</h4>
                 </div>
                 <div class="card-body">
-                    Rp{{ number_format($total_price) }}
+                    Rp{{ number_format($total_price,2,',','.') }}
                 </div>
                 </div>
             </div>
@@ -83,7 +85,7 @@
                     <h4>Keuntungan</h4>
                 </div>
                 <div class="card-body">
-                    Rp{{ number_format($keuntungan) }}
+                    Rp{{ number_format($keuntungan,2,',','.') }}
                 </div>
                 </div>
             </div>
@@ -98,7 +100,7 @@
                     <h4>Pengeluaran</h4>
                 </div>
                 <div class="card-body">
-                    Rp{{ number_format($pengeluaran) }}
+                    Rp{{ number_format($pengeluaran,2,',','.') }}
                 </div>
                 </div>
             </div>

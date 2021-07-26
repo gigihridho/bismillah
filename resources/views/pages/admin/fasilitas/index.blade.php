@@ -40,10 +40,10 @@
                                     <td>{{ $facility->name }}</td>
                                     <td>
                                         @if($facility->status == 1)
-                                            <button class="btn btn-success btn-sm btn-fill">Aktif</button>
+                                            <span class="badge badge-success">Aktif</span>
                                         @else
-                                            <button class="btn btn-warning btn-sm btn-fill">Tidak Aktif
-                                            </button>
+                                            <span class="badge badge-danger">Tidak Aktif
+                                            </span>
                                         @endif
                                     </td>
                                     <td>

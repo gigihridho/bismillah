@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Penghuni
+    User
 @endsection
 
 @section('content')
@@ -43,7 +43,7 @@
                                     <td>{{ $user->no_hp }}</td>
                                     <td>
                                         @if($user->status == 1)
-                                        <button class="btn btn-success btn-sm btn-fill">Aktif</button>
+                                        <span class="badge badge-success">Aktif</span>
                                         @endif
                                     </td>
                                     <td>
