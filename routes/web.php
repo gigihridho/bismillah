@@ -52,13 +52,12 @@ Route::prefix('admin')
         Route::get('/', 'Admin\DashboardController@index')->name('admin-dashboard');
         Route::resource('fasilitas', 'Admin\FacilityController');
 
-        Route::resource('user', 'Admin\UserController');
 
         Route::get('booking/sudah', 'Admin\RoomBookingController@index')->name('sudah-bayar');
         Route::get('booking/belum','Admin\RoomBookingController@belum')->name('belum-dibayar');
         Route::get('booking/{id}/edit','Admin\RoomBookingController@edit');
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
-        Route::get('booking/detail/{id}','Admin\RoombookingController@detail')->name('detail-booking');
+        Route::get('booking/detail/{id}','Admin\RoomBookingController@detail')->name('detail-booking');
         Route::delete('booking/{id}','Admin\RoomBookingController@destroy');
 
         Route::get('transaksi','Admin\TransactionsController@index')->name('transaksi');
@@ -67,11 +66,9 @@ Route::prefix('admin')
         Route::resource('pengeluaran','Admin\ExpenseController');
         Route::get('pdf','Admin\ExpenseController@ex_pdf')->name('pengeluaran-pdf');
 
-        Route::resource('reviews', 'Admin\ReviewsController');
+        Route::resource('user', 'Admin\UserController');
 
-        Route::get('invoice', 'Admin\InvoiceController@index')->name('invoice');
-        Route::get('invoice/{id}','Admin\InvoiceController@create');
-        Route::post('invoice/{id}','Admin\InvoiceController@store');
+        Route::resource('reviews', 'Admin\ReviewsController');
 
         Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
         Route::post('change-pass', 'Admin\ChangePasswordController@update')->name('change-pass-update');
