@@ -34,7 +34,6 @@
     @include('sweetalert::alert')
     {{-- Script --}}
     @stack('prepend-script')
-    <script src="sweetalert2.min.js"></script>
     @include('includes.script')
     @stack('addon-script')
   </body>

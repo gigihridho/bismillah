@@ -28,11 +28,8 @@
                             No
                             </th>
                             <th>Nama</th>
-                            {{-- <th>Kamar</th> --}}
                             <th>Kode Pemesanan</th>
                             <th>Bukti Transaksi</th>
-                            {{-- <th>Tanggal Masuk</th>
-                            <th>Tanggal Keluar</th> --}}
                             <th>Keterangan</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -43,7 +40,6 @@
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $room_booking->user->name }}</td>
-                                {{-- <td><button class="btn btn-info btn-sm" style="text-align:center">{{ $room_booking->room->room_type->name }} ({{ $room_booking->room->room_number }})</button></td> --}}
                                 <td>{{ $room_booking->kode }}</td>
                                 <td>
                                     @if($room_booking->photo_payment != null)
@@ -52,8 +48,6 @@
                                         <span class="badge badge-warning">Belum Upload</span>
                                     @endif
                                 </td>
-                                {{-- <td>{{ $room_booking->arrival_date }}</td>
-                                <td>{{ $room_booking->departure_date }}</td> --}}
                                 <td>
                                     @if($room_booking->payment == 1)
                                         <span class="badge badge-success">Sudah Bayar</span>
@@ -75,7 +69,7 @@
                                         <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $room_booking->id }}/edit">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$room_booking->id) }}"">
+                                        <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$room_booking->id) }}">
                                             <i class="far fa-eye" style="color: white;"></i>
                                         </a>
                                     </form>

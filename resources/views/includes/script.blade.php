@@ -5,7 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
 
 <script src="{{ asset('fe/js/moment.js') }}"></script>
-<script src="{{ asset('fe/js/moment-with-locales.min.js') }}"></script>
+{{-- <script src="{{ asset('fe/js/moment-with-locales.min.js') }}"></script> --}}
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
