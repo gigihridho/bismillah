@@ -28,11 +28,8 @@
                             No
                             </th>
                             <th>Nama</th>
-                            {{-- <th>Kamar</th> --}}
                             <th>Kode Pemesanan</th>
                             <th>Bukti Transaksi</th>
-                            {{-- <th>Tanggal Masuk</th>
-                            <th>Tanggal Keluar</th> --}}
                             <th>Keterangan</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -44,7 +41,6 @@
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $room_booking->user->name }}</td>
                                 <td>{{ $room_booking->kode }}</td>
-                                {{-- <td><button class="btn btn-info btn-sm" style="text-align:center">{{ $room_booking->room->room_type->name }} ({{ $room_booking->room->room_number }})</button></td> --}}
                                 <td>
                                     @if($room_booking->photo_payment != null)
                                         <img height="100px" src="{{ Storage::url($room_booking->photo_payment) }}" alt="" onclick="blank">
@@ -52,8 +48,6 @@
                                         <span class="badge badge-danger">Belum Upload</span>
                                     @endif
                                 </td>
-                                {{-- <td>{{ $room_booking->arrival_date }}</td>
-                                <td>{{ $room_booking->departure_date }}</td> --}}
                                 <td>
                                     @if($room_booking->payment == 1)
                                         <span class="badge badge-success">Sudah Bayar</span>
@@ -71,14 +65,14 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <form action="{{ route('booking.destroy',$room_booking->id) }}" method="POST">
+                                    {{-- <form action="{{ route('booking.destroy',$room_booking->id) }}" method="POST"> --}}
                                         <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $room_booking->id }}/edit">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$room_booking->id) }}"">
+                                        <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$room_booking->id) }}">
                                             <i class="far fa-eye" style="color: white;"></i>
                                         </a>
-                                    </form>
+                                    {{-- </form> --}}
                                 </td>
                             </tr>
                             @endforeach
@@ -103,50 +97,50 @@
             }
         });
     } );
-    function deleteConfirm(id) {
-        Swal.fire({
-            title: 'Harap Konfirmasi',
-            text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Lanjutkan'
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
-                    },
-                    url: "booking/" + id,
-                    method: "post",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "_method": "DELETE",
-                        id: id
-                    },
-                    success: function (data) {
-                        Swal.fire({
-                            title: 'Berhasil!',
-                            text: 'Data berhasil di hapus!',
-                            icon: 'success',
-                        }).then((result) => {
-                            if (result.value) {
-                                window.location.href = "booking/"
-                            }
-                        });
-                    },
-                    error: function () {
-                        Swal.fire({
-                            title: 'Gagal!',
-                            text: 'Data tidak dapat di hapus!',
-                            icon: 'warning',
-                        });
-                        window.location.href = "booking/"
-                    }
-                });
-            }
-        })
-    }
+    // function deleteConfirm(id) {
+    //     Swal.fire({
+    //         title: 'Harap Konfirmasi',
+    //         text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Lanjutkan'
+    //     }).then((result) => {
+    //         if (result.value) {
+    //             $.ajax({
+    //                 headers: {
+    //                     'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+    //                 },
+    //                 url: "booking/" + id,
+    //                 method: "post",
+    //                 data: {
+    //                     "_token": "{{ csrf_token() }}",
+    //                     "_method": "DELETE",
+    //                     id: id
+    //                 },
+    //                 success: function (data) {
+    //                     Swal.fire({
+    //                         title: 'Berhasil!',
+    //                         text: 'Data berhasil di hapus!',
+    //                         icon: 'success',
+    //                     }).then((result) => {
+    //                         if (result.value) {
+    //                             window.location.href = "booking/"
+    //                         }
+    //                     });
+    //                 },
+    //                 error: function () {
+    //                     Swal.fire({
+    //                         title: 'Gagal!',
+    //                         text: 'Data tidak dapat di hapus!',
+    //                         icon: 'warning',
+    //                     });
+    //                     window.location.href = "booking/"
+    //                 }
+    //             });
+    //         }
+    //     })
+    // }
 </script>
 @endpush

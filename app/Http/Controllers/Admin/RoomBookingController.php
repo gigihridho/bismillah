@@ -29,7 +29,6 @@ class RoomBookingController extends Controller
         ]);
     }
 
-
     public function edit($id){
         $room_booking = RoomBooking::findOrFail($id);
         return view('pages.admin.booking.edit',[
@@ -67,11 +66,11 @@ class RoomBookingController extends Controller
         ]);
     }
 
-    public function destroy($id){
-        $room_booking = RoomBooking::findOrFail($id);
-        dd($room_booking);
+    // public function destroy($id){
+    //     $room_booking = RoomBooking::findOrFail($id);
+    //     dd($room_booking);
 
-        $room_booking->delete();
-        return redirect()->back();
-    }
+    //     $room_booking->delete();
+    //     return redirect()->back();
+    // }
 }
