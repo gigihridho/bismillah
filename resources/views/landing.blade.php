@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<style>
+<style type="text/css">
     .owl-carousel .owl-dots button:focus {
   box-shadow: none !important;
   outline: 0; }
