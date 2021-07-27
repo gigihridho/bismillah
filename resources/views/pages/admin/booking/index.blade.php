@@ -65,14 +65,14 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <form action="{{ route('booking.destroy',$room_booking->id) }}" method="POST">
+                                    {{-- <form action="{{ route('booking.destroy',$room_booking->id) }}" method="POST"> --}}
                                         <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $room_booking->id }}/edit">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$room_booking->id) }}">
-                                            <i class="far fa-eye" style="color: white;"></i>
+                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$room_booking->id) }}">
+                                            <i class="far fa-eye"></i>
                                         </a>
-                                    </form>
+                                    {{-- </form> --}}
                                 </td>
                             </tr>
                             @endforeach

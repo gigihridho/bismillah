@@ -34,8 +34,8 @@
                     <i class="fas fa-bed"></i> <span>Tipe Kamar</span></a>
                 </li>
             <li class="menu-header">Data Booking
-                <li class="{{ (request()->is('admin/booking')) ? 'active' : '' }}">
-                    <a href="{{ route('booking.index') }}" class="nav-link">
+                <li class="{{ (request()->is('admin/booking/sudah')) ? 'active' : '' }}">
+                    <a href="{{ route('sudah-bayar') }}" class="nav-link">
                         <i class="fas fa-sign-in-alt"></i><span>Booking Sudah Terbayar</span></a>
                 </li>
                 <li class="{{ (request()->is('admin/booking/belum')) ? 'active' : '' }}">
