@@ -55,7 +55,7 @@ Route::prefix('admin')
         Route::resource('user', 'Admin\UserController');
 
         Route::get('booking/sudah', 'Admin\RoomBookingController@index')->name('sudah-bayar');
-        Route::get('booking/belum','Admin\RoomBookingController@show')->name('belum-dibayar');
+        Route::get('booking/belum','Admin\RoomBookingController@belum')->name('belum-dibayar');
         Route::get('booking/{id}/edit','Admin\RoomBookingController@edit');
         Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
         Route::get('booking/detail/{id}','Admin\RoombookingController@detail')->name('detail-booking');

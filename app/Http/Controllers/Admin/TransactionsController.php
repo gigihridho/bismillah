@@ -32,6 +32,8 @@ class TransactionsController extends Controller
         ]);
     }
 
+    public function show(){}
+
     public function pdf(){
         $now = Carbon::now();
         $transactions = RoomBooking::where('payment',1)->orderBy('order_date','ASC')->get();

@@ -22,7 +22,7 @@ class RoomBookingController extends Controller
         ]);
     }
 
-    public function show(){
+    public function belum(){
         $room_bookings = RoomBooking::where('payment',0)->get();
         return view('pages.admin.booking.belum',[
             'room_bookings' => $room_bookings
