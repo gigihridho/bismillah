@@ -98,130 +98,129 @@
 </section>
 
 {{-- Benefit --}}
-<section class="h-100 w-100" style="box-sizing: border-box; background-color: #f2f6ff">
-<div class="content-3-7 overflow-hidden container-xxl mx-auto position-relative"
-      style="font-family: 'Poppins', sans-serif">
-      <div class="container mx-auto">
-        <div class="d-flex flex-column text-center w-100" style="margin-bottom: 2.25rem">
-          <h2 class="title-text">Fasilitas dan Peraturan Kost</h2>
-          <p class="caption-text mx-auto">
-            Berikut ini adalah fasilitas umum kost<br />
-            dan kamar tersedia beserta peraturan kost
-          </p>
-        </div>
-        <div class="d-flex flex-wrap">
-          <div class="mx-auto card-item position-relative">
-            <div class="card-item-outline bg-white d-flex flex-column position-relative overflow-hidden h-100">
-              <h2 class="price-title">Fasilitas</h2>
-              <p class="price-caption">
-                Fasilitas bersama<br />
-                untuk penghuni kos
-              </p>
-              <div class="price-list">
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                      src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                      alt="" /> </span>Wifi
+<section class="h-100 w-100" style="box-sizing: border-box; background-color: #f2f6ff" data-aos="fade-up">
+<div class="content-3-7 overflow-hidden container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
+        <div class="container mx-auto">
+            <div class="d-flex flex-column text-center w-100" style="margin-bottom: 2.25rem">
+            <h2 class="title-text">Fasilitas dan Peraturan Kost</h2>
+            <p class="caption-text mx-auto">
+                Berikut ini adalah fasilitas umum kost<br />
+                dan kamar tersedia beserta peraturan kost
+            </p>
+            </div>
+            <div class="d-flex flex-wrap">
+            <div class="mx-auto card-item position-relative">
+                <div class="card-item-outline bg-white d-flex flex-column position-relative overflow-hidden h-100">
+                <h2 class="price-title">Fasilitas</h2>
+                <p class="price-caption">
+                    Fasilitas bersama<br />
+                    untuk penghuni kos
                 </p>
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                      src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                      alt="" /> </span>Tempat Parkir
-                </p>
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                    src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                    alt="" /> </span>Dapur Bersama
-                </p>
-                <p class="d-flex align-items-center check">
+                <div class="price-list">
+                    <p class="d-flex align-items-center check">
                     <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                      <img class="img-fluid"
-                      src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                      alt="" /> </span>Ruang Tamu
-                  </p>
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                    src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                      alt="" /> </span>Kemananan 24 Jam
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="mx-auto card-item position-relative">
-            <div class="card-item-outline bg-white d-flex flex-column position-relative overflow-hidden h-100">
-              <h2 class="price-title">Kamar Tersedia</h2>
-              <p class="price-mulai">
-                Harga Mulai
-              </p>
-              <h2 class="price-value d-flex align-items-center">
-                <span>Rp300.000,00 </span>
-                <span class="price-duration">/Bulan</span>
-              </h2>
-              <div class="price-list">
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                      src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                      alt="" /> </span>{{ $room }} Kamar Tersedia
-                </p>
-                <p class="d-flex align-items-center no-check">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>Wifi
+                    </p>
+                    <p class="d-flex align-items-center check">
                     <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                      <img class="img-fluid"
-                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-3.png"
-                        alt="" /> </span>dari {{ $rom }} Total Kamar
-                  </p>
-              </div>
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>Tempat Parkir
+                    </p>
+                    <p class="d-flex align-items-center check">
+                    <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>Dapur Bersama
+                    </p>
+                    <p class="d-flex align-items-center check">
+                        <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>Ruang Tamu
+                    </p>
+                    <p class="d-flex align-items-center check">
+                    <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>Kemananan 24 Jam
+                    </p>
+                </div>
+                </div>
             </div>
-          </div>
-          <div class="mx-auto card-item position-relative">
-            <div class="card-item-outline bg-white d-flex flex-column position-relative overflow-hidden h-100">
-              <h2 class="price-title">Peraturan</h2>
-              <p class="price-caption">
-                Beberapa peraturan yang<br />
-                harus ditaati penghuni
-              </p>
-              <div class="price-list">
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                      src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                      alt="" /> </span><strong>Kost Khusus Putri</strong>
+            <div class="mx-auto card-item position-relative">
+                <div class="card-item-outline bg-white d-flex flex-column position-relative overflow-hidden h-100">
+                <h2 class="price-title">Kamar Tersedia</h2>
+                <p class="price-mulai">
+                    Harga Mulai
                 </p>
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                      src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                      alt="" /> </span>Tamu lawan jenis di ruang tamu
-                </p>
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                      src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                      alt="" /> </span>Wajib mematuhi jam malam
-                </p>
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                    src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                    alt="" /> </span>Memarkir kendaraan dengan rapi
-                </p>
-                <p class="d-flex align-items-center check">
-                  <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                    <img class="img-fluid"
-                    src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                    alt="" /> </span>Menjaga kebersihan kost
-                </p>
-              </div>
+                <h2 class="price-value d-flex align-items-center">
+                    <span>Rp300.000,00 </span>
+                    <span class="price-duration">/Bulan</span>
+                </h2>
+                <div class="price-list">
+                    <p class="d-flex align-items-center check">
+                    <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>{{ $room }} Kamar Tersedia
+                    </p>
+                    <p class="d-flex align-items-center no-check">
+                        <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                            src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-3.png"
+                            alt="" /> </span>dari {{ $rom }} Total Kamar
+                    </p>
+                </div>
+                </div>
             </div>
-          </div>
+            <div class="mx-auto card-item position-relative">
+                <div class="card-item-outline bg-white d-flex flex-column position-relative overflow-hidden h-100">
+                <h2 class="price-title">Peraturan</h2>
+                <p class="price-caption">
+                    Beberapa peraturan yang<br />
+                    harus ditaati penghuni
+                </p>
+                <div class="price-list">
+                    <p class="d-flex align-items-center check">
+                    <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span><strong>Kost Khusus Putri</strong>
+                    </p>
+                    <p class="d-flex align-items-center check">
+                    <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>Tamu lawan jenis di ruang tamu
+                    </p>
+                    <p class="d-flex align-items-center check">
+                    <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>Wajib mematuhi jam malam
+                    </p>
+                    <p class="d-flex align-items-center check">
+                    <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>Memarkir kendaraan dengan rapi
+                    </p>
+                    <p class="d-flex align-items-center check">
+                    <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
+                        <img class="img-fluid"
+                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
+                        alt="" /> </span>Menjaga kebersihan kost
+                    </p>
+                </div>
+                </div>
+            </div>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
     <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="d-flex flex-lg-row flex-column align-items-center">

@@ -7,7 +7,7 @@
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.theme.min.css" integrity="sha512-9h7XRlUeUwcHUf9bNiWSTO9ovOWFELxTlViP801e5BbwNJ5ir9ua6L20tEroWZdm+HFBAWBLx2qH4l4QHHlRyg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" integrity="sha512-+0Vhbu8sRUlg+R/NKgTv7ahM+szPDF10G6J5PcHb1tOrAaquZIUiKUV3TH16mi6fuH4NjvHqlok6ppBhR6Nxuw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
+<style type="text/css">
 .btn-fill{
     background-color: #6777ef;
     border-radius: 12px;
@@ -123,7 +123,7 @@ p.required-field::after {
                                 <p>{{ $facility->name }}</p>
                             @empty
                             <div class="col-12 text-left">
-                                Data Fasilitas Tidak Ditemukan
+                                Tida ada fasilitas
                             </div>
                             @endforelse
                         </div>
