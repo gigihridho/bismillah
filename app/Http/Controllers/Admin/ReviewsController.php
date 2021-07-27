@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Review;
-use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
 
 class ReviewsController extends Controller
 {

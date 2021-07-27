@@ -29,12 +29,6 @@ class RoomBookingController extends Controller
         ]);
     }
 
-    public function detail($id){
-        $room_bookings = RoomBooking::where('id',$id)->get();
-        return view('pages.admin.booking.detail',[
-            'room_bookings' => $room_bookings
-        ]);
-    }
 
     public function edit($id){
         $room_booking = RoomBooking::findOrFail($id);
@@ -54,8 +48,8 @@ class RoomBookingController extends Controller
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()){
             return redirect()->back()
-                ->withInput($request->all())
-                ->withErrors($validator);
+            ->withInput($request->all())
+            ->withErrors($validator);
         }
 
         $room_booking->payment = $request->input('payment');
@@ -64,6 +58,13 @@ class RoomBookingController extends Controller
 
         Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
         return redirect()->route('booking.index');
+    }
+
+    public function detail($id){
+        $room_bookings = RoomBooking::where('id',$id)->get();
+        return view('pages.admin.booking.detail',[
+            'room_bookings' => $room_bookings
+        ]);
     }
 
     public function destroy($id){
