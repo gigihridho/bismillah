@@ -59,21 +59,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Status</label>
-                                    <select name="status" id="status" class="form-control">
-                                        <option value="1"
-                                            @if ($item->status == '1')selected="selected" @endif" >
-                                            Lunas
-                                        </option>
-                                        <option value="0" s
-                                            @if ($item->status) == '0')selected="selected" @endif" >
-                                            Belum Lunas
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label>Keterangan</label>
                                     <input type="text" name="keterangan" class="form-control"
                                     value="{{ $item->keterangan }}">

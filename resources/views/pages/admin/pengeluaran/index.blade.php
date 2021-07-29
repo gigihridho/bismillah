@@ -33,7 +33,6 @@
                                 <th>Pengeluaran</th>
                                 <th>Nominal</th>
                                 <th>Keterangan</th>
-                                <th>Status</th>
                                 <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -45,13 +44,6 @@
                                     <td>{{ $p->pengeluaran}}</td>
                                     <td>Rp{{ number_format($p->nominal,2,',','.') }}</td>
                                     <td>{{ $p->keterangan }}</td>
-                                    <td>
-                                        @if($p->status == 1)
-                                            <span class="badge badge-success">Lunas</span>
-                                        @else
-                                            <span class="badge badge-danger">Belum Lunas</span>
-                                        @endif
-                                    </td>
                                     <td>
                                         <form action="{{ route('pengeluaran.destroy',$p->id) }}" method="POST">
                                             <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('pengeluaran.edit',$p->id) }}">

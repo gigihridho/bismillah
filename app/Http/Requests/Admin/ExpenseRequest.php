@@ -27,8 +27,7 @@ class ExpenseRequest extends FormRequest
             'pengeluaran' => 'required|string',
             'nominal' => 'required|numeric',
             'date' => 'required|date',
-            'keterangan' => 'required|string',
-            'status' => 'required|boolean'
+            'keterangan' => 'required|string'
         ];
     }
 }

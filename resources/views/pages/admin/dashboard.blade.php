@@ -54,7 +54,6 @@
                 <div class="card-body">
                     {{ $transactions }}
                 </div>
-                {{-- <p>Dari total {{ $transactionss }} kamar</p> --}}
                 </div>
             </div>
             </div>

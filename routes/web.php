@@ -94,5 +94,3 @@ Route::get('/verify', function () {
     return view('auth/verify');
 });
 Auth::routes(['verify' => true]);
-
-Route::get('detail-transaksi', 'DetailTransactionController@index')->name('detail-transaksi');

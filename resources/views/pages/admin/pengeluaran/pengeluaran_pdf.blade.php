@@ -39,7 +39,6 @@
                             <th>#</th>
                             <th>Tanggal Transaksi</th>
                             <th>Jenis Pengeluaran</th>
-                            <th>Status</th>
                             <th>Keterangan</th>
                             <th>Nominal</th>
                         </tr>
@@ -48,13 +47,6 @@
                                 <th>{{ $index+1 }}</th>
                                 <td>{{ $p->date}}</td>
                                 <td>{{ $p->pengeluaran }}</td>
-                                <td>
-                                    @if($p->status == 1)
-                                    <p>Lunas</p>
-                                    @else
-                                    <p>Belum Lunas</p>
-                                    @endif
-                                </td>
                                 <td>{{ $p->keterangan }}</td>
                                 <td style="text-align: right;">
                                     <span>Rp {{ number_format($p->nominal) }}</span>
