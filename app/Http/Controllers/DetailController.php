@@ -19,12 +19,3 @@ class DetailController extends Controller
         ]);
     }
 }
-
-// $room_types = RoomType::where('id', $id)->get();
-        // $price = RoomType::where('id',$id)->pluck('price');
-
-        // $roomTypes = [];
-        // foreach ($room_types as $room_type){
-        //     $roomTypes[] = $room_type->id;
-        // }
-        // $rooms = Room::whereIn('room_type_id', $roomTypes)->get();

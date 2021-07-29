@@ -26,7 +26,7 @@ class ExpenseRequest extends FormRequest
         return [
             'pengeluaran' => 'required|string',
             'nominal' => 'required|numeric',
-            'date' => 'date',
+            'date' => 'required|date',
             'keterangan' => 'required|string',
             'status' => 'required|boolean'
         ];
