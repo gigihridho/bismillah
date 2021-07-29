@@ -52,7 +52,6 @@ Route::prefix('admin')
         Route::get('/', 'Admin\DashboardController@index')->name('admin-dashboard');
         Route::resource('fasilitas', 'Admin\FacilityController');
 
-
         Route::get('booking/sudah', 'Admin\TransactionsController@index')->name('sudah-bayar');
         Route::get('booking/belum','Admin\TransactionsController@belum')->name('belum-dibayar');
         Route::get('booking/{id}/edit','Admin\TransactionsController@edit');

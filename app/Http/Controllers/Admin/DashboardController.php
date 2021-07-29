@@ -24,7 +24,6 @@ class DashboardController extends Controller
         $room_avail = Room::where('available',true)->count();
         $rom = Room::count();
         $transactions = Transaction::count();
-        $transactionss = Transaction::where('payment',1)->count();
         $total_price = Transaction::where('payment',1)->sum('total_price');
         $pengeluaran = Expense::where('status',1)->sum('nominal');
         $keuntungan = $total_price - $pengeluaran;
@@ -43,7 +42,6 @@ class DashboardController extends Controller
             'keuntungan' => $keuntungan,
             'pengeluaran' => $pengeluaran,
             'rom' => $rom,
-            'transactionss' => $transactionss
         ]);
     }
 }
