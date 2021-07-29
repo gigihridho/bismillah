@@ -5,7 +5,7 @@
         <img style="margin-right: 0.75rem;"
             src="{{ asset('fe/img/GriyoKenyo.png') }}" alt="" />
         </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal" data-bs-target="#targetModal">
+        <button class="navbar-toggler border-0" type="button" data-toggle="modal" data-target="#targetModal">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -25,7 +25,48 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">Home</a>
                             </li>
-                        </ul>
+                        {{-- </ul> --}}
+                        @auth
+                        <!--Desktop Menu-->
+                    {{-- <ul class="nav navbar-nav d-none d-lg-flex"> --}}
+                        <li class="nav-item dropdown">
+                        <a href="#" class="btn btn-fill text-white" id="navbar-dropdown" role="button" data-toggle="dropdown" style="margin-right: 4px;">
+                            Hi, {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu">
+                            @if(auth()->user()->hasRole('user'))
+                            <a href="{{ route('profil-user') }}" class="dropdown-item">Profil</a>
+                            <a href="{{ route('user-transaksi') }}" class="dropdown-item"><span>Transaksi</span></a>
+                                <div class="dropdown-divider"></div>
+                            <a
+                            href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="dropdown-item text-danger"
+                            >
+                            <span>Keluar</span>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            </a>
+                            @endif
+
+                            @if(auth()->user()->hasRole('admin'))
+                            <a href="{{ route('admin-dashboard') }}" class="dropdown-item"><span>Dashboard</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a
+                                href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                class="dropdown-item text-danger"
+                                >
+                                <span>Keluar</span></a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+
+                            @endif
+                        </div>
+                        </li>
+                        @endauth
+                    </ul>
                     </div>
                     @guest
                     <div class="modal-footer border-0 gap-3" style="padding: 2rem; padding-top: 0.75rem">
