@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    Booking
+    Transaksi Sudah Bayar
 @endsection
 
 @section('content')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Data @yield('title')</h1>
+            <h1>@yield('title')</h1>
             <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{ route('admin-dashboard') }}">Dashboard</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
@@ -36,40 +36,40 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($room_bookings as $index => $room_booking)
+                            @foreach ($transactions as $index => $transaction)
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
-                                <td>{{ $room_booking->user->name }}</td>
-                                <td>{{ $room_booking->kode }}</td>
+                                <td>{{ $transaction->user->name }}</td>
+                                <td>{{ $transaction->kode }}</td>
                                 <td>
-                                    @if($room_booking->photo_payment != null)
-                                        <img height="100px" src="{{ Storage::url($room_booking->photo_payment) }}" alt="" onclick="blank">
+                                    @if($transaction->photo_payment != null)
+                                        <img height="100px" src="{{ Storage::url($transaction->photo_payment) }}" alt="" onclick="blank">
                                     @else
                                         <span class="badge badge-warning">Belum Upload</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($room_booking->payment == 1)
+                                    @if($transaction->payment == 1)
                                         <span class="badge badge-success">Sudah Bayar</span>
                                     @else
                                         <span class="badge badge-warning">Belum Bayar</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($room_booking->status == "Menunggu")
+                                    @if($transaction->status == "Menunggu")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($room_booking->status == "Terisi")
+                                    @elseif($transaction->status == "Terisi")
                                         <span class="badge badge-success">Terisi</span>
-                                    @elseif($room_booking->status == "Keluar")
+                                    @elseif($transaction->status == "Keluar")
                                         <span class="badge badge-danger">Keluar</span>
                                     @endif
                                 </td>
                                 <td>
                                     {{-- <form action="{{ route('booking.destroy',$room_booking->id) }}" method="POST"> --}}
-                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $room_booking->id }}/edit">
+                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $transaction->id }}/edit">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$room_booking->id) }}">
+                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$transaction->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
                                     {{-- </form> --}}

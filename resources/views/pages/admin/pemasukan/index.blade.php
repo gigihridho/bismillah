@@ -20,7 +20,29 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('transaksi-pdf') }}" class="btn btn-success mb-3" id="cetakPDF"><span i class="fas fa-print"></span> Print PDF</a>
+                    {{-- <form action="{{ route('search') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="container">
+                        <div class="row">
+                            <div class="container-fluid">
+                                <div class="form-group">
+                                    <label for="order_date">Tanggal Awal</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control sm" id="from" name="fromDate" required/>
+                                    </div>
+                                    <label for="order_date">Tanggal Akhir</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control sm" id="to" name="toDate" required/>
+                                    </div>
+                                    <div class="col-sm-2 mt-2 form-group">
+                                        <button type="submit" class="btn btn-primary" name="search" title="Search">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form> --}}
+                    <a href="{{ route('pemasukan-pdf') }}" class="btn btn-success mb-3" id="cetakPDF"><span i class="fas fa-print"></span> Print PDF</a>
                     <div class="table-responsive">
                     <table class="table table-striped" id="table-1">
                         <thead>

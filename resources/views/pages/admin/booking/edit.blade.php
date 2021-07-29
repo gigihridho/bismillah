@@ -32,7 +32,7 @@
                         <h4>Update Status Booking</h4>
                     </div>
                     <div class="card-body">
-                        <form action="/admin/booking/{{$room_booking->id}}/edit" method="POST" enctype="multipart/form-data">
+                        <form action="/admin/booking/{{$transaction->id}}/edit" method="POST" enctype="multipart/form-data">
                         @method("PUT")
                         @csrf
                             <div class="row">
@@ -41,17 +41,17 @@
                                         <label>Status</label>
                                         <select name="status" id="status" class="form-control">
                                             <option value="Menunggu"
-                                            @if ($room_booking->status == 'Menunggu')
+                                            @if ($transaction->status == 'Menunggu')
                                                 selected="selected"
                                             @endif>Menunggu
                                             </option>
                                             <option value="Terisi"
-                                            @if ($room_booking->status == 'Terisi')
+                                            @if ($transaction->status == 'Terisi')
                                                 selected="selected"
                                             @endif>Terisi
                                             </option>
                                             <option value="Keluar"
-                                            @if ($room_booking->status == 'Keluar')
+                                            @if ($transaction->status == 'Keluar')
                                                 selected="selected"
                                             @endif>Keluar
                                             </option>
@@ -63,10 +63,10 @@
                                         <label>Pembayaran</label>
                                         <select name="payment" id="payment" class="form-control">
                                             <option value="1"
-                                                    @if ($room_booking->payment == '1') selected="selected" @endif>Terbayar
+                                                    @if ($transaction->payment == '1') selected="selected" @endif>Terbayar
                                             </option>
                                             <option value="0"
-                                                    @if ($room_booking->payment == '0') selected="selected" @endif>
+                                                    @if ($transaction->payment == '0') selected="selected" @endif>
                                                 Belum Terbayar
                                             </option>
                                         </select>

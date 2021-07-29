@@ -51,7 +51,7 @@ class Booking implements Rule
         foreach ($this->room_type->rooms as $room) {
             if($room->available == 1){
                 if($this->room_bookings_exist($room)){
-                    if($this->room_bookings_check($room->room_bookings) == false){
+                    if($this->room_bookings_check($room->transactions) == false){
                     continue;
                     }
                 }
@@ -65,7 +65,7 @@ class Booking implements Rule
         foreach ($this->room_type->rooms as $room) {
             if($room->available == 1){
                 if($this->room_bookings_exist($room)){
-                    if($this->room_bookings_check($room->room_bookings) == false)
+                    if($this->room_bookings_check($room->transactions) == false)
                     continue;
                 }
                 return $room->room_number;
@@ -82,16 +82,16 @@ class Booking implements Rule
     }
 
     protected function room_bookings_exist($room){
-        if(count($room->room_bookings) > 0){
+        if(count($room->transactions) > 0){
             return true;
         }
     }
 
-    protected function room_bookings_check($room_bookings)
+    protected function room_bookings_check($transactions)
     {
-        foreach ($room_bookings as $room_booking) {
-            $old_arrival_date = Carbon::parse($room_booking->arrival_date);
-            $old_departure_date = Carbon::parse($room_booking->departure_date);
+        foreach ($transactions as $transaction) {
+            $old_arrival_date = Carbon::parse($transaction->arrival_date);
+            $old_departure_date = Carbon::parse($transaction->departure_date);
             if($this->new_arrival_date < $old_arrival_date){
                 if($this->new_departure_date > $old_departure_date){
                 return false;

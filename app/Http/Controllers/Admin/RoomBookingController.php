@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\RoomBooking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Transaction;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,28 +17,28 @@ class RoomBookingController extends Controller
     }
 
     public function index(){
-        $room_bookings = RoomBooking::where('payment',1)->get();
+        $transactions = Transaction::where('payment',1)->get();
         return view('pages.admin.booking.index',[
-            'room_bookings' => $room_bookings
+            'transactions' => $transactions
         ]);
     }
 
     public function belum(){
-        $room_bookings = RoomBooking::where('payment',0)->get();
+        $transactions = Transaction::where('payment',0)->get();
         return view('pages.admin.booking.belum',[
-            'room_bookings' => $room_bookings
+            'transactions' => $transactions
         ]);
     }
 
     public function edit($id){
-        $room_booking = RoomBooking::findOrFail($id);
+        $transaction = Transaction::findOrFail($id);
         return view('pages.admin.booking.edit',[
-            'room_booking' => $room_booking
+            'transaction' => $transaction
         ]);
     }
 
     public function update(Request $request, $id){
-        $room_booking = RoomBooking::findOrFail($id);
+        $transaction = Transaction::findOrFail($id);
 
         $rules = [
             'status' => 'in:Menunggu,Terisi,Keluar',
@@ -51,18 +52,18 @@ class RoomBookingController extends Controller
             ->withErrors($validator);
         }
 
-        $room_booking->payment = $request->input('payment');
-        $room_booking->status = $request->input('status');
-        $room_booking->save();
+        $transaction->payment = $request->input('payment');
+        $transaction->status = $request->input('status');
+        $transaction->save();
 
         Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
-        return redirect()->route('booking.index');
+        return redirect()->route('sudah-bayar');
     }
 
     public function detail($id){
-        $room_bookings = RoomBooking::where('id',$id)->get();
+        $transactions = Transaction::where('id',$id)->get();
         return view('pages.admin.booking.detail',[
-            'room_bookings' => $room_bookings
+            'transactions' => $transactions
         ]);
     }
 

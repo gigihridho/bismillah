@@ -108,15 +108,16 @@ label:hover {
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
     <div class="content-3-2 container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
         <h4 class="d-flex justify-content-center mb-3">Silakan unggah bukti pembayaran ya</h4>
+        @php $no = 1; @endphp
+        {{-- @foreach ($transaction as $tf) --}}
         <div class="d-flex flex-lg-row flex-column align-items-center">
         <!-- Left Column -->
         <div class="col-lg-6 left-column d-flex flex-column align-items-lg-start text-lg-start text-center">
-            @foreach ($transaction as $tf)
             <div class="invoice">
                 <h6>Total Tagihan Pembayaran Anda</h6>
-                <h6>Rp {{ number_format($tf->total_price,2,',','.') }}</h6>
+                <h6>Rp {{ number_format($transaction->total_price,2,',','.') }}</h6>
             </div>
-            <form action="{{ route('upload-pembayaran',$tf->id) }}" method="POST"
+            <form action="{{ route('upload-pembayaran',$transaction->id) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="image-preview" id="imagePreview">
@@ -130,8 +131,8 @@ label:hover {
                 </label>
                 <button type="submit" class="btn btn-primary">Kirim</button>
             </form>
-            @endforeach
         </div>
+        {{-- @endforeach --}}
         <!-- Right Column -->
         <div class="col-lg-6 right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
             <h4 class="title-text">Cara Pembayaran</h4>

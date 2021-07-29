@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\RoomBooking;
+use App\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,14 +17,14 @@ class UserTransactionController extends Controller
     }
 
     public function index(){
-        $transaction = RoomBooking::where('user_id','=',Auth::user()->id)->get();
+        $transaction = Transaction::where('user_id','=',Auth::user()->id)->get();
         return view('pages.user.user-transaksi.index',[
             'transaction' => $transaction
         ]);
     }
 
     public function lanjut(Request $request){
-        $transaction = RoomBooking::with('user','room')
+        $transaction = Transaction::with('user','room')
             ->where('user_id',Auth::user()->id)
             ->latest()
             ->first();
@@ -54,27 +55,27 @@ class UserTransactionController extends Controller
         }
 
         $user = Auth::user();
-        $room_booking = new RoomBooking();
-        $room_booking->duration = $duration;
-        $room_booking->arrival_date = $new_arrival_date;
-        $room_booking->departure_date = $new_departure_date;
-        $room_booking->order_date = Carbon::now();
-        $room_booking->total_price = $total_price;
-        $room_booking->room_id = $old_room_booking->room_id;
-        $room_booking->user_id = $user->id;
-        $room_booking->kode = $kode;
+        $transaction = new Transaction();
+        $transaction->duration = $duration;
+        $transaction->arrival_date = $new_arrival_date;
+        $transaction->departure_date = $new_departure_date;
+        $transaction->order_date = Carbon::now();
+        $transaction->total_price = $total_price;
+        $transaction->room_id = $old_room_booking->room_id;
+        $transaction->user_id = $user->id;
+        $transaction->kode = $kode;
         if($request->hasFile('photo_payment')){
             $path = $request->file('photo_payment')->store('assets/transaction','public');
-            $room_booking->photo_payment = $path;
+            $transaction->photo_payment = $path;
         }
-        $room_booking->save();
+        $transaction->save();
 
         Alert::success('SUCCESS','Berhasil melakukan perpanjangan sewa kamar');
         return redirect()->route('user-transaksi');
     }
 
     public function detail(Request $request, $id){
-        $item = RoomBooking::where('id',$id)->get();
+        $item = Transaction::where('id',$id)->get();
 
         return view('pages.user.user-transaksi.detail',[
             'item' => $item,
@@ -92,7 +93,7 @@ class UserTransactionController extends Controller
         ]);
         $user = Auth::user();
 
-        $transaction = RoomBooking::with('user','room')->where('user_id', Auth::user()->id)->latest()->first();
+        $transaction = Transaction::with('user','room')->where('user_id', Auth::user()->id)->latest()->first();
         if($request->hasFile('photo_payment')){
             $path = $request->file('photo_payment')->store('assets/transaction','public');
             $transaction->photo_payment = $path;
@@ -105,7 +106,7 @@ class UserTransactionController extends Controller
 
     public function cancel(Request $request, $id){
 
-        $transaction = RoomBooking::findOrFail($id);
+        $transaction = Transaction::findOrFail($id);
         // $transaction->room->availability = $request->availability(true);
         $transaction->delete();
 

@@ -8,7 +8,7 @@ use App\Rules\Booking;
 use App\RoomType;
 use App\RoomBooking;
 use App\Rules\RoomAvailableRule;
-
+use App\Transaction;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -87,12 +87,12 @@ class BookingController extends Controller
                 ->withErrors($validator);
         }
 
-        $room_booking = new RoomBooking();
+        $transaction = new Transaction();
         $user = Auth::user();
-        $room_booking->kode = $kode;
-        $room_booking->arrival_date = $request->input('arrival_date');
-        $room_booking->departure_date = $new_departure_date;
-        $room_booking->order_date = Carbon::now();
+        $transaction->kode = $kode;
+        $transaction->arrival_date = $request->input('arrival_date');
+        $transaction->departure_date = $new_departure_date;
+        $transaction->order_date = Carbon::now();
 
         $price = $room_type->price;
         if($duration == 1){
@@ -103,16 +103,16 @@ class BookingController extends Controller
             $total_price = $duration * $price - (1 * $price);
         }
 
-        $room_booking->total_price = $total_price;
-        $room_booking->user_id = $user->id;
+        $transaction->total_price = $total_price;
+        $transaction->user_id = $user->id;
 
         $booking = new Booking($room_type, $new_arrival_date, $new_departure_date);
 
         $room = Room::where('room_number', $booking->available_room_number())->first();
 
-        $room_booking->room_id = $room->id;
-        $room_booking->user_id = $user->id;
-        $room_booking->save();
+        $transaction->room_id = $room->id;
+        $transaction->user_id = $user->id;
+        $transaction->save();
 
         $room->available = 0;
         $room->save();
@@ -121,14 +121,13 @@ class BookingController extends Controller
     }
 
     public function show(){
-        $transaction = RoomBooking::with('user','room')->where('user_id',Auth::user()->id)->get();
+        $transaction = Transaction::with('user','room')->where('user_id',Auth::user()->id)->latest()->first();
         return view('pages.unggah',[
             'transaction' => $transaction
         ]);
     }
 
     public function upload(Request $request, $id){
-        $transaction = RoomBooking::where('id',$id)->first();
         $this->validate($request, [
             'photo_payment' => 'required|image|max:2048|mimes:png,jpg,jpeg',
         ],
@@ -138,6 +137,7 @@ class BookingController extends Controller
             'photo_payment.mimes' => 'Format file tidak didukung'
         ]);
 
+        $transaction = Transaction::with('user','room')->where('user_id',Auth::user()->id)->latest()->first();
         if($request->hasFile('photo_payment')){
             $path = $request->file('photo_payment')->store('assets/transaction','public');
             $transaction->photo_payment = $path;

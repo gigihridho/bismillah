@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RoomBooking extends Model
+class Transaction extends Model
 {
-    protected $table = 'room_bookings';
+    protected $table = 'transactions';
 
     protected $fillable = [
         'user_id','room_id','photo_payment','order_date','total_price','duration','arrival_date','departure_date','status','kode'

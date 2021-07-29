@@ -53,15 +53,16 @@ Route::prefix('admin')
         Route::resource('fasilitas', 'Admin\FacilityController');
 
 
-        Route::get('booking/sudah', 'Admin\RoomBookingController@index')->name('sudah-bayar');
-        Route::get('booking/belum','Admin\RoomBookingController@belum')->name('belum-dibayar');
-        Route::get('booking/{id}/edit','Admin\RoomBookingController@edit');
-        Route::put('booking/{id}/edit','Admin\RoomBookingController@update');
-        Route::get('booking/detail/{id}','Admin\RoomBookingController@detail')->name('detail-booking');
+        Route::get('booking/sudah', 'Admin\TransactionsController@index')->name('sudah-bayar');
+        Route::get('booking/belum','Admin\TransactionsController@belum')->name('belum-dibayar');
+        Route::get('booking/{id}/edit','Admin\TransactionsController@edit');
+        Route::put('booking/{id}/edit','Admin\TransactionsController@update');
+        Route::get('booking/detail/{id}','Admin\TransactionsController@detail')->name('detail-booking');
         // Route::delete('booking/{id}','Admin\RoomBookingController@destroy');
 
-        Route::get('transaksi','Admin\TransactionsController@index')->name('transaksi');
-        Route::get('transaksi/transaksi-pdf','Admin\TransactionsController@pdf')->name('transaksi-pdf');
+        Route::get('pemasukan','Admin\IncomeController@index')->name('pemasukan');
+        Route::post('pemasukan','Admin\IncomeController@search')->name('search');
+        Route::get('pemasukan/pemasukan-pdf','Admin\IncomeController@pdf')->name('pemasukan-pdf');
 
         Route::resource('pengeluaran','Admin\ExpenseController');
         Route::get('pdf','Admin\ExpenseController@ex_pdf')->name('pengeluaran-pdf');

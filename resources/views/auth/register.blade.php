@@ -58,7 +58,7 @@
     border-color: #6777ef;
 }
 </style>
-<div id="app" style="background: #F7F7F7">
+<div id="app" style="background: #F2F6FF">
     <section class="section">
         <div class="container">
             <div class="row">

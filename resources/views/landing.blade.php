@@ -69,7 +69,7 @@
             <div
                 class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
                 <h1 class="title-text-big">
-                Punya Impian<br class="d-lg-block d-none" />
+                Ingin Punya<br class="d-lg-block d-none" />
                 Kamar Kost Yang Nyaman
                 </h1>
                 <p>Kost Griyo Kenyo merupakan kost <strong>putri</strong> yang nyaman dan bersih. Bagi kamu yang ingin mendapat suasana tersebut, Ayo segera miliki kamar di sini.</p>
@@ -141,12 +141,6 @@
                         src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
                         alt="" /> </span>Ruang Tamu
                     </p>
-                    <p class="d-flex align-items-center check">
-                    <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
-                        <img class="img-fluid"
-                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                        alt="" /> </span>Kemananan 24 Jam
-                    </p>
                 </div>
                 </div>
             </div>
@@ -157,7 +151,7 @@
                     Harga Mulai
                 </p>
                 <h2 class="price-value d-flex align-items-center">
-                    <span>Rp300.000,00 </span>
+                    <span>Rp300.000 </span>
                     <span class="price-duration">/Bulan</span>
                 </h2>
                 <div class="price-list">

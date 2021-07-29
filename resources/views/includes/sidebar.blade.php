@@ -33,19 +33,19 @@
                     <a href="{{ route('tipe.index') }}" class="nav-link">
                     <i class="fas fa-bed"></i> <span>Tipe Kamar</span></a>
                 </li>
-            <li class="menu-header">Data Booking
+            <li class="menu-header">Data Transaksi
                 <li class="{{ (request()->is('admin/booking/sudah')) ? 'active' : '' }}">
                     <a href="{{ route('sudah-bayar') }}" class="nav-link">
-                        <i class="fas fa-sign-in-alt"></i><span>Booking Sudah Terbayar</span></a>
+                        <i class="fas fa-sign-in-alt"></i><span>Transaksi Sudah Bayar</span></a>
                 </li>
                 <li class="{{ (request()->is('admin/booking/belum')) ? 'active' : '' }}">
                     <a href="{{ route('belum-dibayar') }}"class="nav-link">
-                        <i class="fas fa-minus-square"></i><span>Booking Belum Dibayar</span></a>
+                        <i class="fas fa-minus-square"></i><span>Transaksi Belum Bayar</span></a>
                 </li>
             </li>
-            <li class="menu-header">Transaksi
-                <li class="{{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
-                    <a href="{{ route('transaksi') }}"><i class="fas fa-credit-card"></i><span>Laporan Pemasukan</span></a>
+            <li class="menu-header">Keuangan
+                <li class="{{ (request()->is('admin/pemasukan*')) ? 'active' : '' }}">
+                    <a href="{{ route('pemasukan') }}"><i class="fas fa-credit-card"></i><span>Laporan Pemasukan</span></a>
                 </li>
                 <li class="{{ (request()->is('admin/pengeluaran*')) ? 'active' : '' }}">
                     <a href="{{ route('pengeluaran.index') }}"><i class="fas fa-receipt"></i><span>Laporan Pengeluaran</span></a>
