@@ -57,6 +57,10 @@
     background-color: #6777ef;
     border-color: #6777ef;
 }
+#small {
+  font-size: 12px;
+  line-height: 20px; }
+
 </style>
 <div id="app" style="background: #F2F6FF">
     <section class="section">
@@ -72,7 +76,8 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="name">Nama Lengkap</label>
-                            <input id="name" type="text" placeholder="Masukkan Nama Anda" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus>
+                            <input id="name" type="text" placeholder="Masukkan Nama Anda" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus
+                            oninvalid="this.setCustomValidity('Data tidak boleh kosong')" oninput="setCustomValidity('')">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -81,7 +86,8 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="email">Email</label>
-                            <input id="email" type="email" placeholder="youremail@example.com" class="form-control @error('email') is-invalid @enderror" :class="{'is_invalid' : this.email_unavailable}" name="email" value="{{ old('email') }}" required  autocomplete="off" autofocus>
+                            <input id="email" type="email" placeholder="youremail@example.com" class="form-control @error('email') is-invalid @enderror" :class="{'is_invalid' : this.email_unavailable}" name="email" value="{{ old('email') }}" required  autocomplete="off" autofocus
+                            oninvalid="this.setCustomValidity('Data tidak boleh kosong')" oninput="setCustomValidity('')">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -93,7 +99,8 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="password"class="d-block">Kata Sandi</label>
-                            <input id="password" placeholder="Masukkan Kata Sandi" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <input id="password" placeholder="Masukkan Kata Sandi" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"
+                            oninvalid="this.setCustomValidity('Data tidak boleh kosong')" oninput="setCustomValidity('')">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -102,11 +109,12 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="password2"class="d-block">Konfirmasi Kata Sandi</label>
-                            <input id="password-confirm" placeholder="Masukkan Kata Sandi" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" placeholder="Masukkan Kata Sandi" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"
+                            oninvalid="this.setCustomValidity('Data tidak boleh kosong')" oninput="setCustomValidity('')">
                             @error('password_confirmation')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
                     </div>
@@ -114,16 +122,18 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="address">Alamat Asal</label>
-                            <input id="address" type="text" placeholder="Masukkan Alamat Asal Anda" class="form-control @error('address') is-invalid @enderror" name="address"  autocomplete="off" value="{{ old('address') }}" required autocomplete="off" autofocus>
-                                    @error('address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                            <input id="address" type="text" placeholder="Masukkan Alamat Asal Anda" class="form-control @error('address') is-invalid @enderror" name="address"  autocomplete="off" value="{{ old('address') }}" required autocomplete="off" autofocus
+                            oninvalid="this.setCustomValidity('Data tidak boleh kosong')" oninput="setCustomValidity('')">
+                            @error('address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group col-6">
                             <label for="profession">Pekerjaan</label>
-                            <input id="profession" type="text" placeholder="Masukkan Pekerjaan Anda" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}" required  autocomplete="off" autofocus>
+                            <input id="profession" type="text" placeholder="Masukkan Pekerjaan Anda" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}" required  autocomplete="off" autofocus
+                            oninvalid="this.setCustomValidity('Data tidak boleh kosong')" oninput="setCustomValidity('')">
                             @error('profession')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -134,21 +144,25 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="no_hp">No Telepon</label>
-                            <input id="no_hp" type="numeric" placeholder="Masukkan Nomor Telepon Anda" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required  autocomplete="off" autofocus>
+                            <input id="no_hp" type="numeric" placeholder="Masukkan Nomor Telepon Anda" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required  autocomplete="off" autofocus
+                            oninvalid="this.setCustomValidity('Data tidak boleh kosong')" oninput="setCustomValidity('')">
                                 @error('no_hp')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            <small style="font-size: 12px;">Contoh: 08190211313</small>
                         </div>
                         <div class="form-group col-6">
                             <label for="photo_ktp" class="control-label">Scan / Foto KTP</label>
-                            <input id="photo_ktp" type="file" class="form-control" name="photo_ktp" required>
+                            <input id="photo_ktp" type="file" class="form-control @error('photo_ktp') is-invalid @enderror"" name="photo_ktp" required
+                            oninvalid="this.setCustomValidity('Data tidak boleh kosong')" oninput="setCustomValidity('')">
                             @error('photo_ktp')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                            <small style="font-size: 12px;">Format: jpeg,jpg,png. Ukuran Maksimal: 2MB</small>
                         </div>
                     </div>
                     <div class="form-group">
