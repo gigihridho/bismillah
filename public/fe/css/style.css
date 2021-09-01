@@ -247,7 +247,6 @@
         margin-bottom: 0.75rem;
         color: #2e3a53;
       }
-
       .content-3-7 .price-mulai {
         font: 400 1rem/1.5rem Poppins, sans-serif;
         letter-spacing: 0.025em;
@@ -286,28 +285,7 @@
         height: 1rem;
         margin-right: 0.75rem;
       }
-      @media (min-width: 320px) {
-        .content-3-7 .title-text {
-          font: 800 2.25rem/2.5rem Poppins, sans-serif;
-        }
 
-        .content-3-7 .card-item {
-          padding: 1rem;
-        }
-
-        .content-3-7 price-value{
-            font: 400 .75rem/.75rem Poppins, sans-serif;
-            letter-spacing: 0.025em;
-            margin-bottom: 0.75rem;
-            color: #2e3a53;
-        }
-
-        .content-3-7 .price-duration {
-            font: 300 .75rem/.75rem Poppins, sans-serif;
-            margin: 0.625rem;
-            color: #9e9e9e;
-          }
-      }
       @media (min-width: 576px) {
         .content-3-7 .title-text {
           font: 800 2.25rem/2.5rem Poppins, sans-serif;
@@ -354,7 +332,6 @@
         .content-3-2 .img-hero {
             width: 100%;
             margin-bottom: 3rem;
-            margin-left: 2rem;
         }
 
         .content-3-2 .left-column{
@@ -405,7 +382,6 @@
             .content-3-2 .img-hero {
             width: 50%;
             margin-bottom: 0;
-            margin-left: 2rem;
             }
 
             .content-3-2 .left-column{
