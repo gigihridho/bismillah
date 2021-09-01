@@ -22,9 +22,9 @@
                     </div>
                     <div class="modal-body" style="padding: 2rem; padding-top: 0; padding-bottom: 0">
                         <ul class="navbar-nav responsive me-auto mt-2 mt-lg-0">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">Home</a>
-                            </li>
+                            </li> --}}
                         {{-- </ul> --}}
                         @auth
                         <!--Desktop Menu-->
@@ -79,14 +79,14 @@
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
+                {{-- <li class="nav-item active">
                     <a class="nav-link" href="{{ route('home') }}">Beranda</a>
-                </li>
+                </li> --}}
             </ul>
             @guest
             <div class="gap-3">
-                    <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
-                </div>
+                <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
+            </div>
             @endguest
         </div>
         @auth

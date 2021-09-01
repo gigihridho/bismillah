@@ -142,7 +142,7 @@ label:hover {
                                     <td>Rp{{ number_format($tf->total_price,2,',','.') }}</td>
                                     <td>
                                         @if($tf->photo_payment != null)
-                                            <img height="70px" width="60px" src="{{ Storage::url($tf->photo_payment) }}" alt="">
+                                            <img height="70px" width="50px" src="{{ Storage::url($tf->photo_payment) }}" alt="">
                                         @else
                                         <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
                                             <i class="fas fa-upload" style="color: white;"></i>

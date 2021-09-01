@@ -53,13 +53,38 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'min:3'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users','email:rfc,dns'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['same:password|required'],
             'no_hp' => ['required','numeric', 'digits_between:10,13', 'unique:users'],
             'address' => ['required','string'],
             'profession' => ['required','string'],
-            'photo_ktp' => ['required','image','mimes:png,jpg,jpeg','max:2048'],
+            'photo_ktp' => ['required','mimes:png,jpg,jpeg','max:2048'],
+        ],[
+            'name.required' => 'Nama lengkap tidak boleh kosong',
+            'name.min' => 'Nama lengkap tidak boleh kurang dari 3 karakter',
+            'name.string' => 'Nama lengkap harus berupa huruf',
+            'email.required' => 'Email tidak boleh kosong',
+            'email.min' => 'Email tidak boleh kurang dari 11 karakter',
+            'email.email' => 'Email tidak valid',
+            'email.unique' => 'Email sudah ada, silakan login',
+            'no_hp.digits_between' => 'No telp tidak boleh kurang dari 11 angka dan lebih dari 13 angka',
+            'no_hp.required' =>  'No telp tidak boleh kosong',
+            'no_hp.numeric' => 'No telp harus berisi angka',
+            'password.string' => 'Kata sandi harus berupa huruf atau angka',
+            'password.min' => 'Kata sandi tidak boleh kurang dari 8 karakter',
+            'password.required' => 'Kata sandi tidak boleh kosong',
+            'password_confirmation.same' => 'Konfirmasi kata sandi tidak sama',
+            'password_confirmation.required' => 'Konfirmasi Kata sandi tidak boleh kosong',
+            'address.required' => 'Alamat asal tidak boleh kosong',
+            'address.string' => 'Alamat asal harus berupa huruf',
+            'profession.required' => 'Pekerjaan tidak boleh kosong',
+            'profession.string' => 'Pekerjaan harus berupa huruf',
+            'photo_ktp.required' => 'Foto ktp tidak boleh kosong',
+            'photo_ktp.image' => 'Foto ktp harus berupa gambar',
+            'photo_ktp.mimes' => 'Foto ktp harus berupa file png,jpg, atau jpeg',
+            'photo_ktp.max' => 'Foto ktp tidak boleh lebih dari 2MB'
         ]);
     }
 
@@ -77,6 +102,7 @@ class RegisterController extends Controller
             $photo_ktp = request()->file('photo_ktp')->store('assets/user','public');
             $user->update(['photo_ktp' => $photo_ktp]);
         }
+        dd($user);
         $user->assignRole('user');
         return $user;
     }
