@@ -5,7 +5,7 @@
         <img style="margin-right: 0.75rem;"
             src="{{ asset('fe/img/GriyoKenyo.png') }}" alt="" />
         </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal" data-bs-target="#targetModal">
+        <button class="navbar-toggler border-0" type="button" data-toggle="modal" data-target="#targetModal">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -24,7 +24,6 @@
                         <ul class="navbar-nav responsive me-auto mt-2 mt-lg-0">
                             {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">Home</a>
-<<<<<<< HEAD
                             </li> --}}
                         {{-- </ul> --}}
                         @auth
@@ -68,10 +67,8 @@
                         </li>
                         @endauth
                     </ul>
-=======
-                            </li>
+                        </li>
                         </ul>
->>>>>>> parent of 0716bf3... mobile navbar
                     </div>
                     @guest
                     <div class="modal-footer border-0 gap-3" style="padding: 2rem; padding-top: 0.75rem">

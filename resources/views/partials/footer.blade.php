@@ -1,4 +1,9 @@
-<section class="h-100 w-100" style="box-sizing: border-box; background-color:#6777df;" >
+<style type="text/css">
+.list-unstyled p{
+    color: white;
+}
+</style>
+<section class="h-100 w-100" id="footer" style="box-sizing: border-box; background-color:#6777df;" >
 <div class="footer-2-2 container-xxl mx-auto position-relative p-0" style="font-family: 'Poppins', sans-serif">
     <div class="list-footer">
         <div class="row gap-md-0 gap-3">
@@ -6,10 +11,10 @@
                 <h2 class="footer-text-title">Social Media</h2>
                 <nav class="list-unstyled">
                     <li class="list-space">
-                        <a href="" class="list-menu">Facebook</a>
+                        <p>Facebook</p>
                     </li>
                     <li class="list-space">
-                        <a href="" class="list-menu">Instagram</a>
+                        <p>Instagram</p>
                     </li>
                 </nav>
             </div>
@@ -17,10 +22,10 @@
                 <h2 class="footer-text-title">Jam Berkunjung</h2>
                 <nav class="list-unstyled">
                     <li class="list-space">
-                        <a href="" class="list-menu">Senin-Sabtu</a>
+                        <p>Senin-Sabtu</p>
                     </li>
                     <li class="list-space">
-                        <a href="" class="list-menu">08.00-20.00</a>
+                        <p>08.00-20.00</p>
                     </li>
                 </nav>
             </div>
@@ -28,16 +33,16 @@
                 <h2 class="footer-text-title">Lokasi</h2>
                 <nav class="list-unstyled">
                     <li class="list-space">
-                        <a href="" class="list-menu"><i class="fas fa-home"></i><span> Jl. Kentingan, Jebres, Surakarta</span></a>
+                        <p> Jl. Kentingan, Jebres, Surakarta</p>
                     </li>
                     <li class="list-space">
-                        <a href="" class="list-menu">Rekening BNI 084124xxx A/N Anggito</a>
+                        <p>Rekening BNI 084124xxx A/N Anggito</p>
                     </li>
                     <li class="list-space">
-                        <a href="" class="list-menu">081792482111</a>
+                        <p>081792482111</p>
                     </li>
                     <li class="list-space">
-                        <a href="" class="list-menu">griyakenyo@gmail.com</a>
+                        <p>griyakenyo@gmail.com</p>
                     </li>
                 </nav>
             </div>
