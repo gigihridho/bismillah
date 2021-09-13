@@ -35,15 +35,6 @@ class UserSeeder extends Seeder
             'photo_ktp' => "https://picsum.photos/200/150",
             'address' => 'Jakarta',
             'profession' => 'Guru',
-        ],
-        [
-            'name' => 'Susanti',
-            'email' => 'susanti@gmail.com',
-            'email_verified_at' => Carbon::now(),
-            'password' => bcrypt('12345678'),
-            'no_hp' => '085152512',
-            'address' => 'Jogjakarta',
-            'profession' => 'Mahasiswi',
         ]);
 
         $user->assignRole('user');

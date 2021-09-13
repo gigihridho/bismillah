@@ -216,7 +216,7 @@
     </div>
 </section>
 
-{{-- <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
     <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="d-flex flex-lg-row flex-column align-items-center">
         <!-- Left Column -->
@@ -273,9 +273,9 @@
         </div>
         </div>
     </div>
-</section> --}}
+</section>
 
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
+{{-- <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
 	<div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif"">
 		<div class="row justify-content-center">
 			<div class="col-lg-7 text-center">
@@ -364,7 +364,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> --}}
 
 {{-- Room --}}
 <section class="h-100 w-100" style="box-sizing: border-box" id="kamar" data-aos="fade-down">

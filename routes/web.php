@@ -86,8 +86,6 @@ Route::prefix('admin')
                 Route::get('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@edit');
                 Route::put('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@update');
                 Route::delete('/{id}/kamar/{room_id}', 'Admin\RoomController@destroy');
-
-
         });
     });
 Route::get('/verify', function () {
