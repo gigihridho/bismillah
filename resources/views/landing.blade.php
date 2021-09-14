@@ -1,5 +1,11 @@
 @extends('layouts.fe')
 
+@push('after-style')
+    <link rel="stylesheet" href="{{ asset('fe/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('fe/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fe/css/owl.carousel.min.css') }}">
+@endpush
+
 @section('title')
     Kost Griyo Kenyo
 @endsection
@@ -479,11 +485,14 @@
 </section>
 @endsection
 @push('after-script')
+<script src="{{ asset('fe/js/owl.carousel.js') }}"></script>
+<script src="{{ asset('fe/js/owl.carousel.min.js') }}"></script>
 <script>
     $('.featured-carousel').owlCarousel({
     loop:true,
     margin:10,
     nav:true,
+    responsiveClass:true,
     responsive:{
         0:{
             items:1
