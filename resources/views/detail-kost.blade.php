@@ -106,6 +106,7 @@ p.required-field::after {
                             <h4>Tipe Kamar</h4>
                             <input type="hidden" name="id" value="{{ $room_type->room }}">
                             <div class="owner" style="margin-bottom: 0.5rem">{{ $room_type->name }}</div>
+                            <div class="owner" style="margin-bottom: 0.5rem">Lantai {{ $room_type->floor }}</div>
                             <div class="price" style="color: red">Rp {{ number_format($room_type->price) }}/Bulan</div>
                         </div>
                         @empty

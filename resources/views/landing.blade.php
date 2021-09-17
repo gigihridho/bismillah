@@ -394,6 +394,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="room-title">{{ $room_type->name }}</h3>
+                        <p class="room-price">Lantai {{$room_type->floor}}</p>
                         <p class="room-price">Rp {{number_format($room_type->price)}}/bulan</p>
                         <a href="{{ route('detail-kost',$room_type->id) }}" class="btn btn-fill text-white">Pesan Kamar</a>
                     </div>
@@ -491,7 +492,7 @@
 <script>
     $('.featured-carousel').owlCarousel({
     loop:true,
-    margin:10,
+    margin:20,
     responsiveClass:true,
     responsive:{
         0:{

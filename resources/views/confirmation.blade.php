@@ -86,7 +86,7 @@
                         <table class="table table-sm">
                             <thead class="thead-light" style="margin-bottom: 10px">
                             <tr style="margin-bottom: 10px">
-                                <th scope="col">Kamar</th>
+                                <th scope="col">Nomor Kamar</th>
                                 <th scope="col">Tanggal Masuk</th>
                                 <th scope="col">Tanggal Keluar</th>
                                 <th scope="col">Durasi</th>
@@ -95,7 +95,7 @@
                             </thead>
                             <tbody style="margin-bottom: 10px">
                             <tr>
-                                <td>{{ $room_type->name }} {{ $room_number }} </td>
+                                <td>{{ $room_type->name }} ({{ $room_number }}) </td>
                                 <td>{{ $new_arrival_date }}</td>
                                 <td>{{ $new_departure_date}}</td>
                                 <td>{{ $duration }} bulan</td>
