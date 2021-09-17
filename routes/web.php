@@ -57,7 +57,6 @@ Route::prefix('admin')
         Route::get('booking/{id}/edit','Admin\TransactionsController@edit');
         Route::put('booking/{id}/edit','Admin\TransactionsController@update');
         Route::get('booking/detail/{id}','Admin\TransactionsController@detail')->name('detail-booking');
-        // Route::delete('booking/{id}','Admin\RoomBookingController@destroy');
 
         Route::get('pemasukan','Admin\IncomeController@index')->name('pemasukan');
         Route::post('pemasukan','Admin\IncomeController@search')->name('search');
