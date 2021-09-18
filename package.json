@@ -29,6 +29,8 @@
         "is-svg": "^4.3.1",
         "izitoast": "^1.4.0",
         "moment": "^2.29.1",
-        "sweetalert2": "^10.16.9"
+        "set-value": "^4.1.0",
+        "sweetalert2": "^10.16.9",
+        "url-parse": "^1.5.3"
     }
 }
