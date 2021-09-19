@@ -1,7 +1,7 @@
 @component('mail::message')
 # Pembayaran Sukses!
 
-Terimakasih telah melakukan pemesanan kamar, silakan lakukan pembayaran sesuia nominal!
+Terimakasih telah melakukan pembayaran, pembayaran Anda telah kami konfirmasi!
 
 <br>
 Salam Hangat,<br>
