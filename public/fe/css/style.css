@@ -398,6 +398,122 @@
             }
         }
 
+    /* Review */
+    .galeri .btn:focus,
+    .galeri .btn:active {
+        outline: none !important;
+    }
+    .galeri {
+        /* padding: 2rem 2rem; */
+        background: #F2F6FF;
+    }
+    .galeri .title-text {
+        padding-top: 5rem;
+        margin-bottom: 3rem;
+    }
+
+    .galeri .text-title {
+        font: 600 2.25rem/2.5rem Poppins, sans-serif;
+        color: #121212;
+        margin-bottom: 0.625rem;
+    } */
+
+    .galeri .text-caption{
+        font: 200 2rem/2rem Poppins, sans-serif;
+        color: #999;
+        text-transform: uppercase;
+        margin-bottom: 0.625rem;
+    }
+    .galeri .grid-padding {
+        padding: 0rem ;
+    }
+
+    .galeri .owl-carousel {
+        padding: 0rem 2rem;
+        /* box-shadow: none !important; */
+        outline: 0;
+    }
+
+    .galeri .owl-carousel .item {
+        margin-bottom: 15px;
+        margin-left: 20px;
+    }
+
+    /* .galeri .owl-carousel {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        margin-right: 20px;
+    } */
+
+    .galeri .testi-carousel__intro h3 {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 5px;
+    }
+
+    @media (min-width: 576px) {
+        .galeri .owl-carousel {
+        padding: 0rem 2rem 3rem;
+        }
+
+        .galeri .card-block {
+        padding: 3rem 2rem 5rem;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .galeri .owl-carousel {
+        padding: 0rem 4rem 3rem;
+        }
+
+        .galeri .card-block {
+        padding: 3rem 4rem 5rem;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .galeri .owl-carousel {
+        padding: 1rem 6rem 3rem;
+        }
+
+        .galeri .card-block {
+        padding: 3rem 6rem 5rem;
+        }
+
+        .galeri .column {
+        padding: 0rem 1rem;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .galeri .owl-carousel {
+        padding: 0rem 5rem 3rem;
+        }
+
+        .galeri .card-block {
+        padding: 3rem 6rem 5rem;
+        }
+
+        .galeri .card-btn-space {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        }
+
+        .galeri .btn-card,
+        .galeri .btn-outline {
+        width: 95%;
+        float: right;
+        }
+    }
+
+    @media (max-width: 980px) {
+        .galeri .card-btn-space {
+        width: 100%;
+        }
+    }
+
+
     /* Content2 */
         .content-2-2 .btn:focus,
         .content-2-2 .btn:active {
@@ -924,7 +1040,7 @@
             outline: 0;
         }
 
-        .reivew .owl-carousel {
+        .review .owl-carousel {
             margin-bottom: 15px
         }
 
@@ -1132,7 +1248,7 @@
 
         @media (min-width: 992px) {
             .footer-2-2 .list-footer {
-                padding: 5rem 6rem 6rem 6rem;
+                padding: 3rem 6rem 0 6rem;
             }
 
             .footer-2-2 .info-footer {

@@ -157,6 +157,54 @@
     </div>
 </section>
 
+{{-- Review --}}
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box;margin-top: 3rem" id="review" data-aos="fade-down">
+    <div class="review container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
+        <div class="text-center title-text">
+            <h1 class="text-title">Review Kost</h1>
+            <p>Berikut review dari mereka</p>
+        </div>
+        <div class="container" style="margin-top: 4rem">
+            <div class="row">
+                <div class="owl-carousel featured-carousel owl-theme">
+                    @foreach ($reviews as $r)
+                    <div class="item">
+                        <h3 class="review-title text-center" style="opacity: 0.5">
+                            {{ $r->review }}</h3>
+                        <h4 class="review-caption text-center">
+                            {{ $r->user->name }}
+                        </h4>
+                        <h6 class="review-caption text-center">
+                            {{ $r->user->profession }}
+                        </h6>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="nav-link button4" role="button" data-toggle="collapse" href="#bni"
+                            style="margin-buttom:10px; text-align:left">
+                            <img src="https://bimbel.ruangguru.com/hubfs/BNI.png"
+                                style="width:55px; margin-bottom: 10px;margin-top: 10px;">
+                            <br>Bank Transfer BNI
+                        </a>
+                        <div class="collapse" id="bni">
+                            <ol style="text-align:left;margin-left:10%; color: #4a4a4a">
+                                <li>1. Masukkan kartu pilih <b>bahasa</b>, dan masukkan PIN
+                                    Anda.</li>
+                                <li>2. Pada menu utama, pilih <b>Transaksi Lainnya.</b></li>
+                                <li>3. Pilih <b>Transfer</b> dan pilih <b>ke rekening BNI.</b>
+                                </li>
+                                <li>4. Masukkan nominal transfer sesuai dengan total tagihan
+                                    transaksi di aplikasi Inofa Bimbel <b>ke no rek 585420531
+                                        a.n Muhammad Dzakwan Zaky.</b></li>
+                                <li>5. <b>Simpan bukti pembayaran dan unggah bukti </b>pada
+                                    halaman yang tersedia di Inofa Bimbel.</li>
+                            </ol>
+                        </div>
+</section>
+
 {{-- Room --}}
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="kamar" data-aos="fade-down">
     <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
