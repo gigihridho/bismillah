@@ -52,7 +52,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users','regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'no_hp' => ['required','numeric', 'digits_between:10,13','unique:users'],
             'address' => ['required','string'],
@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'email.string' => 'Email harus berupa huruf atau angka',
             'email.min' => 'Email tidak boleh kurang dari 11 karakter',
             'email.email' => 'Email tidak valid',
+            'email.regex' => 'Masukkan email yang benar',
             'email.unique' => 'Email sudah terdaftar, silakan gunakan email lain',
             'no_hp.digits_between' => 'No telp tidak boleh kurang dari 11 angka dan lebih dari 13 angka',
             'no_hp.required' =>  'No telp tidak boleh kosong',
