@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Mail\PaymentSuccessMail;
+use App\Room;
 use App\Transaction;
+use Illuminate\Http\Request;
+use App\Mail\PaymentSuccessMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -37,7 +38,7 @@ class TransactionsController extends Controller
         $transaction = Transaction::findOrFail($id);
 
         $rules = [
-            'status' => 'in:Menunggu,Terisi,Keluar',
+            'status' => 'in:Menunggu,Terisi',
             'payment' => 'boolean',
         ];
 
@@ -54,6 +55,18 @@ class TransactionsController extends Controller
         Mail::to($transaction->user->email)->send(new PaymentSuccessMail());
         Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
         return redirect()->route('sudah-bayar');
+    }
+
+    public function batal(Request $request,$id){
+        $transaction = Transaction::findOrFail($id);
+        $room = Room::where('id',$id)->first();
+        // $transaction->status = 0;
+        $room->available = 1;
+        // dd($transaction);
+        $transaction->save();
+        $room->save();
+        Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
+        return redirect()->route('belum-dibayar');
     }
 
     public function detail($id){

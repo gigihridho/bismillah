@@ -9,7 +9,7 @@ class Room extends Model
     protected $table = 'rooms';
 
     protected $fillable = [
-        'room_type_id','room_number','status','availability'
+        'room_type_id','room_number','status','available'
     ];
 
     protected $hidden = [

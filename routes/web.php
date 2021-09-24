@@ -56,6 +56,7 @@ Route::prefix('admin')
         Route::get('booking/belum','Admin\TransactionsController@belum')->name('belum-dibayar');
         Route::get('booking/{id}/edit','Admin\TransactionsController@edit');
         Route::put('booking/{id}/edit','Admin\TransactionsController@update');
+        Route::post('booking/detail/{id}','Admin\TransactionsController@batal')->name('batal');
         Route::get('booking/detail/{id}','Admin\TransactionsController@detail')->name('detail-booking');
 
         Route::get('pemasukan','Admin\IncomeController@index')->name('pemasukan');

@@ -57,15 +57,15 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Ketersediaan</label>
                                         <select name="available" id="available" class="form-control">
                                             <option value="1"
                                             @if (old('availabe') == '1')selected="selected" @endif" >
-                                            Available
+                                            Tersedia
                                             </option>
                                             <option value="0"
                                                 @if (old('available') == '0')selected="selected" @endif" >
-                                            Booked
+                                            Tidak Tersedia
                                         </option>
                                         </select>
                                     </div>

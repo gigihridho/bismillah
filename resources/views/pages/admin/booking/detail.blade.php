@@ -75,6 +75,12 @@
                                         </div>
                                         <span class="text-muted">{{ $transaction->user->no_hp }}</span>
                                     </li>
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                        <div>
+                                        <h6 class="my-0">Total Harga</h6>
+                                        </div>
+                                        <span class="text-muted">Rp{{ number_format($transaction->total_price) }}</span>
+                                    </li>
                                 {{-- </div>
                             </div> --}}
                         </ul>
@@ -135,6 +141,15 @@
                         </ul>
                     </div>
                     @endforeach
+                </div>
+                <div class="row">
+                    <div class="mx-auto justify-content-center">
+                        <form action="{{ route('batal',$transaction->id) }}" method="POST">
+                            @csrf
+                            <a href="" class="btn btn-success">Konfirmasi</a>
+                            <button type="submit" class="btn btn-danger">Batalkan</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             </div>

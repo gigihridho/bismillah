@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExpenseRequest extends FormRequest
+class ExpenseEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class ExpenseRequest extends FormRequest
             'description' => 'required|string',
             'nominal' => 'required|numeric',
             'date' => 'required|date',
-            'photo' => 'required','image','mimes:png,jpg,jpeg','max:2048'
+            'photo' => 'image','mimes:png,jpg,jpeg','max:2048'
         ];
     }
 
@@ -40,7 +40,6 @@ class ExpenseRequest extends FormRequest
             'nominal.numeric' => 'Nominal harus berupa angka',
             'date.required' => 'Tanggal tidak boleh kosong',
             'date.date' => 'Tanggal harus berupa tanggal',
-            'photo.required' => 'Foto tidak boleh kosong',
             'photo.image' => 'Foto harus berupa gambar',
             'photo.mimes' => 'Format foto harus berupa file png,jpg, atau jpeg',
             'photo.max' => 'Ukuran foto tidak boleh lebih dari 2 MB'

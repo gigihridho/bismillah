@@ -34,32 +34,30 @@
         <div class="row my-3">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table border="1" width="100%" cellspacing="0" cellpadding="10" class="table table-striped">
-                        <tr>
-                            <th>#</th>
-                            <th>Tanggal Transaksi</th>
-                            <th>Jenis Pengeluaran</th>
-                            <th>Keterangan</th>
-                            <th>Nominal</th>
+                    <table class="table table-striped" style="border: 1px solid black">
+                        <tr style="border: 1px solid black">
+                            <th scope="col">#</th>
+                            <th scope="col">Tanggal Transaksi</th>
+                            <th scope="col">Deskripsi</th>
+                            <th scope="col">Nominal</th>
                         </tr>
-                        @forelse ($pengeluaran as $index => $p)
-                            <tr>
-                                <th>{{ $index+1 }}</th>
+                        @forelse ($description as $index => $p)
+                            <tr style="border: 1px solid black">
+                                <td>{{ $index+1 }}</td>
                                 <td>{{ $p->date}}</td>
-                                <td>{{ $p->pengeluaran }}</td>
-                                <td>{{ $p->keterangan }}</td>
+                                <td>{{ $p->description }}</td>
                                 <td style="text-align: right;">
                                     <span>Rp {{ number_format($p->nominal) }}</span>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <th colspan="6" style="color: red; text-align: center;">Tidak ada data</th>
+                                <th scope="col" colspan="5" style="color: red; text-align: center;">Tidak ada data</th>
                             </tr>
                         @endforelse
                             <tr>
-                                <td colspan="5" style="text-align: right;"><small>TOTAL :</small></td>
-                                <th><span class="badge badge-danger justify-content-end">Rp {{ number_format($nominal) }}<span></th>
+                                <td colspan="3" style="text-align: right;"><small>TOTAL :</small></td>
+                                <th scope="col"><span style="color: red; text-align:left;">Rp {{ number_format($nominal) }}<span></th>
                             </tr>
                     </table>
                 </div>

@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Expense;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ExpenseRequest;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\Admin\ExpenseRequest;
+use App\Http\Requests\Admin\ExpenseEditRequest;
 
 class ExpenseController extends Controller
 {
@@ -29,37 +30,45 @@ class ExpenseController extends Controller
     }
 
     public function store(ExpenseRequest $request){
-        $data = $request->all();
+        $data = new Expense();
+        $data->description = $request->input('description');
+        $data->nominal = $request->input('nominal');
+        $data->date = $request->input('date');
+        $data->photo = $request->file('photo')->store('assets/expenses','public');
+        $data->save();
 
-        Expense::create($data);
         Alert::success('SUCCESS','Data Pengeluaran Berhasil Ditambah');
         return redirect()->route('pengeluaran.index');
     }
 
     public function edit($id){
-        $item = Expense::findOrFail($id);
+        $data = Expense::findOrFail($id);
 
         return view('pages.admin.pengeluaran.edit',[
-            'item' => $item,
+            'data' => $data,
         ]);
     }
-    public function update(ExpenseRequest $request,$id){
-        $data = $request->all();
-
-        $item = Expense::findOrFail($id);
-
-        $item->update($data);
+    public function update(ExpenseEditRequest $request,$id){
+        $data = Expense::where('id',$id)->first();
+        $data->description = $request->description;
+        $data->nominal = $request->nominal;
+        $data->date = $request->date;
+        if(request()->hasFile('photo')){
+            $photo = request()->file('photo')->store('assets/expenses','public');
+            $data->update(['photo' => $photo]);
+        }
+        $data->save();
         Alert::success('SUCCESS','Data Pengeluaran Berhasil Diupdate');
         return redirect()->route('pengeluaran.index');
     }
     public function ex_pdf(){
         $now = Carbon::now();
-        $pengeluaran = Expense::where('status',1)->orderBy('date','ASC')->get();
-        $nominal = Expense::where('status',1)->sum('nominal');
+        $description = Expense::orderBy('date','ASC')->get();
+        $nominal = Expense::sum('nominal');
 
         $pdf = PDF::loadview('pages.admin.pengeluaran.pengeluaran_pdf',[
             'now' => $now,
-            'pengeluaran' => $pengeluaran,
+            'description' => $description,
             'nominal' => $nominal
         ]);
         return $pdf->download('laporan-pengeluaran.pdf');

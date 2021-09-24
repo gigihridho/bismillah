@@ -24,8 +24,9 @@ class CreateTransactionsTable extends Migration
             $table->enum('duration',[1,6,12]);
             $table->date('arrival_date');
             $table->date('departure_date')->nullable();
-            $table->enum('status',['Menunggu','Terisi','Keluar'])->default('Menunggu');
-            $table->boolean('payment')->default(false);
+            $table->enum('status',['Menunggu','Berhasil','Gagal'])->default('Menunggu');
+            $table->enum('payment',['Belum Bayar','Sudah Bayar','Batal'])->default('Belum Bayar');
+            $table->date('expired_at');
             $table->timestamps();
 
             $table->foreign('room_id')

@@ -25,15 +25,15 @@
                         <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
                             <thead>
-                                <tr style="text-align:center">
-                                <th >
-                                    No
-                                </th>
-                                <th>Tanggal</th>
-                                <th>Pengeluaran</th>
-                                <th>Nominal</th>
-                                <th>Keterangan</th>
-                                <th>Aksi</th>
+                                <tr style="text-align:center; width:5%">
+                                    <th scope="col">
+                                        No
+                                    </th>
+                                    <th scope="col" style="width:10%">Tanggal</th>
+                                    <th scope="col">Deskripsi</th>
+                                    <th scope="col" style="width:15%">Nominal</th>
+                                    <th scope="col">Foto</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,9 +41,15 @@
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $p->date }}</td>
-                                    <td>{{ $p->pengeluaran}}</td>
+                                    <td>{!! substr($p->description,0,20) !!} ...</td>
                                     <td>Rp{{ number_format($p->nominal,2,',','.') }}</td>
-                                    <td>{{ $p->keterangan }}</td>
+                                    <td>
+                                        @if($p->photo != null)
+                                            <img height="100px" src="{{ Storage::url($p->photo) }}" alt="" onclick="blank">
+                                        @else
+                                            <span class="badge badge-warning">Belum Upload</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <form action="{{ route('pengeluaran.destroy',$p->id) }}" method="POST">
                                             <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('pengeluaran.edit',$p->id) }}">

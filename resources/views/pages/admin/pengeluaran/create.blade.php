@@ -42,9 +42,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Pengeluaran</label>
-                                    <input type="text" name="pengeluaran" class="form-control"
-                                    placeholder="Masukkan Jenis Pengeluaran" autocomplete="off">
+                                    <label>Deskripsi</label>
+                                    <input type="text" name="description" class="form-control"
+                                    placeholder="Masukkan deskripsi pengeluaran" autocomplete="off">
                                     <small>Contoh: Air, Listrik, Wifi</small>
                                 </div>
                             </div>
@@ -64,10 +64,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Keterangan</label>
-                                    <input type="text" name="keterangan" class="form-control"
-                                    placeholder="Masukkan keterangan pengeluaran" autocomplete="off">
-                                    <small>Contoh: Pembayaran Air Minggu Pertama</small>
+                                    <label>Foto Bukti Pengeluaran</label>
+                                    <input type="file" name="photo" class="form-control">
                                 </div>
                             </div>
                         </div>

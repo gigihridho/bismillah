@@ -51,7 +51,7 @@
                                             @if (old('status') == '1')selected="selected" @endif" >
                                             Aktif
                                         </option>
-                                        <option value="0" s
+                                        <option value="0"
                                             @if (old('status') == '0')selected="selected" @endif" >
                                             Tidak Aktif
                                         </option>

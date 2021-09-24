@@ -30,7 +30,7 @@
                                 </th>
                                 <th>Tipe Kamar</th>
                                 <th>Nomor Kamar</th>
-                                <th>Availability</th>
+                                <th>Ketersediaan</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                                 </tr>
@@ -43,9 +43,9 @@
                                     <td>{{ $room->room_number }}</td>
                                     <td>
                                         @if($room->available == 1)
-                                        <span class="badge badge-secondary">Available</span>
+                                        <span class="badge badge-secondary">Tersedia</span>
                                         @else
-                                        <span class="badge badge-danger">Booked</span>
+                                        <span class="badge badge-danger">Tidak Tersedia</span>
                                         @endif
                                     </td>
                                     <td>
