@@ -107,8 +107,14 @@ class UserTransactionController extends Controller
     public function cancel(Request $request, $id){
 
         $transaction = Transaction::findOrFail($id);
-        // $transaction->room->availability = $request->availability(true);
-        $transaction->delete();
+        $room = Room::where('id',$id)->first();
+
+        $room->available = 1;
+        $transaction->status = "Gagal";
+        $transaction->payment = "Belum Bayar";
+
+        $transaction->save();
+        $room->save();
 
         Alert::success('Sukses','Data berhasil dihapus');
         return redirect()->route('user-transaksi');

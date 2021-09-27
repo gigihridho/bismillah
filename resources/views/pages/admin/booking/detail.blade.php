@@ -34,28 +34,18 @@
                                         <h6 class="my-0">Status</h6>
                                         </div>
                                         @if($transaction->status == "Menunggu")
-                                        <span class="badge badge-warning">Menunggu</span>
-                                        @elseif($transaction->status == "Terisi")
-                                        <span class="badge badge-success">Terisi</span>
-                                        @elseif($transaction->status == "Keluar")
-                                        <span class="badge badge-danger">Keluar</span>
-                                        @endif
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                        <div>
-                                        <h6 class="my-0">Keterangan</h6>
-                                        </div>
-                                        @if($transaction->payment == 1)
-                                        <span class="badge badge-success">Sudah Bayar</span>
-                                        @else
-                                            <span class="badge badge-danger">Belum Bayar</span>
+                                            <span class="badge badge-warning">Menunggu</span>
+                                        @elseif($transaction->status == "Selesai")
+                                            <span class="badge badge-success">Selesai</span>
+                                        @elseif($transaction->status == "Dibatalkan")
+                                            <span class="badge badge-danger">Dibatalkan</span>
                                         @endif
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                                         <div>
                                         <h6 class="my-0">Kode Pemesanan</h6>
                                         </div>
-                                        <span class="text-muted">{{ $transaction->kode }}</span>
+                                        <span class="text-muted">{{ $transaction->code }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                                         <div>
@@ -142,7 +132,7 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="mx-auto justify-content-center">
                         <form action="{{ route('batal',$transaction->id) }}" method="POST">
                             @csrf
@@ -150,7 +140,7 @@
                             <button type="submit" class="btn btn-danger">Batalkan</button>
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </div>
             </div>
         </div>

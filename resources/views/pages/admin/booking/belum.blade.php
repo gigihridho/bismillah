@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    Belum Dibayar
+    Transaksi Menunggu
 @endsection
 
 @section('content')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Data @yield('title')</h1>
+            <h1>@yield('title')</h1>
             <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{ route('admin-dashboard') }}">Dashboard</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
@@ -20,19 +20,19 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive">
+                    @include('includes.tabs')
+                    <div class="table-responsive mt-2">
                     <table class="table table-striped" id="table-1">
                         <thead>
                         <tr style="text-align: center">
-                            <th>
+                            <th scope="col">
                             No
                             </th>
-                            <th>Nama</th>
-                            <th>Kode Pemesanan</th>
-                            <th>Bukti Transaksi</th>
-                            <th>Keterangan</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Kode Pemesanan</th>
+                            <th scope="col">Bukti Transaksi</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,7 +40,7 @@
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $transaction->user->name }}</td>
-                                <td>{{ $transaction->kode }}</td>
+                                <td>{{ $transaction->code }}</td>
                                 <td>
                                     @if($transaction->photo_payment != null)
                                         <img height="100px" src="{{ Storage::url($transaction->photo_payment) }}" alt="" onclick="blank">
@@ -49,19 +49,12 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($transaction->payment == 1)
-                                        <span class="badge badge-success">Sudah Bayar</span>
-                                    @else
-                                        <span class="badge badge-warning">Belum Bayar</span>
-                                    @endif
-                                </td>
-                                <td>
                                     @if($transaction->status == "Menunggu")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($transaction->status == "Terisi")
-                                        <span class="badge badge-success">Terisi</span>
-                                    @elseif($transaction->status == "Keluar")
-                                        <span class="badge badge-danger">Keluar</span>
+                                    @elseif($transaction->status == "Selesai")
+                                        <span class="badge badge-success">Selesai</span>
+                                    @elseif($transaction->status == "Dibatalkan")
+                                        <span class="badge badge-danger">Dibatalkan</span>
                                     @endif
                                 </td>
                                 <td>

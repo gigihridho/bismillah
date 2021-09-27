@@ -47,20 +47,20 @@
                     <table class="table table-striped" id="table-1">
                         <thead>
                         <tr style="text-align:center">
-                            <th style="width: 10px" class="text-center">
+                            <th style="width: 10px" class="text-center" scope="col">
                             No
                             </th>
-                            <th>Kode Pemesanan</th>
-                            <th>Nama Pemesan</th>
-                            <th>Tanggal Transaksi</th>
-                            <th>Pemasukan</th>
+                            <th scope="col">Kode Pemesanan</th>
+                            <th scope="col">Nama Pemesan</th>
+                            <th scope="col">Tanggal Transaksi</th>
+                            <th scope="col">Pemasukan</th>
                         </tr>
                         </thead>
                         <tbody>
                             @foreach ($transactions as $index => $transaction)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $transaction->kode }}</td>
+                                    <td>{{ $transaction->code }}</td>
                                     <td>{{ $transaction->user->name }}</td>
                                     <td>{{ $transaction->order_date }}</td>
                                     <td>Rp {{ number_format($transaction->room->room_type->price,2,',','.') }}</td>

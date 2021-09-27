@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfilUserRequest;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -23,15 +24,7 @@ class ProfilUserController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id){
-        $this->validate($request,[
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'no_hp' => 'required|numeric',
-            'profession' => 'required|string',
-            'photo_ktp' => 'image|max:2048|mimes:png,jpg,jpeg',
-            'address' => 'required|string',
-        ]);
+    public function update(ProfilUserRequest $request, $id){
         $data = User::where('id',$id)->first();
         $data->name = $request->name;
         $data->email = $request->email;

@@ -26,17 +26,15 @@ Route::post('upload/{id}','BookingController@upload')->name('upload-pembayaran')
 Route::prefix('user')
     ->middleware(['auth', 'role:user', 'verified'])
     ->group(function () {
-        Route::get('/', 'DashboardController@index')->name('dashboard');
-
         Route::get('change-pass', 'ChangePassController@change')->name('change-pass');
         Route::post('change-pass','ChangePassController@update')->name('change-pass-user-update');
 
         Route::get('user-transaksi', 'UserTransactionController@index')->name('user-transaksi');
         Route::get('lanjut-sewa','UserTransactionController@lanjut')->name('lanjut-sewa');
         Route::post('user-transaksi','UserTransactionController@save')->name('save-lanjut-sewa');
-        Route::get('user-transaksi/{id}', 'UserTransactionController@detail')->name('user-transaksi-detail');
         Route::post('user-transaksi/{id}', 'UserTransactionController@upload')->name('user-transaksi-upload');
-        Route::delete('user-transaksi/{id}','UserTransactionController@cancel')->name('user-transaksi-delete');
+        Route::get('user-transaksi/{id}', 'UserTransactionController@detail')->name('user-transaksi-detail');
+        Route::put('user-transaksi/{id}','UserTransactionController@cancel')->name('user-transaksi-cancel');
 
         Route::get('review', 'UserReviewController@review')->name('review-user');
         Route::post('review/{id}', 'UserReviewController@update')->name('review-user-update');
@@ -52,8 +50,10 @@ Route::prefix('admin')
         Route::get('/', 'Admin\DashboardController@index')->name('admin-dashboard');
         Route::resource('fasilitas', 'Admin\FacilityController');
 
-        Route::get('booking/sudah', 'Admin\TransactionsController@index')->name('sudah-bayar');
-        Route::get('booking/belum','Admin\TransactionsController@belum')->name('belum-dibayar');
+        Route::get('booking','Admin\TransactionsController@index')->name('transaksi');
+        Route::get('booking/selesai', 'Admin\TransactionsController@selesai')->name('selesai');
+        Route::get('booking/menunggu','Admin\TransactionsController@menunggu')->name('menunggu');
+        Route::get('booking/batal','Admin\TransactionsController@cancel')->name('dibatalkan');
         Route::get('booking/{id}/edit','Admin\TransactionsController@edit');
         Route::put('booking/{id}/edit','Admin\TransactionsController@update');
         Route::post('booking/detail/{id}','Admin\TransactionsController@batal')->name('batal');
@@ -68,7 +68,8 @@ Route::prefix('admin')
 
         Route::resource('user', 'Admin\UserController');
 
-        Route::resource('reviews', 'Admin\ReviewsController');
+        Route::get('reviews', 'Admin\ReviewsController@index')->name('review');
+        Route::delete('reviews/{id}','Admin\ReviewsController@destroy');
 
         Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
         Route::post('change-pass', 'Admin\ChangePasswordController@update')->name('change-pass-update');

@@ -66,10 +66,14 @@ class BookingController extends Controller
         $rules = [
             'arrival_date' => 'required|date|after_or_equal:today',
         ];
+        $messages = [
+            'arrival_date.required' => 'Tanggal masuk harus diisi',
+            'arrival_date.date' => 'Tanggal masuk harus berupa tanggal',
+        ];
         $room_type = RoomType::findOrFail($room_type_id);
         $new_arrival_date = $request->input('arrival_date');
         $duration = $request->input('duration');
-        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
+        $code = 'KOS'.date("ymd").mt_rand(0000,9999);
 
         if($duration == 1){
             $new_departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
@@ -89,10 +93,11 @@ class BookingController extends Controller
 
         $transaction = new Transaction();
         $user = Auth::user();
-        $transaction->kode = $kode;
+        $transaction->code = $code;
         $transaction->arrival_date = $request->input('arrival_date');
         $transaction->departure_date = $new_departure_date;
         $transaction->order_date = Carbon::now();
+        $transaction->expired_at = Carbon::now()->addHours(24);
 
         $price = $room_type->price;
         if($duration == 1){
@@ -113,7 +118,6 @@ class BookingController extends Controller
         $transaction->room_id = $room->id;
         $transaction->user_id = $user->id;
         $transaction->save();
-
         $room->available = 0;
         $room->save();
         Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');

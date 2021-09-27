@@ -14,15 +14,29 @@ use Illuminate\Support\Facades\Validator;
 class TransactionsController extends Controller
 {
     public function index(){
-        $transactions = Transaction::where('payment',1)->get();
+        $transactions = Transaction::all();
         return view('pages.admin.booking.index',[
             'transactions' => $transactions
         ]);
     }
 
-    public function belum(){
-        $transactions = Transaction::where('payment',0)->get();
+    public function selesai(){
+        $transactions = Transaction::where('status',"Selesai")->get();
+        return view('pages.admin.booking.selesai',[
+            'transactions' => $transactions
+        ]);
+    }
+
+    public function menunggu(){
+        $transactions = Transaction::where('status',"Menunggu")->get();
         return view('pages.admin.booking.belum',[
+            'transactions' => $transactions
+        ]);
+    }
+
+    public function cancel(){
+        $transactions = Transaction::where('status',"Dibatalkan")->get();
+        return view('pages.admin.booking.batal',[
             'transactions' => $transactions
         ]);
     }
@@ -38,8 +52,7 @@ class TransactionsController extends Controller
         $transaction = Transaction::findOrFail($id);
 
         $rules = [
-            'status' => 'in:Menunggu,Terisi',
-            'payment' => 'boolean',
+            'status' => 'in:Menunggu,Selesai,Dibatalkan',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -48,25 +61,28 @@ class TransactionsController extends Controller
             ->withInput($request->all())
             ->withErrors($validator);
         }
-
-        $transaction->payment = $request->input('payment');
-        $transaction->status = $request->input('status');
-        $transaction->save();
-        Mail::to($transaction->user->email)->send(new PaymentSuccessMail());
+        if($transaction->status == "Dibatalkan"){
+            $room = Room::where('id',$id)->first();
+            $room->available = 1;
+            $transaction->save();
+            $room->save();
+        } else {
+            $transaction->status = $request->input('status','Selesai');
+            $transaction->save();
+        }
+        // Mail::to($transaction->user->email)->send(new PaymentSuccessMail());
         Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
-        return redirect()->route('sudah-bayar');
+        return redirect()->route('selesai');
     }
 
     public function batal(Request $request,$id){
         $transaction = Transaction::findOrFail($id);
         $room = Room::where('id',$id)->first();
-        // $transaction->status = 0;
         $room->available = 1;
-        // dd($transaction);
         $transaction->save();
         $room->save();
-        Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
-        return redirect()->route('belum-dibayar');
+        Alert::success('SUCCESS','Status transaksi berhasil diubah');
+        return redirect()->back();
     }
 
     public function detail($id){

@@ -304,7 +304,7 @@
                     <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar1.png') }}" alt="Lazy Owl Image"></div>
                     <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar2.jpg') }}" alt="Lazy Owl Image"></div>
                     <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar3.jpg') }}" alt="Lazy Owl Image"></div>
-                    <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar3.jpg') }}" alt="Lazy Owl Image"></div>
+                    <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar1.png') }}" alt="Lazy Owl Image"></div>
                     <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar3.jpg') }}" alt="Lazy Owl Image"></div>
                 </div>
             </div>

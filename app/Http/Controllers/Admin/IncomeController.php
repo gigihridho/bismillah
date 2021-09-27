@@ -26,7 +26,7 @@ class IncomeController extends Controller
     }
 
     public function index(){
-        $transactions = Transaction::where('payment',1)->get();
+        $transactions = Transaction::where('status',"SELESAI")->get();
         return view('pages.admin.pemasukan.index',[
             'transactions' => $transactions
         ]);
@@ -39,15 +39,15 @@ class IncomeController extends Controller
 
         $transactions = Transaction::where('order_date','>=',$fromDate)
                     ->where('order_date','<=',$toDate)
-                    ->where('payment',1)
+                    ->where('status',"SELESAI")
                     ->get();
         return view('pages.admin.pemasukan.index',compact('transactions'));
     }
 
     public function pdf(){
         $now = Carbon::now();
-        $transactions = Transaction::where('payment',1)->orderBy('order_date','ASC')->get();
-        $total_price = Transaction::where('payment',1)->sum('total_price');
+        $transactions = Transaction::where('status',"SELESAI")->orderBy('order_date','ASC')->get();
+        $total_price = Transaction::where('status',"SELESAI")->sum('total_price');
 
         $pdf = PDF::loadview('pages.admin.pemasukan.pemasukan_pdf',[
             'now' => $now,

@@ -117,16 +117,16 @@ label:hover {
                             @endif
                             <thead>
                                 <tr style="text-align: center">
-                                    <th>
+                                    <th scope="col">
                                     No
                                     </th>
-                                    <th>Kode</th>
-                                    <th>Kamar</th>
-                                    <th>Tanggal Masuk</th>
-                                    <th>Tanggal Keluar</th>
-                                    <th>Total Harga</th>
-                                    <th>Foto Pembayaran</th>
-                                    <th>Status</th>
+                                    <th scope="col">Kode</th>
+                                    <th scope="col">Kamar</th>
+                                    <th scope="col">Tanggal Masuk</th>
+                                    <th scope="col">Tanggal Keluar</th>
+                                    <th scope="col">Total Harga</th>
+                                    <th scope="col">Foto Pembayaran</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -134,7 +134,7 @@ label:hover {
                                 @foreach ($transaction as $tf)
                                 <tr style="text-align: center">
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $tf->kode }}</td>
+                                    <td>{{ $tf->code }}</td>
                                     <td><span class="badge badge-info">{{ $tf->room->room_type->name }} ({{ $tf->room->room_number }})</span>
                                     </td>
                                     <td>{{ $tf->arrival_date }}</td>
@@ -142,7 +142,7 @@ label:hover {
                                     <td>Rp{{ number_format($tf->total_price,2,',','.') }}</td>
                                     <td>
                                         @if($tf->photo_payment != null)
-                                            <img height="70px" width="50px" src="{{ Storage::url($tf->photo_payment) }}" alt="">
+                                            <img height="100px" width="100px" src="{{ Storage::url($tf->photo_payment) }}" alt="">
                                         @else
                                         <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
                                             <i class="fas fa-upload" style="color: white;"></i>
@@ -152,16 +152,17 @@ label:hover {
                                     <td>
                                         @if($tf->status == "Menunggu")
                                             <span class="badge badge-warning">Menunggu</span>
-                                        @elseif($tf->status == "Terisi")
-                                            <span class="badge badge-success">Terisi</span>
-                                        @elseif($tf->status == "Keluar")
-                                            <span class="badge badge-danger">Keluar</span>
+                                        @elseif($tf->status == "Selesai")
+                                            <span class="badge badge-success">Selesai</span>
+                                        @elseif($tf->status == "Dibatalkan")
+                                            <span class="badge badge-danger">Dibatalkan</span>
                                         @endif
                                     </td>
                                     {{-- <td>
-                                        <form action="{{ route('user-transaksi-delete',$tf->id) }}" method="POST">
+                                        <form action="{{ route('user-transaksi-cancel',$tf->id) }}" method="POST">
+                                            @csrf
                                             <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Cancel" onClick="deleteConfirm({{ $tf->id }})">
-                                                <i class="fas fa-minus" style="color: white;"></i>
+                                                <i class="fas fa-window-close" style="color: white;"></i>
                                             </a>
                                         </form>
                                     </td> --}}
@@ -241,7 +242,7 @@ label:hover {
     function deleteConfirm(id) {
         Swal.fire({
             title: 'Harap Konfirmasi',
-            text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+            text: "Anda ingin membatalkan transaksi ini?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -254,16 +255,16 @@ label:hover {
                         'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
                     },
                     url: "/user/user-transaksi/" + id,
-                    method: "post",
+                    method: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
-                        "_method": "DELETE",
+                        "_method": "POST",
                         id: id
                     },
                     success: function (data) {
                         Swal.fire({
                             title: 'Berhasil!',
-                            text: 'Pemesanan berhasil dicancel',
+                            text: 'Pemesanan berhasil dibatalkan',
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
@@ -274,7 +275,7 @@ label:hover {
                     error: function () {
                         Swal.fire({
                             title: 'Gagal!',
-                            text: 'Pemesanan tidak dapat di hapus!',
+                            text: 'Pemesanan tidak dapat dibatalkan!',
                             icon: 'warning',
                         });
                         window.location.href = "/user/user-transaksi/"

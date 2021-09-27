@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $room_avail = Room::where('available',true)->count();
         $rom = Room::count();
         $transactions = Transaction::count();
-        $total_price = Transaction::where('payment',1)->sum('total_price');
+        $total_price = Transaction::where('status',"SELESAI")->sum('total_price');
         $pengeluaran = Expense::sum('nominal');
         $keuntungan = $total_price - $pengeluaran;
         $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];

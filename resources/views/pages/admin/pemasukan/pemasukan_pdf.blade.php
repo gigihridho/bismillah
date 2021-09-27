@@ -36,16 +36,16 @@
                 <div class="table-responsive">
                     <table border="1" width="100%" cellspacing="0" cellpadding="10" class="table table-striped">
                         <tr>
-                            <th>#</th>
-                            <th>Kode Pemesanan</th>
-                            <th>Nama Pemesan</th>
-                            <th>Tanggal Transaksi</th>
-                            <th>Pemasukan</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Kode Pemesanan</th>
+                            <th scope="col">Nama Pemesan</th>
+                            <th scope="col">Tanggal Transaksi</th>
+                            <th scope="col">Pemasukan</th>
                         </tr>
                         @forelse ($transactions as $index => $transaction)
                             <tr>
                                 <th>{{ $index+1 }}</th>
-                                <td>{{ $transaction->kode }}</td>
+                                <td>{{ $transaction->code }}</td>
                                 <td>{{ $transaction->user->name }}</td>
                                 <td>{{ $transaction->order_date }}</td>
                                 <td style="text-align: right;">
@@ -54,12 +54,12 @@
                             </tr>
                         @empty
                             <tr>
-                                <th colspan="5" style="color: red; text-align: center;">Tidak ada data</th>
+                                <th scope="col" colspan="5" style="color: red; text-align: center;">Tidak ada data</th>
                             </tr>
                         @endforelse
                             <tr>
                                 <td colspan="4" style="text-align: right;"><small>TOTAL :</small></td>
-                                <th><span class="badge badge-danger justify-content-end">Rp {{ number_format($total_price,2,',','.') }}<span></th>
+                                <th scope="col"><span class="badge badge-danger justify-content-end">Rp {{ number_format($total_price,2,',','.') }}<span></th>
                             </tr>
                     </table>
                 </div>

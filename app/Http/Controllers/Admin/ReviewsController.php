@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Review;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReviewsController extends Controller
 {
@@ -20,9 +21,10 @@ class ReviewsController extends Controller
     }
 
     public function destroy($id){
-        $item = Review::find($id);
+        $item = Review::findOrFail($id);
         $item->delete();
 
+        Alert::success('SUCCESS','Data berhasil dihapus!');
         return redirect()->route('reviews.index');
     }
 }

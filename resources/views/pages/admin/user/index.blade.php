@@ -24,14 +24,13 @@
                     <table class="table table-striped" id="table-1">
                         <thead>
                         <tr style="text-align:center">
-                            <th class="text-center">
+                            <th class="text-center" scope="col">
                             #
                             </th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>No Telepon</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">No Telepon</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,11 +40,6 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->no_hp }}</td>
-                                    <td>
-                                        @if($user->status == 1)
-                                        <span class="badge badge-success">Aktif</span>
-                                        @endif
-                                    </td>
                                     <td>
                                     <form action="#" method="POST" enctype="multipart/form-data">
                                         @method('PUT')

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Transaksi
+    Transaksi Dibatalkan
 @endsection
 
 @section('content')
@@ -45,7 +45,7 @@
                                     @if($transaction->photo_payment != null)
                                         <img height="100px" src="{{ Storage::url($transaction->photo_payment) }}" alt="" onclick="blank">
                                     @else
-                                        <span class="badge badge-warning">Belum Upload</span>
+                                        <span class="badge badge-danger">Belum Upload</span>
                                     @endif
                                 </td>
                                 <td>
@@ -62,8 +62,8 @@
                                         <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $transaction->id }}/edit">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$transaction->id) }}">
-                                            <i class="far fa-eye"></i>
+                                        <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$transaction->id) }}">
+                                            <i class="far fa-eye" style="color: white;"></i>
                                         </a>
                                     {{-- </form> --}}
                                 </td>
@@ -90,5 +90,50 @@
             }
         });
     } );
+    // function deleteConfirm(id) {
+    //     Swal.fire({
+    //         title: 'Harap Konfirmasi',
+    //         text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Lanjutkan'
+    //     }).then((result) => {
+    //         if (result.value) {
+    //             $.ajax({
+    //                 headers: {
+    //                     'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+    //                 },
+    //                 url: "booking/" + id,
+    //                 method: "post",
+    //                 data: {
+    //                     "_token": "{{ csrf_token() }}",
+    //                     "_method": "DELETE",
+    //                     id: id
+    //                 },
+    //                 success: function (data) {
+    //                     Swal.fire({
+    //                         title: 'Berhasil!',
+    //                         text: 'Data berhasil di hapus!',
+    //                         icon: 'success',
+    //                     }).then((result) => {
+    //                         if (result.value) {
+    //                             window.location.href = "booking/"
+    //                         }
+    //                     });
+    //                 },
+    //                 error: function () {
+    //                     Swal.fire({
+    //                         title: 'Gagal!',
+    //                         text: 'Data tidak dapat di hapus!',
+    //                         icon: 'warning',
+    //                     });
+    //                     window.location.href = "booking/"
+    //                 }
+    //             });
+    //         }
+    //     })
+    // }
 </script>
 @endpush

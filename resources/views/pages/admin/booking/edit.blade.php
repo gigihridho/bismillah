@@ -38,6 +38,20 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label>Nama</label>
+                                        <input type="text" name="name" value="{{ $transaction->user->name }}" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Kode Pemesanan</label>
+                                        <input type="text" name="name" value="{{ $transaction->code }}" class="form-control" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label>Status</label>
                                         <select name="status" id="status" class="form-control">
                                             <option value="Menunggu"
@@ -45,29 +59,15 @@
                                                 selected="selected"
                                             @endif>Menunggu
                                             </option>
-                                            <option value="Terisi"
-                                            @if ($transaction->status == 'Terisi')
+                                            <option value="Selesai"
+                                            @if ($transaction->status == 'Selesai')
                                                 selected="selected"
-                                            @endif>Terisi
+                                            @endif>Selesai
                                             </option>
-                                            <option value="Keluar"
-                                            @if ($transaction->status == 'Keluar')
+                                            <option value="Dibatalkan"
+                                            @if ($transaction->status == 'Dibatalkan')
                                                 selected="selected"
-                                            @endif>Keluar
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Pembayaran</label>
-                                        <select name="payment" id="payment" class="form-control">
-                                            <option value="1"
-                                                    @if ($transaction->payment == '1') selected="selected" @endif>Terbayar
-                                            </option>
-                                            <option value="0"
-                                                    @if ($transaction->payment == '0') selected="selected" @endif>
-                                                Belum Terbayar
+                                            @endif>Dibatalkan
                                             </option>
                                         </select>
                                     </div>
