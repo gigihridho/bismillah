@@ -75,10 +75,10 @@ class UserTransactionController extends Controller
     }
 
     public function detail(Request $request, $id){
-        $item = Transaction::where('id',$id)->get();
+        $transaction = Transaction::where('id',$id)->get();
 
         return view('pages.user.user-transaksi.detail',[
-            'item' => $item,
+            'transaction' => $transaction,
         ]);
     }
 

@@ -127,6 +127,7 @@ label:hover {
                                     <th scope="col">Total Harga</th>
                                     <th scope="col">Foto Pembayaran</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -158,14 +159,11 @@ label:hover {
                                             <span class="badge badge-danger">Dibatalkan</span>
                                         @endif
                                     </td>
-                                    {{-- <td>
-                                        <form action="{{ route('user-transaksi-cancel',$tf->id) }}" method="POST">
-                                            @csrf
-                                            <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Cancel" onClick="deleteConfirm({{ $tf->id }})">
-                                                <i class="fas fa-window-close" style="color: white;"></i>
-                                            </a>
-                                        </form>
-                                    </td> --}}
+                                    <td>
+                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
