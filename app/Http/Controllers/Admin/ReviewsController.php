@@ -24,7 +24,6 @@ class ReviewsController extends Controller
         $item = Review::findOrFail($id);
         $item->delete();
 
-        Alert::success('SUCCESS','Data berhasil dihapus!');
         return redirect()->route('reviews.index');
     }
 }

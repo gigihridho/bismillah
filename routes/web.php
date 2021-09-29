@@ -68,8 +68,7 @@ Route::prefix('admin')
 
         Route::resource('user', 'Admin\UserController');
 
-        Route::get('reviews', 'Admin\ReviewsController@index')->name('review');
-        Route::delete('reviews/{id}','Admin\ReviewsController@destroy');
+        Route::resource('reviews', 'Admin\ReviewsController');
 
         Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
         Route::post('change-pass', 'Admin\ChangePasswordController@update')->name('change-pass-update');

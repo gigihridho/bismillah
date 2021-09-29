@@ -34,18 +34,10 @@
                     <i class="fas fa-bed"></i> <span>Tipe Kamar</span></a>
                 </li>
             <li class="menu-header">Data Transaksi
-                <li class="{{ (request()->is('admin/booking/')) ? 'active' : '' }}">
+                <li class="{{ (request()->is('admin/booking*')) ? 'active' : '' }}">
                     <a href="{{ route('transaksi') }}" class="nav-link">
-                        <i class="fas fa-sign-in-alt"></i><span>Data Transaksi</span></a>
+                    <i class="fas fa-sign-in-alt"></i><span>Data Transaksi</span></a>
                 </li>
-                {{-- <li class="{{ (request()->is('admin/booking/belum')) ? 'active' : '' }}">
-                    <a href="{{ route('menunggu') }}"class="nav-link">
-                        <i class="fas fa-minus-square"></i><span>Transaksi Menunggu</span></a>
-                </li>
-                <li class="{{ (request()->is('admin/booking/batal')) ? 'active' : '' }}">
-                    <a href="{{ route('dibatalkan') }}"class="nav-link">
-                        <i class="fas fa-minus-square"></i><span>Transaksi Dibatalkan</span></a>
-                </li> --}}
             </li>
             <li class="menu-header">Keuangan
                 <li class="{{ (request()->is('admin/pemasukan*')) ? 'active' : '' }}">
@@ -62,8 +54,8 @@
                 <li class="{{ (request()->is('admin/user*')) ? 'active' : '' }}">
                     <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-user"></i><span>User</span></a>
                 </li>
-                <li class="{{ (request()->is('admin/reviews')) ? 'active' : '' }}">
-                    <a href="{{ route('review') }}" class="nav-link"><i class="fas fa-book"></i><span>Review</span></a>
+                <li class="{{ (request()->is('admin/reviews*')) ? 'active' : '' }}">
+                    <a href="{{ route('reviews.index') }}" class="nav-link"><i class="fas fa-book"></i><span>Review</span></a>
                 </li>
             </li>
             @endif

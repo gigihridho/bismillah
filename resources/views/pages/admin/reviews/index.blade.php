@@ -39,7 +39,7 @@
                                         <td>{{ $review->user->name }}</td>
                                         <td>{{ $review->review }}</td>
                                         <td>
-                                            <form action="{{ route('review',$review->id) }}" method="POST">
+                                            <form action="{{ route('reviews.destroy',$review->id) }}" method="POST">
                                                 <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $review->id }})">
                                                     <i class="far fa-trash-alt delete" style="color: white;"></i>
                                                 </a>
@@ -97,7 +97,7 @@
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "/admin/reviews/"
+                                window.location.href = "reviews/"
                             }
                         });
                     },
@@ -107,7 +107,7 @@
                             text: 'Data tidak dapat di hapus!',
                             icon: 'warning',
                         });
-                        window.location.href = "/admin/reviews/"
+                        window.location.href = "reviews/"
                     }
                 });
             }

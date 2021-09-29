@@ -27,6 +27,23 @@ p.required-field::after {
   margin-left: -3%;
   color: red;
 }
+.r1 {
+    border-right: 1px solid #d1d1d1;
+}
+.facility {
+    width: 20%;
+    float: left;
+    padding: 10px;
+}
+.facility ul {
+    margin-bottom: 0px;
+}
+.facility ul li {
+    background: url('../images/h-check.png') no-repeat left center;
+    background-size: 10px;
+    padding-left: 20px;
+    line-height: 28px;
+}
 </style>
 <section class="h-100 w-100 bg-white pb-5" style="box-sizing: border-box">
     <div class="detail-1 container mx-auto p-0  position-relative detail-content" style="font-family: 'Poppins', sans-serif">
@@ -117,17 +134,17 @@ p.required-field::after {
                     </div>
                     <hr>
                     <div class="row">
-                        @php $incrementRoomType = 0 @endphp
-                        <div class="col-md-6">
-                            <h5>Fasilitas</h5>
+                        <h5>Fasilitas</h5>
+                        {{-- @php $incrementRoomType = 0 @endphp --}}
+                        <ul>
                             @forelse ($room_type->facilities as $facility)
-                                <p>{{ $facility->name }}</p>
+                                <li>{{ $facility->name }}</li>
                             @empty
                             <div class="col-12 text-left">
                                 Tida ada fasilitas
                             </div>
                             @endforelse
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </section>
