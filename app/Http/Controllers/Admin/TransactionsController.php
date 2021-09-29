@@ -35,7 +35,7 @@ class TransactionsController extends Controller
     }
 
     public function cancel(){
-        $transactions = Transaction::where('status',"Dibatalkan")->get();
+        $transactions = Transaction::Where('status',"Dibatalkan")->get();
         return view('pages.admin.booking.batal',[
             'transactions' => $transactions
         ]);
@@ -61,20 +61,20 @@ class TransactionsController extends Controller
             ->withInput($request->all())
             ->withErrors($validator);
         }
-        if($transaction->status == "Dibatalkan"){
-            $room = Room::where('id',$id)->first();
+        if($transaction->status === 'Dibatalkan'){
+            $transaction = Transaction::findOrFail($id);
+            $room = Room::find($transaction->room_id);
             $room->available = 1;
-            $transaction->save();
             $room->save();
+            $transaction->save();
         } else {
             $transaction->status = $request->input('status','Selesai');
             $transaction->save();
         }
         // Mail::to($transaction->user->email)->send(new PaymentSuccessMail());
-        Alert::success('SUCCESS','Transaksi telah dikonfirmasi');
-        return redirect()->route('selesai');
+        Alert::success('SUCCESS','Status booking telah diubah');
+        return redirect()->route('transaksi');
     }
-
     public function batal(Request $request,$id){
         $transaction = Transaction::findOrFail($id);
         $room = Room::where('id',$id)->first();
@@ -82,7 +82,7 @@ class TransactionsController extends Controller
         $transaction->save();
         $room->save();
         Alert::success('SUCCESS','Status transaksi berhasil diubah');
-        return redirect()->back();
+        return redirect()->route('transaksi');
     }
 
     public function detail($id){

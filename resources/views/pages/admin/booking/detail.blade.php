@@ -132,15 +132,11 @@
                     </div>
                     @endforeach
                 </div>
-                {{-- <div class="row">
-                    <div class="mx-auto justify-content-center">
-                        <form action="{{ route('batal',$transaction->id) }}" method="POST">
-                            @csrf
-                            <a href="" class="btn btn-success">Konfirmasi</a>
-                            <button type="submit" class="btn btn-danger">Batalkan</button>
-                        </form>
+                <div class="row">
+                    <div class="mx- justify-content-left ml-4">
+                        <a href="{{ route('transaksi') }}" class="btn btn-info">Kembali</a>
                     </div>
-                </div> --}}
+                </div>
             </div>
             </div>
         </div>

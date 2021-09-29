@@ -58,13 +58,16 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{-- <form action="{{ route('booking.destroy',$room_booking->id) }}" method="POST"> --}}
+                                    {{-- <form action="{{ route('batal',$transaction->id) }}" method="POST"> --}}
                                         <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $transaction->id }}/edit">
                                             <i class="far fa-edit"></i>
                                         </a>
                                         <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$transaction->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
+                                        {{-- <a title="Hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm" href="{{ route('batal',$transaction->id) }}">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a> --}}
                                     {{-- </form> --}}
                                 </td>
                             </tr>
