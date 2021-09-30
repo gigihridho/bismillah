@@ -97,7 +97,7 @@ class BookingController extends Controller
         $transaction->arrival_date = $request->input('arrival_date');
         $transaction->departure_date = $new_departure_date;
         $transaction->order_date = Carbon::now();
-        $transaction->expired_at = Carbon::now()->addHours(24);
+        $transaction->expired_at = Carbon::now()->addMinutes(3);
 
         $price = $room_type->price;
         if($duration == 1){

@@ -19,13 +19,13 @@ class CreateTransactionsTable extends Migration
             $table->integer('room_id')->unsigned()->index();
             $table->string('code')->unique();
             $table->string('photo_payment')->nullable();
-            $table->date('order_date');
+            $table->dateTime('order_date');
             $table->integer('total_price');
             $table->enum('duration',[1,6,12]);
             $table->date('arrival_date');
             $table->date('departure_date')->nullable();
             $table->enum('status',['Menunggu','Selesai','Dibatalkan'])->default('Menunggu');
-            $table->date('expired_at');
+            $table->dateTime('expired_at');
             $table->timestamps();
 
             $table->foreign('room_id')

@@ -75,15 +75,6 @@ class TransactionsController extends Controller
         Alert::success('SUCCESS','Status booking telah diubah');
         return redirect()->route('transaksi');
     }
-    public function batal(Request $request,$id){
-        $transaction = Transaction::findOrFail($id);
-        $room = Room::where('id',$id)->first();
-        $room->available = 1;
-        $transaction->save();
-        $room->save();
-        Alert::success('SUCCESS','Status transaksi berhasil diubah');
-        return redirect()->route('transaksi');
-    }
 
     public function detail($id){
         $transactions = Transaction::where('id',$id)->get();
