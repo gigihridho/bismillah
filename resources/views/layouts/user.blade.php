@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="icon" href="{{ url('/seapalace/img/favicon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('fe/img/GriyoKenyo.png') }}" type="image/png">
 
     <title>@yield('title')</title>
 

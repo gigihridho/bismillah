@@ -32,6 +32,7 @@ Route::prefix('user')
         Route::get('user-transaksi', 'UserTransactionController@index')->name('user-transaksi');
         Route::get('lanjut-sewa','UserTransactionController@lanjut')->name('lanjut-sewa');
         Route::post('user-transaksi','UserTransactionController@save')->name('save-lanjut-sewa');
+        Route::get('user-transaksi/invoice_pdf/{id}','UserTransactionController@invoice')->name('user-invoice');
         Route::post('user-transaksi/{id}', 'UserTransactionController@upload')->name('user-transaksi-upload');
         Route::get('user-transaksi/{id}', 'UserTransactionController@detail')->name('user-transaksi-detail');
         Route::put('user-transaksi/{id}','UserTransactionController@cancel')->name('user-transaksi-cancel');

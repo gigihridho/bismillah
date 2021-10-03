@@ -138,7 +138,6 @@
                     'rgba(229,229,229,1)',
                 ],
                 pointBackgroundColor: '#ffffff',
-                pointRadius: 4,
                 data: <?php echo json_encode($jumlah_transactions); ?>
             }]
         },

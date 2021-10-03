@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\RoomBooking;
 use App\Transaction;
-use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,7 +16,15 @@ class UserTransactionController extends Controller
     {
         $this->middleware(['auth']);
     }
-
+    protected function setPdfOption()
+    {
+        return [
+            'dpi' => 150,
+            'defaultFont' => 'sans-serif',
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true
+        ];
+    }
     public function index(){
         $transaction = Transaction::where('user_id','=',Auth::user()->id)->get();
         return view('pages.user.user-transaksi.index',[
@@ -73,7 +82,16 @@ class UserTransactionController extends Controller
         Alert::success('SUCCESS','Berhasil melakukan perpanjangan sewa kamar');
         return redirect()->route('user-transaksi');
     }
-
+    public function invoice($id){
+        $now = Carbon::now();
+        $transaction = Transaction::with('user','room')->where('id', $id)->first();
+        // dd($transaction);
+        $pdf = PDF::loadview('pages.user.user-transaksi.invoice_pdf',[
+            'now' => $now,
+            'transaction' => $transaction,
+        ]);
+        return $pdf->download('invoice.pdf');
+    }
     public function detail(Request $request, $id){
         $transaction = Transaction::where('id',$id)->get();
 
@@ -103,20 +121,4 @@ class UserTransactionController extends Controller
         Alert::success('SUCCESS','Bukti pembayaran berhasil disimpan');
         return redirect()->back();
     }
-
-    public function cancel(Request $request, $id){
-
-        $transaction = Transaction::findOrFail($id);
-        $room = Room::where('id',$id)->first();
-
-        $room->available = 1;
-        $transaction->status = "Gagal";
-        $transaction->payment = "Belum Bayar";
-
-        $transaction->save();
-        $room->save();
-
-        Alert::success('Sukses','Data berhasil dihapus');
-        return redirect()->route('user-transaksi');
-        }
 }

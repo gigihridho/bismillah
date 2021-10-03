@@ -87,6 +87,84 @@ input[type="file"]{
 label:hover {
     opacity: 80%;
 }
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
 </style>
 <div class="main-content">
     <section class="section">
@@ -125,7 +203,7 @@ label:hover {
                                     <th scope="col">Tanggal Masuk</th>
                                     <th scope="col">Tanggal Keluar</th>
                                     <th scope="col">Total Harga</th>
-                                    <th scope="col">Foto Pembayaran</th>
+                                    <th scope="col">Bukti Transaksi</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
@@ -142,8 +220,10 @@ label:hover {
                                     <td>{{ $tf->departure_date }}</td>
                                     <td>Rp{{ number_format($tf->total_price,2,',','.') }}</td>
                                     <td>
-                                        @if($tf->photo_payment != null)
-                                            <img height="100px" width="100px" src="{{ Storage::url($tf->photo_payment) }}" alt="">
+                                        @if ($tf->status == "Dibatalkan")
+                                            <i class="fas fa-upload" style="color: white;"></i>
+                                        @elseif($tf->photo_payment != null)
+                                            <img height="100px" id="myImg" width="100px" src="{{ Storage::url($tf->photo_payment) }}" alt="image">
                                         @else
                                         <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
                                             <i class="fas fa-upload" style="color: white;"></i>
@@ -160,9 +240,18 @@ label:hover {
                                         @endif
                                     </td>
                                     <td>
+                                        @if($tf->status == "Selesai")
+                                            <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+                                        @else
+                                        <a title="Invoice" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('user-invoice',$tf->id) }}">
+                                            <i class="fas fa-file-invoice-dollar"></i>
+                                        </a>
                                         <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -310,5 +399,7 @@ label:hover {
             previewImage.setAttribute("src", "");
         }
     });
+
+
 </script>
 @endpush
