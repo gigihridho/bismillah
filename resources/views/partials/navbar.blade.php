@@ -31,7 +31,7 @@
                     {{-- <ul class="nav navbar-nav d-none d-lg-flex"> --}}
                         <li class="nav-item dropdown">
                         <a href="#" class="btn btn-fill text-white" id="navbar-dropdown" role="button" data-toggle="dropdown" style="margin-right: 4px;">
-                            Hi, {{ Auth::user()->name }}
+                            Hi, {{ Auth::user()->initials() }}
                         </a>
                         <div class="dropdown-menu">
                             @if(auth()->user()->hasRole('user'))
@@ -96,7 +96,7 @@
         <ul class="nav navbar-nav d-none d-lg-flex">
             <li class="nav-item dropdown">
             <a href="#" class="btn btn-fill text-white" id="navbar-dropdown" role="button" data-toggle="dropdown" style="margin-right: 4px;">
-                Hi, {{ Auth::user()->name }}
+                Hi, {{ Auth::user()->initials() }}
             </a>
             <div class="dropdown-menu">
                 @if(auth()->user()->hasRole('user'))

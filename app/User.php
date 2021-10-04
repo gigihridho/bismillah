@@ -50,4 +50,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Review::class);
     }
+
+    public function initials(){
+    $words = explode(" ", trim($this->name) );
+    return $words[0];
+ }
 }
