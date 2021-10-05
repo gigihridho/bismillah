@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookingRequest;
 use App\Mail\BookedMail;
 use App\Room;
 use App\Rules\Booking;
@@ -62,14 +63,7 @@ class BookingController extends Controller
         ]);
     }
 
-    public function booking(Request $request, $room_type_id){
-        $rules = [
-            'arrival_date' => 'required|date|after_or_equal:today',
-        ];
-        $messages = [
-            'arrival_date.required' => 'Tanggal masuk harus diisi',
-            'arrival_date.date' => 'Tanggal masuk harus berupa tanggal',
-        ];
+    public function booking(BookingRequest $request, $room_type_id){
         $room_type = RoomType::findOrFail($room_type_id);
         $new_arrival_date = $request->input('arrival_date');
         $duration = $request->input('duration');
@@ -83,13 +77,6 @@ class BookingController extends Controller
             $new_departure_date = date('Y-m-d', strtotime('+12 month', strtotime($request->arrival_date)));
         }
         $rules['booking_validation'] = [new RoomAvailableRule($room_type,$new_arrival_date,$new_departure_date)];
-
-        $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()){
-            return redirect()->back()
-            ->withInput($request->all())
-                ->withErrors($validator);
-        }
 
         $transaction = new Transaction();
         $user = Auth::user();

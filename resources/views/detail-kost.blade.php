@@ -31,18 +31,9 @@ p.required-field::after {
     border-right: 1px solid #d1d1d1;
 }
 .facility {
-    width: 20%;
+    width: 30%;
     float: left;
-    padding: 10px;
-}
-.facility ul {
-    margin-bottom: 0px;
-}
-.facility ul li {
-    background: url('../images/h-check.png') no-repeat left center;
-    background-size: 10px;
-    padding-left: 20px;
-    line-height: 28px;
+    /* padding: 10px; */
 }
 </style>
 <section class="h-100 w-100 bg-white pb-5" style="box-sizing: border-box">
@@ -61,8 +52,8 @@ p.required-field::after {
                 <div class="row">
                     @php $incrementRoomType = 0 @endphp
                     @forelse ($room_types as $room_type)
-                    <div class="col-lg-8" style="margin-bottom: 1rem">
-                        <img src="{{Storage::url($room_type->photo) }}" alt="" width="80%">
+                    <div class="col-lg-8" style="margin-bottom: 10px;">
+                        <img src="{{Storage::url($room_type->photo) }}" alt="" height="90%" width="80%">
                     </div>
                     @empty
                     <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
@@ -119,33 +110,37 @@ p.required-field::after {
                         $incrementRoomTypes = 0
                         @endphp
                         @forelse ($room_types as $room_type)
-                        <div class="col-lg-8">
-                            <h4>Tipe Kamar</h4>
-                            <input type="hidden" name="id" value="{{ $room_type->room }}">
-                            <div class="owner" style="margin-bottom: 0.5rem">{{ $room_type->name }}</div>
-                            <div class="owner" style="margin-bottom: 0.5rem">Lantai {{ $room_type->floor }}</div>
-                            <div class="price" style="color: red">Rp {{ number_format($room_type->price) }}/Bulan</div>
+                        <div class="col-lg-4">
+                            <h5>Tipe Kamar</h5>
+                                <input type="hidden" name="id" value="{{ $room_type->room }}">
+                                <div class="owner" style="margin-bottom: 0.5rem">{{ $room_type->name }}</div>
+                                <div class="owner" style="margin-bottom: 0.5rem">Lantai {{ $room_type->floor }}</div>
+                                <div class="price" style="color: red">Rp {{ number_format($room_type->price) }}/Bulan</div>
                         </div>
                         @empty
                         <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
                             Tipe Kamar Tidak Ditemukan
                         </div>
                         @endforelse
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <h5>Fasilitas</h5>
-                        {{-- @php $incrementRoomType = 0 @endphp --}}
-                        <ul>
-                            @forelse ($room_type->facilities as $facility)
-                                <li>{{ $facility->name }}</li>
+                        <h4 style="margin-top:20px">Fasilitas</h4>
+                        @foreach ($room_type->facilities->chunk(2) as $facilityy)
+                            @php $incrementRoomType = 0 @endphp
+                            @forelse ($facilityy as $facility)
+                            <div class="facility col-lg-4">
+                                <p>{{ $facility->name }}</p>
+                            </div>
                             @empty
                             <div class="col-12 text-left">
                                 Tida ada fasilitas
                             </div>
                             @endforelse
-                        </ul>
+                        @endforeach
+                        </div>
                     </div>
+                    <hr>
+                    {{-- <div class="row">
+
+                    </div> --}}
                 </div>
             </section>
         </div>

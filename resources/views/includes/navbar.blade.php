@@ -7,13 +7,13 @@
         </form>
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            @if(auth()->user()->hasRole('admin'))
+            {{-- @if(auth()->user()->hasRole('admin'))
             <img alt="image" src="{{asset('/assets/img/avatar/avatar-1.png')}}" class="rounded-circle mr-1">
             @endif
 
             @if(auth()->user()->hasRole('user'))
             <img alt="image" src="{{asset('/assets/img/avatar/avatar-4.png')}}" class="rounded-circle mr-1">
-            @endif
+            @endif --}}
             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->initials() }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
                 @if(auth()->user()->hasRole('admin'))
