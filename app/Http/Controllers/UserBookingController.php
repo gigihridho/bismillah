@@ -50,32 +50,32 @@ class UserBookingController extends Controller
 
     public function save(Request $request){
         $old_room_booking = json_decode($request->transaction);
-        $new_arrival_date = $old_room_booking->departure_date;
-        $duration = $request->input('duration');
-        $total_price = $request->input('total');
+        $new_tanggal_masuk = $old_room_booking->tanggal_keluar;
+        $durasi = $request->input('durasi');
+        $total_harga = $request->input('total');
         $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
 
-        if ($duration == 1) {
-            $new_departure_date = date('Y-m-d', strtotime('+1 month', strtotime($new_arrival_date)));
-        } elseif ($duration == 6){
-            $new_departure_date = date('Y-m-d', strtotime('+6 month', strtotime($new_arrival_date)));
+        if ($durasi == 1) {
+            $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($new_tanggal_masuk)));
+        } elseif ($durasi == 6){
+            $new_tanggal_keluar = date('Y-m-d', strtotime('+6 month', strtotime($new_tanggal_masuk)));
         } else {
-            $new_departure_date = date('Y-m-d', strtotime('+12 month', strtotime($new_arrival_date)));
+            $new_tanggal_keluar = date('Y-m-d', strtotime('+12 month', strtotime($new_tanggal_masuk)));
         }
 
         $user = Auth::user();
         $transaction = new Booking();
-        $transaction->duration = $duration;
-        $transaction->arrival_date = $new_arrival_date;
-        $transaction->departure_date = $new_departure_date;
-        $transaction->order_date = Carbon::now();
-        $transaction->total_price = $total_price;
-        $transaction->room_id = $old_room_booking->room_id;
+        $transaction->durasi = $durasi;
+        $transaction->tanggal_masuk = $new_tanggal_masuk;
+        $transaction->tanggal_keluar = $new_tanggal_keluar;
+        $transaction->tanggal_pesan = Carbon::now();
+        $transaction->total_harga = $total_harga;
+        $transaction->kamar_id = $old_room_booking->kamar_id;
         $transaction->user_id = $user->id;
         $transaction->kode = $kode;
-        if($request->hasFile('photo_payment')){
-            $path = $request->file('photo_payment')->store('assets/transaction','public');
-            $transaction->photo_payment = $path;
+        if($request->hasFile('bukti_pembayaran')){
+            $path = $request->file('bukti_pembayaran')->store('assets/transaction','public');
+            $transaction->bukti_pembayaran = $path;
         }
         $transaction->save();
 
@@ -102,19 +102,19 @@ class UserBookingController extends Controller
 
     public function upload(Request $request,$id){
         $this->validate($request, [
-            'photo_payment' => 'required|image|max:2048|mimes:png,jpg,jpeg',
+            'bukti_pembayaran' => 'required|image|max:2048|mimes:png,jpg,jpeg',
         ],
         [
-            'photo_payment.required' => 'Bukti pembayaran tidak boleh kosong',
-            'photo_payment.max' => 'Bukti pembayaran melebihi 2MB',
-            'photo_payment.mimes' => 'Format file tidak didukung'
+            'bukti_pembayaran.required' => 'Bukti pembayaran tidak boleh kosong',
+            'bukti_pembayaran.max' => 'Bukti pembayaran melebihi 2MB',
+            'bukti_pembayaran.mimes' => 'Format file tidak didukung'
         ]);
         $user = Auth::user();
 
-        $transaction = Booking::with('user','room')->where('user_id', Auth::user()->id)->latest()->first();
-        if($request->hasFile('photo_payment')){
-            $path = $request->file('photo_payment')->store('assets/transaction','public');
-            $transaction->photo_payment = $path;
+        $transaction = Booking::with('user','kamar')->where('user_id', Auth::user()->id)->latest()->first();
+        if($request->hasFile('bukti_pembayaran')){
+            $path = $request->file('bukti_pembayaran')->store('assets/transaction','public');
+            $transaction->bukti_pembayaran = $path;
         }
         $transaction->save();
 
