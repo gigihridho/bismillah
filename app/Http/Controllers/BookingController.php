@@ -162,33 +162,33 @@ class BookingController extends Controller
         $order_id = $notification->order_id;
 
         // Cari transaksi berdasarkan ID
-        $transaction = Booking::findOrFail($order_id);
+        $transaction = Booking::where('kode',$order_id)->first();
 
         // Handle notification status midtrans
         if ($status == 'capture') {
             if ($type == 'credit_card'){
                 if($fraud == 'challenge'){
-                    $transaction->status = 'PENDING';
+                    $transaction->status = 'Menunggu';
                 }
                 else {
-                    $transaction->status = 'SUCCESS';
+                    $transaction->status = 'Selesai';
                 }
             }
         }
         else if ($status == 'settlement'){
-            $transaction->status = 'SUCCESS';
+            $transaction->status = 'Selesai';
         }
         else if($status == 'pending'){
-            $transaction->status = 'PENDING';
+            $transaction->status = 'Menunggu';
         }
         else if ($status == 'deny') {
-            $transaction->status = 'CANCELLED';
+            $transaction->status = 'Dibatalkan';
         }
         else if ($status == 'expire') {
-            $transaction->status = 'CANCELLED';
+            $transaction->status = 'Dibatalkan';
         }
         else if ($status == 'cancel') {
-            $transaction->status = 'CANCELLED';
+            $transaction->status = 'Dibatalkan';
         }
 
         // Simpan transaksi
