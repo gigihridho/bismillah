@@ -20,7 +20,6 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('details/{id}', 'DetailController@detail')->name('detail-kost');
 Route::post('details/{id}/confirmation', 'BookingController@confirmation')->name('confirmation');
 Route::post('details/{id}/book', 'BookingController@booking')->name('booking');
-Route::post('booking/callback','BookingController@callback')->name('midtrans-callback');
 Route::get('invoice','BookingController@show')->name('upload');
 Route::post('upload/{id}','BookingController@upload')->name('upload-pembayaran');
 
