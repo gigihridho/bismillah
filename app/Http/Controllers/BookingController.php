@@ -237,6 +237,14 @@ class BookingController extends Controller
             ]);
         }
     }
+
+    public function success(){
+        return view('pages.user.success');
+    }
+
+    public function gagal(){
+        return view('pages.user.gagal');
+    }
     // public function booking(BookingRequest $request, $tipe_kamar_id){
     //     $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
     //     $new_tanggal_masuk = $request->input('tanggal_masuk');
