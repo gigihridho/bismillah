@@ -67,6 +67,7 @@ class BookingController extends Controller
             'kode' => $kode,
         ]);
     }
+    
     public function booking(BookingRequest $request, $tipe_kamar_id){
         $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
         $new_tanggal_masuk = $request->input('tanggal_masuk');
