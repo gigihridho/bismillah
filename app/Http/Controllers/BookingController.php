@@ -107,6 +107,10 @@ class BookingController extends Controller
         $bookingg->kamar_id = $kamar->id;
         $bookingg->user_id = $user->id;
 
+        $bookingg->save();
+        $kamar->tersedia = 0;
+        $kamar->save();
+
         Config::$serverKey = config('services.midtrans.serverKey');
         Config::$isProduction = config('services.midtrans.isProduction');
         Config::$isSanitized = config('services.midtrans.isSanitized');
@@ -116,7 +120,7 @@ class BookingController extends Controller
         $midtrans = array(
             'transaction_details' => array(
                 'order_id' => $kode,
-                'gross_amount' => (int) $request->total_harga,
+                'gross_amount' => $total_harga,
             ),
             'customer_details' => array(
                 'first_name' => Auth::user()->name,
