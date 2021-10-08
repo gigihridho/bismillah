@@ -39,7 +39,7 @@ class BookingController extends Controller
         $harga = $tipe_kamar->harga;
         $new_tanggal_masuk = $request->input('tanggal_masuk');
         $durasi = $request->input('durasi');
-        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
+        $kode = 'KOS'.date("ymd").mt_rand(000,999);
 
         if($durasi == 1){
             $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
@@ -71,7 +71,7 @@ class BookingController extends Controller
         $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
         $new_tanggal_masuk = $request->input('tanggal_masuk');
         $durasi = $request->input('durasi');
-        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
+        $kode = 'KOS'.date("ymd").mt_rand(000,999);
 
         if($durasi == 1){
             $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
@@ -127,6 +127,7 @@ class BookingController extends Controller
             'customer_details' => array(
                 'first_name' => Auth::user()->name,
                 'email' => Auth::user()->email,
+                'phone' => Auth::user()->no_hp,
             ),
             'enabled_payments' => array(
                 'gopay', 'bni_va','bank_transfer'
@@ -155,7 +156,7 @@ class BookingController extends Controller
         $notification = new Notification();
 
         // Assign ke variable untuk memudahkan coding
-        $status = $notification->status;
+        $status = $notification->transaction_status;
         $type = $notification->payment_type;
         $fraud = $notification->fraud_status;
         $order_id = $notification->order_id;
