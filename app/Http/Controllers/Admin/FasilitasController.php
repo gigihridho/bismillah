@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Facility;
+use App\Fasilitas;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\FacilityRequest;
+use App\Http\Requests\Admin\FasilitasRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class FacilityController extends Controller
+class FasilitasController extends Controller
 {
     public function __construct()
     {
@@ -15,9 +15,9 @@ class FacilityController extends Controller
     }
 
     public function index(){
-        $facilities = Facility::all();
+        $fasilitas = Fasilitas::all();
         return view('pages.admin.fasilitas.index',[
-            'facilites' => $facilities
+            'fasilitas' => $fasilitas
         ]);
     }
 
@@ -25,36 +25,36 @@ class FacilityController extends Controller
         return view('pages.admin.fasilitas.create');
     }
 
-    public function store(FacilityRequest $request){
+    public function store(FasilitasRequest $request){
         $data = $request->all();
 
-        Facility::create($data);
+        Fasilitas::create($data);
         Alert::success('SUCCESS','Data Fasilitas Berhasil Ditambah');
         return redirect()->route('fasilitas.index');
     }
 
     public function edit($id){
-        $item = Facility::findOrFail($id);
+        $fas = Fasilitas::where('id',$id)->first();
 
         return view('pages.admin.fasilitas.edit',[
-            'item' => $item
+            'fas' => $fas
         ]);
     }
 
-    public function update(FacilityRequest $request, $id){
+    public function update(FasilitasRequest $request, $id){
         $data = $request->all();
 
-        $item = Facility::findOrFail($id);
+        $item = Fasilitas::findOrFail($id);
 
         $item->update($data);
         Alert::success('SUCCESS','Data Fasilitas Berhasil Diupdate');
-        return redirect()->route('fasilitas.index');
+        // return redirect()->route('fasilitas.index');
     }
 
     public function destroy($id){
-        $item = Facility::findOrFail($id);
-        $item->delete();
+        $fas = Fasilitas::findOrFail($id);
+        $fas->delete();
 
-        return redirect()->route('fasilitas.index');
+        // return redirect()->route('fasilitas.index');
     }
 }

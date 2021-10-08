@@ -43,7 +43,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <input type="text" name="description" class="form-control"
+                                    <input type="text" name="deskripsi" class="form-control"
                                     placeholder="Masukkan deskripsi pengeluaran" autocomplete="off">
                                     <small>Contoh: Air, Listrik, Wifi</small>
                                 </div>
@@ -51,7 +51,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Transaksi</label>
-                                    <input type="date" name="date" class="form-control">
+                                    <input type="date" name="tanggal" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -65,7 +65,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Foto Bukti Pengeluaran</label>
-                                    <input type="file" name="photo" class="form-control">
+                                    <input type="file" name="foto" class="form-control">
                                 </div>
                             </div>
                         </div>

@@ -27,8 +27,8 @@
                                     <i class="fas fa-user mr-2"></i> Foto KTP
                                     <hr>
                                     <div class="image">
-                                        @if ($u->photo_ktp != null)
-                                            <img src="{{ Storage::url($u->photo_ktp) }}" alt="foto"
+                                        @if ($u->foto_ktp != null)
+                                            <img src="{{ Storage::url($u->foto_ktp) }}" alt="foto"
                                             style="display: block; margin-left:auto;  margin:auto">
                                         @else
                                             <img src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="250px" height="250px" alt="foto"
@@ -72,14 +72,14 @@
                                                 <th>
                                                     <br>
                                                     Alamat
-                                                    <input type="text" name="address" value="{{ $u->address }}"class="form-control" style="border: none" disabled>
+                                                    <input type="text" name="alamat" value="{{ $u->alamat }}"class="form-control" style="border: none" disabled>
                                                 </th>
                                             </tr>
                                             <tr>
                                                 <th>
                                                     <br>
                                                     Pekerjaan
-                                                    <input type="text" name="profession" value="{{ $u->profession }}" class="form-control" style="border: none" disabled>
+                                                    <input type="text" name="pekerjaan" value="{{ $u->pekerjaan }}" class="form-control" style="border: none" disabled>
                                                 </th>
                                             </tr>
                                         </tbody>

@@ -45,7 +45,7 @@
                                             <div>
                                             <h6 class="my-0">Kode Pemesanan</h6>
                                             </div>
-                                            <span class="text-muted">{{ $tf->code }}</span>
+                                            <span class="text-muted">{{ $tf->kode }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
@@ -83,44 +83,44 @@
                                             <div>
                                             <h6 class="my-0">Tanggal Pesan</h6>
                                             </div>
-                                            <span class="text-muted">{{ $tf->order_date }}</span>
+                                            <span class="text-muted">{{ $tf->tanggal_pesan }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
                                             <h6 class="my-0">Lama Durasi Sewa</h6>
                                             </div>
-                                            <span class="text-muted">{{ $tf->duration }} bulan</span>
+                                            <span class="text-muted">{{ $tf->durasi }} bulan</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
                                             <h6 class="my-0">Tanggal Masuk</h6>
                                             </div>
-                                            <span class="text-muted">{{ $tf->arrival_date }}</span>
+                                            <span class="text-muted">{{ $tf->tanggal_masuk }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
                                             <h6 class="my-0">Tanggal Keluar</h6>
                                             </div>
-                                            <span class="text-muted">{{ $tf->departure_date}}</span>
+                                            <span class="text-muted">{{ $tf->tanggal_keluar}}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
                                                 <h6 class="my-0">Nomor Kamar</h6>
                                             </div>
-                                            <span class="text-muted">{{ $tf->room->room_number }}</span>
+                                            <span class="text-muted">{{ $tf->kamar->nomor_kamar }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
                                             <h6 class="my-0">Tipe Kamar</h6>
                                             </div>
-                                            <span class="text-muted">{{ $tf->room->room_type->name }}</span>
+                                            <span class="text-muted">{{ $tf->kamar->tipe_kamar->nama }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
                                             <h6 class="my-0">Bukti Transaksi</h6>
                                             </div>
-                                            @if($tf->photo_payment != null)
-                                            <img height="100px" src="{{ Storage::url($tf->photo_payment) }}" alt="" onclick="blank">
+                                            @if($tf->bukti_pembayaran != null)
+                                            <img height="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="" onclick="blank">
                                             @else
                                                 <button class="btn btn-warning btn-sm" style="text-align:center">Belum Upload
                                                 </button>

@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\RoomBooking;
-use App\Transaction;
+use App\Booking;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class UserTransactionController extends Controller
+class UserBookingController extends Controller
 {
     public function __construct()
     {
@@ -26,25 +26,25 @@ class UserTransactionController extends Controller
         ];
     }
     public function index(){
-        $transaction = Transaction::where('user_id','=',Auth::user()->id)->get();
+        $transaction = Booking::where('user_id','=',Auth::user()->id)->get();
         return view('pages.user.user-transaksi.index',[
             'transaction' => $transaction
         ]);
     }
 
     public function lanjut(Request $request){
-        $transaction = Transaction::with('user','room')
+        $transaction = Booking::with('user','kamar')
             ->where('user_id',Auth::user()->id)
             ->latest()
             ->first();
         if ($transaction->payment == 0) {
             return redirect()->back()->withErrors('Menunggu admin melakukan konfirmasi pembayaran sebelumnya');
         }
-        $room_type =  $transaction->room->room_type;
+        $tipe_kamar =  $transaction->kamar->tipe_kamar;
 
         return view('pages.user.user-transaksi.create',[
             'transaction' => $transaction,
-            'room_type' => $room_type
+            'tipe_kamar' => $tipe_kamar
         ]);
     }
 
@@ -64,7 +64,7 @@ class UserTransactionController extends Controller
         }
 
         $user = Auth::user();
-        $transaction = new Transaction();
+        $transaction = new Booking();
         $transaction->duration = $duration;
         $transaction->arrival_date = $new_arrival_date;
         $transaction->departure_date = $new_departure_date;
@@ -84,7 +84,7 @@ class UserTransactionController extends Controller
     }
     public function invoice($id){
         $now = Carbon::now();
-        $transaction = Transaction::with('user','room')->where('id', $id)->first();
+        $transaction = Booking::with('user','kamar')->where('id', $id)->first();
         // dd($transaction);
         $pdf = PDF::loadview('pages.user.user-transaksi.invoice_pdf',[
             'now' => $now,
@@ -93,7 +93,7 @@ class UserTransactionController extends Controller
         return $pdf->download('invoice.pdf');
     }
     public function detail(Request $request, $id){
-        $transaction = Transaction::where('id',$id)->get();
+        $transaction = Booking::where('id',$id)->get();
 
         return view('pages.user.user-transaksi.detail',[
             'transaction' => $transaction,
@@ -111,7 +111,7 @@ class UserTransactionController extends Controller
         ]);
         $user = Auth::user();
 
-        $transaction = Transaction::with('user','room')->where('user_id', Auth::user()->id)->latest()->first();
+        $transaction = Booking::with('user','room')->where('user_id', Auth::user()->id)->latest()->first();
         if($request->hasFile('photo_payment')){
             $path = $request->file('photo_payment')->store('assets/transaction','public');
             $transaction->photo_payment = $path;

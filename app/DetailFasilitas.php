@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Expense extends Model
+class DetailFasilitas extends Model
 {
-    protected $table = 'expenses';
+    protected $table = 'detail_fasilitas';
 
     protected $fillable = [
-        'description','date','nominal','photo'
+        'fasilitas_id','kamar_id'
     ];
 
     protected $hidden = [

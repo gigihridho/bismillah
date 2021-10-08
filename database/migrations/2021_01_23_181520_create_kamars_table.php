@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomsTable extends Migration
+class CreateKamarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('kamars', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('room_number',3)->unique();
-            $table->boolean('available')->default(true);
-            $table->boolean('status')->default(true);
-            $table->integer('room_type_id')->unsigned()->index();
+            $table->string('nomor_kamar',3)->unique();
+            $table->boolean('tersedia')->default(true);
+            $table->integer('tipe_kamar_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->foreign('room_type_id')
-                ->references('id')->on('room_types')
+            $table->foreign('tipe_kamar_id')
+                ->references('id')->on('tipe_kamars')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -34,6 +33,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('kamars');
     }
 }

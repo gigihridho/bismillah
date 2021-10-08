@@ -31,7 +31,7 @@ p.required-field::after {
     border-right: 1px solid #d1d1d1;
 }
 .facility {
-    width: 30%;
+    /*width: 30%;*/
     float: left;
     /* padding: 10px; */
 }
@@ -50,10 +50,10 @@ p.required-field::after {
         <div class="kost-gallery mt-3" id="gallery">
             <div class="container">
                 <div class="row">
-                    @php $incrementRoomType = 0 @endphp
-                    @forelse ($room_types as $room_type)
+                    @php $incrementTipeKamar = 0 @endphp
+                    @forelse ($tipe_kamars as $tipe_kamar)
                     <div class="col-lg-8" style="margin-bottom: 10px;">
-                        <img src="{{Storage::url($room_type->photo) }}" alt="" height="90%" width="80%">
+                        <img src="{{Storage::url($tipe_kamar->foto) }}" alt="" height="90%" width="80%">
                     </div>
                     @empty
                     <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
@@ -62,7 +62,7 @@ p.required-field::after {
                     @endforelse
                     <div class="col-lg-4">
                         <div class="card-body shadow-lg p-3 mb-5 bg-white rounded">
-                            <form action="{{ route('confirmation',$room_type->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('confirmation',$tipe_kamar->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input name="booking_validation" type="hidden" value="0">
                             <div class="form-group" style="margin-bottom: 1rem">
@@ -70,12 +70,12 @@ p.required-field::after {
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     </div>
-                                        <input type="text" data-provide="datepicker" class="form-control" id="arrival_date" name="arrival_date" placeholder="Tanggal Masuk" value="" readonly="">
+                                        <input type="text" data-provide="datepicker" class="form-control" id="tanggal_masuk" name="tanggal_masuk" placeholder="Tanggal Masuk" value="" readonly="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="duration" style="margin-bottom: 0.5rem">Durasi Sewa</label>
-                                <select name="duration" id="duration" class="form-control">
+                                <label for="durasi" style="margin-bottom: 0.5rem">Durasi Sewa</label>
+                                <select name="durasi" id="durasi" class="form-control">
                                     <option value="1">1 Bulan</option>
                                     <option value="6">6 Bulan</option>
                                     <option value="12">1 Tahun</option>
@@ -109,25 +109,26 @@ p.required-field::after {
                         @php
                         $incrementRoomTypes = 0
                         @endphp
-                        @forelse ($room_types as $room_type)
+                        @forelse ($tipe_kamars as $tipe_kamar)
                         <div class="col-lg-4">
                             <h5>Tipe Kamar</h5>
-                                <input type="hidden" name="id" value="{{ $room_type->room }}">
-                                <div class="owner" style="margin-bottom: 0.5rem">{{ $room_type->name }}</div>
-                                <div class="owner" style="margin-bottom: 0.5rem">Lantai {{ $room_type->floor }}</div>
-                                <div class="price" style="color: red">Rp {{ number_format($room_type->price) }}/Bulan</div>
+                                <input type="hidden" name="id" value="{{ $tipe_kamar->kamar }}">
+                                <div class="owner" style="margin-bottom: 0.5rem">{{ $tipe_kamar->nama }}</div>
+                                <div class="owner" style="margin-bottom: 0.5rem">Lantai {{ $tipe_kamar->lantai }}</div>
+                                <div class="price" style="color: red">Rp {{ number_format($tipe_kamar->harga) }}/Bulan</div>
                         </div>
                         @empty
                         <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
                             Tipe Kamar Tidak Ditemukan
                         </div>
                         @endforelse
-                        <h4 style="margin-top:20px">Fasilitas</h4>
-                        @foreach ($room_type->facilities->chunk(2) as $facilityy)
+                        <hr style="margin-top:20px">
+                        <h4 style="margin-top:10px">Fasilitas</h4>
+                        @foreach ($tipe_kamar->fasilitas->chunk(2) as $facilityy)
                             @php $incrementRoomType = 0 @endphp
                             @forelse ($facilityy as $facility)
-                            <div class="facility col-lg-4">
-                                <p>{{ $facility->name }}</p>
+                            <div class="facility col-lg-4" style="padding:auto;">
+                                <p>{{ $facility->nama }}</p>
                             </div>
                             @empty
                             <div class="col-12 text-left">
@@ -135,13 +136,11 @@ p.required-field::after {
                             </div>
                             @endforelse
                         @endforeach
-                        </div>
                     </div>
-                    <hr>
+                </div>
                     {{-- <div class="row">
 
                     </div> --}}
-                </div>
             </section>
         </div>
     </div>
@@ -150,7 +149,7 @@ p.required-field::after {
 @push('after-script')
 <script>
     $(function () {
-    var $dp1 = $("#arrival_date");
+    var $dp1 = $("#tanggal_masuk");
       $(document).ready(function () {
 
       $dp1.datepicker({

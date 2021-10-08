@@ -5,6 +5,15 @@
 @endsection
 
 @section('content')
+
+<style type="text/css">
+    @media (max-width: 417px) {
+            .tombol .btn.simpan {
+            margin-bottom: 10px;
+            }
+        }
+</style>
+
 <div class="main-content">
     <section class="section">
         <div class="section-header">
@@ -39,15 +48,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <input type="text" name="description" class="form-control"
-                                    value="{{$data->description  }}">
+                                    <input type="text" name="deskripsi" class="form-control"
+                                    value="{{$data->deskripsi  }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Transaksi</label>
-                                    <input type="date" name="date" class="form-control"
-                                    value="{{$data->date  }}">
+                                    <input type="date" name="tanggal" class="form-control"
+                                    value="{{$data->tanggal  }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -61,8 +70,8 @@
                                 <div class="form-group">
                                     <label>Foto Bukti Pengeluaran</label>
                                     <input type="file" id="input_photo" name="photo" class="form-control mb-2">
-                                    @if ($data->photo != null)
-                                        <img id="img_photo" src="{{ Storage::url($data->photo) }}" width="280px" height="180px" alt="foto"
+                                    @if ($data->foto != null)
+                                        <img id="img_photo" src="{{ Storage::url($data->foto) }}" width="150px" height="180px" alt="foto"
                                         style="display: block; margin:auto">
                                     @else
                                         <img id="img_photo" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
@@ -71,11 +80,14 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="row">
+                            <div class="row tombol">
                                 <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
+                                    <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
                                         Simpan Data
                                     </button>
+                                    <a href="{{ route('pengeluaran.index') }}" class="btn btn-danger px-5" style="padding: 8px 16px">
+                                        Batal
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -36,9 +36,9 @@
                     <h4>Kamar Tersedia</h4>
                 </div>
                 <div class="card-body">
-                    {{ $room_avail }}
+                    {{ $kamar_tersedia }}
                 </div>
-                <p>Dari total {{ $rom }} kamar</p>
+                <p>Dari total {{ $kam }} kamar</p>
                 </div>
             </div>
             </div>
@@ -52,7 +52,7 @@
                     <h4>Jumlah Transaksi</h4>
                 </div>
                 <div class="card-body">
-                    {{ $transactions }}
+                    {{ $bookings }}
                 </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <h4>Pemasukan</h4>
                 </div>
                 <div class="card-body">
-                    Rp{{ number_format($total_price,2,',','.') }}
+                    Rp{{ number_format($total_harga,2,',','.') }}
                 </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
             </div>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
             <div class="card">
                 <div class="card-header">
@@ -116,11 +116,11 @@
                 </div>
             </div>
             </div>
-        </div>
+        </div> --}}
     </section>
 </div>
 @endsection
-@push('prepend-script')
+{{-- @push('prepend-script')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -153,4 +153,4 @@
         }
     });
 </script>
-@endpush
+@endpush --}}

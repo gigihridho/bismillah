@@ -34,7 +34,7 @@
         <div class="row my-3">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table border="1" width="100%" cellspacing="0" cellpadding="10" class="table table-striped">
+                    <table class="table table-bordered">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Kode Pemesanan</th>
@@ -42,14 +42,14 @@
                             <th scope="col">Tanggal Transaksi</th>
                             <th scope="col">Pemasukan</th>
                         </tr>
-                        @forelse ($transactions as $index => $transaction)
+                        @forelse ($transaksis as $index => $tf)
                             <tr>
-                                <th>{{ $index+1 }}</th>
-                                <td>{{ $transaction->code }}</td>
-                                <td>{{ $transaction->user->name }}</td>
-                                <td>{{ $transaction->order_date }}</td>
+                                <td>{{ $index+1 }}</td>
+                                <td>{{ $tf->kode }}</td>
+                                <td>{{ $tf->user->name }}</td>
+                                <td>{{ $tf->tanggal_pesan }}</td>
                                 <td style="text-align: right;">
-                                    <span>Rp {{ number_format($transaction->room->room_type->price,2,',','.') }}</span>
+                                    <span>Rp {{ number_format($tf->kamar->tipe_kamar->harga,2,',','.') }}</span>
                                 </td>
                             </tr>
                         @empty
@@ -59,7 +59,7 @@
                         @endforelse
                             <tr>
                                 <td colspan="4" style="text-align: right;"><small>TOTAL :</small></td>
-                                <th scope="col"><span class="badge badge-danger justify-content-end">Rp {{ number_format($total_price,2,',','.') }}<span></th>
+                                <th scope="col" style="text-align: right"><span>Rp {{ number_format($total_harga,2,',','.') }}</span></th>
                             </tr>
                     </table>
                 </div>

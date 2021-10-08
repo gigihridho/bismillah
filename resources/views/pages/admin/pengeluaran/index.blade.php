@@ -25,8 +25,8 @@
                         <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
                             <thead>
-                                <tr style="text-align:center; width:5%">
-                                    <th scope="col">
+                                <tr style="text-align:center;">
+                                    <th scope="col" style="width:5%">
                                         No
                                     </th>
                                     <th scope="col" style="width:10%">Tanggal</th>
@@ -40,12 +40,12 @@
                                 @foreach ($pengeluaran as $index => $p)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $p->date }}</td>
-                                    <td>{!! substr($p->description,0,20) !!} ...</td>
+                                    <td>{{ $p->tanggal }}</td>
+                                    <td>{!! substr($p->deskripsi,0,20) !!} ...</td>
                                     <td>Rp{{ number_format($p->nominal,2,',','.') }}</td>
                                     <td>
-                                        @if($p->photo != null)
-                                            <img height="100px" src="{{ Storage::url($p->photo) }}" alt="" onclick="blank">
+                                        @if($p->foto != null)
+                                            <img height="100px" src="{{ Storage::url($p->foto) }}" alt="" onclick="blank">
                                         @else
                                             <span class="badge badge-warning">Belum Upload</span>
                                         @endif

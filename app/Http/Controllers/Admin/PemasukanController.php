@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
-use App\Transaction;
+use App\Booking;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class IncomeController extends Controller
+class PemasukanController extends Controller
 {
     public function __construct()
     {
@@ -26,9 +26,9 @@ class IncomeController extends Controller
     }
 
     public function index(){
-        $transactions = Transaction::where('status',"SELESAI")->get();
+        $transaksis = Booking::where('status',"SELESAI")->get();
         return view('pages.admin.pemasukan.index',[
-            'transactions' => $transactions
+            'transaksis' => $transaksis
         ]);
     }
 
@@ -37,7 +37,7 @@ class IncomeController extends Controller
         $fromDate = $request->input('fromDate');
         $toDate = $request->input('toDate');
 
-        $transactions = Transaction::where('order_date','>=',$fromDate)
+        $transactions = Booking::where('order_date','>=',$fromDate)
                     ->where('order_date','<=',$toDate)
                     ->where('status',"SELESAI")
                     ->get();
@@ -46,13 +46,13 @@ class IncomeController extends Controller
 
     public function pdf(){
         $now = Carbon::now();
-        $transactions = Transaction::where('status',"SELESAI")->orderBy('order_date','ASC')->get();
-        $total_price = Transaction::where('status',"SELESAI")->sum('total_price');
+        $transaksis = Booking::where('status',"SELESAI")->orderBy('tanggal_pesan','ASC')->get();
+        $total_harga = Booking::where('status',"SELESAI")->sum('total_harga');
 
         $pdf = PDF::loadview('pages.admin.pemasukan.pemasukan_pdf',[
             'now' => $now,
-            'total_price' => $total_price,
-            'transactions' => $transactions
+            'total_harga' => $total_harga,
+            'transaksis' => $transaksis
         ]);
         return $pdf->download('laporan-pemasukan.pdf');
     }

@@ -32,28 +32,28 @@
                         <h4>Tambah Kamar</h4>
                     </div>
                     <div class="card-body">
-                        <form action="/admin/tipe/{{ $room_type->id }}/kamar" method="POST" enctype="multipart/form-data">
+                        <form action="/admin/tipe/{{ $tipe_kamar->id }}/kamar" method="POST" enctype="multipart/form-data">
                             @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor Kamar</label>
-                                    <input type="text" name="room_number" class="form-control"
-                                    placeholder="Masukkan Nomor Kamar" value="{{ old('room_number') }}" autocomplete="off">
+                                    <input type="text" name="nomor_kamar" class="form-control"
+                                    placeholder="Masukkan Nomor Kamar" value="{{ old('nomor_kamar') }}" autocomplete="off">
                                     <small>Contoh: 1</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select name="status" id="status" class="form-control">
+                                    <select name="tersedia" id="tersedia" class="form-control">
                                         <option value="1"
-                                            @if (old('status') == '1')selected="selected" @endif" >
-                                            Aktif
+                                            @if (old('tersedia') == '1')selected="selected" @endif" >
+                                            Tersedia
                                         </option>
                                         <option value="0"
                                             @if (old('status') == '0')selected="selected" @endif" >
-                                            Tidak Aktif
+                                            Tidak Tersedia
                                         </option>
                                     </select>
                                 </div>

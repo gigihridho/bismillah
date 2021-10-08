@@ -1150,6 +1150,35 @@
             color: #6777ef;
         }
 
+        @media (min-width: 360px) {
+            .detail-1 .breadcrumb-item {
+                margin-left: 10px;
+            }
+
+            /*.footer-2-2 .breadcrumb-item.active {
+            }*/
+        }
+
+        /*@media (min-width: 768px) {
+            .detail-1 .breadcrumb-item {
+                padding: 5rem 4rem 6rem 4rem;
+            }
+
+            .footer-2-2 .breadcrumb-item.active {
+                padding: 0 4rem 3rem;
+            }
+        }*/
+
+        @media (min-width: 992px) {
+            .detail-1 .breadcrumb-item {
+                margin-left: 20px;
+            }
+
+            .footer-2-2 .breadcrumb-item.active {
+                padding: 0 3rem 2rem;
+            }
+        }
+
         /* Confirmation */
 
         .confirmation .breadcrumb{

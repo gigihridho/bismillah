@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.5",
         "maatwebsite/excel": "^3.1",
+        "midtrans/midtrans-php": "^2.5",
         "realrashid/sweet-alert": "^3.2",
         "spatie/laravel-permission": "^3.18",
         "yajra/laravel-datatables-oracle": "~9.0"

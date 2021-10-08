@@ -18,10 +18,10 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('12345678'),
-            'photo_ktp' => "https://picsum.photos/200/150",
+            'foto_ktp' => "https://picsum.photos/200/150",
             'no_hp' => '088225035926',
-            'address' => 'Jakarta',
-            'profession' => 'Admin',
+            'alamat' => 'Jakarta',
+            'pekerjaan' => 'Admin',
         ]);
 
         $admin->assignRole('admin');
@@ -32,9 +32,9 @@ class UserSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('12345678'),
             'no_hp' => '08777777772',
-            'photo_ktp' => "https://picsum.photos/200/150",
-            'address' => 'Jakarta',
-            'profession' => 'Guru',
+            'foto_ktp' => "https://picsum.photos/200/150",
+            'alamat' => 'Jakarta',
+            'pekerjaan' => 'Guru',
         ]);
 
         $user->assignRole('user');

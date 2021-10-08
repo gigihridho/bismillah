@@ -29,13 +29,13 @@ Route::prefix('user')
         Route::get('change-pass', 'ChangePassController@change')->name('change-pass');
         Route::post('change-pass','ChangePassController@update')->name('change-pass-user-update');
 
-        Route::get('user-transaksi', 'UserTransactionController@index')->name('user-transaksi');
-        Route::get('lanjut-sewa','UserTransactionController@lanjut')->name('lanjut-sewa');
-        Route::post('user-transaksi','UserTransactionController@save')->name('save-lanjut-sewa');
-        Route::get('user-transaksi/invoice_pdf/{id}','UserTransactionController@invoice')->name('user-invoice');
-        Route::post('user-transaksi/{id}', 'UserTransactionController@upload')->name('user-transaksi-upload');
-        Route::get('user-transaksi/{id}', 'UserTransactionController@detail')->name('user-transaksi-detail');
-        Route::put('user-transaksi/{id}','UserTransactionController@cancel')->name('user-transaksi-cancel');
+        Route::get('user-transaksi', 'UserBookingController@index')->name('user-transaksi');
+        Route::get('lanjut-sewa','UserBookingController@lanjut')->name('lanjut-sewa');
+        Route::post('user-transaksi','UserBookingController@save')->name('save-lanjut-sewa');
+        Route::get('user-transaksi/invoice_pdf/{id}','UserBookingController@invoice')->name('user-invoice');
+        Route::post('user-transaksi/{id}', 'UserBookingController@upload')->name('user-transaksi-upload');
+        Route::get('user-transaksi/{id}', 'UserBookingController@detail')->name('user-transaksi-detail');
+        Route::put('user-transaksi/{id}','UserBookingController@cancel')->name('user-transaksi-cancel');
 
         Route::get('review', 'UserReviewController@review')->name('review-user');
         Route::post('review/{id}', 'UserReviewController@update')->name('review-user-update');
@@ -49,23 +49,25 @@ Route::prefix('admin')
     ->middleware(['auth', 'role:admin', 'verified'])
     ->group(function () {
         Route::get('/', 'Admin\DashboardController@index')->name('admin-dashboard');
-        Route::resource('fasilitas', 'Admin\FacilityController');
+
+        Route::resource('fasilitas','Admin\FasilitasController');
 
         Route::get('booking','Admin\TransactionsController@index')->name('transaksi');
         Route::get('booking/selesai', 'Admin\TransactionsController@selesai')->name('selesai');
         Route::get('booking/menunggu','Admin\TransactionsController@menunggu')->name('menunggu');
         Route::get('booking/batal','Admin\TransactionsController@cancel')->name('dibatalkan');
+        Route::post('booking/{id}','Admin\TransactionsController@status')->name('status');
+        Route::put('booking/{id}','Admin\TransactionsController@batal')->name('batal');
         Route::get('booking/{id}/edit','Admin\TransactionsController@edit');
         Route::put('booking/{id}/edit','Admin\TransactionsController@update');
-        Route::post('booking/detail/{id}','Admin\TransactionsController@batal')->name('batal');
         Route::get('booking/detail/{id}','Admin\TransactionsController@detail')->name('detail-booking');
 
-        Route::get('pemasukan','Admin\IncomeController@index')->name('pemasukan');
-        Route::post('pemasukan','Admin\IncomeController@search')->name('search');
-        Route::get('pemasukan/pemasukan-pdf','Admin\IncomeController@pdf')->name('pemasukan-pdf');
+        Route::get('pemasukan','Admin\PemasukanController@index')->name('pemasukan');
+        Route::post('pemasukan','Admin\PemasukanController@search')->name('search');
+        Route::get('pemasukan/pemasukan-pdf','Admin\PemasukanController@pdf')->name('pemasukan-pdf');
 
-        Route::resource('pengeluaran','Admin\ExpenseController');
-        Route::get('pdf','Admin\ExpenseController@ex_pdf')->name('pengeluaran-pdf');
+        Route::resource('pengeluaran','Admin\PengeluaranController');
+        Route::get('pdf','Admin\PengeluaranController@ex_pdf')->name('pengeluaran-pdf');
 
         Route::resource('user', 'Admin\UserController');
 
@@ -76,17 +78,17 @@ Route::prefix('admin')
         Route::get('change-profil', 'Admin\ChangeProfilController@profil')->name('change-profil');
         Route::post('change-profil/{redirect}', 'Admin\ChangeProfilController@update')->name('change-profil-redirect');
 
-        Route::resource('tipe', 'Admin\RoomTypeController');
+        Route::resource('tipe', 'Admin\TipeKamarController');
 
         Route::prefix('tipe')
             ->middleware(['auth', 'role:admin' , 'verified'])
             ->group(function(){
-                Route::get('/{id}/kamar', 'Admin\RoomController@index');
-                Route::get('/{id}/kamar/create', 'Admin\RoomController@create');
-                Route::post('/{id}/kamar', 'Admin\RoomController@store');
-                Route::get('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@edit');
-                Route::put('/{id}/kamar/{room_id}/edit', 'Admin\RoomController@update');
-                Route::delete('/{id}/kamar/{room_id}', 'Admin\RoomController@destroy');
+                Route::get('/{id}/kamar', 'Admin\KamarController@index');
+                Route::get('/{id}/kamar/create', 'Admin\KamarController@create');
+                Route::post('/{id}/kamar', 'Admin\KamarController@store');
+                Route::get('/{id}/kamar/{kamar_id}/edit', 'Admin\KamarController@edit');
+                Route::put('/{id}/kamar/{kamar_id}/edit', 'Admin\KamarController@update');
+                Route::delete('/{id}/kamar/{kamar_id}', 'Admin\KamarController@destroy');
         });
     });
 Route::get('/verify', function () {

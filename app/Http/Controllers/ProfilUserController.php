@@ -29,12 +29,12 @@ class ProfilUserController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->no_hp = $request->no_hp;
-        $data->profession = $request->profession;
-        $data->address = $request->address;
+        $data->pekerjaan = $request->pekerjaan;
+        $data->alamat = $request->alamat;
 
-        if(request()->hasFile('photo_ktp')){
-            $photo_ktp = request()->file('photo_ktp')->store('assets/user','public');
-            $data->update(['photo_ktp' => $photo_ktp]);
+        if(request()->hasFile('foto_ktp')){
+            $foto_ktp = request()->file('foto_ktp')->store('assets/user','public');
+            $data->update(['foto_ktp' => $foto_ktp]);
         }
         $data->save();
         Alert::success('SUCCESS','Profil Berhasil diupdate');

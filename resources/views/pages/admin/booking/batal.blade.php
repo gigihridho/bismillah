@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Transaksi Dibatalkan
+    Data Booking Dibatalkan
 @endsection
 
 @section('content')
@@ -36,36 +36,31 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($transactions as $index => $transaction)
+                            @foreach ($transaksis as $index => $tf)
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
-                                <td>{{ $transaction->user->name }}</td>
-                                <td>{{ $transaction->code }}</td>
+                                <td>{{ $tf->user->name }}</td>
+                                <td>{{ $tf->kode }}</td>
                                 <td>
-                                    @if($transaction->photo_payment != null)
-                                        <img height="100px" src="{{ Storage::url($transaction->photo_payment) }}" alt="" onclick="blank">
+                                    @if($tf->bukti_pembayaran != null)
+                                        <img height="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="" onclick="blank">
                                     @else
                                         <span class="badge badge-danger">Belum Upload</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($transaction->status == "Menunggu")
+                                    @if($tf->status == "Menunggu")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($transaction->status == "Selesai")
+                                    @elseif($tf->status == "Selesai")
                                         <span class="badge badge-success">Selesai</span>
-                                    @elseif($transaction->status == "Dibatalkan")
+                                    @elseif($tf->status == "Dibatalkan")
                                         <span class="badge badge-danger">Dibatalkan</span>
                                     @endif
                                 </td>
                                 <td>
-                                    {{-- <form action="{{ route('booking.destroy',$room_booking->id) }}" method="POST"> --}}
-                                        <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $transaction->id }}/edit">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$transaction->id) }}">
-                                            <i class="far fa-eye" style="color: white;"></i>
-                                        </a>
-                                    {{-- </form> --}}
+                                    <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$tf->id) }}">
+                                        <i class="far fa-eye" style="color: white;"></i>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -90,50 +85,5 @@
             }
         });
     } );
-    // function deleteConfirm(id) {
-    //     Swal.fire({
-    //         title: 'Harap Konfirmasi',
-    //         text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Lanjutkan'
-    //     }).then((result) => {
-    //         if (result.value) {
-    //             $.ajax({
-    //                 headers: {
-    //                     'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
-    //                 },
-    //                 url: "booking/" + id,
-    //                 method: "post",
-    //                 data: {
-    //                     "_token": "{{ csrf_token() }}",
-    //                     "_method": "DELETE",
-    //                     id: id
-    //                 },
-    //                 success: function (data) {
-    //                     Swal.fire({
-    //                         title: 'Berhasil!',
-    //                         text: 'Data berhasil di hapus!',
-    //                         icon: 'success',
-    //                     }).then((result) => {
-    //                         if (result.value) {
-    //                             window.location.href = "booking/"
-    //                         }
-    //                     });
-    //                 },
-    //                 error: function () {
-    //                     Swal.fire({
-    //                         title: 'Gagal!',
-    //                         text: 'Data tidak dapat di hapus!',
-    //                         icon: 'warning',
-    //                     });
-    //                     window.location.href = "booking/"
-    //                 }
-    //             });
-    //         }
-    //     })
-    // }
 </script>
 @endpush

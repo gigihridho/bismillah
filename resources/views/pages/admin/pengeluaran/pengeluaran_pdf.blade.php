@@ -34,20 +34,20 @@
         <div class="row my-3">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped" style="border: 1px solid black">
+                    <table class="table table-bordered">
                         <tr style="border: 1px solid black">
                             <th scope="col">#</th>
                             <th scope="col">Tanggal Transaksi</th>
                             <th scope="col">Deskripsi</th>
                             <th scope="col">Nominal</th>
                         </tr>
-                        @forelse ($description as $index => $p)
+                        @forelse ($pengeluaran as $index => $p)
                             <tr style="border: 1px solid black">
                                 <td>{{ $index+1 }}</td>
-                                <td>{{ $p->date}}</td>
-                                <td>{{ $p->description }}</td>
+                                <td>{{ $p->tanggal}}</td>
+                                <td>{{ $p->deskripsi }}</td>
                                 <td style="text-align: right;">
-                                    <span>Rp {{ number_format($p->nominal) }}</span>
+                                    <span>Rp {{ number_format($p->nominal,2,',','.') }}</span>
                                 </td>
                             </tr>
                         @empty
@@ -57,7 +57,7 @@
                         @endforelse
                             <tr>
                                 <td colspan="3" style="text-align: right;"><small>TOTAL :</small></td>
-                                <th scope="col"><span style="color: red; text-align:left;">Rp {{ number_format($nominal) }}<span></th>
+                                <th scope="col" style="text-align: right"><span>Rp {{ number_format($nominal,2,',','.') }}</span></th>
                             </tr>
                     </table>
                 </div>

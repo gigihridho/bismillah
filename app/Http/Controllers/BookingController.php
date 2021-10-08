@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking as AppBooking;
 use App\Http\Requests\BookingRequest;
 use App\Mail\BookedMail;
-use App\Room;
+use App\Kamar;
 use App\Rules\Booking;
-use App\RoomType;
-use App\RoomBooking;
-use App\Rules\RoomAvailableRule;
-use App\Transaction;
+use App\TipeKamar;
+use App\Rules\KamarTersedia;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -18,6 +17,10 @@ use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
+use Exception;
+
+use Midtrans\Snap;
+use Midtrans\Config;
 class BookingController extends Controller
 {
     public function __construct()
@@ -25,94 +28,166 @@ class BookingController extends Controller
         $this->middleware(['auth','verified']);
     }
 
-    public function confirmation(Request $request, $room_type_id){
+    public function confirmation(Request $request, $tipe_kamar_id){
         $rules = [
-            'arrival_date' => 'required|date|after_or_equal:today',
+            'tanggal_masuk' => 'required|date|after_or_equal:today',
         ];
 
-        $room_type = RoomType::findOrFail($room_type_id);
-        $price = $room_type->price;
-        $new_arrival_date = $request->input('arrival_date');
-        $duration = $request->input('duration');
+        $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
+        $harga = $tipe_kamar->harga;
+        $new_tanggal_masuk = $request->input('tanggal_masuk');
+        $durasi = $request->input('durasi');
         $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
 
-        if($duration == 1){
-            $new_departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
-            $total_price = $duration * $price;
-        }elseif($duration == 6){
-            $new_departure_date = date('Y-m-d', strtotime('+6 month', strtotime($request->arrival_date)));
-            $total_price = $duration * $price - (0.5 * $price);
+        if($durasi == 1){
+            $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
+            $total_harga = $durasi * $harga;
+        }elseif($durasi == 6){
+            $new_tanggal_keluar = date('Y-m-d', strtotime('+6 month', strtotime($request->tanggal_masuk)));
+            $total_harga = $durasi * $harga - (0.5 * $harga);
         }else {
-            $new_departure_date = date('Y-m-d', strtotime('+12 month', strtotime($request->arrival_date)));
-            $total_price = $duration * $price - (1 * $price);
+            $new_tanggal_keluar = date('Y-m-d', strtotime('+12 month', strtotime($request->tanggal_masuk)));
+            $total_harga = $durasi * $harga - (1 * $harga);
         }
 
-        $rules['booking_validation'] = [new RoomAvailableRule($room_type,$new_arrival_date,$new_departure_date)];
+        $rules['booking_validation'] = [new KamarTersedia($tipe_kamar,$new_tanggal_masuk,$new_tanggal_keluar)];
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()){
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         }
-        $booking = new Booking($room_type, $new_arrival_date, $new_departure_date);
+        $booking = new Booking($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar);
 
         return view('confirmation', [
-            'room_type_id' => $room_type_id,'new_arrival_date' => $new_arrival_date,
-            'new_departure_date' => $new_departure_date,'room_type' => $room_type,
-            'room_number' => $booking->available_room_number(),'duration' => $duration,
-            'total_price' => $total_price,
+            'tipe_kamar_id' => $tipe_kamar_id,'new_tanggal_masuk' => $new_tanggal_masuk,
+            'new_tanggal_keluar' => $new_tanggal_keluar,'tipe_kamar' => $tipe_kamar,
+            'nomor_kamar' => $booking->available_nomor_kamar(),'durasi' => $durasi,
+            'total_harga' => $total_harga,
             'kode' => $kode,
         ]);
     }
+    public function booking(BookingRequest $request, $tipe_kamar_id){
+        $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
+        $new_tanggal_masuk = $request->input('tanggal_masuk');
+        $durasi = $request->input('durasi');
+        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
 
-    public function booking(BookingRequest $request, $room_type_id){
-        $room_type = RoomType::findOrFail($room_type_id);
-        $new_arrival_date = $request->input('arrival_date');
-        $duration = $request->input('duration');
-        $code = 'KOS'.date("ymd").mt_rand(0000,9999);
-
-        if($duration == 1){
-            $new_departure_date = date('Y-m-d', strtotime('+1 month', strtotime($request->arrival_date)));
-        }elseif($duration == 6){
-            $new_departure_date = date('Y-m-d', strtotime('+6 month', strtotime($request->arrival_date)));
+        if($durasi == 1){
+            $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
+        }elseif($durasi == 6){
+            $new_tanggal_keluar = date('Y-m-d', strtotime('+6 month', strtotime($request->tanggal_masuk)));
         }else {
-            $new_departure_date = date('Y-m-d', strtotime('+12 month', strtotime($request->arrival_date)));
+            $new_tanggal_keluar = date('Y-m-d', strtotime('+12 month', strtotime($request->tanggal_masuk)));
         }
-        $rules['booking_validation'] = [new RoomAvailableRule($room_type,$new_arrival_date,$new_departure_date)];
+        $rules['booking_validation'] = [new KamarTersedia($tipe_kamar,$new_tanggal_masuk,$new_tanggal_keluar)];
 
-        $transaction = new Transaction();
+        $bookingg = new AppBooking();
         $user = Auth::user();
-        $transaction->code = $code;
-        $transaction->arrival_date = $request->input('arrival_date');
-        $transaction->departure_date = $new_departure_date;
-        $transaction->order_date = Carbon::now();
-        $transaction->expired_at = Carbon::now()->addMinutes(3);
+        $bookingg->kode = $kode;
+        $bookingg->tanggal_masuk = $request->input('tanggal_masuk');
+        $bookingg->tanggal_keluar = $new_tanggal_keluar;
+        $bookingg->tanggal_pesan = Carbon::now();
+        $bookingg->expired_at = Carbon::now()->addHours(24);
 
-        $price = $room_type->price;
-        if($duration == 1){
-            $total_price = $duration * $price;
-        } elseif($duration == 6){
-            $total_price = $duration * $price - (0.5 * $price);
-        } elseif($duration == 12){
-            $total_price = $duration * $price - (1 * $price);
+        $harga = $tipe_kamar->harga;
+        if($durasi == 1){
+            $total_harga = $durasi * $harga;
+        } elseif($durasi == 6){
+            $total_harga = $durasi * $harga - (0.5 * $harga);
+        } elseif($durasi == 12){
+            $total_harga = $durasi * $harga - (1 * $harga);
         }
 
-        $transaction->total_price = $total_price;
-        $transaction->user_id = $user->id;
+        $bookingg->total_harga = $total_harga;
+        $bookingg->user_id = $user->id;
 
-        $booking = new Booking($room_type, $new_arrival_date, $new_departure_date);
+        $booking = new Booking($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar);
 
-        $room = Room::where('room_number', $booking->available_room_number())->first();
+        $kamar = Kamar::where('nomor_kamar', $booking->available_nomor_kamar())->first();
 
-        $transaction->room_id = $room->id;
-        $transaction->user_id = $user->id;
-        $transaction->save();
-        $room->available = 0;
-        $room->save();
-        Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');
-        return redirect()->route('upload');
+        $bookingg->kamar_id = $kamar->id;
+        $bookingg->user_id = $user->id;
+
+        Config::$serverKey = config('services.midtrans.serverKey');
+        Config::$isProduction = config('services.midtrans.isProduction');
+        Config::$isSanitized = config('services.midtrans.isSanitized');
+        Config::$is3ds = config('services.midtrans.is3ds');
+
+        //array midtrans
+        $midtrans = array(
+            'transaction_details' => array(
+                'order_id' => $kode,
+                'gross_amount' => (int) $request->total_harga,
+            ),
+            'customer_details' => array(
+                'first_name' => Auth::user()->name,
+                'email' => Auth::user()->email,
+            ),
+            'enabled_payments' => array(
+                'gopay', 'bni_va','bank_transfer'
+            ),
+            'vtweb' => array()
+        );
+        try {
+            // Get Snap Payment Page URL
+            $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
+
+            // Redirect to Snap Payment Page
+            return redirect($paymentUrl);
+          }
+          catch (Exception $e) {
+            echo $e->getMessage();
+          }
     }
+    // public function booking(BookingRequest $request, $tipe_kamar_id){
+    //     $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
+    //     $new_tanggal_masuk = $request->input('tanggal_masuk');
+    //     $durasi = $request->input('durasi');
+    //     $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
+
+    //     if($durasi == 1){
+    //         $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
+    //     }elseif($durasi == 6){
+    //         $new_tanggal_keluar = date('Y-m-d', strtotime('+6 month', strtotime($request->tanggal_masuk)));
+    //     }else {
+    //         $new_tanggal_keluar = date('Y-m-d', strtotime('+12 month', strtotime($request->tanggal_masuk)));
+    //     }
+    //     $rules['booking_validation'] = [new KamarTersedia($tipe_kamar,$new_tanggal_masuk,$new_tanggal_keluar)];
+
+    //     $bookingg = new AppBooking();
+    //     $user = Auth::user();
+    //     $bookingg->kode = $kode;
+    //     $bookingg->tanggal_masuk = $request->input('tanggal_masuk');
+    //     $bookingg->tanggal_keluar = $new_tanggal_keluar;
+    //     $bookingg->tanggal_pesan = Carbon::now();
+    //     $bookingg->expired_at = Carbon::now()->addHours(24);
+
+    //     $harga = $tipe_kamar->harga;
+    //     if($durasi == 1){
+    //         $total_harga = $durasi * $harga;
+    //     } elseif($durasi == 6){
+    //         $total_harga = $durasi * $harga - (0.5 * $harga);
+    //     } elseif($durasi == 12){
+    //         $total_harga = $durasi * $harga - (1 * $harga);
+    //     }
+
+    //     $bookingg->total_harga = $total_harga;
+    //     $bookingg->user_id = $user->id;
+
+    //     $booking = new Booking($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar);
+
+    //     $kamar = Kamar::where('nomor_kamar', $booking->available_nomor_kamar())->first();
+
+    //     $bookingg->kamar_id = $kamar->id;
+    //     $bookingg->user_id = $user->id;
+    //     $bookingg->save();
+    //     $kamar->tersedia = 0;
+    //     $kamar->save();
+    //     Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');
+    //     return redirect()->route('upload');
+    // }
 
     public function show(){
-        $transaction = Transaction::with('user','room')->where('user_id',Auth::user()->id)->latest()->first();
+        $transaction = AppBooking::with('user','kamar')->where('user_id',Auth::user()->id)->latest()->first();
         return view('pages.unggah',[
             'transaction' => $transaction
         ]);
@@ -120,22 +195,23 @@ class BookingController extends Controller
 
     public function upload(Request $request, $id){
         $this->validate($request, [
-            'photo_payment' => 'required|image|max:2048|mimes:png,jpg,jpeg',
+            'bukti_pembayaran' => 'required|image|max:2048|mimes:png,jpg,jpeg',
         ],
         [
-            'photo_payment.required' => 'Bukti pembayaran tidak boleh kosong',
-            'photo_payment.max' => 'Bukti pembayaran melebihi 2MB',
-            'photo_payment.mimes' => 'Format file tidak didukung'
+            'bukti_pembayaran.required' => 'Bukti pembayaran tidak boleh kosong',
+            'bukti_pembayaran.max' => 'Bukti pembayaran melebihi 2MB',
+            'bukti_pembayaran.mimes' => 'Format file tidak didukung'
         ]);
 
-        $transaction = Transaction::with('user','room')->where('user_id',Auth::user()->id)->latest()->first();
-        if($request->hasFile('photo_payment')){
-            $path = $request->file('photo_payment')->store('assets/transaction','public');
-            $transaction->photo_payment = $path;
+        $transaction = AppBooking::with('user','kamar')->where('user_id',Auth::user()->id)->latest()->first();
+        if($request->hasFile('bukti_pembayaran')){
+            $path = $request->file('bukti_pembayaran')->store('assets/transaction','public');
+            $transaction->bukti_pembayaran = $path;
         }
         $transaction->save();
 
         Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
         return redirect()->route('user-transaksi');
     }
+
 }

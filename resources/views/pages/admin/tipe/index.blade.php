@@ -25,48 +25,39 @@
                     <table class="table table-striped" id="table-1">
                         <thead>
                         <tr style="text-align:center">
-                            <th style="width: 10px" class="text-center">
+                            <th scope="col" style="width: 5px" class="text-center">
                             No
                             </th>
-                            <th>Nama</th>
-                            <th>Foto</th>
-                            <th>Lantai</th>
-                            <th>Harga</th>
-                            <th>Ukuran</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Lantai</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Ukuran</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($room_types as $index => $room_type)
+                            @foreach ($tipe_kamars as $index => $tipe)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $room_type->name }}</td>
+                                    <td>{{ $tipe->nama }}</td>
                                     <td>
-                                        <img height="100px" src="{{ Storage::url($room_type->photo) }}" alt="">
+                                        <img height="100px" src="{{ Storage::url($tipe->foto) }}" alt="">
                                     </td>
-                                    <td>{{ $room_type->floor }}</td>
-                                    <td>Rp{{ number_format($room_type->price,2,',','.') }}</td>
-                                    <td>{{ $room_type->size }}</td>
+                                    <td>{{ $tipe->lantai }}</td>
+                                    <td>Rp{{ number_format($tipe->harga,2,',','.') }}</td>
+                                    <td>{{ $tipe->ukuran }}</td>
                                     <td>
-                                        @if($room_type->status == 1)
-                                            <span class="badge badge-success" style="text-align:center">Aktif</span>
-                                        @else
-                                            <span class="badge badge-danger" style="text-align:center">Tidak Aktif
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <form action="/admin/tipe/{{ $room_type->id }}" method="POST">
+                                        <form action="/admin/tipe/{{ $tipe->id }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $room_type->id) }}">
+                                            <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('tipe.edit', $tipe->id) }}">
                                                 <i class="far fa-edit"></i>
                                             </a>
-                                            <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="/admin/tipe/{{ $room_type->id }}/kamar"  >
+                                            <a title="manage kamar" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" href="/admin/tipe/{{ $tipe->id }}/kamar"  >
                                                 <i class="fas fa-bed"></i>
                                             </a>
-                                            <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $room_type->id }})">
+                                            <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $tipe->id }})">
                                                 <i class="far fa-trash-alt" style="color: white;"></i>
                                             </a>
                                         </form>

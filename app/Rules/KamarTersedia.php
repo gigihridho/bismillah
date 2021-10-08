@@ -6,22 +6,22 @@ use App\Rules\Booking;
 use Illuminate\Contracts\Validation\Rule;
 use Carbon\Carbon;
 
-class RoomAvailableRule implements Rule
+class KamarTersedia implements Rule
 {
-    protected $room_type;
-    protected $new_arrival_date;
-    protected $new_departure_date;
+    protected $tipe_kamar;
+    protected $new_tanggal_masuk;
+    protected $new_tanggal_keluar;
     protected $message;
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($room_type, $new_arrival_date, $new_departure_date)
+    public function __construct($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar)
     {
-        $this->room_type = $room_type;
-        $this->new_arrival_date = $new_arrival_date;
-        $this->new_departure_date = $new_departure_date;
+        $this->tipe_kamar = $tipe_kamar;
+        $this->new_tanggal_masuk = $new_tanggal_masuk;
+        $this->new_tanggal_keluar = $new_tanggal_keluar;
     }
 
     /**
@@ -33,7 +33,7 @@ class RoomAvailableRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $this->room_available();
+        return $this->kamar_tersedia();
     }
 
     /**
@@ -46,8 +46,8 @@ class RoomAvailableRule implements Rule
         return 'Maaf, tidak ada kamar yang tersedia di tanggal ini. Silakan pilih tanggal lain.';
     }
 
-    public function room_available(){
-        $booking = new Booking($this->room_type, $this->new_arrival_date, $this->new_departure_date);
-        return $booking->room_available();
+    public function kamar_tersedia(){
+        $booking = new Booking($this->tipe_kamar, $this->new_tanggal_masuk, $this->new_tanggal_keluar);
+        return $booking->kamar_tersedia();
     }
 }

@@ -115,7 +115,7 @@ label:hover {
         <div class="col-lg-6 left-column d-flex flex-column align-items-lg-start text-lg-start text-center">
             <div class="invoice">
                 <h6>Total Tagihan Pembayaran Anda</h6>
-                <h6>Rp {{ number_format($transaction->total_price,2,',','.') }}</h6>
+                <h6>Rp {{ number_format($transaction->total_harga,2,',','.') }}</h6>
             </div>
             <form action="{{ route('upload-pembayaran',$transaction->id) }}" method="POST"
                 enctype="multipart/form-data">
@@ -125,7 +125,7 @@ label:hover {
                         <span class="image-preview__default-text">
                         +</span>
                 </div>
-                <input type="file" name="photo_payment" id="inpFile">
+                <input type="file" name="bukti_pembayaran" id="inpFile">
                 <label for="inpFile"><i class="fas fa-upload" aria-hidden="false"></i>&nbsp;
                     Pilih foto
                 </label>

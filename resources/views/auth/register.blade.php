@@ -127,21 +127,21 @@
 
                         <div class="row">
                             <div class="form-group col-6">
-                                <label for="address">Alamat Asal</label>
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="off" placeholder="Masukkan Alamat Asal Anda"
+                                <label for="alamat">Alamat Asal</label>
+                                <input id="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="off" placeholder="Masukkan Alamat Asal Anda"
                                 oninvalid="this.setCustomValidity('Alamat tidak boleh kosong')" oninput="setCustomValidity('')">
 
-                                @error('address')
+                                @error('alamat')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="form-group col-6">
-                                <label for="profession">Pekerjaan</label>
-                                <input id="profession" type="text" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}" required autocomplete="off" placeholder="Masukkan Pekerjaan Anda" oninvalid="this.setCustomValidity('Pekerjaan tidak boleh kosong')" oninput="setCustomValidity('')">
+                                <label for="pekerjaan">Pekerjaan</label>
+                                <input id="pekerjaan" type="text" class="form-control @error('pekerjaan') is-invalid @enderror" name="pekerjaan" value="{{ old('pekerjaan') }}" required autocomplete="off" placeholder="Masukkan Pekerjaan Anda" oninvalid="this.setCustomValidity('Pekerjaan tidak boleh kosong')" oninput="setCustomValidity('')">
 
-                                @error('profession')
+                                @error('pekerjaan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -162,11 +162,11 @@
                                 <small style="font-size: 12px;">Contoh: 08190211313</small>
                             </div>
                             <div class="form-group col-6">
-                                <label for="photo_ktp" class="control-label">Foto KTP</label>
-                                <input id="photo_ktp" type="file" class="form-control @error('photo_ktp') is-invalid @enderror"
-                                name="photo_ktp" required autofocus oninvalid="this.setCustomValidity('Foto KTP tidak boleh kosong')" oninput="setCustomValidity('')">
+                                <label for="foto_ktp" class="control-label">Foto KTP</label>
+                                <input id="foto_ktp" type="file" class="form-control @error('foto_ktp') is-invalid @enderror"
+                                name="foto_ktp" required autofocus oninvalid="this.setCustomValidity('Foto KTP tidak boleh kosong')" oninput="setCustomValidity('')">
 
-                                    @error('photo_ktp')
+                                    @error('foto_ktp')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

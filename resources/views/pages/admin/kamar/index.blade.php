@@ -20,48 +20,40 @@
                 <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="/admin/tipe/{{ $room_type->id }}/kamar/create" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Kamar</a>
+                        <a href="/admin/tipe/{{ $tipe_kamar->id }}/kamar/create" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Kamar</a>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
                             <thead>
                                 <tr style="text-align:center">
-                                <th >
+                                <th scope="col">
                                     No
                                 </th>
-                                <th>Tipe Kamar</th>
-                                <th>Nomor Kamar</th>
-                                <th>Ketersediaan</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
+                                <th scope="col">Tipe Kamar</th>
+                                <th scope="col">Nomor Kamar</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($room_type->rooms as $index => $room)
+                                @foreach ($tipe_kamar->kamars as $index => $kamar)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $room_type->name}}</td>
-                                    <td>{{ $room->room_number }}</td>
+                                    <td>{{ $tipe_kamar->nama}}</td>
+                                    <td>{{ $kamar->nomor_kamar }}</td>
                                     <td>
-                                        @if($room->available == 1)
+                                        @if($kamar->tersedia == 1)
                                         <span class="badge badge-secondary">Tersedia</span>
                                         @else
                                         <span class="badge badge-danger">Tidak Tersedia</span>
                                         @endif
                                     </td>
                                     <td>
-                                        @if($room->status == 1)
-                                            <span class="badge badge-success">Aktif</span>
-                                        @else
-                                            <span class="badge badge-danger">Tidak Aktif</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <form action="/admin/tipe/{{ $room_type->id }}/kamar/{{ $room->id }}" method="POST">
+                                        <form action="/admin/tipe/{{ $tipe_kamar->id }}/kamar/{{ $kamar->id }}" method="POST">
                                             @csrf
-                                            <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/tipe/{{ $room_type->id }}/kamar/{{ $room->id }}/edit">
+                                            <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/tipe/{{ $tipe_kamar->id }}/kamar/{{ $kamar->id }}/edit">
                                                 <i class="far fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $room->id }})">
+                                            <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $kamar->id }})">
                                                 <i class="far fa-trash-alt delete" style="color: white;"></i>
                                             </a>
                                         </form>
@@ -105,7 +97,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
                     },
-                    url: "/admin/tipe/{{ $room_type->id }}/kamar/" + id,
+                    url: "/admin/tipe/{{ $tipe_kamar->id }}/kamar/" + id,
                     method: "post",
                     data: {
                         "_token": "{{ csrf_token() }}",
@@ -119,7 +111,7 @@
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "/admin/tipe/{{ $room_type->id }}/kamar/"
+                                window.location.href = "/admin/tipe/{{ $tipe_kamar->id }}/kamar"
                             }
                         });
                     },
@@ -129,7 +121,7 @@
                             text: 'Data tidak dapat di hapus!',
                             icon: 'warning',
                         });
-                        window.location.href = "/admin/tipe/{{ $room_type->id }}/kamar/"
+                        window.location.href = "/admin/tipe/{{ $tipe_kamar->id }}/kamar"
                     }
                 });
             }

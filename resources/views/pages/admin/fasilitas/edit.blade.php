@@ -1,10 +1,18 @@
-@extends('layouts.admin')
+{{-- @extends('layouts.admin')
 
 @section('title')
     Fasilitas
 @endsection
 
 @section('content')
+
+<style type="text/css">
+    @media (max-width: 417px) {
+            .tombol .btn.simpan {
+            margin-bottom: 10px;
+            }
+        }
+</style>
 
 <div class="main-content">
     <section class="section">
@@ -36,33 +44,15 @@
                         <form action="{{ route('fasilitas.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                             @method("PUT")
                             @csrf
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Nama Fasilitas</label>
-                                    <input type="text" name="name" value="{{ $item->name }}" class="form-control" autocomplete="off">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <select name="status" id="status" class="form-control">
-                                        <option value="1"
-                                                @if (old('status') == '1') selected="selected" @endif>Aktif
-                                        </option>
-                                        <option value="0"
-                                                @if (old('status') == '0') selected="selected" @endif>
-                                            Tidak Aktif
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
+
+                        <div class="row tombol">
                             <div class="col text-center">
-                                <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
+                                <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
                                     Simpan Data
                                 </button>
+                                <a href="{{ route('fasilitas.index') }}" class="btn btn-danger px-5" style="padding: 8px 16px">
+                                    Batal
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -72,4 +62,18 @@
         </div>
     </section>
 </div>
-@endsection
+@endsection --}}
+<div class="row">
+    <div class="col-md-12">
+        <input type="hidden" name="id" value={{ $fas->id }} id="id_fasilitas">
+        <div class="form-group">
+            <label>Nama Fasilitas</label>
+            <input type="text" name="nama" value="{{ $fas->nama }}" class="form-control @error('nama') is-invalid @enderror" autocomplete="off">
+            @error('nama')
+                <div class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @enderror
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExpenseEditRequest extends FormRequest
+class PengeluaranEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,25 +24,25 @@ class ExpenseEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'required|string',
+            'deskripsi' => 'required|string',
             'nominal' => 'required|numeric',
-            'date' => 'required|date',
-            'photo' => 'image','mimes:png,jpg,jpeg','max:2048'
+            'tanggal' => 'required|date',
+            'foto' => 'image','mimes:png,jpg,jpeg','max:2048'
         ];
     }
 
     public function messages()
     {
         return [
-            'description.required' => 'Deskripsi tidak boleh kosong',
-            'description.string' => 'Deskripsi harus berupa huruf',
+            'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+            'deskripsi.string' => 'Deskripsi harus berupa huruf',
             'nominal.required' => 'Nominal tidak boleh kosong',
             'nominal.numeric' => 'Nominal harus berupa angka',
-            'date.required' => 'Tanggal tidak boleh kosong',
-            'date.date' => 'Tanggal harus berupa tanggal',
-            'photo.image' => 'Foto harus berupa gambar',
-            'photo.mimes' => 'Format foto harus berupa file png,jpg, atau jpeg',
-            'photo.max' => 'Ukuran foto tidak boleh lebih dari 2 MB'
+            'tanggal.required' => 'Tanggal tidak boleh kosong',
+            'tanggal.date' => 'Tanggal harus berupa tanggal',
+            'foto.image' => 'Foto harus berupa gambar',
+            'foto.mimes' => 'Format foto harus berupa file png,jpg, atau jpeg',
+            'foto.max' => 'Ukuran foto tidak boleh lebih dari 2 MB'
         ];
     }
 }

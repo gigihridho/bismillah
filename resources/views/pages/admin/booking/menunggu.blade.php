@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Booking Selesai
+    Data Booking Menunggu
 @endsection
 
 @section('content')
@@ -45,7 +45,7 @@
                                     @if($tf->bukti_pembayaran != null)
                                         <img height="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="" onclick="blank">
                                     @else
-                                        <span class="badge badge-warning">Belum Upload</span>
+                                        <span class="badge badge-danger">Belum Upload</span>
                                     @endif
                                 </td>
                                 <td>
@@ -58,14 +58,28 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{-- <form action="{{ route('booking.destroy',$room_booking->id) }}" method="POST"> --}}
-                                        {{-- <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $tf->id }}/edit">
-                                            <i class="far fa-edit"></i>
-                                        </a> --}}
+                                    @if($tf->status == "Menunggu")
+                                    <form action="{{ route('status',$tf->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
+                                        @csrf
+                                        <button value="Selesai" id="status" name="status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">
+                                            <i class="fas fa-check"></i>
+                                        </button>
                                         <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$tf->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                    {{-- </form> --}}
+                                    </form>
+                                    <form action="{{ route('batal',$tf->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
+                                        @csrf
+                                        @method('PUT')
+                                        <button value="Dibatalkan" type="submit" title="Hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm" onclick="return confirm('Anda ingin membatalkan pemesanan kamar ini ?')">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                    @else
+                                    <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$tf->id) }}">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

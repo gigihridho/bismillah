@@ -24,15 +24,15 @@ class BookingRequest extends FormRequest
     public function rules()
     {
         return [
-            'arrival_date' => 'required|date|after_or_equal:today',
+            'tanggal_masuk' => 'required|date|after_or_equal:today',
         ];
     }
 
     public function messages()
     {
         return [
-            'arrival_date.required' => 'Tanggal masuk harus diisi',
-            'arrival_date.date' => 'Tanggal masuk harus berupa tanggal',
+            'tanggal_masuk.required' => 'Tanggal masuk harus diisi',
+            'tanggal_masuk.date' => 'Tanggal masuk harus berupa tanggal',
         ];
     }
 }

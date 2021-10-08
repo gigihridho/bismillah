@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoomTypeRequest extends FormRequest
+class KamarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,15 @@ class RoomTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'photo' => 'required|image|max:2048|mimes:png,jpg,jpeg',
-            'floor' => 'required|integer',
-            'price' => 'required|integer',
-            'size' => 'required|string',
-            'facility' => 'array',
-            'status' => 'required|boolean',
+            'nomor_kamar' => 'required|numeric|unique:kamars,nomor_kamar',
+        ];
+    }
+
+    public function messages(){
+        return[
+            'nomor_kamar.required' => 'Nomor kamar harus diisi',
+            'nomor_kamar.numeric' => 'Nomor kamar harus berformat angka',
+            'nomor_kamar.unique' => 'Nomor kamar sudah ada, silakan masukkan nomor lain',
         ];
     }
 }

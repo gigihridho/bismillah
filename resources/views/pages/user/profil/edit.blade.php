@@ -37,11 +37,11 @@
                                     <i class="fas fa-user mr-2"></i> Foto KTP
                                     <hr>
                                     <div class="rounded">
-                                        @if ($u->photo_ktp == null)
-                                            <img id="img_ktp" src="{{ asset('assets/img/avatar/avatar-1.png') }}" name="photo_ktp" width="170px" height="170px" alt="foto"
+                                        @if ($u->foto_ktp == null)
+                                            <img id="img_ktp" src="{{ asset('assets/img/avatar/avatar-1.png') }}" name="foto_ktp" width="170px" height="170px" alt="foto"
                                             style="display: block; margin:auto">
                                         @else
-                                            <img id="img_ktp" src="{{ Storage::url($u->photo_ktp) }}" name="photo_ktp" width="170px" height="170px" alt="foto"
+                                            <img id="img_ktp" src="{{ Storage::url($u->foto_ktp) }}" name="foto_ktp" width="170px" height="170px" alt="foto"
                                             style="display: block; margin:auto">
                                         @endif
                                     </div>
@@ -50,7 +50,7 @@
                                         <br>
                                         <strong style=>Info!</strong> Maksimum ukuran foto : 2MB
                                         <br>
-                                        <input id="photo_ktp" name="photo_ktp" type="file"><br>
+                                        <input id="foto_ktp" name="foto_ktp" type="file"><br>
                                         <br>
                                     </div>
                                 </div>
@@ -86,14 +86,14 @@
                                                 <th>
                                                     <br>
                                                     Alamat
-                                                    <input type="text" name="address" value="{{ $u->address }}"class="form-control"  style="margin-right:190px" autocomplete="off">
+                                                    <input type="text" name="alamat" value="{{ $u->alamat }}"class="form-control"  style="margin-right:190px" autocomplete="off">
                                                 </th>
                                             </tr>
                                             <tr>
                                                 <th>
                                                     <br>
                                                     Pekerjaan
-                                                    <input type="text" name="profession" value="{{ $u->profession }}" class="form-control"  style="margin-right:190px" autocomplete="off">
+                                                    <input type="text" name="pekerjaan" value="{{ $u->pekerjaan }}" class="form-control"  style="margin-right:190px" autocomplete="off">
                                                 </th>
                                             </tr>
                                         </tbody>
@@ -122,7 +122,7 @@
 @push('addon-script')
 <script type="text/javascript">
     $(function () {
-        $("#photo_ktp").change(function () {
+        $("#foto_ktp").change(function () {
             readURL(this);
         });
     });

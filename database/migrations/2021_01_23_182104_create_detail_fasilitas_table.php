@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailFacilitiesTable extends Migration
+class CreateDetailFasilitasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateDetailFacilitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_facilities', function (Blueprint $table) {
-            $table->integer('facility_id')->unsigned()->index();
-            $table->integer('room_type_id')->unsigned()->index();
+        Schema::create('detail_fasilitas', function (Blueprint $table) {
+            $table->integer('fasilitas_id')->unsigned()->index();
+            $table->integer('tipe_kamar_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->foreign('facility_id')
-                ->references('id')->on('facilities')
+            $table->foreign('fasilitas_id')
+                ->references('id')->on('fasilitas')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('room_type_id')
-                ->references('id')->on('room_types')
+            $table->foreign('tipe_kamar_id')
+                ->references('id')->on('tipe_kamars')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -34,6 +34,6 @@ class CreateDetailFacilitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_facilities');
+        Schema::dropIfExists('detail_fasilitas');
     }
 }

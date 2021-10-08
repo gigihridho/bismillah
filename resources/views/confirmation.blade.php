@@ -95,11 +95,11 @@
                             </thead>
                             <tbody style="margin-bottom: 10px">
                             <tr>
-                                <td>{{ $room_type->name }} ({{ $room_number }}) </td>
-                                <td>{{ $new_arrival_date }}</td>
-                                <td>{{ $new_departure_date}}</td>
-                                <td>{{ $duration }} bulan</td>
-                                <td>Rp. {{ number_format($total_price,2,',','.') }}</td>
+                                <td>{{ $tipe_kamar->nama }} ({{ $nomor_kamar }}) </td>
+                                <td>{{ $new_tanggal_masuk }}</td>
+                                <td>{{ $new_tanggal_keluar}}</td>
+                                <td>{{ $durasi }} bulan</td>
+                                <td>Rp. {{ number_format($total_harga,2,',','.') }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -107,11 +107,11 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                        <form class="card p-2 float-right" action="{{ route('booking', $room_type_id) }}" method="POST">
+                        <form class="card p-2 float-right" action="{{ route('booking', $tipe_kamar_id) }}" method="POST">
                             @csrf
                                 <input name="booking_validation" type="hidden" value="0">
-                                <input type="date" class="form-control" id="datepicker" name="arrival_date" value="{{ $new_arrival_date }}" hidden>
-                                <input name="duration" id="duration" class="form-control" value="{{ $duration }}" hidden>
+                                <input type="date" class="form-control" id="datepicker" name="tanggal_masuk" value="{{ $new_tanggal_masuk }}" hidden>
+                                <input name="durasi" id="durasi" class="form-control" value="{{ $durasi }}" hidden>
                                 <button type="submit" class="btn btn-fill text-white px-5" style="padding: 8px 16px">Pesan</button>
                         </form>
                         </div>

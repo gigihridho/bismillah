@@ -213,17 +213,17 @@ label:hover {
                                 @foreach ($transaction as $tf)
                                 <tr style="text-align: center">
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $tf->code }}</td>
-                                    <td><span class="badge badge-info">{{ $tf->room->room_type->name }} ({{ $tf->room->room_number }})</span>
+                                    <td>{{ $tf->kode }}</td>
+                                    <td><span class="badge badge-info">{{ $tf->kamar->tipe_kamar->nama }} ({{ $tf->kamar->nomor_kamar }})</span>
                                     </td>
-                                    <td>{{ $tf->arrival_date }}</td>
-                                    <td>{{ $tf->departure_date }}</td>
-                                    <td>Rp{{ number_format($tf->total_price,2,',','.') }}</td>
+                                    <td>{{ $tf->tanggal_masuk }}</td>
+                                    <td>{{ $tf->tanggal_keluar }}</td>
+                                    <td>Rp{{ number_format($tf->total_harga,2,',','.') }}</td>
                                     <td>
                                         @if ($tf->status == "Dibatalkan")
                                             <i class="fas fa-upload" style="color: white;"></i>
-                                        @elseif($tf->photo_payment != null)
-                                            <img height="100px" id="myImg" width="100px" src="{{ Storage::url($tf->photo_payment) }}" alt="image">
+                                        @elseif($tf->bukti_pembayaran != null)
+                                            <img height="100px" id="myImg" width="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="image">
                                         @else
                                         <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
                                             <i class="fas fa-upload" style="color: white;"></i>
@@ -283,7 +283,7 @@ label:hover {
                             <span class="image-preview__default-text">
                             +</span>
                     </div>
-                    <input type="file" name="photo_payment" id="inpFile">
+                    <input type="file" name="bukti_pembayaran" id="inpFile">
                     <label for="inpFile" style="color: white;
                         height: 35px;
                         width: 105px;

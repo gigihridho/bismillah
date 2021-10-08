@@ -32,20 +32,20 @@
                         <h4>Update Status Booking</h4>
                     </div>
                     <div class="card-body">
-                        <form action="/admin/booking/{{$transaction->id}}/edit" method="POST" enctype="multipart/form-data">
+                        <form action="/admin/booking/{{$transaksis->id}}/edit" method="POST" enctype="multipart/form-data">
                         @method("PUT")
                         @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama</label>
-                                        <input type="text" name="name" value="{{ $transaction->user->name }}" class="form-control" disabled>
+                                        <input type="text" name="name" value="{{ $transaksis->user->name }}" class="form-control" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Kode Pemesanan</label>
-                                        <input type="text" name="name" value="{{ $transaction->code }}" class="form-control" disabled>
+                                        <input type="text" name="kode" value="{{ $transaksis->kode }}" class="form-control" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -55,17 +55,17 @@
                                         <label>Status</label>
                                         <select name="status" id="status" class="form-control">
                                             <option value="Menunggu"
-                                            @if ($transaction->status == 'Menunggu')
+                                            @if ($transaksis->status == 'Menunggu')
                                                 selected="selected"
                                             @endif>Menunggu
                                             </option>
                                             <option value="Selesai"
-                                            @if ($transaction->status == 'Selesai')
+                                            @if ($transaksis->status == 'Selesai')
                                                 selected="selected"
                                             @endif>Selesai
                                             </option>
                                             <option value="Dibatalkan"
-                                            @if ($transaction->status == 'Dibatalkan')
+                                            @if ($transaksis->status == 'Dibatalkan')
                                                 selected="selected"
                                             @endif>Dibatalkan
                                             </option>

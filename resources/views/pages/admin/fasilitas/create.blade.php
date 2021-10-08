@@ -37,27 +37,13 @@
                         <h4>Tambah Fasilitas</h4>
                     </div>
                     <div class="card-body">
-                        <form id="facilities_store" action="{{ route('fasilitas.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="facilitas_store" action="{{ route('fasilitas.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Fasilitas</label>
-                                        <input type="text" name="name" class="form-control" autocomplete="off" placeholder="Masukkan Fasilitas"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select name="status" id="status" class="form-control">
-                                            <option value="1"
-                                                    @if (old('status') == '1') selected="selected" @endif>Aktif
-                                            </option>
-                                            <option value="0"
-                                                    @if (old('status') == '0') selected="selected" @endif>
-                                                Tidak Aktif
-                                            </option>
-                                        </select>
+                                        <input type="text" name="nama" class="form-control" autocomplete="off" placeholder="Masukkan Fasilitas"/>
                                     </div>
                                 </div>
                             </div>

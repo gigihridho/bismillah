@@ -38,7 +38,7 @@
                         <thead>
                             <tr>
                                 <th scope="col" colspan="4"><strong>#</strong>
-                                    {{ $transaction->code }}
+                                    {{ $transaction->kode }}
                                 </th>
                                 <th scope="col" colspan="4">
                                     {{ $now->format('d-m-Y') }}
@@ -54,13 +54,13 @@
                                 </td>
                                 <td colspan="4">
                                     <b>Kamar: </b>
-                                    <p>{{ $transaction->room->room_type->name }}
-                                    {{ $transaction->room->room_number }}</p>
-                                        <p>Tanggal Order : {{ $transaction->order_date }} </p>
+                                    <p>{{ $transaction->kamar->tipe_kamar->nama }}
+                                    {{ $transaction->kamar->nomor_kamar }}</p>
+                                        <p>Tanggal Order : {{ $transaction->tanggal_pesan }} </p>
                                         <p>Tanggal Masuk :
-                                        {{ $transaction->arrival_date }} </p>
+                                        {{ $transaction->tanggal_masuk }} </p>
                                         <p>Tanggal Keluar :
-                                        {{ $transaction->departure_date }} </p>
+                                        {{ $transaction->tanggal_keluar }} </p>
                                     </p>
                                 </td>
                             </tr>
@@ -82,7 +82,7 @@
                             <tr>
                                 <th scope="col" colspan="4">Total Harga</th>
                                 <td colspan="4">
-                                {{ $transaction->total_price }}
+                                {{ $transaction->total_harga }}
                                 </td>
                             </tr>
                         </tfoot>

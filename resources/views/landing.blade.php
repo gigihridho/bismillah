@@ -175,13 +175,13 @@
                     <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
                         <img class="img-fluid"
                         src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-4.png"
-                        alt="" /> </span>{{ $room }} Kamar Tersedia
+                        alt="" /> </span>{{ $kamar }} Kamar Tersedia
                     </p>
                     <p class="d-flex align-items-center no-check">
                         <span class="span-icon d-inline-flex align-items-center justify-content-center flex-shrink-0">
                         <img class="img-fluid"
                             src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content3/Content-3-3.png"
-                            alt="" /> </span>dari {{ $rom }} Total Kamar
+                            alt="" /> </span>dari {{ $kam }} Total Kamar
                     </p>
                 </div>
                 </div>
@@ -292,6 +292,7 @@
     </div>
 </section>
 
+{{--Galeri --}}
 <section class="h-100 w-100" style="box-sizing: border-box id="galeri" data-aos="fade-down">
     <div class="galeri container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
@@ -324,19 +325,19 @@
 
         <div class="grid-padding text-center">
             <div class="row">
-                @php $incrementRoomType = 0 @endphp
-                @forelse ($room_types as $room_type)
+                @php $incrementTipeKamar = 0 @endphp
+                @forelse ($tipe_kamars as $tipe_kamar)
                 <div class="col-lg-4 column">
                     <div class="card card-explore">
                     <div class="card-explore__img">
-                        <img class="card-img" src="{{ Storage::url($room_type->photo) }}"
-                        alt="" />
+                        <img class="card-img" src="{{ Storage::url($tipe_kamar->foto) }}"
+                        alt="" height="250px" width="200px" />
                     </div>
                     <div class="card-body">
-                        <h3 class="room-title">{{ $room_type->name }}</h3>
-                        <p class="room-price">Lantai {{$room_type->floor}}</p>
-                        <p class="room-price">Rp {{number_format($room_type->price)}}/bulan</p>
-                        <a href="{{ route('detail-kost',$room_type->id) }}" class="btn btn-fill text-white">Pesan Kamar</a>
+                        <h3 class="room-title">{{ $tipe_kamar->nama }}</h3>
+                        <p class="room-price">Lantai {{$tipe_kamar->lantai}}</p>
+                        <p class="room-price">Rp {{number_format($tipe_kamar->harga)}}/bulan</p>
+                        <a href="{{ route('detail-kost',$tipe_kamar->id) }}" class="btn btn-fill text-white">Pesan Kamar</a>
                     </div>
                     </div>
                 </div>
@@ -405,14 +406,14 @@
             <p class="text-caption">Berikut review dari mereka</p>
         </div>
         <div class="container" style="margin-top: 4rem">
-            <div class="row">
+            {{-- <div class="row"> --}}
                 <div class="owl-carousel featured-carousel owl-theme">
                     @foreach ($reviews as $r)
                     <div class="item">
                         <h3 class="review-title text-center" style="opacity: 0.5">
                             {{ $r->review }}</h3>
                         <h4 class="review-caption text-center">
-                            {{ $r->user->name }}
+                            {{ $r->user->nama }}
                         </h4>
                         <h6 class="review-caption text-center">
                             {{ $r->user->profession }}
@@ -420,7 +421,7 @@
                     </div>
                     @endforeach
                 </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 </section>
@@ -457,7 +458,7 @@ $(document).ready(function() {
 <script>
     $('.featured-carousel').owlCarousel({
     loop:true,
-    margin:20,
+    // margin:20,
     responsiveClass:true,
     responsive:{
         0:{

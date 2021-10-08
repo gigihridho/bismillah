@@ -7,20 +7,20 @@ use Illuminate\Contracts\Validation\Rule;
 
 class Booking implements Rule
 {
-    protected $room_type;
-    protected $new_arrival_date;
-    protected $new_departure_date;
+    protected $tipe_kamar;
+    protected $new_tanggal_masuk;
+    protected $new_tanggal_keluar;
     protected $message;
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($room_type, $new_arrival_date, $new_departure_date)
+    public function __construct($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar)
     {
-        $this->room_type = $room_type;
-        $this->new_arrival_date = $new_arrival_date;
-        $this->new_departure_date = $new_departure_date;
+        $this->tipe_kamar = $tipe_kamar;
+        $this->new_tanggal_masuk = $new_tanggal_masuk;
+        $this->new_tanggal_keluar = $new_tanggal_keluar;
     }
 
     /**
@@ -32,7 +32,7 @@ class Booking implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $this->room_available();
+        return $this->kamar_tersedia();
     }
 
     /**
@@ -45,13 +45,13 @@ class Booking implements Rule
         return 'Maaf, tidak ada kamar yang tersedia di tanggal ini. Silakan pilih tanggal lain.';
     }
 
-    public function room_available(){
-        $this->room_exist();
+    public function kamar_tersedia(){
+        $this->kamar_exist();
 
-        foreach ($this->room_type->rooms as $room) {
-            if($room->available == 1){
-                if($this->room_bookings_exist($room)){
-                    if($this->room_bookings_check($room->transactions) == false){
+        foreach ($this->tipe_kamar->kamars as $kamar) {
+            if($kamar->tersedia == 1){
+                if($this->kamar_bookings_exist($kamar)){
+                    if($this->kamar_bookings_check($kamar->bookings) == false){
                     continue;
                     }
                 }
@@ -60,47 +60,47 @@ class Booking implements Rule
         }
     }
 
-    public function available_room_number(){
-        $this->room_exist();
-        foreach ($this->room_type->rooms as $room) {
-            if($room->available == 1){
-                if($this->room_bookings_exist($room)){
-                    if($this->room_bookings_check($room->transactions) == false)
+    public function available_nomor_kamar(){
+        $this->kamar_exist();
+        foreach ($this->tipe_kamar->kamars as $kamar) {
+            if($kamar->tersedia == 1){
+                if($this->kamar_bookings_exist($kamar)){
+                    if($this->kamar_bookings_check($kamar->bookings) == false)
                     continue;
                 }
-                return $room->room_number;
+                return $kamar->nomor_kamar;
             }
         }
     }
 
-    protected function room_exist(){
-        if(count($this->room_type->rooms) > 0){
+    protected function kamar_exist(){
+        if(count($this->tipe_kamar->kamars) > 0){
             return true;
         }
         $this->message = "Maaf tidak ada kamar yang tersedia";
         return false;
     }
 
-    protected function room_bookings_exist($room){
-        if(count($room->transactions) > 0){
+    protected function kamar_bookings_exist($kamar){
+        if(count($kamar->bookings) > 0){
             return true;
         }
     }
 
-    protected function room_bookings_check($transactions)
+    protected function kamar_bookings_check($bookings)
     {
-        foreach ($transactions as $transaction) {
-            $old_arrival_date = Carbon::parse($transaction->arrival_date);
-            $old_departure_date = Carbon::parse($transaction->departure_date);
-            if($this->new_arrival_date < $old_arrival_date){
-                if($this->new_departure_date > $old_departure_date){
+        foreach ($bookings as $bookingg) {
+            $old_tanggal_masuk = Carbon::parse($bookingg->tanggal_masuk);
+            $old_tanggal_keluar = Carbon::parse($bookingg->tanggal_keluar);
+            if($this->new_tanggal_masuk < $old_tanggal_masuk){
+                if($this->new_tanggal_keluar > $old_tanggal_keluar){
                 return false;
                 }
-            } elseif ($this->new_arrival_date > $old_arrival_date){
-                if($this->new_departure_date < $old_departure_date){
+            } elseif ($this->new_tanggal_masuk > $old_tanggal_masuk){
+                if($this->new_tanggal_keluar < $old_tanggal_keluar){
                 return false;
                 }
-            } elseif ($this->new_arrival_date == $old_arrival_date){
+            } elseif ($this->new_tanggal_masuk == $old_tanggal_masuk){
                 return false;
             }
         }

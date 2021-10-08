@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FacilityRequest extends FormRequest
+class FasilitasRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,15 @@ class FacilityRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
+            'nama' => 'required|alpha',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nama.required' => 'Fasilitas harus diisi',
+            'nama.alpha' => 'Fasilitas harus berbentuk huruf'
         ];
     }
 }

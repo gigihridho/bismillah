@@ -20,38 +20,30 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-body" style="overflow-x:auto;">
-                    <a href="{{ route('fasilitas.create') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Fasilitas</a>
+                    <button class="btn btn-primary mb-3 btn-tambah" data-toggle="modal" data-target="#modal-tambah" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Fasilitas</button>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="table-1" cellspacing="0" style="width: 100%">
                             <thead>
                             <tr style="text-align:center">
-                                <th class="text-center" style="width: 5%">
+                                <th scope="col"class="text-center" style="width: 5%">
                                 No
                                 </th>
-                                <th>Nama</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ($facilites as $index => $facility)
+                                @foreach ($fasilitas as $index => $fas)
                                 <tr style="text-align: center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $facility->name }}</td>
+                                    <td>{{ $fas->nama }}</td>
                                     <td>
-                                        @if($facility->status == 1)
-                                            <span class="badge badge-success">Aktif</span>
-                                        @else
-                                            <span class="badge badge-danger">Tidak Aktif
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('fasilitas.destroy',$facility->id) }}" method="POST">
-                                            <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('fasilitas.edit',$facility->id) }}">
+                                        <form action="{{ route('fasilitas.destroy',$fas->id) }}" method="POST">
+                                            @csrf
+                                            <a href="#" title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm btn-edit" data-id="{{ $fas->id }}">
                                                 <i class="far fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $facility->id }})">
+                                            <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $fas->id }})">
                                                 <i class="far fa-trash-alt" style="color: white;"></i>
                                             </a>
                                         </form>
@@ -67,8 +59,69 @@
         </div>
     </div>
     </section>
+    <div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Tambah fasilitas</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="facilitas_store" action="{{ route('fasilitas.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nama Fasilitas</label>
+                                <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" autocomplete="off" placeholder="Masukkan Fasilitas"/>
+                                @error('nama')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {{-- @foreach ($fasilitas as $fas) --}}
+            <form action="{{ route('fasilitas.update',$fas->id) }}" method="POST" enctype="multipart/form-data" id="form-edit">
+                @method("PUT")
+                @csrf
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary btn-update">Simpan</button>
+                </div>
+            </form>
+            {{-- @endforeach --}}
+          </div>
+        </div>
+    </div>
 </div>
 @endsection
+
 @push('addon-script')
 <script>
     $(document).ready( function () {
@@ -79,6 +132,43 @@
             }
         });
     } );
+
+    @if($errors->any())
+        $('#modal-tambah').modal('show')
+    @endif
+
+    $(".btn-edit").on('click',function(){
+        let id = $(this).data('id')
+        $.ajax({
+            url: `fasilitas/${id}/edit`,
+            method: "GET",
+            success: function(data){
+                $('#modal-edit').find('.modal-body').html(data)
+                $('#modal-edit').modal('show')
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+    });
+
+    $(".btn-update").on('click',function(){
+        let id = $('#form-edit').find('#id_fasilitas').val()
+        let formData = $('#form-edit').serialize()
+        $.ajax({
+            url: `fasilitas/${id}`,
+            method: "PUT",
+            data: formData,
+            success: function(data){
+                // $('#modal-edit').find('.modal-body').html(data)
+                $('#modal-edit').modal('hide')
+                window.location.assign('fasilitas')
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+    });
 
     function deleteConfirm(id) {
         Swal.fire({
@@ -95,7 +185,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
                     },
-                    url: "fasilitas/" + id,
+                    url: `fasilitas/${id}`,
                     method: "post",
                     data: {
                         "_token": "{{ csrf_token() }}",
@@ -109,7 +199,7 @@
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "fasilitas/"
+                                window.location.href = "fasilitas"
                             }
                         });
                     },
@@ -119,7 +209,7 @@
                             text: 'Data tidak dapat di hapus!',
                             icon: 'warning',
                         });
-                        window.location.href = "fasilitas/"
+                        window.location.href = "fasilitas"
                     }
                 });
             }

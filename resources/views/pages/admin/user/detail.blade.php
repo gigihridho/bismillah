@@ -39,24 +39,29 @@
                             </div>
                             <div class="form-group col-md-6 col-12">
                                 <label>Alamat</label>
-                                <input type="tel" class="form-control" value="{{ $u->address }}" disabled>
+                                <input type="tel" class="form-control" value="{{ $u->alamat }}" disabled>
                             </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6 col-12">
                                 <label>Pekerjaan</label>
-                                    <input type="email" class="form-control" value="{{ $u->profession }}" disabled>
+                                    <input type="email" class="form-control" value="{{ $u->pekerjaan }}" disabled>
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Foto KTP</label>
-                                    @if ($u->photo_ktp != null)
-                                        <img src="{{ Storage::url($u->photo_ktp) }}" width="180px" height="170px"
-                                        style="display:block; margin-left:auto; margin-right:auto;">
+                                    @if ($u->foto_ktp != null)
+                                        <img src="{{ Storage::url($u->foto_ktp) }}" width="180px" height="170px"
+                                        style="display:block; margin-left:auto; margin-right:auto;" alt="fotoKtp">
                                     @else
                                         <img src="{{ asset('assets/img/avatar/avatar-1.png') }}"  width="180px" height="170px"
-                                        style="display:block; margin-left:auto; margin-right:auto;">
+                                        style="display:block; margin-left:auto; margin-right:auto;" alt="fotoKtp">
                                     @endif
                                     </div>
+                            </div>
+                            <div class="row">
+                                <div class="justify-content-left ml-4">
+                                    <a href="{{ route('user.index') }}" class="btn btn-info px-4 py-2">Kembali</a>
+                                </div>
                             </div>
                         @endforeach
                     </div>

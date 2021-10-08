@@ -57,13 +57,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($transactions as $index => $transaction)
+                            @foreach ($transaksis as $index => $tf)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $transaction->code }}</td>
-                                    <td>{{ $transaction->user->name }}</td>
-                                    <td>{{ $transaction->order_date }}</td>
-                                    <td>Rp {{ number_format($transaction->room->room_type->price,2,',','.') }}</td>
+                                    <td>{{ $tf->kode }}</td>
+                                    <td>{{ $tf->user->name }}</td>
+                                    <td>{{ $tf->tanggal_pesan }}</td>
+                                    <td>Rp {{ number_format($tf->kamar->tipe_kamar->harga,2,',','.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

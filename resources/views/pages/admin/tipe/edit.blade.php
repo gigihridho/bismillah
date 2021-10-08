@@ -5,6 +5,13 @@
 @endsection
 
 @section('content')
+<style type="text/css">
+    @media (max-width: 417px) {
+            .tombol .btn.simpan {
+            margin-bottom: 10px;
+            }
+        }
+</style>
 <div class="main-content">
     <section class="section">
         <div class="section-header">
@@ -40,40 +47,25 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tipe Kamar</label>
-                                        <input type="text" name="name" value="{{ $d->name }}" class="form-control">
+                                        <input type="text" name="nama" value="{{ $d->nama }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Lantai</label>
-                                        <input type="number" name="floor" value="{{ $d->floor }}" class="form-control">
+                                        <input type="number" name="lantai" value="{{ $d->lantai }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Harga</label>
-                                        <input type="number" name="price" value="{{ $d->price }}" class="form-control">
+                                        <input type="number" name="harga" value="{{ $d->harga }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Luas</label>
-                                        <input type="text" name="size" value="{{ $d->size }}" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select name="status" id="status" class="form-control">
-                                            <option value="1"
-                                                @if (old('status') == '1')selected="selected" @endif" >
-                                                Aktif
-                                            </option>
-                                            <option value="0"
-                                                @if (old('status') == '0')selected="selected" @endif" >
-                                                Tidak Aktif
-                                            </option>
-                                        </select>
+                                        <input type="text" name="ukuran" value="{{ $d->ukuran }}" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -81,11 +73,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <label class="d-block">Fasilitas</label>
-                                    @forelse ($facilities as $facility)
+                                    @forelse ($fasilitas as $fas)
                                         <div class="form-check mb-3">
                                             <label class="checkbox">
-                                                <input name="facility[{{ $facility->id }}]" class="form-check-input" type="checkbox" value="{{ $facility->name }}"
-                                                @if ($d->facilities->contains($facility->id)) checked @endif>{{ $facility->name }}
+                                                <input name="fas[{{ $fas->id }}]" class="form-check-input" type="checkbox" value="{{ $fas->nama }}"
+                                                @if ($d->fasilitas->contains($fas->id)) checked @endif>{{ $fas->nama }}
                                             </label>
                                         </div>
                                     @empty
@@ -98,8 +90,8 @@
                                         <label>Foto</label>
                                         <input type="file" id="input_photo" name="photo" class="form-control">
                                     </div>
-                                    @if ($d->photo != null)
-                                        <img id="img_photo" src="{{ Storage::url($d->photo) }}" width="280px" height="180px" alt="foto"
+                                    @if ($d->foto != null)
+                                        <img id="img_photo" src="{{ Storage::url($d->foto) }}" width="280px" height="180px" alt="foto"
                                         style="display: block; margin:auto">
                                     @else
                                         <img id="img_photo" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
@@ -108,11 +100,14 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="row">
+                            <div class="row tombol">
                                 <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
+                                    <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
                                         Simpan Data
                                     </button>
+                                    <a href="{{ route('tipe.index') }}" class="btn btn-danger px-5" style="padding: 8px 16px">
+                                        Batal
+                                    </a>
                                 </div>
                             </div>
                         </form>

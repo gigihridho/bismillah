@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'no_hp','address','profession','photo_ktp'
+        'name', 'email', 'password', 'no_hp','alamat','pekerjaan','foto_ktp'
     ];
 
     /**
@@ -38,12 +38,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function room_type(){
-        return $this->belongsTo(RoomType::class);
+    public function tipe_kamar(){
+        return $this->belongsTo(TipeKamar::class);
     }
 
-    public function transactions(){
-        return $this->hasMany(Transaction::class);
+    public function bookings(){
+        return $this->hasMany(Booking::class);
     }
 
     public function review()
