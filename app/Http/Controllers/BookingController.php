@@ -163,7 +163,7 @@ class BookingController extends Controller
         $order_id = $notification->order_id;
 
         // Cari transaksi berdasarkan ID
-        $transaction = Booking::where('kode',$order_id)->first();
+        $transaction = AppBooking::where('kode',$order_id)->first();
 
         // Handle notification status midtrans
         if ($status == 'capture') {
