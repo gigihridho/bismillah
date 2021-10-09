@@ -89,6 +89,7 @@ class BookingController extends Controller
         $bookingg->tanggal_masuk = $request->input('tanggal_masuk');
         $bookingg->tanggal_keluar = $new_tanggal_keluar;
         $bookingg->tanggal_pesan = Carbon::now();
+        $bookingg->status = "Menunggu";
         $bookingg->expired_at = Carbon::now()->addHours(24);
 
         $harga = $tipe_kamar->harga;
@@ -176,19 +177,19 @@ class BookingController extends Controller
                 }
             }
         }
-        else if ($status == 'settlement'){
+        else if ($status == 'SETTLEMENT'){
             $transaction->status = 'Selesai';
         }
-        else if($status == 'pending'){
+        else if($status == 'PENDING'){
             $transaction->status = 'Menunggu';
         }
-        else if ($status == 'deny') {
+        else if ($status == 'DENY') {
             $transaction->status = 'Dibatalkan';
         }
-        else if ($status == 'expire') {
+        else if ($status == 'EXPIRE') {
             $transaction->status = 'Dibatalkan';
         }
-        else if ($status == 'cancel') {
+        else if ($status == 'CANCEL') {
             $transaction->status = 'Dibatalkan';
         }
 

@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <img src="{{ asset('fe/img/confirm.png') }}" alt="">
+    <img src="{{ asset('fe/img/confirm.png') }}" alt="" style="height: 250px; width: 250px">
+    <a href={{ route('user-transaksi') }} class="btn btn-primary px-5">Ke Dashboard</a>
 </body>
 </html>
