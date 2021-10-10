@@ -62,7 +62,7 @@ p.required-field::after {
                     @endforelse
                     <div class="col-lg-4">
                         <div class="card-body shadow-lg p-3 mb-5 bg-white rounded">
-                            <form action="{{ route('booking',$tipe_kamar->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('confirmation',$tipe_kamar->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input name="booking_validation" type="hidden" value="0">
                             <div class="form-group" style="margin-bottom: 1rem">

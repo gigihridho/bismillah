@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class FasilitasSeeder extends Seeder
@@ -14,21 +15,27 @@ class FasilitasSeeder extends Seeder
         DB::table('fasilitas')->insert([
             [
                 'nama' => 'Meja',
+                'created_at' => Carbon::now(),
             ],
             [
                 'nama' => 'Kursi',
+                'created_at' => Carbon::now(),
             ],
             [
                 'nama' => 'Kamar Mandi Dalam',
+                'created_at' => Carbon::now(),
             ],
             [
                 'nama' => 'Kamar Mandi Luar',
+                'created_at' => Carbon::now(),
             ],
             [
                 'nama' => 'Kasur',
+                'created_at' => Carbon::now(),
             ],
             [
-                'nama' => 'Kipas Angin'
+                'nama' => 'Kipas Angin',
+                'created_at' => Carbon::now(),
             ],
         ]);
     }

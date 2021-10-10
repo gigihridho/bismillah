@@ -16,7 +16,7 @@ class CreateKamarsTable extends Migration
         Schema::create('kamars', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nomor_kamar',3)->unique();
-            $table->boolean('tersedia')->default(true);
+            $table->boolean('status')->default(true);
             $table->integer('tipe_kamar_id')->unsigned()->index();
             $table->timestamps();
 

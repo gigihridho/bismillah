@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\TipeKamar;
 use Illuminate\Http\Request;
 
-
 class DetailController extends Controller
 {
 

@@ -41,8 +41,8 @@
                                     <td>{{ $tipe_kamar->nama}}</td>
                                     <td>{{ $kamar->nomor_kamar }}</td>
                                     <td>
-                                        @if($kamar->tersedia == 1)
-                                        <span class="badge badge-secondary">Tersedia</span>
+                                        @if($kamar->status == 1)
+                                        <span class="badge badge-success">Tersedia</span>
                                         @else
                                         <span class="badge badge-danger">Tidak Tersedia</span>
                                         @endif

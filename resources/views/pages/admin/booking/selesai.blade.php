@@ -49,11 +49,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($tf->status == "Menunggu")
+                                    @if($tf->transaction_status == "PENDING")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($tf->status == "Selesai")
+                                    @elseif($tf->transaction_status == "SUCCESS")
                                         <span class="badge badge-success">Selesai</span>
-                                    @elseif($tf->status == "Dibatalkan")
+                                    @elseif($tf->transaction_status == "CANCELLED")
                                         <span class="badge badge-danger">Dibatalkan</span>
                                     @endif
                                 </td>

@@ -24,10 +24,10 @@ class DashboardController extends Controller
 
     public function index(){
         $user = User::role('user')->count();
-        $kamar_tersedia = Kamar::where('tersedia',true)->count();
+        $kamar_tersedia = Kamar::where('status',true)->count();
         $kam = Kamar::count();
         $bookings = Booking::count();
-        $total_harga = Booking::where('status',"SELESAI")->sum('total_harga');
+        $total_harga = Booking::where('transaction_status',"SUCCESS")->sum('total_harga');
         $pengeluaran = Pengeluaran::sum('nominal');
         $keuntungan = $total_harga - $pengeluaran;
         // $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];

@@ -48,7 +48,7 @@
                                     <label>Status</label>
                                     <select name="tersedia" id="tersedia" class="form-control">
                                         <option value="1"
-                                            @if (old('tersedia') == '1')selected="selected" @endif" >
+                                            @if (old('status') == '1')selected="selected" @endif" >
                                             Tersedia
                                         </option>
                                         <option value="0"

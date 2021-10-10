@@ -24,7 +24,7 @@ class CreateBookingsTable extends Migration
             $table->enum('durasi',[1,6,12]);
             $table->date('tanggal_masuk');
             $table->date('tanggal_keluar')->nullable();
-            $table->enum('status',['Menunggu','Selesai','Dibatalkan'])->default('Menunggu');
+            $table->enum('transaction_status',['PENDING','SUCCESS','CANCELLED'])->default('PENDING');
             $table->dateTime('expired_at');
             $table->timestamps();
 

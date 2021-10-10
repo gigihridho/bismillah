@@ -67,7 +67,7 @@ class BookingController extends Controller
             'kode' => $kode,
         ]);
     }
-    
+
     public function booking(BookingRequest $request, $tipe_kamar_id){
         $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
         $new_tanggal_masuk = $request->input('tanggal_masuk');
@@ -89,7 +89,7 @@ class BookingController extends Controller
         $bookingg->tanggal_masuk = $request->input('tanggal_masuk');
         $bookingg->tanggal_keluar = $new_tanggal_keluar;
         $bookingg->tanggal_pesan = Carbon::now();
-        $bookingg->status = "Menunggu";
+        $bookingg->transaction_status = "PENDING";
         $bookingg->expired_at = Carbon::now()->addHours(24);
 
         $harga = $tipe_kamar->harga;
@@ -102,7 +102,7 @@ class BookingController extends Controller
         }
 
         $bookingg->total_harga = $total_harga;
-        $bookingg->user_id = $user->id;
+        // $bookingg->user_id = $user->id;
 
         $booking = new Booking($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar);
 
@@ -110,9 +110,8 @@ class BookingController extends Controller
 
         $bookingg->kamar_id = $kamar->id;
         $bookingg->user_id = $user->id;
-
         $bookingg->save();
-        $kamar->tersedia = 0;
+        $kamar->status = 0;
         $kamar->save();
 
         Config::$serverKey = config('services.midtrans.serverKey');
@@ -142,10 +141,10 @@ class BookingController extends Controller
 
             // Redirect to Snap Payment Page
             return redirect($paymentUrl);
-          }
-          catch (Exception $e) {
+        }
+        catch (Exception $e) {
             echo $e->getMessage();
-          }
+        }
     }
 
     public function callback(Request $request){
@@ -170,27 +169,27 @@ class BookingController extends Controller
         if ($status == 'capture') {
             if ($type == 'credit_card'){
                 if($fraud == 'challenge'){
-                    $transaction->status = 'Menunggu';
+                    $transaction->transaction_status = 'PENDING';
                 }
                 else {
-                    $transaction->status = 'Selesai';
+                    $transaction->transaction_status = 'SUCCESS';
                 }
             }
         }
         else if ($status == 'SETTLEMENT'){
-            $transaction->status = 'Selesai';
+            $transaction->transaction_status = 'SUCCESS';
         }
         else if($status == 'PENDING'){
-            $transaction->status = 'Menunggu';
+            $transaction->transaction_status = 'PENDING';
         }
         else if ($status == 'DENY') {
-            $transaction->status = 'Dibatalkan';
+            $transaction->transaction_status = 'CANCELLED';
         }
         else if ($status == 'EXPIRE') {
-            $transaction->status = 'Dibatalkan';
+            $transaction->transaction_status = 'CANCELLED';
         }
         else if ($status == 'CANCEL') {
-            $transaction->status = 'Dibatalkan';
+            $transaction->transaction_status = 'CANCELLED';
         }
 
         // Simpan transaksi
@@ -203,11 +202,11 @@ class BookingController extends Controller
             {
                 //
             }
-            else if ($status == 'settlement')
+            else if ($status == 'SETTLEMENT')
             {
                 //
             }
-            else if ($status == 'success')
+            else if ($status == 'SUCCESS')
             {
                 //
             }
@@ -288,7 +287,7 @@ class BookingController extends Controller
     //     $bookingg->kamar_id = $kamar->id;
     //     $bookingg->user_id = $user->id;
     //     $bookingg->save();
-    //     $kamar->tersedia = 0;
+    //     $kamar->status = 0;
     //     $kamar->save();
     //     Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');
     //     return redirect()->route('upload');

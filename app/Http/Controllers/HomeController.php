@@ -30,7 +30,7 @@ class HomeController extends Controller
         $reviews = Review::all();
         $tipe_kamars = TipeKamar::all();
         $kamars = TipeKamar::with('kamars')->get();
-        $kamar = Kamar::where('tersedia',true)->count();
+        $kamar = Kamar::where('status',true)->count();
         $kam = Kamar::count();
         return view('landing',[
             'reviews' => $reviews,

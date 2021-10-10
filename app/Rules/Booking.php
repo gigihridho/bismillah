@@ -49,7 +49,7 @@ class Booking implements Rule
         $this->kamar_exist();
 
         foreach ($this->tipe_kamar->kamars as $kamar) {
-            if($kamar->tersedia == 1){
+            if($kamar->status == 1){
                 if($this->kamar_bookings_exist($kamar)){
                     if($this->kamar_bookings_check($kamar->bookings) == false){
                     continue;
@@ -63,7 +63,7 @@ class Booking implements Rule
     public function available_nomor_kamar(){
         $this->kamar_exist();
         foreach ($this->tipe_kamar->kamars as $kamar) {
-            if($kamar->tersedia == 1){
+            if($kamar->status == 1){
                 if($this->kamar_bookings_exist($kamar)){
                     if($this->kamar_bookings_check($kamar->bookings) == false)
                     continue;

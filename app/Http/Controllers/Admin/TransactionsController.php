@@ -21,21 +21,21 @@ class TransactionsController extends Controller
     }
 
     public function selesai(){
-        $transaksis = Booking::where('status',"Selesai")->get();
+        $transaksis = Booking::where('status',"SUCCESS")->get();
         return view('pages.admin.booking.selesai',[
             'transaksis' => $transaksis
         ]);
     }
 
     public function menunggu(){
-        $transaksis = Booking::where('status',"Menunggu")->get();
+        $transaksis = Booking::where('status',"PENDING")->get();
         return view('pages.admin.booking.menunggu',[
             'transaksis' => $transaksis
         ]);
     }
 
     public function cancel(){
-        $transaksis = Booking::Where('status',"Dibatalkan")->get();
+        $transaksis = Booking::Where('status',"CANCELLED")->get();
         return view('pages.admin.booking.batal',[
             'transaksis' => $transaksis
         ]);
@@ -49,7 +49,7 @@ class TransactionsController extends Controller
     }
     public function status(Request $request, $id){
         $transaksis = Booking::findOrFail($id);
-        $transaksis->status = "Selesai";
+        $transaksis->status = "SUCCESS";
         $transaksis->save();
 
         return redirect()->route('transaksi');
@@ -57,7 +57,7 @@ class TransactionsController extends Controller
     public function batal(Request $request, $id){
         $transaksis = Booking::findOrFail($id);
         $kamar = Kamar::find($transaksis->kamar_id);
-        $transaksis->status = "Dibatalkan";
+        $transaksis->status = "CANCELLED";
         $kamar->tersedia = 1;
         $kamar->save();
         $transaksis->save();
@@ -70,7 +70,7 @@ class TransactionsController extends Controller
         $transaksis = Booking::findOrFail($id);
 
         $rules = [
-            'status' => 'in:Menunggu,Selesai,Dibatalkan',
+            'status' => 'in:PENDING,SUCCESS,CANCELLED',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -79,14 +79,14 @@ class TransactionsController extends Controller
             ->withInput($request->all())
             ->withErrors($validator);
         }
-        if($transaksis->status === 'Dibatalkan'){
+        if($transaksis->status === 'CANCELLED'){
             $transaksis = Booking::findOrFail($id);
             $kamar = Kamar::find($transaksis->kamar_id);
             $kamar->tersedia = 1;
             $kamar->save();
             $transaksis->save();
         } else {
-            $transaksis->status = $request->input('status','Selesai');
+            $transaksis->status = $request->input('status','SUCCESS');
             $transaksis->save();
         }
         // Mail::to($transaction->user->email)->send(new PaymentSuccessMail());
