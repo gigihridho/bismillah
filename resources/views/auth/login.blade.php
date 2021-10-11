@@ -1,4 +1,4 @@
-@extends('layouts.fe')
+{{-- @extends('layouts.fe')
 @section('title')
     Login
 @endsection
@@ -112,7 +112,7 @@
             </div>
         </div>
     </section>
-</div>
+</div> --}}
 {{-- <section class="section">
     <div class="d-flex flex-wrap align-items-stretch">
         <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2" style="background: #6777ef">
@@ -169,4 +169,43 @@
     </div>
     </section> --}}
 
-@endsection
+{{-- @endsection --}}
+<div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="youremail@example.com" required autocomplete="off" autofocus>
+    @error('email')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
+<div class="form-group">
+    <div class="d-block">
+        <label for="password" class="control-label">Kata Sandi</label>
+        </div>
+        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            <div class="float-right mb-3">
+            @if (Route::has('password.request'))
+            <a class="text-small" href="{{ route('password.request') }}">
+                {{ __('Lupa Kata Sandi?') }}
+            </a>
+            @endif
+        </div>
+</div>
+@push('after-script')
+<script type="text/javascript">
+    @if($errors->has('email') || $errors->has('password'))
+        <script>
+        $(function() {
+            $('#login').modal({
+                show: true
+            });
+        });
+        </script>
+@endpush
+

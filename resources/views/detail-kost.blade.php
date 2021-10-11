@@ -72,26 +72,36 @@ p.required-field::after {
                                     </div>
                                         <input type="text" data-provide="datepicker" class="form-control" id="tanggal_masuk" name="tanggal_masuk" placeholder="Tanggal Masuk" value="" readonly="">
                                 </div>
+                                @error('tanggal_masuk')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="durasi" style="margin-bottom: 0.5rem">Durasi Sewa</label>
-                                <select name="durasi" id="durasi" class="form-control">
+                                <select name="durasi" id="durasi" class="form-select">
                                     <option value="1">1 Bulan</option>
                                     <option value="6">6 Bulan</option>
                                     <option value="12">1 Tahun</option>
                                 </select>
+                                @error('durasi')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <br>
-                            @if($errors->any())
+                            {{-- @if($errors->any())
                                 {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
-                            @endif
+                            @endif --}}
                             <br>
                             @auth
                             <button type="submit" class="btn btn-fill px-5 text-white btn-block mb-3" style="width: 100%">
                                 Pesan Kamar
                             </button>
                             @else
-                            <a href="{{ route('login') }}" class="btn btn-danger px-5 text-white btn-block mb-3" style="width: 100%; border-radius: 12px;
+                            <a href="#" class="btn btn-danger px-5 text-white btn-block mb-3" data-toggle="modal" data-target="#login" style="width: 100%; border-radius: 12px;
                             padding: 12px 28px;">
                                 Masuk Untuk Pesan
                             </a>
@@ -99,6 +109,52 @@ p.required-field::after {
                             </form>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Masuk</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+                            @csrf
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="youremail@example.com" required autocomplete="off" autofocus>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <div class="d-block">
+                            <label for="password" class="control-label">Kata Sandi</label>
+                            </div>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            <div class="float-right mb-3">
+                            @if (Route::has('password.request'))
+                            <a class="text-small" href="{{ route('password.request') }}">
+                                {{ __('Lupa Kata Sandi?') }}
+                            </a>
+                            @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" data-toggle="modal" data-target="#register" class="btn btn-danger" data-dismiss="modal">Daftar</a>
+                        <button type="submit" class="btn btn-primary">Masuk</button>
+                    </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -138,29 +194,51 @@ p.required-field::after {
                         @endforeach
                     </div>
                 </div>
-                    {{-- <div class="row">
-
-                    </div> --}}
             </section>
         </div>
     </div>
 </section>
+@if(Auth::check() && !Auth::user()->foto_ktp)
+<div id="myModal" class="modal fade hide fade in" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: red">Data diri belum lengkap</h5>
+            </div>
+            <div class="modal-body">
+                <p>Untuk melakukan pemesanan kamar, Anda perlu melengkapi data diri terlebih dahulu. <br>
+                    Silakan lengkapi data diri anda pada halaman profil.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href={{ route('profil-user') }} class="btn btn-danger">Buka Profil</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
 @push('after-script')
 <script>
+    $('#myModal').modal('show');
+
+    @if ($errors->has('email')||$errors->has('password'))
+        $('#login').modal('show');
+    @endif
+
     $(function () {
     var $dp1 = $("#tanggal_masuk");
-      $(document).ready(function () {
+    $(document).ready(function () {
 
-      $dp1.datepicker({
-        changeYear: true,
-        changeMonth: true,
-            minDate: '0',
-            maxDate: '2m',
-        dateFormat: "yy-mm-dd",
-        yearRange: "-100:+20",
-      });
-     });
+    $dp1.datepicker({
+    changeYear: true,
+    changeMonth: true,
+        minDate: '0',
+        maxDate: '2m',
+    dateFormat: "yy-mm-dd",
+    yearRange: "-100:+20",
+    });
+    });
 });
 </script>
 @endpush

@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'no_hp','alamat','pekerjaan','foto_ktp'
+        'name', 'email', 'password', 'no_hp','alamat','pekerjaan','bank','no_rekening','foto_ktp','avatar'
     ];
 
     /**
@@ -51,8 +51,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Review::class);
     }
 
-    public function initials(){
-    $words = explode(" ", trim($this->name) );
-    return $words[0];
- }
+    public function initials()
+    {
+        $words = explode(" ", trim($this->name) );
+        return $words[0];
+    }
+
+    public function getProfilePhotoAttribute()
+    {
+        $avatar = null;
+        if($this->avatar == 'avatar'){
+            $avatar = public_path('assets/storage/assets/avatar/'.$this->avatar);
+        }
+        return $avatar;
+    }
 }

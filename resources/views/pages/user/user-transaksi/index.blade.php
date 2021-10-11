@@ -6,7 +6,7 @@
 
 @section('content')
 <style>
-        .inputfile {
+    .inputfile {
 	width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
@@ -43,7 +43,7 @@ input[type="file"]{
     min-height: 170px;
     border: 2px dashed #afeeee;
     margin-top: 15px;
-    margin-left: 3em;
+    margin-left: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -212,7 +212,7 @@ label:hover {
                         width: 105px;
                         background-color: #03a9f4;
                         position: absolute;
-                        margin-left: 8.5em;
+                        margin-left: 6em;
                         padding: 10px;
                         border-radius: 10px;
                         padding-top: 8px;
@@ -322,7 +322,5 @@ label:hover {
             previewImage.setAttribute("src", "");
         }
     });
-
-
 </script>
 @endpush

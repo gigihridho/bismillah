@@ -21,8 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('no_hp')->unique();
             $table->string('foto_ktp')->nullable();
-            $table->string('alamat');
-            $table->string('pekerjaan');
+            $table->string('alamat')->nullable();
+            $table->string('pekerjaan')->nullable();
+            $table->string('bank')->nullable();
+            $table->string('no_rekening')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

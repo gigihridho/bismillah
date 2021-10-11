@@ -119,11 +119,18 @@ class BookingController extends Controller
         Config::$isSanitized = config('services.midtrans.isSanitized');
         Config::$is3ds = config('services.midtrans.is3ds');
 
+        $token_id = $_POST['token_id'];
         //array midtrans
         $midtrans = array(
             'transaction_details' => array(
                 'order_id' => $kode,
                 'gross_amount' => $total_harga,
+            ),
+            'credit_card'  => array(
+                'token_id'      => $token_id,
+                'authentication'=> true,
+        //        'bank'          => 'bni', // optional to set acquiring bank
+        //        'save_token_id' => true   // optional for one/two clicks feature
             ),
             'customer_details' => array(
                 'first_name' => Auth::user()->name,
@@ -170,26 +177,33 @@ class BookingController extends Controller
             if ($type == 'credit_card'){
                 if($fraud == 'challenge'){
                     $transaction->transaction_status = 'PENDING';
+                    echo "Transaction order_id: " . $order_id ." is challenged by FDS";
                 }
                 else {
                     $transaction->transaction_status = 'SUCCESS';
+                    echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
                 }
             }
         }
         else if ($status == 'SETTLEMENT'){
             $transaction->transaction_status = 'SUCCESS';
+            echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
         }
         else if($status == 'PENDING'){
             $transaction->transaction_status = 'PENDING';
+            echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
         }
         else if ($status == 'DENY') {
             $transaction->transaction_status = 'CANCELLED';
+            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
         }
         else if ($status == 'EXPIRE') {
             $transaction->transaction_status = 'CANCELLED';
+            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
         }
         else if ($status == 'CANCEL') {
             $transaction->transaction_status = 'CANCELLED';
+            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
         }
 
         // Simpan transaksi
@@ -200,7 +214,7 @@ class BookingController extends Controller
         {
             if($status == 'capture' && $fraud == 'accept' )
             {
-                //
+
             }
             else if ($status == 'SETTLEMENT')
             {

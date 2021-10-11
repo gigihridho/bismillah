@@ -55,9 +55,9 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users','regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'no_hp' => ['required','numeric', 'digits_between:10,13','unique:users'],
-            'alamat' => ['required','string'],
-            'pekerjaan' => ['required','alpha'],
-            'foto_ktp' => ['required','image','mimes:png,jpg,jpeg','max:2048'],
+            // 'alamat' => ['required','string'],
+            // 'pekerjaan' => ['required','alpha'],
+            // 'foto_ktp' => ['required','image','mimes:png,jpg,jpeg','max:2048'],
         ],[
             'name.required' => 'Nama lengkap tidak boleh kosong',
             'name.min' => 'Nama lengkap tidak boleh kurang dari 3 karakter',
@@ -79,14 +79,14 @@ class RegisterController extends Controller
             'password.required' => 'Kata sandi tidak boleh kosong',
             'password_confirmation.same' => 'Konfirmasi kata sandi tidak sama',
             'password_confirmation.required' => 'Konfirmasi Kata sandi tidak boleh kosong',
-            'alamat.required' => 'Alamat asal tidak boleh kosong',
-            'alamat.string' => 'Alamat asal harus berupa huruf',
-            'pekerjaan.required' => 'Pekerjaan tidak boleh kosong',
-            'pekerjaan.alpha' => 'Pekerjaan harus berupa huruf',
-            'foto_ktp.required' => 'Foto ktp tidak boleh kosong',
-            'foto_ktp.mimes' => 'Foto ktp harus berupa file png,jpg, atau jpeg',
-            'foto_ktp.max' => 'Ukuran foto ktp tidak boleh lebih dari 2MB',
-            'foto_ktp.image' => 'Foto Ktp harus berupa gambar'
+            // 'alamat.required' => 'Alamat asal tidak boleh kosong',
+            // 'alamat.string' => 'Alamat asal harus berupa huruf',
+            // 'pekerjaan.required' => 'Pekerjaan tidak boleh kosong',
+            // 'pekerjaan.alpha' => 'Pekerjaan harus berupa huruf',
+            // 'foto_ktp.required' => 'Foto ktp tidak boleh kosong',
+            // 'foto_ktp.mimes' => 'Foto ktp harus berupa file png,jpg, atau jpeg',
+            // 'foto_ktp.max' => 'Ukuran foto ktp tidak boleh lebih dari 2MB',
+            // 'foto_ktp.image' => 'Foto Ktp harus berupa gambar'
         ]);
     }
 
@@ -97,13 +97,13 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'no_hp' => $data['no_hp'],
-            'alamat' => $data['alamat'],
-            'pekerjaan' => $data['pekerjaan'],
+            // 'alamat' => $data['alamat'],
+            // 'pekerjaan' => $data['pekerjaan'],
         ]);
-        if(request()->hasFile('foto_ktp')){
-            $foto_ktp = request()->file('foto_ktp')->store('assets/user','public');
-            $user->update(['foto_ktp' => $foto_ktp]);
-        }
+        // if(request()->hasFile('foto_ktp')){
+        //     $foto_ktp = request()->file('foto_ktp')->store('assets/user','public');
+        //     $user->update(['foto_ktp' => $foto_ktp]);
+        // }
         $user->assignRole('user');
         return $user;
     }

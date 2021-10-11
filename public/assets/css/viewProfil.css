@@ -3,7 +3,6 @@
     height: 170px;
 }
 a.btn-info{
-    margin-left: 4.5em;
     height: 40px;
 }
 @media screen and (width: 1024px) {
@@ -12,7 +11,7 @@ a.btn-info{
     height:140px ;
 }
 a.btn-info{
-    margin-left: 4em;
+    margin-left: 2em;
     height: 40px;
 }
 }

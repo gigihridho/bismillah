@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
             'no_hp' => '088225035926',
             'alamat' => 'Jakarta',
             'pekerjaan' => 'Admin',
+            'bank' => 'BRI',
+            'no_rekening' => '01312313131313'
         ]);
 
         $admin->assignRole('admin');
@@ -35,6 +37,8 @@ class UserSeeder extends Seeder
             'foto_ktp' => "https://picsum.photos/200/150",
             'alamat' => 'Jakarta',
             'pekerjaan' => 'Guru',
+            'bank' => 'BNI',
+            'no_rekening' => '0889221212'
         ]);
 
         $user->assignRole('user');

@@ -52,4 +52,18 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    protected function unauthenticated($request, \Illuminate\Auth\AuthenticationException $exception)
+    {
+        // Jika request via API
+        if ($request->expectsJson()) {
+            // Silahkan ubah response dibawah sesuai kebutuhan teman-teman
+            return response()->json([
+                'code' => 401,
+                'message' => 'Token salah atau sudah expired!'
+            ], 401);
+        }
+
+        return redirect()->guest(route('login'));
+    }
 }

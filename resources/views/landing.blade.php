@@ -94,7 +94,12 @@
                     Pesan Kamar
                 </a>
                 @guest
-                <a href="{{ route('register') }}" class="btn btn-outline">
+                {{-- <a href="{{ route('register') }}" class="btn btn-outline">
+                    <div class="d-flex align-items-center">
+                        Daftar
+                    </div>
+                </a> --}}
+                <a href="#" data-toggle="modal" data-target="#register" class="btn btn-outline">
                     <div class="d-flex align-items-center">
                         Daftar
                     </div>
@@ -112,6 +117,136 @@
     </div>
     </div>
 </section>
+
+<div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Daftar Akun</h5>
+            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('register') }}" class="needs-validation" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="name">Nama Lengkap</label>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus placeholder="Masukkan Nama Anda"
+                            oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
+                            oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="no_hp">No Telepon</label>
+                            <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda"
+                            oninvalid="this.setCustomValidity('Nomor telepon tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                                @error('no_hp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            <small style="font-size: 12px;">Contoh: 08190211313</small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="password"class="d-block">Kata Sandi</label>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Masukkan Kata Sandi Anda"
+                            oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="password-confirm"class="d-block">Konfirmasi Kata Sandi</label>
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off"
+                            placeholder="Masukkan Kata Sandi Anda Lagi"
+                            oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <small style="font-size: 12px;">Keterangan : Pastikan sama dengan kata sandi sebelumnya</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Daftar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+</div>
+
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Masuk</h5>
+            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+                    @csrf
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="youremail@example.com" required autocomplete="off" autofocus>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <div class="d-block">
+                        <label for="password" class="control-label">Kata Sandi</label>
+                        </div>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <div class="float-right mb-3">
+                            @if (Route::has('password.request'))
+                            <a class="text-small" href="{{ route('password.request') }}">
+                                {{ __('Lupa Kata Sandi?') }}
+                            </a>
+                            @endif
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-toggle="modal" data-target="#register" class="btn btn-danger" data-dismiss="modal">Daftar</a>
+                <button type="submit" class="btn btn-primary">Masuk</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
 
 {{-- Fasilitas --}}
 <section class="h-100 w-100" style="box-sizing: border-box; background-color: #f2f6ff" data-aos="fade-up">
@@ -428,12 +563,12 @@
 
 @endsection
 @push('after-script')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script> --}}
 <script src="{{ asset('fe/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('fe/js/owl.carousel.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-     $("#owl-image").owlCarousel({
+$("#owl-image").owlCarousel({
         autoplay:true,
         autoplayTimeout:5000,
         autoplayHoverPause:true, //Set AutoPlay to 3 seconds
@@ -452,11 +587,9 @@ $(document).ready(function() {
                 nav:true,
             }
         }
-     });
-   });
-</script>
-<script>
-    $('.featured-carousel').owlCarousel({
+    });
+});
+$('.featured-carousel').owlCarousel({
     loop:true,
     // margin:20,
     responsiveClass:true,
@@ -476,4 +609,5 @@ $(document).ready(function() {
     }
 })
 </script>
+
 @endpush
