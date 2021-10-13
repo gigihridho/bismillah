@@ -15,30 +15,34 @@
 
 
 #owl-image .item{
-      margin: 3px;
+    margin: 3px;
     }
-    #owl-image .item img{
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    .owl-carousel .owl-dots button:focus {
-  box-shadow: none !important;
-  outline: 0; }
+#owl-image .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.owl-carousel .owl-dots button:focus {
+    box-shadow: none !important;
+    outline: 0;
+}
 
-    .testi-carousel .owl-stage-outer {
-  padding: 50px 0; }
+.testi-carousel .owl-stage-outer {
+    padding: 50px 0;
+}
 
 .testi-carousel .owl-item {
-  overflow: hidden; }
+    overflow: hidden;
+}
 
 .testi-carousel__item {
-  background: #f7f9f9;
-  padding: 30px 25px;
-  transition: all .3s ease; }
-  .testi-carousel__item .media-body p {
+    background: #f7f9f9;
+    padding: 30px 25px;
+    transition: all .3s ease;
+}
+.testi-carousel__item .media-body p {
     margin-bottom: 12px; }
-  .testi-carousel__item::after {
+.testi-carousel__item::after {
     content: '';
     width: 0;
     height: 0;
@@ -49,35 +53,35 @@
     border-left: 500px solid rgba(255, 255, 255, 0.13);
     /* Maintain smooth edge of triangle in FF */
     -moz-transform: scale(0.9999); }
-  .testi-carousel__item:hover {
+.testi-carousel__item:hover {
     box-shadow: 0px 10px 20px 0px rgba(153, 153, 153, 0.2);
     background: #fff; }
 
 .testi-carousel__img {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  margin-right: 20px; }
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 20px; }
 
 .testi-carousel__intro h3 {
-  font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 5px; }
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 5px; }
 
 .testi-carousel__intro p {
-  font-size: 14px;
-  color: #999999; }
+    font-size: 14px;
+    color: #999999; }
 
 .testi-carousel .owl-dots .owl-dot span {
-  background: #cacccf; }
+    background: #CACCCF; }
 
 .testi-carousel .owl-dots .owl-dot.active span {
-  width: 12px;
-  height: 12px;
-  background: #6777EF; }
+    width: 12px;
+    height: 12px;
+    background: #6777EF; }
 </style>
 {{-- Hero --}}
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="beranda">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="beranda" data-aos="fade-down" data-aos-delay="100">
     <div class="container-xxl mx-auto p-0  position-relative header-2-2" style="font-family: 'Poppins', sans-serif">
     <div>
         <div class="mx-auto d-flex flex-lg-row flex-column hero">
@@ -118,6 +122,7 @@
     </div>
 </section>
 
+
 <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -133,34 +138,31 @@
                             <label for="name">Nama Lengkap</label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus placeholder="Masukkan Nama Anda"
                             oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            @if($errors->register->first('name'))
+                            <div class="alert alert-danger">
+                                {{$errors->register->first('name')}}
+                            </div>
+                            @endif
                         </div>
                         <div class="form-group col-12">
                             <label for="email">Email</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
                             oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            @if($errors->register->first('email'))
+                            <div class="alert alert-danger">
+                                {{$errors->register->first('email')}}
+                            </div>
+                            @endif
                         </div>
                         <div class="form-group col-12">
                             <label for="no_hp">No Telepon</label>
                             <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda"
                             oninvalid="this.setCustomValidity('Nomor telepon tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                @error('no_hp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            @if($errors->register->first('no_hp'))
+                            <div class="alert alert-danger">
+                                {{$errors->register->first('no_hp')}}
+                            </div>
+                            @endif
                             <small style="font-size: 12px;">Contoh: 08190211313</small>
                         </div>
                     </div>
@@ -170,24 +172,22 @@
                             <label for="password"class="d-block">Kata Sandi</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Masukkan Kata Sandi Anda"
                             oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            @if($errors->register->first('password'))
+                            <div class="alert alert-danger">
+                                {{$errors->register->first('password')}}
+                            </div>
+                            @endif
                         </div>
                         <div class="form-group col-12">
                             <label for="password-confirm"class="d-block">Konfirmasi Kata Sandi</label>
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off"
                             placeholder="Masukkan Kata Sandi Anda Lagi"
                             oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                            @error('password_confirmation')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            @if($errors->register->first('password_confirmation'))
+                            <div class="alert alert-danger">
+                                {{$errors->register->first('password_confirmation')}}
+                            </div>
+                            @endif
                             <small style="font-size: 12px;">Keterangan : Pastikan sama dengan kata sandi sebelumnya</small>
                         </div>
                     </div>
@@ -198,52 +198,58 @@
                 </form>
             </div>
         </div>
-        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Masuk</h5>
-            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="exampleModalLabel">Masuk</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
-                    @csrf
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="youremail@example.com" required autocomplete="off" autofocus>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <div class="d-block">
-                        <label for="password" class="control-label">Kata Sandi</label>
+                @csrf
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
+                        oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        @if($errors->login->first('email'))
+                        <div class="alert alert-danger">
+                            {{$errors->login->first('email')}}
                         </div>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <div class="float-right mb-3">
-                            @if (Route::has('password.request'))
-                            <a class="text-small" href="{{ route('password.request') }}">
-                                {{ __('Lupa Kata Sandi?') }}
-                            </a>
-                            @endif
-                        </div>
-                </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <div class="d-block">
+                            <label for="password" class="control-label">Kata Sandi</label>
+                            </div>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" autocomplete="current-password" required oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
+                                @if($errors->login->first('password'))
+                                <div class="alert alert-danger">
+                                    {{$errors->login->first('password')}}
+                                </div>
+                                @endif
+                                <div class="float-right mb-3">
+                                @if (Route::has('password.request'))
+                                <a class="text-small" href="{{ route('password.request') }}">
+                                    {{ __('Lupa Kata Sandi?') }}
+                                </a>
+                                @endif
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-danger" data-target="#register" data-toggle="modal" data-dismiss="modal">Daftar</a>
+                        <button type="submit" class="btn btn-primary">Masuk</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <a href="#" data-toggle="modal" data-target="#register" class="btn btn-danger" data-dismiss="modal">Daftar</a>
-                <button type="submit" class="btn btn-primary">Masuk</button>
-            </div>
-        </form>
         </div>
     </div>
 </div>
@@ -449,7 +455,7 @@
 </section>
 
 {{-- Room --}}
-<section class="h-100 w-100" style="box-sizing: border-box" id="kamar" data-aos="fade-down">
+<section class="h-100 w-100" style="box-sizing: border-box" id="kamar" data-aos="fade-up">
     <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Pilihan Kamar Kost</h1>
@@ -534,7 +540,7 @@
 </section>
 
 {{-- Review --}}
-<section class="h-100 w-100" style="box-sizing: border-box id="review" data-aos="fade-down">
+<section class="h-100 w-100" style="box-sizing: border-box id="review" data-aos="fade-up">
     <div class="review container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Review Kost</h1>
@@ -567,6 +573,18 @@
 <script src="{{ asset('fe/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('fe/js/owl.carousel.min.js') }}"></script>
 <script>
+@if($errors->register->first('email') || $errors->register->first('name') || $errors->register->first('no_hp') || $errors->register->first('password') || $errors->register->first('password_confirmation'))
+    $('#register').modal('show')
+@endif
+
+@if($errors->login->first('email') || $errors->login->first('password'))
+    $('#login').modal('show')
+@endif
+
+@if($errors->has('email'))
+    $('#login').modal('show')
+@endif
+
 $(document).ready(function() {
 $("#owl-image").owlCarousel({
         autoplay:true,

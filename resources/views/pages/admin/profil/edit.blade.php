@@ -28,7 +28,7 @@
                             </div>
                         @endif
                     <div class="card-header">
-                        <h4>Profil Admin</h4>
+                        <h4>Informasi Admin</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('change-profil-redirect','change-profil') }}" method="POST" enctype="multipart/form-data">
@@ -47,7 +47,7 @@
                             </div>
                             <div class="row">
                                 <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary px-5">
+                                    <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
                                         Simpan Data
                                     </button>
                                 </div>

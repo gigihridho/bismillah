@@ -49,19 +49,19 @@ class TransactionsController extends Controller
     }
     public function status(Request $request, $id){
         $transaksis = Booking::findOrFail($id);
-        $transaksis->status = "SUCCESS";
+        $transaksis->transaction_status = "SUCCESS";
         $transaksis->save();
-
+        Alert::success('SUCCESS','Data booking telah dikonfirmasi');
         return redirect()->route('transaksi');
     }
     public function batal(Request $request, $id){
         $transaksis = Booking::findOrFail($id);
         $kamar = Kamar::find($transaksis->kamar_id);
-        $transaksis->status = "CANCELLED";
-        $kamar->tersedia = 1;
+        $transaksis->transaction_status = "CANCELLED";
+        $kamar->status = 1;
         $kamar->save();
         $transaksis->save();
-
+        Alert::success('SUCCESS','Data booking telah dibatalkan');
         return redirect()->route('transaksi');
     }
 

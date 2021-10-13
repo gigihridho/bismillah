@@ -49,20 +49,20 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($tf->transaction_status == "PENDING")
+                                    @if($tf->status == "Menunggu")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($tf->transaction_status == "SUCCESS")
+                                    @elseif($tf->status == "Selesai")
                                         <span class="badge badge-success">Selesai</span>
-                                    @elseif($tf->transaction_status == "CANCELLED")
+                                    @elseif($tf->status == "Dibatalkan")
                                         <span class="badge badge-danger">Dibatalkan</span>
                                     @endif
                                 </td>
                                 <td>
                                     {{-- <div class="row"> --}}
-                                    @if($tf->transaction_status == "PENDING")
+                                    @if($tf->transaction_status == "Menunggu")
                                     <form action="{{ route('status',$tf->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
                                         @csrf
-                                        <button value="SUCCESS" id="transaction_status" name="transaction_status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">
+                                        <button value="Selesai" id="transaction_status" name="transaction_status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">
                                             <i class="fas fa-check"></i>
                                         </button>
                                         <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$tf->id) }}">
@@ -72,7 +72,7 @@
                                     <form action="{{ route('batal',$tf->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
                                         @csrf
                                         @method('PUT')
-                                        <button value="CANCELLED" type="submit" title="Hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm ml-1" onclick="return confirm('Anda ingin membatalkan pemesanan kamar ini ?')">
+                                        <button value="Dibatalkan" type="submit" title="Hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm ml-1" onclick="return confirm('Anda ingin membatalkan pemesanan kamar ini ?')">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                     </form>

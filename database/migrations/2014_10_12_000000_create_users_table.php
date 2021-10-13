@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('pekerjaan')->nullable();
             $table->string('bank')->nullable();
             $table->string('no_rekening')->nullable();
+            $table->string('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

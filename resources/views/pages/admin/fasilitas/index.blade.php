@@ -61,62 +61,62 @@
     </section>
     <div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah fasilitas</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form id="facilitas_store" action="{{ route('fasilitas.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Nama Fasilitas</label>
-                                <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" autocomplete="off" placeholder="Masukkan Fasilitas"/>
-                                @error('nama')
-                                    <div class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                @enderror
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah fasilitas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form id="facilitas_store" action="{{ route('fasilitas.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Nama Fasilitas</label>
+                                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" autocomplete="off" placeholder="Masukkan Fasilitas"/>
+                                    @error('nama')
+                                        <div class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-          </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            {{-- @foreach ($fasilitas as $fas) --}}
-            <form action="{{ route('fasilitas.update',$fas->id) }}" method="POST" enctype="multipart/form-data" id="form-edit">
-                @method("PUT")
-                @csrf
-                <div class="modal-body">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {{-- @foreach ($fasilitas as $fas) --}}
+                <form action="{{ route('fasilitas.update',$fas->id) }}" method="POST" enctype="multipart/form-data" id="form-edit">
+                    @method("PUT")
+                    @csrf
+                    <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary btn-update">Simpan</button>
-                </div>
-            </form>
-            {{-- @endforeach --}}
-          </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary btn-update">Simpan</button>
+                    </div>
+                </form>
+                {{-- @endforeach --}}
+            </div>
         </div>
     </div>
 </div>

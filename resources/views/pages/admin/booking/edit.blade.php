@@ -54,18 +54,18 @@
                                     <div class="form-group">
                                         <label>Status</label>
                                         <select name="status" id="status" class="form-control">
-                                            <option value="PENDING"
-                                            @if ($transaksis->transaction_status == 'PENDING')
+                                            <option value="Menunggu"
+                                            @if ($transaksis->status == 'Menunggu')
                                                 selected="selected"
                                             @endif>Menunggu
                                             </option>
-                                            <option value="SUCCESS"
-                                            @if ($transaksis->transaction_status == 'SUCCESS')
+                                            <option value="Selesai"
+                                            @if ($transaksis->status == 'Selesai')
                                                 selected="selected"
                                             @endif>Selesai
                                             </option>
-                                            <option value="CANCELLED"
-                                            @if ($transaksis->transaction_status == 'CANCELLED')
+                                            <option value="Dibatalkan"
+                                            @if ($transaksis->status == 'Dibatalkan')
                                                 selected="selected"
                                             @endif>Dibatalkan
                                             </option>

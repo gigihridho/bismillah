@@ -30,11 +30,7 @@ class BookingController extends Controller
         $this->middleware(['auth','verified']);
     }
 
-    public function confirmation(Request $request, $tipe_kamar_id){
-        $rules = [
-            'tanggal_masuk' => 'required|date|after_or_equal:today',
-        ];
-
+    public function confirmation(BookingRequest $request, $tipe_kamar_id){
         $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
         $harga = $tipe_kamar->harga;
         $new_tanggal_masuk = $request->input('tanggal_masuk');
@@ -72,7 +68,7 @@ class BookingController extends Controller
         $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
         $new_tanggal_masuk = $request->input('tanggal_masuk');
         $durasi = $request->input('durasi');
-        $kode = 'KOS'.date("ymd").mt_rand(000,999);
+        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
 
         if($durasi == 1){
             $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
@@ -89,7 +85,6 @@ class BookingController extends Controller
         $bookingg->tanggal_masuk = $request->input('tanggal_masuk');
         $bookingg->tanggal_keluar = $new_tanggal_keluar;
         $bookingg->tanggal_pesan = Carbon::now();
-        $bookingg->transaction_status = "PENDING";
         $bookingg->expired_at = Carbon::now()->addHours(24);
 
         $harga = $tipe_kamar->harga;
@@ -102,7 +97,6 @@ class BookingController extends Controller
         }
 
         $bookingg->total_harga = $total_harga;
-        // $bookingg->user_id = $user->id;
 
         $booking = new Booking($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar);
 
@@ -113,199 +107,9 @@ class BookingController extends Controller
         $bookingg->save();
         $kamar->status = 0;
         $kamar->save();
-
-        Config::$serverKey = config('services.midtrans.serverKey');
-        Config::$isProduction = config('services.midtrans.isProduction');
-        Config::$isSanitized = config('services.midtrans.isSanitized');
-        Config::$is3ds = config('services.midtrans.is3ds');
-
-        $token_id = $_POST['token_id'];
-        //array midtrans
-        $midtrans = array(
-            'transaction_details' => array(
-                'order_id' => $kode,
-                'gross_amount' => $total_harga,
-            ),
-            'credit_card'  => array(
-                'token_id'      => $token_id,
-                'authentication'=> true,
-        //        'bank'          => 'bni', // optional to set acquiring bank
-        //        'save_token_id' => true   // optional for one/two clicks feature
-            ),
-            'customer_details' => array(
-                'first_name' => Auth::user()->name,
-                'email' => Auth::user()->email,
-                'phone' => Auth::user()->no_hp,
-            ),
-            'enabled_payments' => array(
-                'gopay', 'bni_va','bank_transfer'
-            ),
-            'vtweb' => array()
-        );
-        try {
-            // Get Snap Payment Page URL
-            $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
-
-            // Redirect to Snap Payment Page
-            return redirect($paymentUrl);
-        }
-        catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');
+        return redirect()->route('upload');
     }
-
-    public function callback(Request $request){
-        Config::$serverKey = config('services.midtrans.serverKey');
-        Config::$isProduction = config('services.midtrans.isProduction');
-        Config::$isSanitized = config('services.midtrans.isSanitized');
-        Config::$is3ds = config('services.midtrans.is3ds');
-
-        // Buat instance midtrans notification
-        $notification = new Notification();
-
-        // Assign ke variable untuk memudahkan coding
-        $status = $notification->transaction_status;
-        $type = $notification->payment_type;
-        $fraud = $notification->fraud_status;
-        $order_id = $notification->order_id;
-
-        // Cari transaksi berdasarkan ID
-        $transaction = AppBooking::where('kode',$order_id)->first();
-
-        // Handle notification status midtrans
-        if ($status == 'capture') {
-            if ($type == 'credit_card'){
-                if($fraud == 'challenge'){
-                    $transaction->transaction_status = 'PENDING';
-                    echo "Transaction order_id: " . $order_id ." is challenged by FDS";
-                }
-                else {
-                    $transaction->transaction_status = 'SUCCESS';
-                    echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
-                }
-            }
-        }
-        else if ($status == 'SETTLEMENT'){
-            $transaction->transaction_status = 'SUCCESS';
-            echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
-        }
-        else if($status == 'PENDING'){
-            $transaction->transaction_status = 'PENDING';
-            echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
-        }
-        else if ($status == 'DENY') {
-            $transaction->transaction_status = 'CANCELLED';
-            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
-        }
-        else if ($status == 'EXPIRE') {
-            $transaction->transaction_status = 'CANCELLED';
-            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
-        }
-        else if ($status == 'CANCEL') {
-            $transaction->transaction_status = 'CANCELLED';
-            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
-        }
-
-        // Simpan transaksi
-        $transaction->save();
-
-        // Kirimkan email
-        if ($transaction)
-        {
-            if($status == 'capture' && $fraud == 'accept' )
-            {
-
-            }
-            else if ($status == 'SETTLEMENT')
-            {
-                //
-            }
-            else if ($status == 'SUCCESS')
-            {
-                //
-            }
-            else if($status == 'capture' && $fraud == 'challenge' )
-            {
-                return response()->json([
-                    'meta' => [
-                        'code' => 200,
-                        'message' => 'Midtrans Payment Challenge'
-                    ]
-                ]);
-            }
-            else
-            {
-                return response()->json([
-                    'meta' => [
-                        'code' => 200,
-                        'message' => 'Midtrans Payment not Settlement'
-                    ]
-                ]);
-            }
-
-            return response()->json([
-                'meta' => [
-                    'code' => 200,
-                    'message' => 'Midtrans Notification Success'
-                ]
-            ]);
-        }
-    }
-
-    public function success(){
-        return view('pages.user.success');
-    }
-
-    public function gagal(){
-        return view('pages.user.gagal');
-    }
-    // public function booking(BookingRequest $request, $tipe_kamar_id){
-    //     $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
-    //     $new_tanggal_masuk = $request->input('tanggal_masuk');
-    //     $durasi = $request->input('durasi');
-    //     $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
-
-    //     if($durasi == 1){
-    //         $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
-    //     }elseif($durasi == 6){
-    //         $new_tanggal_keluar = date('Y-m-d', strtotime('+6 month', strtotime($request->tanggal_masuk)));
-    //     }else {
-    //         $new_tanggal_keluar = date('Y-m-d', strtotime('+12 month', strtotime($request->tanggal_masuk)));
-    //     }
-    //     $rules['booking_validation'] = [new KamarTersedia($tipe_kamar,$new_tanggal_masuk,$new_tanggal_keluar)];
-
-    //     $bookingg = new AppBooking();
-    //     $user = Auth::user();
-    //     $bookingg->kode = $kode;
-    //     $bookingg->tanggal_masuk = $request->input('tanggal_masuk');
-    //     $bookingg->tanggal_keluar = $new_tanggal_keluar;
-    //     $bookingg->tanggal_pesan = Carbon::now();
-    //     $bookingg->expired_at = Carbon::now()->addHours(24);
-
-    //     $harga = $tipe_kamar->harga;
-    //     if($durasi == 1){
-    //         $total_harga = $durasi * $harga;
-    //     } elseif($durasi == 6){
-    //         $total_harga = $durasi * $harga - (0.5 * $harga);
-    //     } elseif($durasi == 12){
-    //         $total_harga = $durasi * $harga - (1 * $harga);
-    //     }
-
-    //     $bookingg->total_harga = $total_harga;
-    //     $bookingg->user_id = $user->id;
-
-    //     $booking = new Booking($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar);
-
-    //     $kamar = Kamar::where('nomor_kamar', $booking->available_nomor_kamar())->first();
-
-    //     $bookingg->kamar_id = $kamar->id;
-    //     $bookingg->user_id = $user->id;
-    //     $bookingg->save();
-    //     $kamar->status = 0;
-    //     $kamar->save();
-    //     Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');
-    //     return redirect()->route('upload');
-    // }
 
     public function show(){
         $transaction = AppBooking::with('user','kamar')->where('user_id',Auth::user()->id)->latest()->first();
@@ -336,3 +140,195 @@ class BookingController extends Controller
     }
 
 }
+
+// public function booking(BookingRequest $request, $tipe_kamar_id){
+//     $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
+//     $new_tanggal_masuk = $request->input('tanggal_masuk');
+//     $durasi = $request->input('durasi');
+//     $kode = 'KOS'.date("ymd").mt_rand(000,999);
+
+//     if($durasi == 1){
+//         $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
+//     }elseif($durasi == 6){
+//         $new_tanggal_keluar = date('Y-m-d', strtotime('+6 month', strtotime($request->tanggal_masuk)));
+//     }else {
+//         $new_tanggal_keluar = date('Y-m-d', strtotime('+12 month', strtotime($request->tanggal_masuk)));
+//     }
+//     $rules['booking_validation'] = [new KamarTersedia($tipe_kamar,$new_tanggal_masuk,$new_tanggal_keluar)];
+
+//     $bookingg = new AppBooking();
+//     $user = Auth::user();
+//     $bookingg->kode = $kode;
+//     $bookingg->tanggal_masuk = $request->input('tanggal_masuk');
+//     $bookingg->tanggal_keluar = $new_tanggal_keluar;
+//     $bookingg->tanggal_pesan = Carbon::now();
+//     $bookingg->transaction_status = "PENDING";
+//     $bookingg->expired_at = Carbon::now()->addHours(24);
+
+//     $harga = $tipe_kamar->harga;
+//     if($durasi == 1){
+//         $total_harga = $durasi * $harga;
+//     } elseif($durasi == 6){
+//         $total_harga = $durasi * $harga - (0.5 * $harga);
+//     } elseif($durasi == 12){
+//         $total_harga = $durasi * $harga - (1 * $harga);
+//     }
+
+//     $bookingg->total_harga = $total_harga;
+//     // $bookingg->user_id = $user->id;
+
+//     $booking = new Booking($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar);
+
+//     $kamar = Kamar::where('nomor_kamar', $booking->available_nomor_kamar())->first();
+
+//     $bookingg->kamar_id = $kamar->id;
+//     $bookingg->user_id = $user->id;
+//     $bookingg->save();
+//     $kamar->status = 0;
+//     $kamar->save();
+
+//     Config::$serverKey = config('services.midtrans.serverKey');
+//     Config::$isProduction = config('services.midtrans.isProduction');
+//     Config::$isSanitized = config('services.midtrans.isSanitized');
+//     Config::$is3ds = config('services.midtrans.is3ds');
+
+//     $token_id = $_POST['token_id'];
+//     //array midtrans
+//     $midtrans = array(
+//         'transaction_details' => array(
+//             'order_id' => $kode,
+//             'gross_amount' => $total_harga,
+//         ),
+//         'credit_card'  => array(
+//             'token_id'      => $token_id,
+//             'authentication'=> true,
+//     //        'bank'          => 'bni', // optional to set acquiring bank
+//     //        'save_token_id' => true   // optional for one/two clicks feature
+//         ),
+//         'customer_details' => array(
+//             'first_name' => Auth::user()->name,
+//             'email' => Auth::user()->email,
+//             'phone' => Auth::user()->no_hp,
+//         ),
+//         'enabled_payments' => array(
+//             'gopay', 'bni_va','bank_transfer'
+//         ),
+//         'vtweb' => array()
+//     );
+//     try {
+//         // Get Snap Payment Page URL
+//         $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
+
+//         // Redirect to Snap Payment Page
+//         return redirect($paymentUrl);
+//     }
+//     catch (Exception $e) {
+//         echo $e->getMessage();
+//     }
+// }
+
+// public function callback(Request $request){
+//     Config::$serverKey = config('services.midtrans.serverKey');
+//     Config::$isProduction = config('services.midtrans.isProduction');
+//     Config::$isSanitized = config('services.midtrans.isSanitized');
+//     Config::$is3ds = config('services.midtrans.is3ds');
+
+//     // Buat instance midtrans notification
+//     $notification = new Notification();
+
+//     // Assign ke variable untuk memudahkan coding
+//     $status = $notification->transaction_status;
+//     $type = $notification->payment_type;
+//     $fraud = $notification->fraud_status;
+//     $order_id = $notification->order_id;
+
+//     // Cari transaksi berdasarkan ID
+//     $transaction = AppBooking::where('kode',$order_id)->first();
+
+//     // Handle notification status midtrans
+//     if ($status == 'capture') {
+//         if ($type == 'credit_card'){
+//             if($fraud == 'challenge'){
+//                 $transaction->transaction_status = 'PENDING';
+//                 echo "Transaction order_id: " . $order_id ." is challenged by FDS";
+//             }
+//             else {
+//                 $transaction->transaction_status = 'SUCCESS';
+//                 echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
+//             }
+//         }
+//     }
+//     else if ($status == 'SETTLEMENT'){
+//         $transaction->transaction_status = 'SUCCESS';
+//         echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
+//     }
+//     else if($status == 'PENDING'){
+//         $transaction->transaction_status = 'PENDING';
+//         echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
+//     }
+//     else if ($status == 'DENY') {
+//         $transaction->transaction_status = 'CANCELLED';
+//         echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
+//     }
+//     else if ($status == 'EXPIRE') {
+//         $transaction->transaction_status = 'CANCELLED';
+//         echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
+//     }
+//     else if ($status == 'CANCEL') {
+//         $transaction->transaction_status = 'CANCELLED';
+//         echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
+//     }
+
+//     // Simpan transaksi
+//     $transaction->save();
+
+//     // Kirimkan email
+//     if ($transaction)
+//     {
+//         if($status == 'capture' && $fraud == 'accept' )
+//         {
+
+//         }
+//         else if ($status == 'SETTLEMENT')
+//         {
+//             //
+//         }
+//         else if ($status == 'SUCCESS')
+//         {
+//             //
+//         }
+//         else if($status == 'capture' && $fraud == 'challenge' )
+//         {
+//             return response()->json([
+//                 'meta' => [
+//                     'code' => 200,
+//                     'message' => 'Midtrans Payment Challenge'
+//                 ]
+//             ]);
+//         }
+//         else
+//         {
+//             return response()->json([
+//                 'meta' => [
+//                     'code' => 200,
+//                     'message' => 'Midtrans Payment not Settlement'
+//                 ]
+//             ]);
+//         }
+
+//         return response()->json([
+//             'meta' => [
+//                 'code' => 200,
+//                 'message' => 'Midtrans Notification Success'
+//             ]
+//         ]);
+//     }
+// }
+
+// public function success(){
+//     return view('pages.user.success');
+// }
+
+// public function gagal(){
+//     return view('pages.user.gagal');
+// }

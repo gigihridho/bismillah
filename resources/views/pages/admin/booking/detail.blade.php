@@ -33,11 +33,11 @@
                                         <div>
                                         <h6 class="my-0">Status</h6>
                                         </div>
-                                        @if($tf->transaction_status == "PENDING")
+                                        @if($tf->status == "Menunggu")
                                             <span class="badge badge-warning">Menunggu</span>
-                                        @elseif($tf->transaction_status == "SUCCESS")
+                                        @elseif($tf->status == "Selesai")
                                             <span class="badge badge-success">Selesai</span>
-                                        @elseif($tf->transaction_status == "CANCELLED")
+                                        @elseif($tf->status == "Dibatalkan")
                                             <span class="badge badge-danger">Dibatalkan</span>
                                         @endif
                                     </li>

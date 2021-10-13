@@ -38,7 +38,7 @@ p.required-field::after {
 </style>
 <section class="h-100 w-100 bg-white pb-5" style="box-sizing: border-box">
     <div class="detail-1 container mx-auto p-0  position-relative detail-content" style="font-family: 'Poppins', sans-serif">
-        <div class="row">
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
             <nav aria-label="breadcrumb" class="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Home</li>
@@ -52,31 +52,33 @@ p.required-field::after {
                 <div class="row">
                     @php $incrementTipeKamar = 0 @endphp
                     @forelse ($tipe_kamars as $tipe_kamar)
-                    <div class="col-lg-8" style="margin-bottom: 10px;">
-                        <img src="{{Storage::url($tipe_kamar->foto) }}" alt="" height="90%" width="80%">
+                    <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                        <img src="{{Storage::url($tipe_kamar->foto) }}" alt="" height="80%" width="90%">
                     </div>
                     @empty
                     <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
                         Tipe Kamar Tidak Ditemukan
                     </div>
                     @endforelse
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="card-body shadow-lg p-3 mb-5 bg-white rounded">
                             <form action="{{ route('confirmation',$tipe_kamar->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input name="booking_validation" type="hidden" value="0">
                             <div class="form-group" style="margin-bottom: 1rem">
                                 <label for="date" style="margin-bottom: 0.5rem">Pilih tanggal masuk</label>
-                                <div class="input-group">
+                                <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                     </div>
                                         <input type="text" data-provide="datepicker" class="form-control" id="tanggal_masuk" name="tanggal_masuk" placeholder="Tanggal Masuk" value="" readonly="">
                                 </div>
-                                @error('tanggal_masuk')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                @if ($errors->has('tanggal_masuk'))
+                                    @foreach ($errors->get('tanggal_masuk') as $error)
+                                        <div class="alert alert-danger">
+                                            {{ $error }}
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="durasi" style="margin-bottom: 0.5rem">Durasi Sewa</label>
@@ -112,12 +114,108 @@ p.required-field::after {
                 </div>
             </div>
         </div>
+        @if ($errors->register->any())
+        {{-- @foreach ($errors->register->all() as $error)
+            <div class="alert alert-danger">
+                {{ $error }}
+            </div>
+        @endforeach --}}
+        <p>Errors</p>
+        @endif
+
+        <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Daftar Akun</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('register') }}" class="needs-validation" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <label for="name">Nama Lengkap</label>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus placeholder="Masukkan Nama Anda"
+                                    oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                                    @if($errors->register->first('name'))
+                                    <div class="alert alert-danger">
+                                        {{$errors->register->first('name')}}
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
+                                    oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                                    @if($errors->register->first('email'))
+                                    <div class="alert alert-danger">
+                                        {{$errors->register->first('email')}}
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="no_hp">No Telepon</label>
+                                    <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda"
+                                    oninvalid="this.setCustomValidity('Nomor telepon tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                                    @if($errors->register->first('no_hp'))
+                                    <div class="alert alert-danger">
+                                        {{$errors->register->first('no_hp')}}
+                                    </div>
+                                    @endif
+                                    <small style="font-size: 12px;">Contoh: 08190211313</small>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <label for="password"class="d-block">Kata Sandi</label>
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Masukkan Kata Sandi Anda"
+                                    oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                                    @if($errors->register->first('password'))
+                                    <div class="alert alert-danger">
+                                        {{$errors->register->first('password')}}
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="password-confirm"class="d-block">Konfirmasi Kata Sandi</label>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off"
+                                    placeholder="Masukkan Kata Sandi Anda Lagi"
+                                    oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                                    @if($errors->register->first('password_confirmation'))
+                                    <div class="alert alert-danger">
+                                        {{$errors->register->first('password_confirmation')}}
+                                    </div>
+                                    @endif
+                                    <small style="font-size: 12px;">Keterangan : Pastikan sama dengan kata sandi sebelumnya</small>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Daftar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Masuk</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Masuk
+                        </h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
@@ -130,17 +228,22 @@ p.required-field::after {
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                            @if($errors->login->first('email'))
+                            <div class="alert alert-danger">
+                                {{$errors->login->first('email')}}
+                            </div>
+                            @endif
                         </div>
                         <div class="form-group">
                             <div class="d-block">
                             <label for="password" class="control-label">Kata Sandi</label>
                             </div>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @if($errors->login->first('password'))
+                                <div class="alert alert-danger">
+                                    {{$errors->login->first('password')}}
+                                </div>
+                                @endif
                             <div class="float-right mb-3">
                             @if (Route::has('password.request'))
                             <a class="text-small" href="{{ route('password.request') }}">
@@ -151,14 +254,16 @@ p.required-field::after {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" data-toggle="modal" data-target="#register" class="btn btn-danger" data-dismiss="modal">Daftar</a>
+                        <a href="#" data-toggle="modal" data-target="#register" data-dismiss="modal" class="btn btn-danger">Daftar</a>
                         <button type="submit" class="btn btn-primary">Masuk</button>
                     </div>
                 </form>
                 </div>
             </div>
         </div>
-        <div class="kost-detail mb-4">
+
+
+        <div class="kost-detail mb-4" data-aos="fade-up" data-aos-delay="100">
             <section class="kost-heading">
                 <div class="container">
                     <div class="row">
@@ -198,6 +303,8 @@ p.required-field::after {
         </div>
     </div>
 </section>
+
+{{-- Cek Profil --}}
 @if(Auth::check() && !Auth::user()->foto_ktp)
 <div id="myModal" class="modal fade hide fade in" role="dialog" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
@@ -222,8 +329,16 @@ p.required-field::after {
 <script>
     $('#myModal').modal('show');
 
-    @if ($errors->has('email')||$errors->has('password'))
+    @if($errors->register->first('email') || $errors->register->first('name') || $errors->register->first('no_hp') || $errors->register->first('password') || $errors->register->first('password_confirmation'))
+        $('#register').modal('show')
+    @endif
+
+    @if ($errors->login->first('email')||$errors->login->first('password'))
         $('#login').modal('show');
+    @endif
+
+    @if($errors->has('email'))
+        $('#login').modal('show')
     @endif
 
     $(function () {

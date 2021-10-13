@@ -88,6 +88,17 @@ label:hover {
     opacity: 80%;
 }
 
+#myImg:hover {opacity: 0.7;}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
 </style>
 <div class="main-content">
     <section class="section">
@@ -146,7 +157,9 @@ label:hover {
                                         @if ($tf->status == "Dibatalkan")
                                             <i class="fas fa-upload" style="color: white;"></i>
                                         @elseif($tf->bukti_pembayaran != null)
-                                            <img height="100px" id="myImg" width="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="image">
+                                            <img id="myImg" height="100px" id="myImg" width="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="image" style="border-radius: 5px;
+                                            cursor: pointer;
+                                            transition: 0.3s;">
                                         @else
                                         <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
                                             <i class="fas fa-upload" style="color: white;"></i>
@@ -187,6 +200,29 @@ label:hover {
             </div>
         </div>
     </section>
+    {{-- Modal --}}
+    <div id="myModal" class="modal fade" style="
+                display: none;
+                position: fixed;
+                z-index: 1;
+                padding-top: 100px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0,0.9);" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="img">
+            <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                <img class="modal-content" id="img01" style="max-width: 25%; margin:auto;">
+                <div id="caption"></div>
+            </div>
+        </div>
+    </div>
     <!-- Modal -->
     @foreach ($transaction as $tf)
     <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -322,5 +358,24 @@ label:hover {
             previewImage.setAttribute("src", "");
         }
     });
+
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("myImg");
+    var modalImg = document.getElementById("img01");
+    img.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
 </script>
 @endpush

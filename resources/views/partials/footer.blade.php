@@ -3,7 +3,7 @@
     color: white;
 }
 </style>
-<section class="h-100 w-100" id="footer" style="box-sizing: border-box; background-color:#6777df;" >
+<section class="h-100 w-100" id="footer" style="box-sizing: border-box; background-color:#6777df;" data-aos="fade-up" data-aos-delay="100">
 <div class="footer-2-2 container-xxl mx-auto position-relative p-0" style="font-family: 'Poppins', sans-serif">
     <div class="list-footer">
         <div class="row gap-md-0 gap-3">

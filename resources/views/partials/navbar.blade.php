@@ -1,4 +1,4 @@
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+<section class="h-100 w-100 bg-white" z-index="99" style="box-sizing: border-box">
 <div class="container-xxl mx-auto p-0  position-relative header-2-2" style="font-family: 'Poppins', sans-serif">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a href={{ route('home') }}>
