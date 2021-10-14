@@ -417,7 +417,7 @@
                         <h3 class="review-title text-center" style="opacity: 0.5">
                             {{ $r->review }}</h3>
                         <h4 class="review-caption text-center">
-                            {{ $r->user->nama }}
+                            {{ $r->user->name }}
                         </h4>
                         <h6 class="review-caption text-center">
                             {{ $r->user->profession }}

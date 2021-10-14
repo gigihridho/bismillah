@@ -96,7 +96,6 @@
     .border-line {
         border-right: none
     }
-
 }
 .required:after {
     content:" *";
