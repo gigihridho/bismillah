@@ -7,11 +7,15 @@
 @section('content')
 
 <style type="text/css">
-    @media (max-width: 417px) {
-            .tombol .btn.simpan {
-            margin-bottom: 10px;
-            }
-        }
+.required:after {
+    content:" *";
+    color: red;
+}
+@media (max-width: 417px) {
+    .tombol .btn.simpan {
+    margin-bottom: 10px;
+    }
+}
 </style>
 
 <div class="main-content">
@@ -47,28 +51,28 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Deskripsi</label>
+                                    <label class="required">Deskripsi</label>
                                     <input type="text" name="deskripsi" class="form-control"
                                     value="{{$data->deskripsi  }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Tanggal Transaksi</label>
+                                    <label class="required">Tanggal Transaksi</label>
                                     <input type="date" name="tanggal" class="form-control"
                                     value="{{$data->tanggal  }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Nominal</label>
+                                    <label class="required">Nominal</label>
                                     <input type="number" name="nominal" class="form-control"
                                     value="{{ $data->nominal }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Foto Bukti Pengeluaran</label>
+                                    <label class="required">Foto Bukti Pengeluaran</label>
                                     <input type="file" id="input_photo" name="photo" class="form-control mb-2">
                                     @if ($data->foto != null)
                                         <img id="img_photo" src="{{ Storage::url($data->foto) }}" width="150px" height="180px" alt="foto"

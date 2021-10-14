@@ -60,7 +60,7 @@
             @if(auth()->user()->hasRole('user'))
             <li class="menu-header">Dashboard</li>
                 <li class="{{ (request()->is('user/user-transaksi*')) ? 'active' : '' }}">
-                    <a href="{{ route('user-transaksi') }}" class="nav-link"><i class="fas fa-sign-in-alt"></i> <span>Booking</span></a>
+                    <a href="{{ route('user-transaksi') }}" class="nav-link"><i class="fas fa-calendar-check"></i> <span>Pemesanan</span></a>
                 </li>
                 <li class="{{ (request()->is('user/review*')) ? 'active' : '' }}">
                     <a href="{{ route('review-user') }}" class="nav-link"><i class="fas fa-comments"></i> <span>Review</span></a>

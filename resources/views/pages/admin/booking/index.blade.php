@@ -36,7 +36,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($transaksis as $index => $tf)
+                            @foreach ($pemesanans as $index => $tf)
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $tf->user->name }}</td>
@@ -45,7 +45,7 @@
                                     @if($tf->bukti_pembayaran != null)
                                         <img height="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="" onclick="blank">
                                     @else
-                                        <span class="badge badge-warning">Belum Upload</span>
+                                        <span class="badge badge-danger">Belum Upload</span>
                                     @endif
                                 </td>
                                 <td>
@@ -59,13 +59,13 @@
                                 </td>
                                 <td>
                                     {{-- <div class="row"> --}}
-                                    @if($tf->transaction_status == "Menunggu")
+                                    @if($tf->status == "Menunggu")
                                     <form action="{{ route('status',$tf->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
                                         @csrf
-                                        <button value="Selesai" id="transaction_status" name="transaction_status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">
+                                        <button value="Selesai" id="status" name="status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">
                                             <i class="fas fa-check"></i>
                                         </button>
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$tf->id) }}">
+                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('detail-booking',$tf->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
                                     </form>
@@ -78,7 +78,7 @@
                                     </form>
                                 {{-- </div> --}}
                                     @else
-                                    <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$tf->id) }}">
+                                    <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('detail-booking',$tf->id) }}">
                                         <i class="far fa-eye"></i>
                                     </a>
                                     @endif

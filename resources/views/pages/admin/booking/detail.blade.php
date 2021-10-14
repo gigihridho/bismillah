@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-md-6 order-md-2 mb-4">
                         <ul class="list-group list-group-flush mb-3">
-                            @foreach ($transaksis as $index => $tf)
+                            @foreach ($pemesanans as $index => $tf)
                             {{-- <div class="row">
                                 <div class="col-md-6 mb-3"> --}}
                                     <li class="list-group-item d-flex justify-content-between lh-condensed">

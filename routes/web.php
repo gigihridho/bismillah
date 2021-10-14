@@ -57,15 +57,15 @@ Route::prefix('admin')
 
         Route::resource('fasilitas','Admin\FasilitasController');
 
-        Route::get('booking','Admin\TransactionsController@index')->name('transaksi');
-        Route::get('booking/selesai', 'Admin\TransactionsController@selesai')->name('selesai');
-        Route::get('booking/menunggu','Admin\TransactionsController@menunggu')->name('menunggu');
-        Route::get('booking/batal','Admin\TransactionsController@cancel')->name('dibatalkan');
-        Route::post('booking/{id}','Admin\TransactionsController@status')->name('status');
-        Route::put('booking/{id}','Admin\TransactionsController@batal')->name('batal');
-        Route::get('booking/{id}/edit','Admin\TransactionsController@edit');
-        Route::put('booking/{id}/edit','Admin\TransactionsController@update');
-        Route::get('booking/detail/{id}','Admin\TransactionsController@detail')->name('detail-booking');
+        Route::get('booking','Admin\PemesananController@index')->name('transaksi');
+        Route::get('booking/selesai', 'Admin\PemesananController@selesai')->name('selesai');
+        Route::get('booking/menunggu','Admin\PemesananController@menunggu')->name('menunggu');
+        Route::get('booking/batal','Admin\PemesananController@cancel')->name('dibatalkan');
+        Route::post('booking/{id}','Admin\PemesananController@status')->name('status');
+        Route::put('booking/{id}','Admin\PemesananController@batal')->name('batal');
+        Route::get('booking/{id}/edit','Admin\PemesananController@edit');
+        Route::put('booking/{id}/edit','Admin\PemesananController@update');
+        Route::get('booking/detail/{id}','Admin\PemesananController@detail')->name('detail-booking');
 
         Route::get('pemasukan','Admin\PemasukanController@index')->name('pemasukan');
         Route::post('pemasukan','Admin\PemasukanController@search')->name('search');
@@ -81,7 +81,7 @@ Route::prefix('admin')
         Route::get('change-pass', 'Admin\ChangePasswordController@edit')->name('change-pass-edit');
         Route::post('change-pass', 'Admin\ChangePasswordController@update')->name('change-pass-update');
         Route::get('change-profil', 'Admin\ChangeProfilController@profil')->name('change-profil');
-        Route::post('change-profil/{redirect}', 'Admin\ChangeProfilController@update')->name('change-profil-redirect');
+        Route::post('change-profil/{id}', 'Admin\ChangeProfilController@update')->name('change-profil-redirect');
 
         Route::resource('tipe', 'Admin\TipeKamarController');
 

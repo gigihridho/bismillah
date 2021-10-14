@@ -17,20 +17,21 @@ class ProfilUserController extends Controller
             'data' => $data
         ]);
     }
+
     public function avatar(Request $request){
         $request->validate([
             'avatar' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
-        $id = Auth::user()->id;
         $data = User::where('id', Auth::user()->id)->first();
         if($request->hasFile('avatar')){
             $path = $request->file('avatar')->store('assets/avatar','public');
             $data->avatar = $path;
         }
         $data->save();
-        Alert::success('SUCCESS','Bukti pembayaran berhasil disimpan');
+        Alert::success('SUCCESS','Foto profil berhasil diubah');
         return redirect()->back();
     }
+
     public function user(){
         $data = User::where('id',Auth::user()->id)->get();
         return view('pages.user.profil.edit',[
@@ -41,7 +42,7 @@ class ProfilUserController extends Controller
     public function update(ProfilUserRequest $request, $id){
         $data = User::where('id',$id)->first();
         $data->name = $request->name;
-        // $data->email = $request->email;
+        $data->email = $request->email;
         $data->no_hp = $request->no_hp;
         $data->pekerjaan = $request->pekerjaan;
         $data->alamat = $request->alamat;

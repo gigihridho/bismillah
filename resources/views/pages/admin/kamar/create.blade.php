@@ -3,7 +3,17 @@
 @section('title')
     Kamar
 @endsection
-
+<style>
+.required:after {
+    content:" *";
+    color: red;
+}
+@media (max-width: 427px) {
+    .tombol .btn.simpan {
+        margin-bottom: 10px;
+    }
+}
+</style>
 @section('content')
 <div class="main-content">
     <section class="section">
@@ -37,7 +47,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Nomor Kamar</label>
+                                    <label class="required">Nomor Kamar</label>
                                     <input type="text" name="nomor_kamar" class="form-control"
                                     placeholder="Masukkan Nomor Kamar" value="{{ old('nomor_kamar') }}" autocomplete="off">
                                     <small>Contoh: 1</small>
@@ -45,7 +55,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Status</label>
+                                    <label class="required">Status</label>
                                     <select name="tersedia" id="tersedia" class="form-control">
                                         <option value="1"
                                             @if (old('status') == '1')selected="selected" @endif" >
@@ -59,13 +69,16 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
-                                        Simpan Data
-                                    </button>
-                                </div>
+                        <div class="row tombol">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
+                                    Simpan Data
+                                </button>
+                                <a href="/admin/tipe/{{ $tipe_kamar->id }}/kamar" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
+                                    Batal
+                                </a>
                             </div>
+                        </div>
                         </div>
                     </form>
                     </div>

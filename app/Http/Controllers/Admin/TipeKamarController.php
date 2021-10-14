@@ -7,6 +7,7 @@ use App\TipeKamar;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TipeKamarEditRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\TipeKamarRequest;
@@ -58,21 +59,7 @@ class TipeKamarController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id){
-        $rules = [
-            'nama' => 'required|max:30|unique:tipe_kamars,nama,'.$id,
-            'foto' => 'image|max:2048|mimes:jpg,png,jpeg',
-            'lantai' => 'required|integer',
-            'harga' => 'required|integer',
-            'ukuran' => 'required|string',
-            'fasilitas' => 'array',
-        ];
-        $validator = Validator::make($request->all(),$rules);
-        if ($validator->fails()) {
-            return redirect()->back()
-            ->withInput($request->all())
-            ->withErrors($validator);
-        }
+    public function update(TipeKamarEditRequest $request, $id){
         $data = TipeKamar::where('id',$id)->first();
         $data->nama = $request->nama;
         $data->lantai = $request->lantai;

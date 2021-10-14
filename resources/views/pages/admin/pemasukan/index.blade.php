@@ -57,7 +57,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($transaksis as $index => $tf)
+                            @foreach ($pemesanans as $index => $tf)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $tf->kode }}</td>

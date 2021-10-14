@@ -20,7 +20,7 @@
         line-height: 20px;
     }
     a{
-        color: #6777ef;
+        color: red;
         font-weight: 500;
         -webkit-transition: all 0.5s
     }
@@ -60,8 +60,8 @@
 }
 
 .image {
-    width: 5000px;
-    height: 400px
+    width: 500px;
+    height: 300px
 }
 
 .border-line {
@@ -98,6 +98,10 @@
     }
 
 }
+.required:after {
+    content:" *";
+    color: red;
+}
 </style>
 <div id="app">
     <section class="section" style="background: #F2F6FF" data-aos="fade-up">
@@ -119,7 +123,7 @@
                                     <h6 class="mb-0 mr-4 mt-2"><strong>Masuk Akun</strong></h6>
                                 </div>
                                 <div class="form-group px-3 mb-4">
-                                    <label for="email" class="mb-2">Email</label>
+                                    <label for="email" class="mb-2 required">Email</label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
                                     oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
                                     @error('email')
@@ -130,7 +134,7 @@
                                 </div>
                                 <div class="form-group px-3 mb-4">
                                     <div class="d-block">
-                                        <label for="password" class="control-label mb-2">Kata Sandi</label>
+                                        <label for="password" class="control-label mb-2 required">Kata Sandi</label>
                                         </div>
                                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
                                             @error('password')
@@ -140,7 +144,7 @@
                                             @enderror
                                             <div class="float-right mb-4">
                                             @if (Route::has('password.request'))
-                                            <a class="text-small" href="{{ route('password.request') }}">
+                                            <a class="text-small" style="color:blue" href="{{ route('password.request') }}">
                                                 {{ __('Lupa Kata Sandi?') }}
                                             </a>
                                             @endif
@@ -154,7 +158,7 @@
                                 </div>
                                 </form>
                             <div class="mb-3 text-muted text-center">
-                                Belum punya akun? <a href="{{ route('register') }}">Daftar sekarang</a>
+                                Belum punya akun? <a href="{{ route('register') }}" style="color:red">Daftar sekarang</a>
                             </div>
                         </div>
                     </div>

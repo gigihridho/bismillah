@@ -21,17 +21,18 @@ class KamarController extends Controller
 
     public function index($id){
         $tipe_kamars = TipeKamar::find($id);
-
         return view('pages.admin.kamar.index',[
             'tipe_kamar' => $tipe_kamars
         ]);
     }
+
     public function create($id){
         $tipe_kamar = TipeKamar::find($id);
         return view('pages.admin.kamar.create',[
             'tipe_kamar' => $tipe_kamar
         ]);
     }
+
     public function store($id, KamarRequest $request){
         $tipe_kamar = TipeKamar::find($id);
         $kamar = new Kamar();
@@ -56,7 +57,7 @@ class KamarController extends Controller
     public function update($id, $kamar_id,KamarRequest $request){
         $kamar = Kamar::find($kamar_id);
         $kamar->nomor_kamar = $request->input('nomor_kamar');
-        $kamar->tersedia = $request->input('tersedia');
+        $kamar->status = $request->input('status');
         $kamar->save();
 
         Alert::success('SUCCESS','Data Kamar Berhasil Diupdate');

@@ -138,6 +138,12 @@ label:hover {
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="name" class="col-3 col-form-label">Email</label>
+                                        <div class="col-8">
+                                    <input id="name" name="email" value="{{ $u->email }}" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="name" class="col-3 col-form-label">Alamat</label>
                                         <div class="col-8">
                                     <input id="name" name="alamat" value="{{ $u->alamat }}" class="form-control" disabled>
@@ -168,11 +174,7 @@ label:hover {
                                                 <img src="{{ Storage::url($u->foto_ktp) }}" alt="foto" width="200px" height="150px"
                                                 style="display: block; margin-right:auto">
                                             @else
-                                            <div class="image-preview" id="imagePreview">
-                                                <img src="" alt="Image Preview" class="image-preview__image">
-                                                    <span class="image-preview__default-text">
-                                                    +</span>
-                                            </div>
+                                                <img src="{{ asset('assets/img/default.jpg') }}" width="200px" height="150px" alt="">
                                             @endif
                                         </div>
                                 </div>

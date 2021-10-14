@@ -95,7 +95,7 @@
                 <p>Kost Griyo Kenyo merupakan kost <strong>putri</strong> yang nyaman dan bersih. Bagi kamu yang ingin mendapat suasana tersebut, Ayo segera miliki kamar di sini.</p>
                 <div class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
                 <a href="#kamar" class="btn d-inline-flex mb-md-0 btn-try text-white">
-                    Pesan Kamar
+                    Pilih Kamar
                 </a>
                 @guest
                 <a href="{{ route('register') }}" class="btn btn-outline">
@@ -341,7 +341,7 @@
                         <h3 class="room-title">{{ $tipe_kamar->nama }}</h3>
                         <p class="room-price">Lantai {{$tipe_kamar->lantai}}</p>
                         <p class="room-price">Rp {{number_format($tipe_kamar->harga)}}/bulan</p>
-                        <a href="{{ route('detail-kost',$tipe_kamar->id) }}" class="btn btn-fill text-white">Pesan Kamar</a>
+                        <a href="{{ route('detail-kost',$tipe_kamar->id) }}" class="btn btn-fill text-white">Pilih Kamar</a>
                     </div>
                     </div>
                 </div>
@@ -436,17 +436,6 @@
 <script src="{{ asset('fe/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('fe/js/owl.carousel.min.js') }}"></script>
 <script>
-@if($errors->register->first('email') || $errors->register->first('name') || $errors->register->first('no_hp') || $errors->register->first('password') || $errors->register->first('password_confirmation'))
-    $('#register').modal('show')
-@endif
-
-@if($errors->login->first('email') || $errors->login->first('password'))
-    $('#login').modal('show')
-@endif
-
-@if($errors->has('email'))
-    $('#login').modal('show')
-@endif
 
 $(document).ready(function() {
 $("#owl-image").owlCarousel({

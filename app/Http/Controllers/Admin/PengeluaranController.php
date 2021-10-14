@@ -19,9 +19,9 @@ class PengeluaranController extends Controller
     }
 
     public function index(){
-        $pengeluaran = Pengeluaran::all();
+        $pengeluarans = Pengeluaran::all();
         return view('pages.admin.pengeluaran.index',[
-            'pengeluaran' => $pengeluaran
+            'pengeluarans' => $pengeluarans
         ]);
     }
 
@@ -43,7 +43,6 @@ class PengeluaranController extends Controller
 
     public function edit($id){
         $data = Pengeluaran::findOrFail($id);
-
         return view('pages.admin.pengeluaran.edit',[
             'data' => $data,
         ]);
@@ -61,6 +60,7 @@ class PengeluaranController extends Controller
         Alert::success('SUCCESS','Data Pengeluaran Berhasil Diupdate');
         return redirect()->route('pengeluaran.index');
     }
+
     public function ex_pdf(){
         $now = Carbon::now();
         $pengeluaran = Pengeluaran::orderBy('tanggal','ASC')->get();

@@ -37,7 +37,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pengeluaran as $index => $p)
+                                @foreach ($pengeluarans as $index => $p)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $p->tanggal }}</td>

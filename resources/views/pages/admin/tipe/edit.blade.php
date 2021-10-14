@@ -6,16 +6,20 @@
 
 @section('content')
 <style type="text/css">
-    @media (max-width: 417px) {
-            .tombol .btn.simpan {
-            margin-bottom: 10px;
-            }
-        }
+.required:after {
+    content:" *";
+    color: red;
+}
+@media (max-width: 427px) {
+    .tombol .btn.simpan {
+        margin-bottom: 10px;
+    }
+}
 </style>
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Edit @yield('title')</h1>
+            <h1>@yield('title')</h1>
             <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
             <div class="breadcrumb-item">Table @yield('title')</div>
@@ -36,7 +40,7 @@
                             </div>
                         @endif
                     <div class="card-header">
-                        <h4>Tambah Tipe Kamar</h4>
+                        <h4>Edit Tipe Kamar</h4>
                     </div>
                     @foreach ($data as $d)
                     <div class="card-body">
@@ -46,25 +50,25 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tipe Kamar</label>
+                                        <label class="required">Tipe Kamar</label>
                                         <input type="text" name="nama" value="{{ $d->nama }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Lantai</label>
+                                        <label class="required">Lantai</label>
                                         <input type="number" name="lantai" value="{{ $d->lantai }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Harga</label>
+                                        <label class="required">Harga</label>
                                         <input type="number" name="harga" value="{{ $d->harga }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Luas</label>
+                                        <label class="required">Ukuran</label>
                                         <input type="text" name="ukuran" value="{{ $d->ukuran }}" class="form-control">
                                     </div>
                                 </div>
@@ -72,7 +76,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                    <label class="d-block">Fasilitas</label>
+                                    <label class="d-block required">Fasilitas</label>
                                     @forelse ($fasilitas as $fas)
                                         <div class="form-check mb-3">
                                             <label class="checkbox">
@@ -87,7 +91,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Foto</label>
+                                        <label class="required">Foto</label>
                                         <input type="file" id="input_photo" name="photo" class="form-control">
                                     </div>
                                     @if ($d->foto != null)
@@ -105,7 +109,7 @@
                                     <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
                                         Simpan Data
                                     </button>
-                                    <a href="{{ route('tipe.index') }}" class="btn btn-danger px-5" style="padding: 8px 16px">
+                                    <a href="{{ route('tipe.index') }}" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
                                         Batal
                                     </a>
                                 </div>

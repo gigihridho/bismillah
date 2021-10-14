@@ -65,7 +65,7 @@
 
 .image {
     width: 720px;
-    height: 500px
+    height: 400px
 }
 
 .border-line {
@@ -73,8 +73,8 @@
 }
 
 .line {
-    height: 1px;
-    width: 45%;
+    height: 2px;
+    width: 90%;
     background-color: #E0E0E0;
     margin-top: 10px
 }
@@ -95,11 +95,11 @@ button:focus {
     outline-width: 0
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 360px) {
 
 .image {
-    width: 300px;
-    height: 220px
+    width: 70px;
+    height: 80px
 }
 
 .border-line {
@@ -119,6 +119,10 @@ button:focus {
     }
 
 }
+.required:after {
+    content:" *";
+    color: red;
+}
 </style>
 <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 mx-auto" style="background-color:#F2F6FF" data-aos="fade-up">
     <div class="card card-primary">
@@ -126,8 +130,8 @@ button:focus {
         <div class="row d-flex">
             <div class="col-lg-6">
                 <div class="pb-2">
-                    <div class="row justify-content-center mb-5 border-line">
-                        <img src="{{ asset('assets/img/searchh.png') }}" class="image mt-2">
+                    <div class="row justify-content-center border-line" style="margin-top: 100px">
+                        <img src="{{ asset('assets/img/searchh.png') }}" class="image">
                     </div>
                 </div>
             </div>
@@ -139,7 +143,7 @@ button:focus {
                             <h6 class="mb-0 mr-4 mt-2"><strong>Pendaftaran Akun</strong></h6>
                         </div>
                         <div class="row px-3 mb-4">
-                            <label for="name" class="mb-2">Nama Lengkap</label>
+                            <label for="name" class="mb-2 required">Nama Lengkap</label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus placeholder="Masukkan Nama Anda"
                                 oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
                                 @error('name')
@@ -149,7 +153,7 @@ button:focus {
                                 @enderror
                         </div>
                         <div class="row px-3 mb-4">
-                            <label for="no_hp" class="mb-2">No Telepon</label>
+                            <label for="no_hp" class="mb-2 required">No Telepon</label>
                             <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda"
                             oninvalid="this.setCustomValidity('Nomor telepon tidak boleh kosong')" oninput="setCustomValidity('')">
 
@@ -161,7 +165,7 @@ button:focus {
                             <small style="font-size: 12px;">Contoh: 08190211313</small>
                         </div>
                         <div class="row px-3 mb-4">
-                            <label for="email" class="mb-2">Email</label>
+                            <label for="email" class="mb-2 required">Email</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
                             oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
                             @error('email')
@@ -171,7 +175,7 @@ button:focus {
                             @enderror
                         </div>
                         <div class="row px-3 mb-4">
-                            <label for="password"class="d-block mb-2">Kata Sandi</label>
+                            <label for="password"class="d-block mb-2 required">Kata Sandi</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Masukkan Kata Sandi Anda"
                             oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
 
@@ -182,7 +186,7 @@ button:focus {
                             @enderror
                         </div>
                         <div class="row px-3 mb-4">
-                            <label for="password-confirm"class="d-block mb-2">Konfirmasi Kata Sandi</label>
+                            <label for="password-confirm"class="d-block mb-2 required">Konfirmasi Kata Sandi</label>
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off"
                             placeholder="Masukkan Kata Sandi Anda Lagi"
                             oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">

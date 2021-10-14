@@ -42,7 +42,7 @@
                             <th scope="col">Tanggal Transaksi</th>
                             <th scope="col">Pemasukan</th>
                         </tr>
-                        @forelse ($transaksis as $index => $tf)
+                        @forelse ($pemesanans as $index => $tf)
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $tf->kode }}</td>

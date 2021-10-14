@@ -17,56 +17,71 @@
 
         <div class="section-body">
             <div class="row">
-            <div class="col-12">
-                <div class="card">
-                <div class="card-body">
-                    <div class="card-body">
-                        @foreach ($user as $u)
-                            <div class="row">
-                            <div class="form-group col-md-6 col-12">
-                                <label>Nama</label>
-                                <input type="text" class="form-control" value="{{ $u->name }}" disabled>
-                            </div>
-                            <div class="form-group col-md-6 col-12">
-                                <label>Email</label>
-                                <input type="email" class="form-control" value="{{ $u->email }}" disabled>
-                            </div>
-                            </div>
-                            <div class="row">
-                            <div class="form-group col-md-6 col-12">
-                                <label>No HP</label>
-                                <input type="email" class="form-control" value="{{ $u->no_hp }}" disabled>
-                            </div>
-                            <div class="form-group col-md-6 col-12">
-                                <label>Alamat</label>
-                                <input type="tel" class="form-control" value="{{ $u->alamat }}" disabled>
-                            </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6 col-12">
-                                <label>Pekerjaan</label>
-                                    <input type="email" class="form-control" value="{{ $u->pekerjaan }}" disabled>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            @foreach ($user as $u)
+                            <form>
+                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                    <h5>Detail User</h5>
                                 </div>
-                                <div class="form-group col-md-6 col-12">
-                                    <label>Foto KTP</label>
-                                    @if ($u->foto_ktp != null)
-                                        <img src="{{ Storage::url($u->foto_ktp) }}" width="180px" height="170px"
-                                        style="display:block; margin-left:auto; margin-right:auto;" alt="fotoKtp">
-                                    @else
-                                        <img src="{{ asset('assets/img/avatar/avatar-1.png') }}"  width="180px" height="170px"
-                                        style="display:block; margin-left:auto; margin-right:auto;" alt="fotoKtp">
-                                    @endif
+                                <hr>
+                                <div class="form-group row">
+                                    <label for="name" class="col-3 col-form-label">Nama</label>
+                                    <div class="col-9">
+                                    <input id="name" name="name" value="{{ $u->name }}" class="form-control here" type="text" disabled>
                                     </div>
-                            </div>
-                            <div class="row">
-                                <div class="justify-content-left ml-4">
-                                    <a href="{{ route('user.index') }}" class="btn btn-info px-4 py-2">Kembali</a>
                                 </div>
-                            </div>
-                        @endforeach
+                                <div class="form-group row">
+                                    <label for="lastname" class="col-3 col-form-label">Nomor Handphone</label>
+                                    <div class="col-9">
+                                    <input id="lastname" name="no_hp" value="{{ $u->no_hp }}" class="form-control here" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="text" class="col-3 col-form-label">Alamat</label>
+                                    <div class="col-9">
+                                    <input id="text" name="alamat" value="{{ $u->alamat }}" class="form-control here" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="text" class="col-3 col-form-label">Pekerjaan</label>
+                                    <div class="col-9">
+                                    <input id="text" name="pekerjaan" value="{{ $u->pekerjaan }}" class="form-control here" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="text" class="col-3 col-form-label">Bank</label>
+                                    <div class="col-9">
+                                    <input id="text" name="bank" value="{{ $u->bank }}" class="form-control here" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="text" class="col-3 col-form-label">Nomor Rekening</label>
+                                    <div class="col-9">
+                                    <input id="text" name="no_rekening" value="{{ $u->no_rekening }}" class="form-control here" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="text" class="col-3 col-form-label">Foto KTP</label>
+                                    <div class="col-9">
+                                        @if ($u->foto_ktp == null)
+                                        <div class="image-preview" id="imagePreview">
+                                            <img src="" alt="Image Preview" class="image-preview__image">
+                                                <span class="image-preview__default-text">
+                                                +</span>
+                                        </div>
+                                        @else
+                                            <img id="img_ktp" src="{{ Storage::url($u->foto_ktp) }}" name="foto_ktp" width="250px" height="200px" alt="foto"
+                                            style="display: block; margin-bottom:15px; margin-right:auto">
+                                        @endif
+                                    </div>
+                                </div>
+                            </form>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </section>

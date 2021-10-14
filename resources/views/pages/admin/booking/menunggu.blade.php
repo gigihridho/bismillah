@@ -36,7 +36,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($transaksis as $index => $tf)
+                            @foreach ($pemesanans as $index => $tf)
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $tf->user->name }}</td>
@@ -64,7 +64,7 @@
                                         <button value="Selesai" id="transaction_status" name="transaction_status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">
                                             <i class="fas fa-check"></i>
                                         </button>
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$tf->id) }}">
+                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('detail-booking',$tf->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
                                     </form>
@@ -76,7 +76,7 @@
                                         </button>
                                     </form>
                                     @else
-                                    <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('detail-booking',$tf->id) }}">
+                                    <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('detail-booking',$tf->id) }}">
                                         <i class="far fa-eye"></i>
                                     </a>
                                     @endif

@@ -7,11 +7,15 @@
 @section('content')
 
 <style type="text/css">
-    @media (max-width: 417px) {
-            .tombol .btn.simpan {
+.required:after {
+    content:" *";
+    color: red;
+}
+@media (max-width: 427px) {
+        .tombol .btn.simpan {
             margin-bottom: 10px;
-            }
         }
+    }
 </style>
 
 <div class="main-content">
@@ -47,13 +51,13 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Nomor Kamar</label>
+                                        <label class="required">Nomor Kamar</label>
                                         <input type="text" name="nomor_kamar" value="{{ $kamar->nomor_kamar }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Tipe Kamar</label>
+                                        <label class="required">Tipe Kamar</label>
                                         <select name="tipe_kamar_id" class="form-control">
                                             <option value="{{ $tipe_kamar->tipe_kamar_id }}">{{ $tipe_kamar->nama }}</option>
                                             {{-- @foreach ($tipe_kamar as $r)
@@ -66,7 +70,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label class="required">Status</label>
                                         <select name="tersedia" id="tersedia" class="form-control">
                                             <option value="1"
                                             @if (old('availabe') == '1')selected="selected" @endif" >
@@ -85,7 +89,7 @@
                                 <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
                                     Simpan Data
                                 </button>
-                                <a href="/admin/tipe/{{ $tipe_kamar->id }}/kamar" class="btn btn-danger px-5" style="padding: 8px 16px">
+                                <a href="/admin/tipe/{{ $tipe_kamar->id }}/kamar" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
                                     Batal
                                 </a>
                             </div>

@@ -37,8 +37,9 @@ class UserBookingController extends Controller
             ->where('user_id',Auth::user()->id)
             ->latest()
             ->first();
-        if ($transaction->payment == 0) {
-            return redirect()->back()->withErrors('Menunggu admin melakukan konfirmasi pembayaran sebelumnya');
+        if ($transaction->statuts == "Selesai") {
+            return redirect()->back()
+            ->withErrors('Menunggu admin melakukan konfirmasi pembayaran sebelumnya');
         }
         $tipe_kamar =  $transaction->kamar->tipe_kamar;
 
@@ -53,8 +54,7 @@ class UserBookingController extends Controller
         $new_tanggal_masuk = $old_room_booking->tanggal_keluar;
         $durasi = $request->input('durasi');
         $total_harga = $request->input('total');
-        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
-
+        $kode = 'KOS'.date("ymd").mt_rand(000,999);
         if ($durasi == 1) {
             $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($new_tanggal_masuk)));
         } elseif ($durasi == 6){
@@ -62,7 +62,6 @@ class UserBookingController extends Controller
         } else {
             $new_tanggal_keluar = date('Y-m-d', strtotime('+12 month', strtotime($new_tanggal_masuk)));
         }
-
         $user = Auth::user();
         $transaction = new Booking();
         $transaction->durasi = $durasi;
@@ -73,12 +72,12 @@ class UserBookingController extends Controller
         $transaction->kamar_id = $old_room_booking->kamar_id;
         $transaction->user_id = $user->id;
         $transaction->kode = $kode;
+        $transaction->expired_at = Carbon::now()->addHours(24);
         if($request->hasFile('bukti_pembayaran')){
             $path = $request->file('bukti_pembayaran')->store('assets/transaction','public');
             $transaction->bukti_pembayaran = $path;
         }
         $transaction->save();
-
         Alert::success('SUCCESS','Berhasil melakukan perpanjangan sewa kamar');
         return redirect()->route('user-transaksi');
     }
@@ -92,6 +91,7 @@ class UserBookingController extends Controller
         ]);
         return $pdf->download('invoice.pdf');
     }
+
     public function detail(Request $request, $id){
         $transaction = Booking::where('id',$id)->get();
 

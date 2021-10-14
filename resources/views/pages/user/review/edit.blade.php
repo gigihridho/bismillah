@@ -14,6 +14,10 @@ Review
     .btn-fill:hover{
         background: #000;
     }
+    .required:after {
+        content:" *";
+        color: red;
+    }
 </style>
 <div class="main-content">
     <section class="section">
@@ -42,7 +46,7 @@ Review
                         @if(count($review) > 0)
                             @foreach ($review as $revv)
                             <div class="form-group">
-                                <label for="review">Review</label>
+                                <label for="review" class="required">Review</label>
                                 <input type="text" name="review" id="review" class="form-control"
                                 value="{{ $revv->review }}" autocomplete="off" placeholder="Masukkan Review">
                                 <small>Contoh: Kost bersih dan nyaman</small>
@@ -50,7 +54,7 @@ Review
                             @endforeach
                         @else
                             <div class="form-group">
-                                <label for="review">Review</label>
+                                <label for="review" class="required">Review</label>
                                 <input type="text" name="review" id="review" class="form-control"
                                 value="" autocomplete="off" placeholder="Masukkan Review">
                                 <small>Contoh: Kost bersih dan nyaman</small>

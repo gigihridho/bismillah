@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    Detail Booking
+    Detail Pemesanan
 @endsection
 
 <style type="text/css">
@@ -88,7 +88,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        Detail Booking
+                        @yield('title')
                     </h4>
                 </div>
                 <div class="card-body">
@@ -102,11 +102,11 @@
                                             <div>
                                             <h6 class="my-0">Status</h6>
                                             </div>
-                                            @if($tf->transaction_status == "PENDING")
+                                            @if($tf->status == "Menunggu")
                                                 <span class="badge badge-warning">Menunggu</span>
-                                            @elseif($tf->transaction_status == "SUCCESS")
+                                            @elseif($tf->status == "Selesai")
                                                 <span class="badge badge-success">Selesai</span>
-                                            @elseif($tf->transaction_status == "CANCELLED")
+                                            @elseif($tf->status == "Dibatalkan")
                                                 <span class="badge badge-danger">Dibatalkan</span>
                                             @endif
                                         </li>
@@ -138,7 +138,7 @@
                                             <div>
                                             <h6 class="my-0">Total Harga</h6>
                                             </div>
-                                            <span class="text-muted">Rp{{ number_format($tf->total_price) }}</span>
+                                            <span class="text-muted">Rp{{ number_format($tf->total_harga,2,',','.') }}</span>
                                         </li>
                                     {{-- </div>
                                 </div> --}}

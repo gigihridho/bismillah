@@ -3,6 +3,17 @@
 @section('title')
     Pengeluaran
 @endsection
+<style>
+    .required:after {
+        content:" *";
+        color: red;
+    }
+    @media (max-width: 417px) {
+        .tombol .btn.simpan {
+        margin-bottom: 10px;
+        }
+    }
+</style>
 
 @section('content')
 <div class="main-content">
@@ -42,7 +53,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Deskripsi</label>
+                                    <label class="required">Deskripsi</label>
                                     <input type="text" name="deskripsi" class="form-control"
                                     placeholder="Masukkan deskripsi pengeluaran" autocomplete="off">
                                     <small>Contoh: Air, Listrik, Wifi</small>
@@ -50,13 +61,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Tanggal Transaksi</label>
+                                    <label class="required">Tanggal Transaksi</label>
                                     <input type="date" name="tanggal" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Nominal</label>
+                                    <label class="required">Nominal</label>
                                     <input type="number" name="nominal" class="form-control"
                                     placeholder="Masukkan Nominal" autocomplete="off">
                                     <small>Contoh: 10000</small>
@@ -64,16 +75,19 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Foto Bukti Pengeluaran</label>
+                                    <label class="required">Foto Bukti Pengeluaran</label>
                                     <input type="file" name="foto" class="form-control">
                                 </div>
                             </div>
                         </div>
-                            <div class="row">
+                            <div class="row tombol">
                                 <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
+                                    <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
                                         Simpan Data
                                     </button>
+                                    <a href="{{ route('pengeluaran.index') }}" class="btn btn-danger px-5" style="padding: 8px 16px">
+                                        Batal
+                                    </a>
                                 </div>
                             </div>
                         </div>

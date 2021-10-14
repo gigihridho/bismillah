@@ -45,9 +45,3 @@ class UserReviewController extends Controller
         return redirect()->route($redirect);
     }
 }
-// dd($review);
-        // if(!is_null($request->get('review'))){
-        //     $review->where('user_id',$request->get('review'));
-        // }
-
-        // $review->first();

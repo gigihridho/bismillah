@@ -20,25 +20,11 @@ class UserController extends Controller
         ]);
     }
 
-    public function UserTidakAktif(){
-        $data = User::where('status',false)->get();
-        return view('pages.admin.user.index2',[
-            'data' => $data
-        ]);
-    }
-
     public function show($id){
         $user = User::where('id',$id)->get();
         return view('pages.admin.user.detail',[
             'user' => $user,
         ]);
-    }
-
-    public function update(Request $request,$id){
-        $user = User::where('id',$id)->first();
-        $user->status = $request->status;
-        $user->save();
-        return redirect()->route('user-tidak-aktif');
     }
 
     public function destroy($id){

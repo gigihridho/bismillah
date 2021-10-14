@@ -36,7 +36,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($transaksis as $index => $tf)
+                            @foreach ($pemesanans as $index => $tf)
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $tf->user->name }}</td>
@@ -58,7 +58,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$tf->id) }}">
+                                    <a class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Detail" href="{{ route('detail-booking',$tf->id) }}">
                                         <i class="far fa-eye" style="color: white;"></i>
                                     </a>
                                 </td>

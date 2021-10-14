@@ -26,9 +26,9 @@ class PemasukanController extends Controller
     }
 
     public function index(){
-        $transaksis = Booking::where('status',"Selesai")->get();
+        $pemesanans = Booking::where('status',"Selesai")->get();
         return view('pages.admin.pemasukan.index',[
-            'transaksis' => $transaksis
+            'pemesanans' => $pemesanans
         ]);
     }
 
@@ -46,13 +46,13 @@ class PemasukanController extends Controller
 
     public function pdf(){
         $now = Carbon::now();
-        $transaksis = Booking::where('status',"Selesai")->orderBy('tanggal_pesan','ASC')->get();
+        $pemesanans = Booking::where('status',"Selesai")->orderBy('tanggal_pesan','ASC')->get();
         $total_harga = Booking::where('status',"Selesai")->sum('total_harga');
 
         $pdf = PDF::loadview('pages.admin.pemasukan.pemasukan_pdf',[
             'now' => $now,
             'total_harga' => $total_harga,
-            'transaksis' => $transaksis
+            'pemesanans' => $pemesanans
         ]);
         return $pdf->download('laporan-pemasukan.pdf');
     }

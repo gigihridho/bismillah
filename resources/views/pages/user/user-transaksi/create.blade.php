@@ -87,6 +87,15 @@ input[type="file"]{
 label:hover {
     opacity: 80%;
 }
+.required:after {
+    content:" *";
+    color: red;
+}
+@media (max-width: 427px) {
+    .tombol .btn.simpan {
+        margin-bottom: 10px;
+    }
+}
 </style>
 <div class="main-content">
     <section class="section">
@@ -121,8 +130,8 @@ label:hover {
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Durasi</label>
-                                    <select name="duration" id="duration" class="form-control">
+                                    <label class="required">Durasi</label>
+                                    <select name="durasi" id="durasi" class="form-control">
                                         <option value="1">1 Bulan</option>
                                         <option value="6">6 Bulan</option>
                                         <option value="12">1 Tahun</option>
@@ -132,42 +141,51 @@ label:hover {
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Total Harga</label>
-                                    <input type="hidden" name="total" id="total" value="{{ $room_type->price }}">
-                                    <input type="text" name="total_price" id="total_price" class="form-control" readonly value="{{ number_format($room_type->price) }}">
+                                    <input type="hidden" name="total" id="total" value="{{ $tipe_kamar->harga }}">
+                                    <input type="text" name="total_harga" id="total_harga" class="form-control" readonly value="{{ number_format($tipe_kamar->harga) }}">
                                 </div>
                             </div>
                         </div>
-                        <div class="image-preview" id="imagePreview">
-                            <img src="" id="imagePreview" alt="Image Preview" class="image-preview__image">
-                                <span class="image-preview__default-text">
-                                +</span>
-                        </div>
-                        <input type="file" name="photo_payment" id="inpFile">
-                        <label for="inpFile" style="color: white;
-                        height: 35px;
-                        width: 105px;
-                        background-color: #03a9f4;
-                        position: absolute;
-                        margin-left: 8.5em;
-                        padding: 10px;
-                        border-radius: 10px;
-                        padding-top: 8px;
-                        padding-left: 20px;
-                        font-weight: lighter;
-                        font-size: 12px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        margin-top: 1em;">
-                        <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
-                            Pilih foto
-                        </label>
-                            <div class="row" style="margin-top: 3rem">
-                                <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
-                                        Simpan Data
-                                    </button>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <p class="required" style="margin-right: 1px">Bukti Pembayaran</p>
+                                    <div class="image-preview" id="imagePreview">
+                                        <img src="" id="imagePreview" alt="Image Preview" class="image-preview__image">
+                                            <span class="image-preview__default-text">
+                                            +</span>
+                                    </div>
+                                    <input type="file" name="photo_payment" id="inpFile">
+                                    <label for="inpFile" style="color: white;
+                                    height: 35px;
+                                    width: 105px;
+                                    background-color: #03a9f4;
+                                    position: absolute;
+                                    margin-left: 8.5em;
+                                    padding: 10px;
+                                    border-radius: 10px;
+                                    padding-top: 8px;
+                                    padding-left: 20px;
+                                    font-weight: lighter;
+                                    font-size: 12px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    margin-top: 1em;">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
+                                        Pilih foto
+                                    </label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 3rem">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-primary px-5" style="padding: 8px 16px">
+                                    Simpan Data
+                                </button>
+                                <a href="{{ route('user-transaksi') }}" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
+                                    Batal
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -180,27 +198,27 @@ label:hover {
 @endsection
 @push('addon-script')
 <script>
-    let price = {!! $room_type->price !!}
-    let selectedDuration = $("#duration");
+    let harga = {!! $tipe_kamar->harga !!}
+    let selectedDuration = $("#durasi");
     selectedDuration.on('change', (event) => {
-        let duration = event.target.value;
-        let total = updatePrice(duration, price);
+        let durasi = event.target.value;
+        let total = updatePrice(durasi, harga);
 
         $("#total").val(total);
-        $("#total_price").val(total.toLocaleString());
+        $("#total_harga").val(total.toLocaleString());
     })
 
-    function updatePrice(duration, price) {
-        let total_price = 0 ;
+    function updatePrice(durasi, harga) {
+        let total_harga = 0 ;
 
-        if (duration == 1){
-            total_price = duration * price;
-        } else if (duration == 6){
-            total_price = duration * price - (0.5 * price);
-        } else if(duration == 12){
-            total_price = duration * price - (1 * price);
+        if (durasi == 1){
+            total_harga = durasi * harga;
+        } else if (durasi == 6){
+            total_harga = durasi * harga - (0.5 * harga);
+        } else if(durasi == 12){
+            total_harga = durasi * harga - (1 * harga);
         }
-        return total_price;
+        return total_harga;
     }
 
     const inpFile = document.getElementById("inpFile");

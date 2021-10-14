@@ -11,63 +11,63 @@ use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
-class TransactionsController extends Controller
+class PemesananController extends Controller
 {
     public function index(){
-        $transaksis = Booking::all();
+        $pemesanans = Booking::all();
         return view('pages.admin.booking.index',[
-            'transaksis' => $transaksis
+            'pemesanans' => $pemesanans
         ]);
     }
 
     public function selesai(){
-        $transaksis = Booking::where('status',"Selesai")->get();
+        $pemesanans = Booking::where('status',"Selesai")->get();
         return view('pages.admin.booking.selesai',[
-            'transaksis' => $transaksis
+            'pemesanans' => $pemesanans
         ]);
     }
 
     public function menunggu(){
-        $transaksis = Booking::where('status',"Menunggu")->get();
+        $pemesanans = Booking::where('status',"Menunggu")->get();
         return view('pages.admin.booking.menunggu',[
-            'transaksis' => $transaksis
+            'pemesanans' => $pemesanans
         ]);
     }
 
     public function cancel(){
-        $transaksis = Booking::Where('status',"Dibatalkan")->get();
+        $pemesanans = Booking::Where('status',"Dibatalkan")->get();
         return view('pages.admin.booking.batal',[
-            'transaksis' => $transaksis
+            'pemesanans' => $pemesanans
         ]);
     }
 
     public function edit($id){
-        $transaksis = Booking::findOrFail($id);
+        $pemesanans = Booking::findOrFail($id);
         return view('pages.admin.booking.edit',[
-            'transaksis' => $transaksis
+            'pemesanans' => $pemesanans
         ]);
     }
     public function status(Request $request, $id){
-        $transaksis = Booking::findOrFail($id);
-        $transaksis->status = "Selesai";
-        $transaksis->save();
+        $pemesanans = Booking::findOrFail($id);
+        $pemesanans->status = "Selesai";
+        $pemesanans->save();
         Alert::success('SUCCESS','Data booking telah dikonfirmasi');
         return redirect()->route('transaksi');
     }
     public function batal(Request $request, $id){
-        $transaksis = Booking::findOrFail($id);
-        $kamar = Kamar::find($transaksis->kamar_id);
-        $transaksis->status = "Dibatalkan";
+        $pemesanans = Booking::findOrFail($id);
+        $kamar = Kamar::find($pemesanans->kamar_id);
+        $pemesanans->status = "Dibatalkan";
         $kamar->status = 1;
         $kamar->save();
-        $transaksis->save();
+        $pemesanans->save();
         Alert::success('SUCCESS','Data booking telah dibatalkan');
         return redirect()->route('transaksi');
     }
 
 
     public function update(Request $request, $id){
-        $transaksis = Booking::findOrFail($id);
+        $pemesanans = Booking::findOrFail($id);
 
         $rules = [
             'status' => 'in:PENDING,SUCCESS,CANCELLED',
@@ -79,15 +79,15 @@ class TransactionsController extends Controller
             ->withInput($request->all())
             ->withErrors($validator);
         }
-        if($transaksis->status === 'CANCELLED'){
-            $transaksis = Booking::findOrFail($id);
-            $kamar = Kamar::find($transaksis->kamar_id);
+        if($pemesanans->status === 'CANCELLED'){
+            $pemesanans = Booking::findOrFail($id);
+            $kamar = Kamar::find($pemesanans->kamar_id);
             $kamar->tersedia = 1;
             $kamar->save();
-            $transaksis->save();
+            $pemesanans->save();
         } else {
-            $transaksis->status = $request->input('status','SUCCESS');
-            $transaksis->save();
+            $pemesanans->status = $request->input('status','SUCCESS');
+            $pemesanans->save();
         }
         // Mail::to($transaction->user->email)->send(new PaymentSuccessMail());
         Alert::success('SUCCESS','Status booking telah diubah');
@@ -95,9 +95,9 @@ class TransactionsController extends Controller
     }
 
     public function detail($id){
-        $transaksis = Booking::where('id',$id)->get();
+        $pemesanans = Booking::where('id',$id)->get();
         return view('pages.admin.booking.detail',[
-            'transaksis' => $transaksis
+            'pemesanans' => $pemesanans
         ]);
     }
 }

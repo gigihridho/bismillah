@@ -86,7 +86,7 @@ class BookingController extends Controller
         $bookingg->tanggal_keluar = $new_tanggal_keluar;
         $bookingg->tanggal_pesan = Carbon::now();
         $bookingg->expired_at = Carbon::now()->addHours(24);
-
+        $bookingg->status = "Menunggu";
         $harga = $tipe_kamar->harga;
         if($durasi == 1){
             $total_harga = $durasi * $harga;
