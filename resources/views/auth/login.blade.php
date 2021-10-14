@@ -1,4 +1,4 @@
-{{-- @extends('layouts.fe')
+@extends('layouts.fe')
 @section('title')
     Login
 @endsection
@@ -58,154 +58,109 @@
     background-color: #6777ef;
     border-color: #6777ef;
 }
+
+.image {
+    width: 5000px;
+    height: 400px
+}
+
+.border-line {
+    border-right: 1px solid #EEEEEE
+}
+
+.line {
+    height: 1px;
+    width: 45%;
+    background-color: #E0E0E0;
+    margin-top: 10px
+}
+@media screen and (max-width: 375px) {
+
+    .image {
+        width: 300px;
+        height: 220px
+    }
+
+    .border-line {
+        border-right: none
+    }
+
+}
+@media screen and (max-width: 991px) {
+
+    .image {
+        width: 600px;
+        height: 400px
+    }
+
+    .border-line {
+        border-right: none
+    }
+
+}
 </style>
 <div id="app">
-    <section class="section" style="background: #F2F6FF">
+    <section class="section" style="background: #F2F6FF" data-aos="fade-up">
         <div class="container">
-            <div class="row">
-            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                <div class="card card-primary">
-                <div class="card-header justify-content-center"><h4>Masuk Akun</h4></div>
+            <div class="card card-primary">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
-                        @csrf
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="youremail@example.com" required autocomplete="off" autofocus>
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <div class="d-block">
-                            <label for="password" class="control-label">Kata Sandi</label>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="pb-2">
+                                <div class="row justify-content-center mb-5 border-line">
+                                    <img src="{{ asset('assets/img/searchh.png') }}" class="image mt-2">
+                                </div>
                             </div>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                <div class="float-right mb-3">
-                                @if (Route::has('password.request'))
-                                <a class="text-small" href="{{ route('password.request') }}">
-                                    {{ __('Lupa Kata Sandi?') }}
-                                </a>
-                                @endif
-                            </div>
-                    </div>
+                        </div>
+                        <div class="col-lg-6">
+                                <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+                                    @csrf
+                                <div class="row mb-4 px-3">
+                                    <h6 class="mb-0 mr-4 mt-2"><strong>Masuk Akun</strong></h6>
+                                </div>
+                                <div class="form-group px-3 mb-4">
+                                    <label for="email" class="mb-2">Email</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
+                                    oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group px-3 mb-4">
+                                    <div class="d-block">
+                                        <label for="password" class="control-label mb-2">Kata Sandi</label>
+                                        </div>
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                            <div class="float-right mb-4">
+                                            @if (Route::has('password.request'))
+                                            <a class="text-small" href="{{ route('password.request') }}">
+                                                {{ __('Lupa Kata Sandi?') }}
+                                            </a>
+                                            @endif
+                                        </div>
+                                </div>
 
-                    <div class="form-group mt-2">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                        Masuk
-                        </button>
+                                <div class="form-group px-3 mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                    Masuk
+                                    </button>
+                                </div>
+                                </form>
+                            <div class="mb-3 text-muted text-center">
+                                Belum punya akun? <a href="{{ route('register') }}">Daftar sekarang</a>
+                            </div>
+                        </div>
                     </div>
-                    </form>
                 </div>
-                <div class="mb-3 text-muted text-center">
-                    Belum punya akun? <a href="{{ route('register') }}">Daftar sekarang</a>
-                </div>
-            </div>
-            </div>
             </div>
         </div>
     </section>
-</div> --}}
-{{-- <section class="section">
-    <div class="d-flex flex-wrap align-items-stretch">
-        <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2" style="background: #6777ef">
-        <div class="p-4 m-3">
-            <h1 class="text-white font-weight-600 mb-5 mt-5">Selamat Datang</h1>
-            <p class="text-white" style="mb-3 mt-3">Bagi kamu yang sudah terdaftar, silakan masuk.</p>
-            <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
-            @csrf
-                <div class="form-group mt-4 mb-3">
-                <label for="email" style="color:white">Email</label>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="youremail@example.com" required autocomplete="off" autofocus>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="form-group mt-4 mb-5">
-                    <div class="d-block">
-                    <label for="password" class="control-label" style="color:white">Password</label>
-                    </div>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <div class="float-right">
-                        @if (Route::has('password.request'))
-                        <a class="text-small" style="color:white" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-danger btn-lg btn-block" tabindex="4">
-                    {{ __('Masuk') }}
-                    </button>
-                </div>
-
-                <div class="mt-3 text-center text-white">
-                    Belum punya akun?
-                    <a href="{{ route('register') }}" style="color:white">Daftar Sekarang</a>
-                </div>
-            </form>
-        </div>
-        </div>
-        <div class="col-lg-8 col-12 order-lg-2 position-relative bg-white">
-            <img src="{{ asset('fe/img/login.png') }}" margin-left="60px" width="90%" height="90%" alt="">
-        </div>
-    </div>
-    </section> --}}
-
-{{-- @endsection --}}
-<div class="form-group">
-    <label for="email">Email</label>
-    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="youremail@example.com" required autocomplete="off" autofocus>
-    @error('email')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
 </div>
-<div class="form-group">
-    <div class="d-block">
-        <label for="password" class="control-label">Kata Sandi</label>
-        </div>
-        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-            <div class="float-right mb-3">
-            @if (Route::has('password.request'))
-            <a class="text-small" href="{{ route('password.request') }}">
-                {{ __('Lupa Kata Sandi?') }}
-            </a>
-            @endif
-        </div>
-</div>
-@push('after-script')
-<script type="text/javascript">
-    @if($errors->has('email') || $errors->has('password'))
-        <script>
-        $(function() {
-            $('#login').modal({
-                show: true
-            });
-        });
-        </script>
-@endpush
-
+@endsection

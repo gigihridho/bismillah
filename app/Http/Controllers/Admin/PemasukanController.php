@@ -26,7 +26,7 @@ class PemasukanController extends Controller
     }
 
     public function index(){
-        $transaksis = Booking::where('transaction_status',"SUCCESS")->get();
+        $transaksis = Booking::where('status',"Selesai")->get();
         return view('pages.admin.pemasukan.index',[
             'transaksis' => $transaksis
         ]);
@@ -39,15 +39,15 @@ class PemasukanController extends Controller
 
         $transactions = Booking::where('order_date','>=',$fromDate)
                     ->where('order_date','<=',$toDate)
-                    ->where('transaction_status',"SUCCESS")
+                    ->where('status',"Selesai")
                     ->get();
         return view('pages.admin.pemasukan.index',compact('transactions'));
     }
 
     public function pdf(){
         $now = Carbon::now();
-        $transaksis = Booking::where('transaction_status',"SUCCESS")->orderBy('tanggal_pesan','ASC')->get();
-        $total_harga = Booking::where('transaction_status',"SUCCESS")->sum('total_harga');
+        $transaksis = Booking::where('status',"Selesai")->orderBy('tanggal_pesan','ASC')->get();
+        $total_harga = Booking::where('status',"Selesai")->sum('total_harga');
 
         $pdf = PDF::loadview('pages.admin.pemasukan.pemasukan_pdf',[
             'now' => $now,

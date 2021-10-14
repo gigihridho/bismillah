@@ -103,7 +103,7 @@ p.required-field::after {
                                 Pesan Kamar
                             </button>
                             @else
-                            <a href="#" class="btn btn-danger px-5 text-white btn-block mb-3" data-toggle="modal" data-target="#login" style="width: 100%; border-radius: 12px;
+                            <a href="{{ route('login') }}" class="btn btn-danger px-5 text-white btn-block mb-3" style="width: 100%; border-radius: 12px;
                             padding: 12px 28px;">
                                 Masuk Untuk Pesan
                             </a>
@@ -114,154 +114,6 @@ p.required-field::after {
                 </div>
             </div>
         </div>
-        @if ($errors->register->any())
-        {{-- @foreach ($errors->register->all() as $error)
-            <div class="alert alert-danger">
-                {{ $error }}
-            </div>
-        @endforeach --}}
-        <p>Errors</p>
-        @endif
-
-        <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Daftar Akun</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ route('register') }}" class="needs-validation" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="form-group col-12">
-                                    <label for="name">Nama Lengkap</label>
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus placeholder="Masukkan Nama Anda"
-                                    oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                    @if($errors->register->first('name'))
-                                    <div class="alert alert-danger">
-                                        {{$errors->register->first('name')}}
-                                    </div>
-                                    @endif
-                                </div>
-                                <div class="form-group col-12">
-                                    <label for="email">Email</label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
-                                    oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                    @if($errors->register->first('email'))
-                                    <div class="alert alert-danger">
-                                        {{$errors->register->first('email')}}
-                                    </div>
-                                    @endif
-                                </div>
-                                <div class="form-group col-12">
-                                    <label for="no_hp">No Telepon</label>
-                                    <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda"
-                                    oninvalid="this.setCustomValidity('Nomor telepon tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                    @if($errors->register->first('no_hp'))
-                                    <div class="alert alert-danger">
-                                        {{$errors->register->first('no_hp')}}
-                                    </div>
-                                    @endif
-                                    <small style="font-size: 12px;">Contoh: 08190211313</small>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group col-12">
-                                    <label for="password"class="d-block">Kata Sandi</label>
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Masukkan Kata Sandi Anda"
-                                    oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                    @if($errors->register->first('password'))
-                                    <div class="alert alert-danger">
-                                        {{$errors->register->first('password')}}
-                                    </div>
-                                    @endif
-                                </div>
-                                <div class="form-group col-12">
-                                    <label for="password-confirm"class="d-block">Konfirmasi Kata Sandi</label>
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off"
-                                    placeholder="Masukkan Kata Sandi Anda Lagi"
-                                    oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                    @if($errors->register->first('password_confirmation'))
-                                    <div class="alert alert-danger">
-                                        {{$errors->register->first('password_confirmation')}}
-                                    </div>
-                                    @endif
-                                    <small style="font-size: 12px;">Keterangan : Pastikan sama dengan kata sandi sebelumnya</small>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Daftar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            Masuk
-                        </h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
-                            @csrf
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="youremail@example.com" required autocomplete="off" autofocus>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            @if($errors->login->first('email'))
-                            <div class="alert alert-danger">
-                                {{$errors->login->first('email')}}
-                            </div>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <div class="d-block">
-                            <label for="password" class="control-label">Kata Sandi</label>
-                            </div>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
-                                @if($errors->login->first('password'))
-                                <div class="alert alert-danger">
-                                    {{$errors->login->first('password')}}
-                                </div>
-                                @endif
-                            <div class="float-right mb-3">
-                            @if (Route::has('password.request'))
-                            <a class="text-small" href="{{ route('password.request') }}">
-                                {{ __('Lupa Kata Sandi?') }}
-                            </a>
-                            @endif
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" data-toggle="modal" data-target="#register" data-dismiss="modal" class="btn btn-danger">Daftar</a>
-                        <button type="submit" class="btn btn-primary">Masuk</button>
-                    </div>
-                </form>
-                </div>
-            </div>
-        </div>
-
 
         <div class="kost-detail mb-4" data-aos="fade-up" data-aos-delay="100">
             <section class="kost-heading">
@@ -328,18 +180,6 @@ p.required-field::after {
 @push('after-script')
 <script>
     $('#myModal').modal('show');
-
-    @if($errors->register->first('email') || $errors->register->first('name') || $errors->register->first('no_hp') || $errors->register->first('password') || $errors->register->first('password_confirmation'))
-        $('#register').modal('show')
-    @endif
-
-    @if ($errors->login->first('email')||$errors->login->first('password'))
-        $('#login').modal('show');
-    @endif
-
-    @if($errors->has('email'))
-        $('#login').modal('show')
-    @endif
 
     $(function () {
     var $dp1 = $("#tanggal_masuk");

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Booking Selesai
+    Data Pemesanan Selesai
 @endsection
 
 @section('content')

@@ -3,7 +3,7 @@
 @section('content')
 <style>
       .form-group{
-        margin-bottom: 25px;
+        margin-bottom: 15px;
     }
     .card .card-header h4 {
         font-size: 16px;
@@ -61,31 +61,190 @@
   font-size: 12px;
   line-height: 20px; }
 
-</style>
-<div id="app" style="background: #F2F6FF">
-    <section class="section">
-        <div class="container">
-            <div class="row">
-            <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-                <div class="card card-primary">
-                <div class="card-header justify-content-center"><h4>Daftar Akun</h4></div>
 
+
+.image {
+    width: 720px;
+    height: 500px
+}
+
+.border-line {
+    border-right: 1px solid #EEEEEE
+}
+
+.line {
+    height: 1px;
+    width: 45%;
+    background-color: #E0E0E0;
+    margin-top: 10px
+}
+
+.or {
+    width: 10%;
+    font-weight: bold
+}
+
+.text-sm {
+    font-size: 14px !important
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+@media screen and (max-width: 375px) {
+
+.image {
+    width: 300px;
+    height: 220px
+}
+
+.border-line {
+    border-right: none
+}
+
+}
+@media screen and (max-width: 991px) {
+
+    .image {
+        width: 600px;
+        height: 400px
+    }
+
+    .border-line {
+        border-right: none
+    }
+
+}
+</style>
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 mx-auto" style="background-color:#F2F6FF" data-aos="fade-up">
+    <div class="card card-primary">
+        <div class="card-body">
+        <div class="row d-flex">
+            <div class="col-lg-6">
+                <div class="pb-2">
+                    <div class="row justify-content-center mb-5 border-line">
+                        <img src="{{ asset('assets/img/searchh.png') }}" class="image mt-2">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form method="POST" action="{{ route('register') }}" class="needs-validation" enctype="multipart/form-data">
+                    @csrf
+                    <div class="border-0 px-4 py-3">
+                        <div class="row mb-4 px-3">
+                            <h6 class="mb-0 mr-4 mt-2"><strong>Pendaftaran Akun</strong></h6>
+                        </div>
+                        <div class="row px-3 mb-4">
+                            <label for="name" class="mb-2">Nama Lengkap</label>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus placeholder="Masukkan Nama Anda"
+                                oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+                        <div class="row px-3 mb-4">
+                            <label for="no_hp" class="mb-2">No Telepon</label>
+                            <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda"
+                            oninvalid="this.setCustomValidity('Nomor telepon tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                            @error('no_hp')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <small style="font-size: 12px;">Contoh: 08190211313</small>
+                        </div>
+                        <div class="row px-3 mb-4">
+                            <label for="email" class="mb-2">Email</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
+                            oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="row px-3 mb-4">
+                            <label for="password"class="d-block mb-2">Kata Sandi</label>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Masukkan Kata Sandi Anda"
+                            oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="row px-3 mb-4">
+                            <label for="password-confirm"class="d-block mb-2">Konfirmasi Kata Sandi</label>
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off"
+                            placeholder="Masukkan Kata Sandi Anda Lagi"
+                            oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <small style="font-size: 12px;">Keterangan : Pastikan sama dengan kata sandi sebelumnya</small>
+                        </div>
+                        <div class="row mb-3 px-3"> <button type="submit" class="btn btn-primary btn-lg btn-block">Daftar</button> </div>
+                        <div class="row mb-4 px-3 text-center">
+                            <small class="font-weight-bold">Sudah Punya Akun? <a href="{{ route('login') }}" class="text-danger">Masuk</a>
+                            </small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+@endsection
+{{-- <div id="app" style="background: #F2F6FF">
+    <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+        <div class="row d-flex">
+            <div class="col-6">
+                <img class="justify-content-center" src="{{ asset('fe/img/Home-search.png') }}" height="500x" width="500px" alt="">
+            </div>
+            <div class="col-6">
+                <div class="card card-primary">
+                    <div class="card-header justify-content-center">
+                        <h4>Daftar Akun</h4>
+                    </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" class="needs-validation" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label for="name">Nama Lengkap</label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus placeholder="Masukkan Nama Anda"
                                 oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
-
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
+                                <label for="no_hp">No Telepon</label>
+                                <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda"
+                                oninvalid="this.setCustomValidity('Nomor telepon tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                                @error('no_hp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <small style="font-size: 12px;">Contoh: 08190211313</small>
+                            </div>
+                            <div class="form-group col-12">
                                 <label for="email">Email</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
                                 oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
@@ -95,10 +254,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label for="password"class="d-block">Kata Sandi</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Masukkan Kata Sandi Anda"
                                 oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
@@ -109,7 +265,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label for="password-confirm"class="d-block">Konfirmasi Kata Sandi</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off"
                                 placeholder="Masukkan Kata Sandi Anda Lagi"
@@ -121,56 +277,6 @@
                                     </span>
                                 @enderror
                                 <small style="font-size: 12px;">Keterangan : Pastikan sama dengan kata sandi sebelumnya</small>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="alamat">Alamat Asal</label>
-                                <input id="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="off" placeholder="Masukkan Alamat Asal Anda"
-                                oninvalid="this.setCustomValidity('Alamat tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                @error('alamat')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="pekerjaan">Pekerjaan</label>
-                                <input id="pekerjaan" type="text" class="form-control @error('pekerjaan') is-invalid @enderror" name="pekerjaan" value="{{ old('pekerjaan') }}" required autocomplete="off" placeholder="Masukkan Pekerjaan Anda" oninvalid="this.setCustomValidity('Pekerjaan tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                @error('pekerjaan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="no_hp">No Telepon</label>
-                                <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda"
-                                oninvalid="this.setCustomValidity('Nomor telepon tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                    @error('no_hp')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                <small style="font-size: 12px;">Contoh: 08190211313</small>
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="foto_ktp" class="control-label">Foto KTP</label>
-                                <input id="foto_ktp" type="file" class="form-control @error('foto_ktp') is-invalid @enderror"
-                                name="foto_ktp" required autofocus oninvalid="this.setCustomValidity('Foto KTP tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                                    @error('foto_ktp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                <small style="font-size: 12px;">Format: jpeg,jpg,png. Ukuran Maksimal: 2MB</small>
                             </div>
                         </div>
                         <div class="form-group mt-2">
@@ -185,8 +291,6 @@
                 </div>
                 </div>
             </div>
-            </div>
         </div>
-    </section>
-</div>
-@endsection
+    </div>
+</div> --}}

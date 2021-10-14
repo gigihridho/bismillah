@@ -33,10 +33,10 @@
                     <a href="{{ route('tipe.index') }}" class="nav-link">
                     <i class="fas fa-bed"></i> <span>Tipe Kamar</span></a>
                 </li>
-            <li class="menu-header">Data Booking
+            <li class="menu-header">Pemesanan
                 <li class="{{ (request()->is('admin/booking')) ? 'active' : '' }}">
                     <a href="{{ route('transaksi') }}" class="nav-link">
-                    <i class="fas fa-sign-in-alt"></i><span>Data Booking</span></a>
+                    <i class="fas fa-calendar-check"></i><span>Data Pemesanan</span></a>
                 </li>
             </li>
             <li class="menu-header">Keuangan

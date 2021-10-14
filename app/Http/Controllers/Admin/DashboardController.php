@@ -30,21 +30,21 @@ class DashboardController extends Controller
         $total_harga = Booking::where('status',"Selesai")->sum('total_harga');
         $pengeluaran = Pengeluaran::sum('nominal');
         $keuntungan = $total_harga - $pengeluaran;
-        // $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-        // for($bulan = 1 ; $bulan < 12; $bulan++){
-        //     $chart = collect(DB::select("SELECT count(id) as jumlah from bookings where month(created_at)='$bulan'"))->first();
-        //     $jumlah_transactions[] = $chart->jumlah;
-        // }
+        $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+        for($bulan = 1 ; $bulan < 12; $bulan++){
+            $chart = collect(DB::select("SELECT count(id) as jumlah from bookings where month(created_at)='$bulan'"))->first();
+            $jumlah_transactions[] = $chart->jumlah;
+        }
         return view('pages.admin.dashboard',[
             'user' => $user,
             'kamar_tersedia' => $kamar_tersedia,
-            // 'label' => $label,
             'bookings' => $bookings,
-            // 'jumlah_transactions' => $jumlah_transactions,
             'total_harga' => $total_harga,
             'keuntungan' => $keuntungan,
             'pengeluaran' => $pengeluaran,
             'kam' => $kam,
+            'label' => $label,
+            'jumlah_transactions' => $jumlah_transactions,
         ]);
     }
 }

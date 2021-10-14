@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Booking Menunggu
+    Data Pemesanan Menunggu
 @endsection
 
 @section('content')
@@ -49,16 +49,16 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($tf->transaction_status == "Menunggu")
+                                    @if($tf->status == "Menunggu")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($tf->transaction_status == "Selesai")
+                                    @elseif($tf->status == "Selesai")
                                         <span class="badge badge-success">Selesai</span>
-                                    @elseif($tf->transaction_status == "Dibatalkan")
+                                    @elseif($tf->status == "Dibatalkan")
                                         <span class="badge badge-danger">Dibatalkan</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($tf->transaction_status == "Menunggu")
+                                    @if($tf->status == "Menunggu")
                                     <form action="{{ route('status',$tf->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
                                         @csrf
                                         <button value="Selesai" id="transaction_status" name="transaction_status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">

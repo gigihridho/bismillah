@@ -14,7 +14,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-primary" style="width: 70px">
-                <i class="far fa-user"></i>
+                <i class="fas fa-users"></i>
                 </div>
                 <div class="card-wrap">
                 <div class="card-header">
@@ -105,7 +105,7 @@
             </div>
             </div>
         </div>
-        {{-- <div class="row">
+        <div class="row">
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
             <div class="card">
                 <div class="card-header">
@@ -116,11 +116,11 @@
                 </div>
             </div>
             </div>
-        </div> --}}
+        </div>
     </section>
 </div>
 @endsection
-{{-- @push('prepend-script')
+@push('prepend-script')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -153,4 +153,4 @@
         }
     });
 </script>
-@endpush --}}
+@endpush
