@@ -43,9 +43,5 @@ class ExpiredOrder extends Command
         $expired = Transaction::whereNull('photo_payment')->Where('expired_at',"<",now())->update([
             'status' => "Dibatalkan"
         ])->everyMinute();
-        // $room = Room::findOrFail('id',$id);
-        // $room->available = 1;
-        // $room->save();
-        // exec($expired,$room);
     }
 }

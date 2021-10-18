@@ -13,7 +13,7 @@ class FasilitasEditRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class FasilitasEditRequest extends FormRequest
     {
         return [
             'nama' => 'required|string',
-            'icon' => '|image|mimes:png,jpg,svg|max:2048'
+            'icon' => 'image|mimes:png,jpg,svg|max:2048'
         ];
     }
 

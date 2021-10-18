@@ -21,7 +21,8 @@
                 <div class="card">
                     <div class="card-body">
                         <a href="{{ route('pengeluaran.create') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Tambah Pengeluaran</a>
-                        <a href="{{ route('pengeluaran-pdf') }}" class="btn btn-success mb-3" id="cetakPDF"><span i class="fas fa-print"></span> Print PDF</a>
+                        <a href="{{ route('pengeluaran-pdf') }}" class="btn btn-info mb-3" id="cetakPDF"><span i class="fas fa-print"></span> Unduh PDF</a>
+                        <a href="{{ route('pengeluaran-excel') }}" class="btn btn-success mb-3" id="cetakExcel"><span i class="fas fa-print"></span> Unduh Excel</a>
                         <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
                             <thead>
@@ -29,7 +30,7 @@
                                     <th scope="col" style="width:5%">
                                         No
                                     </th>
-                                    <th scope="col" style="width:10%">Tanggal</th>
+                                    <th scope="col">Tanggal</th>
                                     <th scope="col">Deskripsi</th>
                                     <th scope="col" style="width:15%">Nominal</th>
                                     <th scope="col">Foto</th>
@@ -40,8 +41,13 @@
                                 @foreach ($pengeluarans as $index => $p)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $p->tanggal }}</td>
-                                    <td>{!! substr($p->deskripsi,0,20) !!} ...</td>
+                                    <td>
+                                        <?php
+                                            $date = new DateTime($p->tanggal);
+                                            echo $date->format('d F Y');
+                                        ?>
+                                    </td>
+                                    <td>{!! substr($p->deskripsi,0,20) !!} ..</td>
                                     <td>Rp{{ number_format($p->nominal,2,',','.') }}</td>
                                     <td>
                                         @if($p->foto != null)

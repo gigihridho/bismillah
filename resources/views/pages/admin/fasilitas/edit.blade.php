@@ -7,6 +7,10 @@
 @section('content')
 
 <style type="text/css">
+.required:after {
+    content:" *";
+    color: red;
+}
     @media (max-width: 417px) {
             .tombol .btn.simpan {
             margin-bottom: 10px;
@@ -48,23 +52,20 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Nama Fasilitas</label>
-                                        <input type="text" name="nama" value="{{ $data->nama }}" class="form-control @error('nama') is-invalid @enderror" autocomplete="off">
-                                        @error('nama')
-                                            <div class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
+                                        <input type="text" name="nama" value="{{ $data->nama }}" class="form-control" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Icon Fasilitas</label>
-                                        <input type="file" name="icon" value="{{ $data->icon }}" class="form-control @error('icon') is-invalid @enderror" autocomplete="off">
-                                        @error('icon')
-                                            <div class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
+                                        <input type="file" name="icon" id="input_photo" class="form-control">
+                                        @if ($data->icon != null)
+                                            <img id="img_photo" src="{{ Storage::url($data->icon) }}" width="30px" height="30px" alt="foto"
+                                            style="display: block; margin:left; margin-top: 10px;">
+                                        @else
+                                            <img id="img_photo" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="30px" height="30px" alt="foto"
+                                            style="display: block; margin:left; margin-top:10px;">
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -86,4 +87,23 @@
     </section>
 </div>
 @endsection
+@push('addon-script')
+<script type="text/javascript">
+    $(function () {
+        $("#input_photo").change(function () {
+            readURL(this);
+        });
+    });
 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img_photo').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+@endpush

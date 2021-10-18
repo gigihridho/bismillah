@@ -53,9 +53,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string','min:3','max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users','regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
             'no_hp' => ['required','numeric', 'digits_between:10,13','unique:users'],
-
         ],[
             'name.required' => 'Nama lengkap tidak boleh kosong',
             'name.min' => 'Nama lengkap tidak boleh kurang dari 3 karakter',
@@ -73,11 +72,7 @@ class RegisterController extends Controller
             'no_hp.unique' => 'No telp sudah ada, masukkan no telp yang lain',
             'password.string' => 'Kata sandi harus berupa huruf atau angka',
             'password.min' => 'Kata sandi tidak boleh kurang dari 8 karakter',
-            'password.confirmed' => 'Kata sandi tidak sama',
             'password.required' => 'Kata sandi tidak boleh kosong',
-            'password_confirmation.same' => 'Konfirmasi kata sandi tidak sama',
-            'password_confirmation.required' => 'Konfirmasi Kata sandi tidak boleh kosong',
-
         ]);
     }
 
@@ -94,6 +89,7 @@ class RegisterController extends Controller
         return $user;
     }
 }
+
 // 'alamat' => ['required','string'],
 // 'pekerjaan' => ['required','alpha'],
 // 'foto_ktp' => ['required','image','mimes:png,jpg,jpeg','max:2048'],

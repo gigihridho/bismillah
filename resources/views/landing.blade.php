@@ -236,137 +236,6 @@
     </div>
 </section>
 
-{{-- Benefit --}}
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
-    <div class="content-3-2 container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
-        <div class="d-flex flex-lg-row flex-column align-items-center">
-        <!-- Left Column -->
-        <div class="img-hero text-center justify-content-center d-flex">
-            <img id="hero" class="img-fluid"
-            src="{{ asset('fe/img/Home-search.png') }}"
-            alt="" />
-        </div>
-
-        <!-- Right Column -->
-        <div class="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
-            <h2 class="title-text">3 Keuntungan Kost di Sini</h2>
-            <ul style="padding: 0; margin: 0">
-            <li class="list-unstyled" style="margin-bottom: 2rem">
-                <h4
-                class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                <span class="circle text-white d-flex align-items-center justify-content-center">
-                    1
-                </span>
-                Harga Terjangkau
-                </h4>
-                <p class="text-caption">
-                Dengan harga yang terjangkau<br class="d-sm-inline d-none" />
-                sudah bisa merasakan fasilitas yang cukup.
-                </p>
-            </li>
-            <li class="list-unstyled" style="margin-bottom: 2rem">
-                <h4
-                class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                <span class="circle text-white d-flex align-items-center justify-content-center">
-                    2
-                </span>
-                Lokasi Strategis
-                </h4>
-                <p class="text-caption">
-                Lokasi yang strategis memudahkan kamu untuk<br class="d-sm-inline d-none" />
-                mencari makan, kuliah, belanja kebutuhan sehari-hari.
-                </p>
-            </li>
-            <li class="list-unstyled" style="margin-bottom: 4rem">
-                <h4
-                class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                <span class="circle text-white d-flex align-items-center justify-content-center">
-                    3
-                </span>
-                Suasana nyaman
-                </h4>
-                <p class="text-caption">
-                Meskipun dekat dengan kampus mahasiswa<br class="d-sm-inline d-none" />
-                kost ini masih memiliki suasana nyaman.
-                </p>
-            </li>
-            </ul>
-        </div>
-        </div>
-    </div>
-</section>
-{{-- <section class="features1 cid-qyvcAqZyNq" id="features1-1" data-rv-view="764">
-
-    <div class="container">
-        <div class="media-container-row">
-
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-img pb-3">
-                    <span class="mbr-iconfont mbri-users" style="color: rgb(0, 0, 0);" media-simple="true"></span>
-                </div>
-                <div class="card-box">
-                    <h4 class="card-title py-3 mbr-fonts-style display-5">
-                        Creativity</h4>
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        It's the ability to think outside the box. We make decisions, create something new and generate a lot of ideas.
-                    </p>
-                </div>
-            </div>
-
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-img pb-3">
-                    <span class="mbr-iconfont mbri-globe" style="color: rgb(0, 0, 0);" media-simple="true"></span>
-                </div>
-                <div class="card-box">
-                    <h4 class="card-title py-3 mbr-fonts-style display-5">
-                        Worldwide</h4>
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        All sites you make with Mobirise are mobile-friendly. You don't have to create a special mobile version of your site.
-                    </p>
-                </div>
-            </div>
-
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-img pb-3">
-                    <span class="mbr-iconfont mbri-smile-face" style="color: rgb(0, 0, 0);" media-simple="true"></span>
-                </div>
-                <div class="card-box">
-                    <h4 class="card-title py-3 mbr-fonts-style display-5">
-                        Unique Styles
-                    </h4>
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        Mobirise offers many site blocks in several themes, and though these blocks are pre-made, they are flexible.
-                    </p>
-                </div>
-            </div>
-
-
-
-        </div>
-
-    </div>
-
-</section> --}}
-{{--Galeri --}}
-{{-- <section class="h-100 w-100" style="box-sizing: border-box id="galeri" data-aos="fade-down">
-    <div class="galeri container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
-        <div class="text-center title-text">
-            <h1 class="text-title">Galeri Kost</h1>
-            <p class="text-caption">Berikut galeri kost</p>
-        </div>
-        <div class="container" style="margin-top: 4rem">
-            <div class="row">
-                <div class="owl-carousel owl-theme" id="owl-image">
-                    <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar1.png') }}" alt="Lazy Owl Image"></div>
-                    <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar2.jpg') }}" alt="Lazy Owl Image"></div>
-                    <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar3.jpg') }}" alt="Lazy Owl Image"></div>
-                    <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar1.png') }}" alt="Lazy Owl Image"></div>
-                    <div class="item"><img class="card-img" src="{{ asset('fe/img/kamar3.jpg') }}" alt="Lazy Owl Image"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
 
 {{-- Room --}}
 <section class="h-100 w-100" style="box-sizing: border-box" id="kamar" data-aos="fade-up">
@@ -389,11 +258,20 @@
                         alt="" height="200px" width="150px" />
                     </div>
                     <div class="card-body">
-                        <h3 class="room-title">{{ $tipe_kamar->nama }}</h3>
-                        <p class="room-price">Lantai {{$tipe_kamar->lantai}}</p>
-                        <p class="room-price">Jumlah kamar {{ $tipe_kamar->kamars->count() }}</p>
-                        <p class="room-price">Rp {{number_format($tipe_kamar->harga)}}/bulan</p>
-                        <a href="{{ route('detail-kost',$tipe_kamar->id) }}" class="btn btn-fill text-white">Pilih Kamar</a>
+                        <div class="row" style="text-align: left">
+                            <h3 class="room-title">{{ $tipe_kamar->nama }}</h3>
+                            <p class="room-price">Lantai : {{$tipe_kamar->lantai}}</p>
+                            <p class="room-price">Jumlah kamar kosong :
+                                @php $arrayTipe = array(); @endphp
+                                @foreach ($tipe_kamar->kamars->where('status',true) as $t)
+                                    @php $arrayTipe[] = $t @endphp
+
+                                @endforeach
+                                @php $jum = count($arrayTipe); @endphp
+                                {{ $jum }}</p>
+                            <p class="room-price">Rp {{number_format($tipe_kamar->harga)}}/bulan</p>
+                        </div>
+                        <a href="{{ route('detail-kost',$tipe_kamar->id) }}" class="btn btn-fill text-white d-block">Pilih Kamar</a>
                     </div>
                     </div>
                 </div>
@@ -435,7 +313,7 @@
             </div>
             <h3 class="icon-title">Transaksi</h3>
             <p class="icon-caption">
-                Anda melakukan pemesanan kamar
+                Anda melakukan pemesanan kamar kemudian mengunggah bukti pembayaran
             </p>
             </div>
             <div class="col-lg-4 column">
@@ -445,8 +323,7 @@
             </div>
             <h3 class="icon-title">Konfirmasi</h3>
             <p class="icon-caption">
-                Pesan anda akan dikonfirmasi Admin<br />
-                Anda bisa menempati kamar kost
+                Pemesanan anda akan dikonfirmasi Admin<br/>
             </p>
             </div>
         </div>

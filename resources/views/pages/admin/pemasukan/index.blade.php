@@ -56,7 +56,12 @@
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $tf->kode }}</td>
                                     <td>{{ $tf->user->name }}</td>
-                                    <td>{{ $tf->tanggal_pesan }}</td>
+                                    <td>
+                                        <?php
+                                            $date = new DateTime($tf->tanggal_pesan);
+                                            echo $date->format('d F Y h:i:s');
+                                        ?>
+                                    </td>
                                     <td>Rp {{ number_format($tf->total_harga,2,',','.') }}</td>
                                 </tr>
                             @endforeach

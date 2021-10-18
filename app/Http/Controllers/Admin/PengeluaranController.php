@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Pengeluaran;
 use Carbon\Carbon;
+use App\Pengeluaran;
 use Illuminate\Http\Request;
+use App\Exports\PengeluaranExport;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Admin\PengeluaranRequest;
 use App\Http\Requests\Admin\PengeluaranEditRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PengeluaranController extends Controller
 {
@@ -72,6 +74,10 @@ class PengeluaranController extends Controller
             'nominal' => $nominal
         ]);
         return $pdf->download('laporan-pengeluaran.pdf');
+    }
+
+    public function excel(){
+        return Excel::download(new PengeluaranExport,'laporan-pengeluaran.xlsx');
     }
 
     public function destroy($id){

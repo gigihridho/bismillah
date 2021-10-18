@@ -61,9 +61,9 @@ p.required-field::after {
                             <form action="{{ route('confirmation',$tipe_kamar->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input name="booking_validation" type="hidden" value="0">
-                            <div class="price mb-2" style="color: red"> <strong style="font-size: 20px"> Rp {{ number_format($tipe_kamar->harga) }} </strong>/Bulan</div>
+                            <div class="price mb-2"> <strong style="font-size: 20px"> Rp {{ number_format($tipe_kamar->harga) }} </strong>/Bulan</div>
                             <div class="form-group" style="margin-bottom: 0.5rem">
-                                <label for="date" style="margin-bottom: 0.5rem">Pilih tanggal masuk</label>
+                                <label for="date" style="margin-bottom: 0.5rem; font-family: poppins">Pilih tanggal masuk</label>
                                 <div class="input-group mb-2">
                                         <input type="text" style="background-color: white" data-provide="datepicker" class="form-control" id="tanggal_masuk" name="tanggal_masuk" placeholder="Tanggal Masuk" value="" readonly="">
                                 </div>
@@ -79,7 +79,7 @@ p.required-field::after {
                             <div class="form-group">
                                 <label for="" style="margin-bottom: 0.5rem">Total Harga</label>
                                     <input type="hidden" name="total" id="total" value="{{ $tipe_kamar->harga }}">
-                                    <input type="text" style="color:red; background-color:#f2f2f0" name="total_harga" id="total_harga" class="form-control" readonly value="{{ number_format($tipe_kamar->harga,2,',','.') }}">
+                                    <input type="text" style="background-color:#f2f2f0" name="total_harga" id="total_harga" class="form-control" readonly value="{{ number_format($tipe_kamar->harga,2,',','.') }}">
                             </div>
                             @if($errors->any())
                                 {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
@@ -126,7 +126,7 @@ p.required-field::after {
                             @forelse ($facilityy as $facility)
                             <div class="facility col-md-3">
                                 <img style="float:left; margin-right: 10px; opacity:0.5; color: #6777ef;" src="{{ Storage::url($facility->icon) }}" height="24pxs" alt="">
-                                <p style="margin-right: 5px; opacity:0.8">{{ $facility->nama }}</p>
+                                <p style="margin-right: 5px;">{{ $facility->nama }}</p>
                             </div>
                             @empty
                             <div class="col-12 text-left">

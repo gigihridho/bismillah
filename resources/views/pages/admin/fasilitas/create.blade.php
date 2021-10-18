@@ -61,7 +61,7 @@
                             <div class="row tombol">
                                 <div class="col text-center">
                                     <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
-                                        Simpan
+                                        Simpan Data
                                     </button>
                                     <a href="{{ route('fasilitas.index') }}" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
                                         Batal

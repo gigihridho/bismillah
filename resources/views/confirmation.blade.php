@@ -96,8 +96,20 @@
                             <tbody style="margin-bottom: 10px">
                             <tr>
                                 <td>{{ $tipe_kamar->nama }} ({{ $nomor_kamar }}) </td>
-                                <td>{{ $new_tanggal_masuk }}</td>
-                                <td>{{ $new_tanggal_keluar}}</td>
+                                <td>
+                                    <?php
+                                        $date = new DateTime($new_tanggal_masuk);
+                                        echo $date->format('d F Y');
+                                    ?>
+                                    {{-- {{ $new_tanggal_masuk }} --}}
+                                </td>
+                                <td>
+                                    {{-- {{ $new_tanggal_keluar}} --}}
+                                    <?php
+                                    $date = new DateTime($new_tanggal_keluar);
+                                    echo $date->format('d F Y');
+                                ?>
+                                </td>
                                 <td>{{ $durasi }} bulan</td>
                                 <td>Rp. {{ number_format($total_harga,2,',','.') }}</td>
                             </tr>

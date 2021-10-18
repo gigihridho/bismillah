@@ -5,6 +5,35 @@
 @endsection
 
 <style type="text/css">
+
+.inpFile {
+    margin-left: 3rem;
+    margin-top: 2rem;
+    color: #000;
+}
+input[type="file"]{
+    display: none;
+}
+.image-preview {
+    width: 250px;
+    min-height: 170px;
+    border: 2px dashed #afeeee;
+    margin-top: 15px;
+    /* margin-left: 3em; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #cccccc;
+}
+.image-preview__image{
+    display: none;
+    width: 100%;
+}
+.image-preview__default-text {
+    color:#87ceeb;
+
+}
 #myImg {
     border-radius: 5px;
     cursor: pointer;
@@ -14,62 +43,9 @@
 #myImg:hover {opacity: 0.7;}
 
 /* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-/* Modal Content (image) */
-.modal-content {
-    margin: auto;
-    -webkit-animation-name: zoom;
-    -webkit-animation-duration: 0.6s;
-    animation-name: zoom;
-    animation-duration: 0.6s;
-}
-
-@-webkit-keyframes zoom {
-    from {-webkit-transform:scale(0)}
-    to {-webkit-transform:scale(1)}
-}
-
-@keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
-}
-
-/* The Close Button */
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-.modal-content {
-    width: 50%;
-    }
+.required:after {
+    content:" *";
+    color: red;
 }
 
 </style>
@@ -86,160 +62,206 @@
 
         <div class="container">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        @yield('title')
-                    </h4>
-                </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 order-md-2 mb-4">
-                            <ul class="list-group list-group-flush mb-3">
-                                @foreach ($transaction as $index => $tf)
-                                {{-- <div class="row">
-                                    <div class="col-md-6 mb-3"> --}}
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Status</h6>
-                                            </div>
-                                            @if($tf->status == "Menunggu")
-                                                <span class="badge badge-warning">Menunggu</span>
-                                            @elseif($tf->status == "Selesai")
-                                                <span class="badge badge-success">Selesai</span>
-                                            @elseif($tf->status == "Dibatalkan")
-                                                <span class="badge badge-danger">Dibatalkan</span>
-                                            @endif
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Kode Pemesanan</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->kode }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Nama Lengkap</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->user->name }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">E-mail</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->user->email }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Nomor Telepon</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->user->no_hp }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Total Harga</h6>
-                                            </div>
-                                            <span class="text-muted">Rp{{ number_format($tf->total_harga,2,',','.') }}</span>
-                                        </li>
-                                    {{-- </div>
-                                </div> --}}
-                            </ul>
-                        </div>
-                        <div class="col-md-6 order-md-2 mb-1">
-                            <ul class="list-group list-group-flush mb-3">
-                                {{-- <div class="row">
-                                    <div class="col-md-6 mb-3"> --}}
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Tanggal Pesan</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->tanggal_pesan }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Lama Durasi Sewa</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->durasi }} bulan</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Tanggal Masuk</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->tanggal_masuk }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Tanggal Keluar</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->tanggal_keluar}}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                                <h6 class="my-0">Nomor Kamar</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->kamar->nomor_kamar }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Tipe Kamar</h6>
-                                            </div>
-                                            <span class="text-muted">{{ $tf->kamar->tipe_kamar->nama }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                            <div>
-                                            <h6 class="my-0">Bukti Transaksi</h6>
-                                            </div>
-                                            @if($tf->bukti_pembayaran != null)
-                                            <img id="myImg" height="200px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="" onclick="blank">
-                                            @else
-                                                <button class="btn btn-warning btn-sm" style="text-align:center">Belum Upload
-                                                </button>
-                                            @endif
-                                        </li>
-                                    {{-- </div>
-                                </div> --}}
-                            </ul>
-                        </div>
-                        @endforeach
-                    </div>
-                    <div class="row">
-                        <div class="mx- justify-content-left ml-4">
-                            <a href="{{ route('user-transaksi') }}" class="btn btn-info">Kembali</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- The Modal -->
-                <div id="myModal" class="modal" style="
-                ">
-                    <span class="close">&times;</span>
-                    <img class="modal-content" id="img01" style="max-width: 25%; margin:auto;">
-                    <div id="caption"></div>
+                    @foreach ($transaction as $index => $tf)
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td width="300px">Status</td>
+                                <td>
+                                    @if($tf->status == "Menunggu")
+                                        <span class="badge badge-warning">Menunggu</span>
+                                    @elseif($tf->status == "Selesai")
+                                        <span class="badge badge-success">Selesai</span>
+                                    @elseif($tf->status == "Dibatalkan")
+                                        <span class="badge badge-danger">Dibatalkan</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="300px">Kode Pemesanan</td>
+                                <td>
+                                    {{ $tf->kode }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="300px">Total Harga</td>
+                                <td>
+                                    Rp {{ number_format($tf->total_harga,2,',','.') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="300px">Tanggal Pesan</td>
+                                <td>
+                                    <?php
+                                        $date = new DateTime($tf->tanggal_pesan);
+                                        echo $date->format('d F Y H:i:s');
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="300px">Durasi</td>
+                                <td>
+                                    {{ $tf->durasi }} Bulan
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="300px">Tanggal Masuk</td>
+                                <td>
+                                    <?php
+                                        $date = new DateTime($tf->tanggal_masuk);
+                                        echo $date->format('d F Y');
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="300px">Tanggal Keluar</td>
+                                <td>
+                                    <?php
+                                        $date = new DateTime($tf->tanggal_keluar);
+                                        echo $date->format('d F Y');
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="300px">Tipe Kamar</td>
+                                <td>
+                                    {{ $tf->kamar->tipe_kamar->nama }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="300px">Nomor Kamar</td>
+                                <td>
+                                    {{ $tf->kamar->nomor_kamar }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="300px">Bukti Pembayaran <br>
+                                    <small class="required">Pastikan mengunggah foto dengan benar</small>
+                                </td>
+                                <td>
+                                    @if ($tf->bukti_pembayaran == null)
+                                        <img src="{{ asset('assets/img/default.jpg') }}" width="200px" height="150px" alt="">
+                                    @else
+                                        <img id="img_ktp" src="{{ Storage::url($tf->bukti_pembayaran) }}" name="bukti_pembayaran" width="250px" height="200px" alt="foto"
+                                        style="display: block; margin-bottom:15px; margin-right:auto">
+
+                                    @endif
+                                    @if($tf->status == "Menunggu" || $tf->status == "Dibatalkan")
+                                    <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-lg edit">
+                                        <i class="fas fa-upload" style="color: white;"> Upload Bukti</i>
+                                    </a>
+                                    @else
+                                    @endif
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                            <div class="justify-content-left">
+                                <a href="{{ route('user-transaksi') }}" class="btn btn-info">Kembali</a>
+                            </div>
+                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
+    @foreach ($transaction as $tf)
+    <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="img">
+            <form action="{{ route('user-transaksi-upload',$tf->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Pembayaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="image-preview" id="imagePreview">
+                        <img src="" alt="Image Preview" class="image-preview__image">
+                            <span class="image-preview__default-text">
+                            +</span>
+                    </div>
+                    <input type="file" name="bukti_pembayaran" id="inpFile">
+                    <label for="inpFile" style="color: white;
+                        height: 35px;
+                        width: 105px;
+                        background-color: #03a9f4;
+                        position: absolute;
+                        margin-left: 6em;
+                        padding: 10px;
+                        border-radius: 10px;
+                        padding-top: 8px;
+                        padding-left: 20px;
+                        font-weight: lighter;
+                        font-size: 12px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 1em;">
+                    <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
+                        Pilih foto
+                    </label>
+                </div>
+                <div class="modal-footer mt-3">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @endforeach
 </div>
 @endsection
 @push('addon-script')
 <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+    $(function () {
+        $("#bukti_pembayaran").change(function () {
+            readURL(this);
+        });
+    });
+    const inpFile = document.getElementById("inpFile");
+    const previewContainer = document.getElementById("imagePreview");
+    const previewImage = previewContainer.querySelector(".image-preview__image");
+    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
 
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    var img = document.getElementById("myImg");
-    var modalImg = document.getElementById("img01");
-    var captionText = document.getElementById("caption");
-    img.onclick = function(){
-        modal.style.display = "block";
-        modalImg.src = this.src;
-        captionText.innerHTML = this.alt;
-    }
+    inpFile.addEventListener("change", function(){
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        const file = this.files[0];
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-    modal.style.display = "none";
+        if (file){
+            const reader = new FileReader();
+
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+
+            reader.addEventListener("load", function(){
+
+                previewImage.setAttribute("src", this.result);
+            });
+
+            reader.readAsDataURL(file);
+        }else {
+            previewDefaultText.style.display = null;
+            previewImage.style.display = null;
+            previewImage.setAttribute("src", "");
+        }
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img_ktp').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 </script>
 @endpush

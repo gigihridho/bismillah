@@ -12,97 +12,107 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-primary" style="width: 70px">
-                <i class="fas fa-users"></i>
+                <div class="card card-statistic-1">
+                    <a style="text-decoration: none;" href="{{ route('user.index') }}">
+                        <div class="card-icon bg-primary" style="width: 70px">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Total User</h4>
+                            </div>
+                            <div class="card-body">
+                                {{ $user }}
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Total User</h4>
-                </div>
-                <div class="card-body">
-                    {{ $user }}
-                </div>
-                </div>
-            </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-danger" style="width: 70px">
-                <i class="fas fa-bed"></i>
+                <div class="card card-statistic-1">
+                    <a style="text-decoration: none;" href="{{ route('tipe.index') }}">
+                        <div class="card-icon bg-danger" style="width: 70px">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Kamar Tersedia</h4>
+                            </div>
+                            <div class="card-body">
+                                {{ $kamar_tersedia }}
+                            </div>
+                            <p style="color:black;">Dari total {{ $kam }} kamar</p>
+                        </div>
+                    </a>
                 </div>
-                <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Kamar Tersedia</h4>
-                </div>
-                <div class="card-body">
-                    {{ $kamar_tersedia }}
-                </div>
-                <p>Dari total {{ $kam }} kamar</p>
-                </div>
-            </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-warning" style="width: 70px">
-                <i class="fas fa-money-bill"></i>
+                <div class="card card-statistic-1">
+                    <a style="text-decoration: none;" href="{{ route('transaksi') }}">
+                        <div class="card-icon bg-warning" style="width: 70px">
+                            <i class="fas fa-money-bill"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Jumlah Transaksi</h4>
+                            </div>
+                            <div class="card-body">
+                                {{ $bookings }}
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Jumlah Transaksi</h4>
-                </div>
-                <div class="card-body">
-                    {{ $bookings }}
-                </div>
-                </div>
-            </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-info" style="width: 70px">
-                <i class="fas fa-wallet"></i>
+                <div class="card card-statistic-1">
+                    <a style="text-decoration: none;" href="{{ route('pemasukan') }}">
+                        <div class="card-icon bg-info" style="width: 70px">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Pemasukan</h4>
+                            </div>
+                            <div class="card-body">
+                                Rp{{ number_format($total_harga,2,',','.') }}
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Pemasukan</h4>
-                </div>
-                <div class="card-body">
-                    Rp{{ number_format($total_harga,2,',','.') }}
-                </div>
-                </div>
-            </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-success" style="width: 70px">
-                <i class="fas fa-money-bill-alt"></i>
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-success" style="width: 70px">
+                        <i class="fas fa-money-bill-alt"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Keuntungan</h4>
+                        </div>
+                        <div class="card-body">
+                            Rp{{ number_format($keuntungan,2,',','.') }}
+                        </div>
+                    </div>
                 </div>
-                <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Keuntungan</h4>
-                </div>
-                <div class="card-body">
-                    Rp{{ number_format($keuntungan,2,',','.') }}
-                </div>
-                </div>
-            </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-danger" style="width: 70px">
-                <i class="fas fa-money-bill"></i>
+                <div class="card card-statistic-1">
+                    <a style="text-decoration: none;" href="{{ route('pengeluaran.index') }}">
+                        <div class="card-icon bg-danger" style="width: 70px">
+                            <i class="fas fa-money-bill"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Pengeluaran</h4>
+                            </div>
+                            <div class="card-body">
+                                Rp{{ number_format($pengeluaran,2,',','.') }}
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Pengeluaran</h4>
-                </div>
-                <div class="card-body">
-                    Rp{{ number_format($pengeluaran,2,',','.') }}
-                </div>
-                </div>
-            </div>
             </div>
         </div>
         <div class="row">

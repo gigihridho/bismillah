@@ -79,24 +79,43 @@
                         <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                             @csrf
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email" class="required">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                    </div>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
                                 oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">                                @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                </div>
                             </div>
 
                             <div class="form-group">
                             <div class="d-block">
-                                <label for="password" class="control-label">Kata Sandi</label>
+                                <label for="password" class="control-label required">Kata Sandi</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                    </div>
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
-                                @error('password')
+                                    <div class="input-group-append" >
+                                        <div class="input-group-text">
+                                            <i class="fas fa-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
+                                        </div>
+                                    </div>
+                                    @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                </div>
                                 <div class="float-right mb-4">
                                 @if (Route::has('password.request'))
                                 <a class="text-small" style="color: #1966BA" href="{{ route('password.request') }}">
@@ -123,6 +142,20 @@
     </section>
 </div>
 @endsection
+@push('after-script')
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye');
+    });
+</script>
+@endpush
 {{-- <div class="row">
     <div class="card card-primary">
         <div class="card-header">

@@ -5,7 +5,7 @@
     <div class="row align-items-sm-center align-items-l-stretch">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header d-flex align-item-center justify-content-between">
+                <div class="d-flex align-item-center justify-content-between" style="margin-left: 25px">
                     <div>
                         {{ __('Silakan verifikasi email Anda') }}
                     </div>

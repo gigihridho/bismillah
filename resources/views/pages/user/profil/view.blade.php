@@ -117,7 +117,7 @@ label:hover {
                                     <img src="{{ asset('assets/img/avatar/avatar-4.png') }}" width="200px" height="200px" alt="foto"
                                     style="rounded-circle mt-5">
                                 @endif
-                                <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-secondary btn-xs edit mt-3">
+                                <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-xs edit mt-3">
                                     <i class="fas fa-camera" style="color: white;"> Ubah Foto</i>
                                 </a>
                             </div>

@@ -6,98 +6,9 @@
 
 @section('content')
 <style>
-    .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-input[type="file"]{
-    display: none;
-}
-.inputfile + label {
-    color: white;
-    font: 500 1.5rem/1.5rem Poppins, sans-serif;
-    background-color: black;
-    display: inline-block;
-    margin-left: 3rem;
-    margin-top: 2rem;
-}
-
-.inputfile:focus + label,
-.inputfile + label:hover {
-    background-color: red;
-}
-.inputfile + label {
-	cursor: pointer; /* "hand" cursor */
-}
-.inputfile:focus + label,
-.inputfile.has-focus + label {
-    outline: 1px dotted #000;
-    outline: -webkit-focus-ring-color auto 5px;
-}
-.image-preview {
-    width: 250px;
-    min-height: 170px;
-    border: 2px dashed #afeeee;
-    margin-top: 15px;
-    margin-left: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #cccccc;
-}
-.image-preview__image{
-    display: none;
-    width: 100%;
-}
-.image-preview__default-text {
-    color:#87ceeb;
-
-}
-.inpFile {
-    margin-left: 3rem;
-    margin-top: 2rem;
-    color: #000;
-}
-input[type="file"]{
-    display: none;
-}
-/* label {
-    color: white;
-    height: 35px;
-    width: 105px;
-    background-color: #03a9f4;
-    position: absolute;
-    margin-left: 8.5em;
-    padding: 10px;
-    border-radius: 10px;
-    padding-top: 8px;
-    padding-left: 20px;
-    font-weight: lighter;
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
-} */
-label:hover {
-    opacity: 80%;
-}
-
-#myImg:hover {opacity: 0.7;}
-
-@-webkit-keyframes zoom {
-    from {-webkit-transform:scale(0)}
-    to {-webkit-transform:scale(1)}
-}
-
-@keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
+.required:after {
+    content:" *";
+    color: red;
 }
 </style>
 <div class="main-content">
@@ -123,7 +34,7 @@ label:hover {
                     <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
-                            <p>Klik tombol <button class="btn btn-success"> <i class="fas fa-upload"></i></button> untuk Upload Bukti Pembayaran </p>
+                            <p class="required">Silakan unggah bukti pembayaran pada bagian detail </p>
                             @if ($transaction->count() > 0)
                             <a href="{{ route('lanjut-sewa') }}" class="btn btn-primary mb-3"><span i class="fas fa-plus"></span> Perpanjang Sewa</a>
                             @endif
@@ -137,7 +48,6 @@ label:hover {
                                     <th scope="col">Tanggal Masuk</th>
                                     <th scope="col">Tanggal Keluar</th>
                                     <th scope="col">Total Harga</th>
-                                    <th scope="col">Bukti Transaksi</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
@@ -150,22 +60,21 @@ label:hover {
                                     <td>{{ $tf->kode }}</td>
                                     <td><span class="badge badge-info">{{ $tf->kamar->tipe_kamar->nama }} ({{ $tf->kamar->nomor_kamar }})</span>
                                     </td>
-                                    <td style="width: 10px">{{ $tf->tanggal_masuk }}</td>
-                                    <td style="width: 10px">{{ $tf->tanggal_keluar }}</td>
-                                    <td>Rp{{ number_format($tf->total_harga) }}</td>
                                     <td>
-                                        @if($tf->bukti_pembayaran == null && $tf->status == "Dibatalkan")
-                                            <i class="fas fa-upload" style="color: white;"></i>
-                                        @elseif($tf->bukti_pembayaran != null)
-                                            <img id="myImg" height="100px" id="myImg" width="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="image" style="border-radius: 5px;
-                                            cursor: pointer;
-                                            transition: 0.3s;">
-                                        @else
-                                        <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-sm edit">
-                                            <i class="fas fa-upload" style="color: white;"></i>
-                                        </a>
-                                        @endif
+                                        <?php
+                                            $date = new DateTime($tf->tanggal_masuk);
+                                            echo $date->format('d F Y');
+                                        ?>
+                                        {{-- {{ $tf->tanggal_masuk }} --}}
                                     </td>
+                                    <td>
+                                        {{-- {{ $tf->tanggal_keluar }} --}}
+                                        <?php
+                                            $date = new DateTime($tf->tanggal_keluar);
+                                            echo $date->format('d F Y');
+                                        ?>
+                                    </td>
+                                    <td>Rp{{ number_format($tf->total_harga) }}</td>
                                     <td>
                                         @if($tf->status == "Menunggu")
                                             <span class="badge badge-warning">Menunggu</span>
@@ -200,31 +109,8 @@ label:hover {
             </div>
         </div>
     </section>
-    {{-- Modal --}}
-    <div id="myModal" class="modal fade" style="
-                display: none;
-                position: fixed;
-                z-index: 1;
-                padding-top: 100px;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: rgb(0,0,0);
-                background-color: rgba(0,0,0,0.9);" aria-hidden="true" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered" role="img">
-            <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-                <img class="modal-content" id="img01" style="max-width: 25%; margin:auto;">
-                <div id="caption"></div>
-            </div>
-        </div>
-    </div>
     <!-- Modal -->
-    @foreach ($transaction as $tf)
+    {{-- @foreach ($transaction as $tf)
     <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="img">
             <form action="{{ route('user-transaksi-upload',$tf->id) }}" method="POST" enctype="multipart/form-data">
@@ -270,7 +156,7 @@ label:hover {
             </form>
         </div>
     </div>
-    @endforeach
+    @endforeach --}}
 </div>
 @endsection
 @push('addon-script')

@@ -79,6 +79,7 @@ Route::prefix('admin')
 
         Route::resource('pengeluaran','Admin\PengeluaranController');
         Route::get('pdf','Admin\PengeluaranController@ex_pdf')->name('pengeluaran-pdf');
+        Route::get('excel','Admin\PengeluaranController@excel')->name('pengeluaran-excel');
 
         Route::resource('user', 'Admin\UserController');
 
