@@ -43,7 +43,7 @@ class KamarTersedia implements Rule
      */
     public function message()
     {
-        return 'Maaf, tidak ada kamar yang tersedia di tanggal ini. Silakan pilih tanggal lain.';
+        return 'Maaf, tidak ada kamar yang tersedia saat ini. Silakan pilih tipe kamar yang lain.';
     }
 
     public function kamar_tersedia(){

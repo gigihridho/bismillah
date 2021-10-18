@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Review;
 use App\Room;
 use App\User;
@@ -19,10 +20,12 @@ class UserReviewController extends Controller
     public function review(Request $request)
     {
         $user = User::where('id',Auth::user()->id)->get();
+        $cek = Booking::where('id',Auth::user()->id)->where('status',"Selesai")->get();
         $review = Review::where('user_id',Auth::user()->id)->get();
         return view('pages.user.review.edit',[
             'review' => $review,
             'user' => $user,
+            'cek' => $cek
         ]);
     }
 

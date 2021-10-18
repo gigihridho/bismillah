@@ -10,7 +10,6 @@
         line-height: 28px;
         color: #6777ef;
         padding-right: 10px;
-        margin-bottom: 0;
     }
 
     .text-small{
@@ -63,152 +62,92 @@
 
 
 
-.image {
-    width: 720px;
-    height: 400px
-}
-
-.border-line {
-    border-right: 1px solid #EEEEEE
-}
-
-.line {
-    height: 2px;
-    width: 90%;
-    background-color: #E0E0E0;
-    margin-top: 10px
-}
-
-.or {
-    width: 10%;
-    font-weight: bold
-}
-
-.text-sm {
-    font-size: 14px !important
-}
-
-button:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    outline-width: 0
-}
-
-@media screen and (max-width: 360px) {
-
-.image {
-    width: 70px;
-    height: 80px
-}
-
-.border-line {
-    border-right: none
-}
-
-}
-@media screen and (max-width: 991px) {
-
-    .image {
-        width: 600px;
-        height: 400px
-    }
-
-    .border-line {
-        border-right: none
-    }
-
-}
 .required:after {
     content:" *";
     color: red;
 }
 </style>
-<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 mx-auto" style="background-color:#F2F6FF" data-aos="fade-up">
-    <div class="card card-primary">
-        <div class="card-body">
-        <div class="row d-flex">
-            <div class="col-lg-6">
-                <div class="pb-2">
-                    <div class="row justify-content-center border-line" style="margin-top: 100px">
-                        <img src="{{ asset('assets/img/searchh.png') }}" class="image">
+<div class="app">
+    <section class="section" style="background: #F2F6FF" data-aos="fade-up">
+        <div class="container">
+            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-6">
+                <div class="login-brand">
+                    <img src="../dist/img/stisla-fill.svg" style="opacity: 0" alt="logo" width="100" class="shadow-light rounded-circle">
+                </div>
+                <div class="card card-primary" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <h4 style="text-align: center"><strong>Pendaftaran Akun</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('register') }}" class="needs-validation" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="name" class="required">Nama Lengkap</label>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" placeholder="Masukkan Nama Lengkap Anda"
+                                    oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="required">Email</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
+                                    oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="required">Nomor Telepon</label>
+                                    <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda Anda"
+                                    oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
+                                    @error('no_hp')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password"class="d-block required">Kata Sandi</label>
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Masukkan Kata Sandi Anda"
+                                    oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password-confirm"class="d-block required">Konfirmasi Kata Sandi</label>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off"
+                                    placeholder="Masukkan Kata Sandi Anda Lagi"
+                                    oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
+
+                                    @error('password_confirmation')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                    <small style="font-size: 12px;">Keterangan : Pastikan sama dengan kata sandi sebelumnya</small>
+                                </div>
+                                <div class="row mb-3 px-3"> <button type="submit" class="btn btn-primary btn-lg btn-block">Daftar</button> </div>
+                                <div class="row mb-3 px-3 text-center">
+                                    <small class="font-weight-bold">Sudah Punya Akun? <a href="{{ route('login') }}" style="color: #1966BA">Masuk</a>
+                                    </small>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <form method="POST" action="{{ route('register') }}" class="needs-validation" enctype="multipart/form-data">
-                    @csrf
-                    <div class="border-0 px-4 py-3">
-                        <div class="row mb-4 px-3">
-                            <h6 class="mb-0 mr-4 mt-2"><strong>Pendaftaran Akun</strong></h6>
-                        </div>
-                        <div class="row px-3 mb-4">
-                            <label for="name" class="mb-2 required">Nama Lengkap</label>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus placeholder="Masukkan Nama Anda"
-                                oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                        </div>
-                        <div class="row px-3 mb-4">
-                            <label for="no_hp" class="mb-2 required">No Telepon</label>
-                            <input id="no_hp" type="numeric" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="off" placeholder="Masukkan Nomor Telepon Anda"
-                            oninvalid="this.setCustomValidity('Nomor telepon tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                            @error('no_hp')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <small style="font-size: 12px;">Contoh: 08190211313</small>
-                        </div>
-                        <div class="row px-3 mb-4">
-                            <label for="email" class="mb-2 required">Email</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
-                            oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="row px-3 mb-4">
-                            <label for="password"class="d-block mb-2 required">Kata Sandi</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Masukkan Kata Sandi Anda"
-                            oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="row px-3 mb-4">
-                            <label for="password-confirm"class="d-block mb-2 required">Konfirmasi Kata Sandi</label>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off"
-                            placeholder="Masukkan Kata Sandi Anda Lagi"
-                            oninvalid="this.setCustomValidity('Kata sandi tidak boleh kosong')" oninput="setCustomValidity('')">
-
-                            @error('password_confirmation')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <small style="font-size: 12px;">Keterangan : Pastikan sama dengan kata sandi sebelumnya</small>
-                        </div>
-                        <div class="row mb-3 px-3"> <button type="submit" class="btn btn-primary btn-lg btn-block">Daftar</button> </div>
-                        <div class="row mb-4 px-3 text-center">
-                            <small class="font-weight-bold">Sudah Punya Akun? <a href="{{ route('login') }}" class="text-danger">Masuk</a>
-                            </small>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
-    </div>
-    </div>
+    </section>
 </div>
 @endsection
 {{-- <div id="app" style="background: #F2F6FF">

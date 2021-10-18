@@ -3,7 +3,17 @@
 @section('title')
     Fasilitas
 @endsection
-
+<style type="text/css">
+.required:after {
+    content:" *";
+    color: red;
+}
+@media (max-width: 427px) {
+    .tombol .btn.simpan {
+        margin-bottom: 10px;
+    }
+}
+</style>
 @section('content')
 <div class="main-content">
     <section class="section">
@@ -28,11 +38,6 @@
                                 </ul>
                             </div>
                         @endif
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @endif
                     <div class="card-header">
                         <h4>Tambah Fasilitas</h4>
                     </div>
@@ -42,18 +47,27 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama Fasilitas</label>
+                                        <label class="required">Nama Fasilitas</label>
                                         <input type="text" name="nama" class="form-control" autocomplete="off" placeholder="Masukkan Fasilitas"/>
                                     </div>
                                 </div>
-                            </div>
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <button type="submit" id="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px;">
-                                            Simpan Data
-                                        </button>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="required">Icon Fasilitas</label>
+                                        <input type="file" name="icon" class="form-control" autocomplete="off" placeholder="Masukkan Fasilitas"/>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row tombol">
+                                <div class="col text-center">
+                                    <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
+                                        Simpan
+                                    </button>
+                                    <a href="{{ route('fasilitas.index') }}" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
+                                        Batal
+                                    </a>
+                                </div>
+                            </div>
                             </form>
                         </div>
                         </div>

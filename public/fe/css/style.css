@@ -497,7 +497,7 @@
 
         .galeri .card-btn-space {
         margin-top: 15px;
-        margin-bottom: 15px;
+        /* margin-bottom: 15px; */
         }
 
         .galeri .btn-card,
@@ -512,7 +512,6 @@
         width: 100%;
         }
     }
-
 
     /* Content2 */
         .content-2-2 .btn:focus,
@@ -1287,8 +1286,6 @@
 
         .login-brand {
             margin: 20px 0;
-            margin-bottom: 40px;
-            font-size: 24px;
             text-transform: uppercase;
             letter-spacing: 4px;
             color: #666;
@@ -1330,9 +1327,8 @@
             line-height: 30px;
             -ms-grid-row-align: center;
             align-self: center;
-            width: 100%;
             min-height: 70px;
-            padding: 15px 25px;
+            padding: 15px;
             display: flex;
             align-items: center; }
             .card .card-header .btn {

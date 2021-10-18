@@ -56,7 +56,7 @@ Review
                             <div class="form-group">
                                 <label for="review" class="required">Review</label>
                                 <input type="text" name="review" id="review" class="form-control"
-                                value="" autocomplete="off" placeholder="Masukkan Review">
+                                value="" autocomplete="off" placeholder="Masukkan Review" required>
                                 <small>Contoh: Kost bersih dan nyaman</small>
                             </div>
                         @endif
@@ -75,4 +75,30 @@ Review
         </div>
     </section>
 </div>
+{{-- Cek Profil --}}
+@if(Auth::check() && $cek)
+<div id="myModal" class="modal fade hide fade in" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: red">Pesan Kamar Terlebih Dahulu</h5>
+            </div>
+            <div class="modal-body">
+                <p>Untuk mengisi review, Pastikan Anda sudah pernah melakukan pemesanan kamar. <br>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href={{ route('home') }} class="btn btn-danger">Halaman Utama</a>
+                <a href={{ route('profil-user') }} class="btn btn-info">Buka Profil</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
+
+@push('addon-script')
+<script>
+    $('#myModal').modal('show');
+</script>
+@endpush

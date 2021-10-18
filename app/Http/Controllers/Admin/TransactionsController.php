@@ -51,7 +51,7 @@ class TransactionsController extends Controller
         $transaksis = Booking::findOrFail($id);
         $transaksis->status = "Selesai";
         $transaksis->save();
-        Alert::success('SUCCESS','Data booking telah dikonfirmasi');
+        Alert::success('SUCCESS','Pesanan telah berhasil dikonfirmasi');
         return redirect()->route('transaksi');
     }
     public function batal(Request $request, $id){
@@ -61,7 +61,7 @@ class TransactionsController extends Controller
         $kamar->status = 1;
         $kamar->save();
         $transaksis->save();
-        Alert::success('SUCCESS','Data booking telah dibatalkan');
+        Alert::success('SUCCESS','Pesanan telah berhasil  dibatalkan');
         return redirect()->route('transaksi');
     }
 

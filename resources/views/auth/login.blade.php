@@ -59,44 +59,6 @@
     border-color: #6777ef;
 }
 
-.image {
-    width: 500px;
-    height: 300px
-}
-
-.border-line {
-    border-right: 1px solid #EEEEEE
-}
-
-.line {
-    height: 1px;
-    width: 45%;
-    background-color: #E0E0E0;
-    margin-top: 10px
-}
-@media screen and (max-width: 375px) {
-
-    .image {
-        width: 300px;
-        height: 220px
-    }
-
-    .border-line {
-        border-right: none
-    }
-
-}
-@media screen and (max-width: 991px) {
-
-    .image {
-        width: 600px;
-        height: 400px
-    }
-
-    .border-line {
-        border-right: none
-    }
-}
 .required:after {
     content:" *";
     color: red;
@@ -105,59 +67,53 @@
 <div id="app">
     <section class="section" style="background: #F2F6FF" data-aos="fade-up">
         <div class="container">
-            <div class="card card-primary">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="pb-2">
-                                <div class="row justify-content-center mb-5 border-line">
-                                    <img src="{{ asset('assets/img/searchh.png') }}" class="image mt-2">
+            <div class="row">
+                <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                    <div class="login-brand">
+                        <img src="../dist/img/stisla-fill.svg" style="opacity: 0;" alt="logo" class="shadow-light rounded-circle">
+                    </div>
+
+                    <div class="card card-primary" style="margin-bottom: 20px;">
+                        <div class="card-header"><h4><strong>Masuk Akun</strong></h4></div>
+                        <div class="card-body">
+                        <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+                            @csrf
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
+                                oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                            <div class="d-block">
+                                <label for="password" class="control-label">Kata Sandi</label>
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <div class="float-right mb-4">
+                                @if (Route::has('password.request'))
+                                <a class="text-small" style="color: #1966BA" href="{{ route('password.request') }}">
+                                    {{ __('Lupa Kata Sandi?') }}
+                                </a>
+                                @endif
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                                <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
-                                    @csrf
-                                <div class="row mb-4 px-3">
-                                    <h6 class="mb-0 mr-4 mt-2"><strong>Masuk Akun</strong></h6>
-                                </div>
-                                <div class="form-group px-3 mb-4">
-                                    <label for="email" class="mb-2 required">Email</label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
-                                    oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group px-3 mb-4">
-                                    <div class="d-block">
-                                        <label for="password" class="control-label mb-2 required">Kata Sandi</label>
-                                        </div>
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
-                                            @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                            <div class="float-right mb-4">
-                                            @if (Route::has('password.request'))
-                                            <a class="text-small" style="color:blue" href="{{ route('password.request') }}">
-                                                {{ __('Lupa Kata Sandi?') }}
-                                            </a>
-                                            @endif
-                                        </div>
-                                </div>
 
-                                <div class="form-group px-3 mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                    Masuk
-                                    </button>
-                                </div>
-                                </form>
-                            <div class="mb-3 text-muted text-center">
-                                Belum punya akun? <a href="{{ route('register') }}" style="color:red">Daftar sekarang</a>
+                            <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                Masuk
+                            </button>
+                            </div>
+                        </form>
+                            <div class="text-muted text-center">
+                                Belum punya akun? <a href="{{ route('register') }}" style="color: #1966BA">Daftar sekarang</a>
                             </div>
                         </div>
                     </div>
@@ -167,3 +123,55 @@
     </section>
 </div>
 @endsection
+{{-- <div class="row">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h4>Masuk</h4>
+        </div>
+        <div class="card-body">
+                <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+                    @csrf
+                <div class="row mb-4 px-3">
+                    <h6 class="mb-0 mr-4 mt-2"><strong>Masuk Akun</strong></h6>
+                </div>
+                <div class="form-group px-3 mb-4">
+                    <label for="email" class="mb-2 required">Email</label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Masukkan Email Anda"
+                    oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group px-3 mb-4">
+                    <div class="d-block">
+                        <label for="password" class="control-label mb-2 required">Kata Sandi</label>
+                        </div>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi" required autocomplete="current-password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <div class="float-right mb-4">
+                            @if (Route::has('password.request'))
+                            <a class="text-small" style="color:blue" href="{{ route('password.request') }}">
+                                {{ __('Lupa Kata Sandi?') }}
+                            </a>
+                            @endif
+                        </div>
+                </div>
+
+                <div class="form-group px-3 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                    Masuk
+                    </button>
+                </div>
+                </form>
+                <div class="mb-3 text-muted text-center">
+                    Belum punya akun? <a href="{{ route('register') }}" style="color:red">Daftar sekarang</a>
+                </div>
+            </div>
+        </div>
+    </div> --}}

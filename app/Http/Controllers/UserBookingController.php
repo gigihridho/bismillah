@@ -37,9 +37,9 @@ class UserBookingController extends Controller
             ->where('user_id',Auth::user()->id)
             ->latest()
             ->first();
-        if ($transaction->statuts == "Selesai") {
+        if ($transaction->status == "Menunggu") {
             return redirect()->back()
-            ->withErrors('Menunggu admin melakukan konfirmasi pembayaran sebelumnya');
+            ->withErrors('menunggu admin melakukan konfirmasi pemesanan dan pastikan sudah mengunggah bukti transaksi');
         }
         $tipe_kamar =  $transaction->kamar->tipe_kamar;
 

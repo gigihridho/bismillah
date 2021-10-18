@@ -1,4 +1,4 @@
-{{-- @extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('title')
     Fasilitas
@@ -41,10 +41,33 @@
                         <h4>Edit Fasilitas</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('fasilitas.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('fasilitas.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                             @method("PUT")
                             @csrf
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="required">Nama Fasilitas</label>
+                                        <input type="text" name="nama" value="{{ $data->nama }}" class="form-control @error('nama') is-invalid @enderror" autocomplete="off">
+                                        @error('nama')
+                                            <div class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="required">Icon Fasilitas</label>
+                                        <input type="file" name="icon" value="{{ $data->icon }}" class="form-control @error('icon') is-invalid @enderror" autocomplete="off">
+                                        @error('icon')
+                                            <div class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                         <div class="row tombol">
                             <div class="col text-center">
                                 <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
@@ -62,18 +85,5 @@
         </div>
     </section>
 </div>
-@endsection --}}
-<div class="row">
-    <div class="col-md-12">
-        <input type="hidden" name="id" value={{ $fas->id }} id="id_fasilitas">
-        <div class="form-group">
-            <label>Nama Fasilitas</label>
-            <input type="text" name="nama" value="{{ $fas->nama }}" class="form-control @error('nama') is-invalid @enderror" autocomplete="off">
-            @error('nama')
-                <div class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </div>
-            @enderror
-        </div>
-    </div>
-</div>
+@endsection
+

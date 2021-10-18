@@ -45,9 +45,9 @@ input[type="file"]{
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
 }
-.image-preview {
-    width: 250px;
-    min-height: 170px;
+/* .image-preview {
+    width: 200px;
+    min-height: 180px;
     border: 2px dashed #afeeee;
     margin-top: 15px;
     margin-left: 9em;
@@ -56,11 +56,12 @@ input[type="file"]{
     justify-content: center;
     font-weight: bold;
     color: #cccccc;
-}
+} */
 .image-preview__image{
     display: none;
     width: 100%;
 }
+
 .image-preview__default-text {
     color:#87ceeb;
 
@@ -70,6 +71,9 @@ input[type="file"]{
     margin-top: 2rem;
     color: #000;
 }
+input[type="file"]{
+    display: none;
+}
 .btn-primary{
     margin-top:5rem;
     padding-top: 10px;
@@ -77,7 +81,7 @@ input[type="file"]{
     padding-left: 20px;
     padding-right: 20px;
     color: white;
-    margin-left: 12em;
+    margin-left: 11em;
     display: table;
     font-size: 18px;
     margin-bottom: 10px;
@@ -90,20 +94,280 @@ label {
     width: 120px;
     background-color: #03a9f4;
     position: absolute;
-    font: 200 1rem/1rem Poppins, sans-serif;
-    margin-left: 9em;
+    font-size: 12px Poppins, sans-serif;
+    margin-left: 11.5em;
     margin-bottom: 5rem;
     padding: 10px;
     border-radius: 10px;
     padding-top: 8px;
     padding-left: 20px;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 label:hover {
     opacity: 80%;
 }
+@media screen and (min-width: 0px) and  (max-width: 360px) {
+    label {
+        margin-top: 1em;
+        color: white;
+        height: 40px;
+        width: 120px;
+        background-color: #03a9f4;
+        position: absolute;
+        font-size: 12px Poppins, sans-serif;
+        margin-left: -3.5em;
+        margin-bottom: 5rem;
+        padding: 10px;
+        border-radius: 10px;
+        padding-top: 8px;
+        padding-left: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .btn-primary{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        margin: 5rem auto;
+        display: table;
+        font-size: 18px;
+        margin-bottom: 10px;
+        border-color: #fff;
+    }
+    .image-preview {
+        width: 200px;
+        min-height: 180px;
+        border: 2px dashed #afeeee;
+        margin-top: 15px;
+        margin-left: 4em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #cccccc;
+    }
+}
+@media screen and (min-width: 361px) and (max-width: 414px) {
+    label {
+        margin-top: 1em;
+        color: white;
+        height: 40px;
+        width: 120px;
+        background-color: #03a9f4;
+        position: absolute;
+        font-size: 12px Poppins, sans-serif;
+        margin-left: -4em;
+        margin-bottom: 5rem;
+        padding: 10px;
+        border-radius: 10px;
+        padding-top: 8px;
+        padding-left: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .btn-primary{
+        margin-top:5rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        margin: 5rem auto;
+        display: table;
+        font-size: 18px;
+        margin-bottom: 10px;
+        border-color: #fff;
+    }
+    .image-preview {
+        width: 200px;
+        min-height: 180px;
+        border: 2px dashed #afeeee;
+        margin-top: 15px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #cccccc;
+    }
+}
+@media screen and (min-width: 415px) and (max-width: 600px) {
+    label {
+        margin-top: 1em;
+        color: white;
+        height: 40px;
+        width: 120px;
+        background-color: #03a9f4;
+        position: absolute;
+        font-size: 12px Poppins, sans-serif;
+        margin-left: -4em;
+        margin-bottom: 5rem;
+        padding: 10px;
+        border-radius: 10px;
+        padding-top: 8px;
+        padding-left: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .btn-primary{
+        margin-top:5rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        margin: 5rem auto;
+        display: table;
+        font-size: 18px;
+        margin-bottom: 30px;
+        border-color: #fff;
+    }
+    .image-preview {
+        width: 200px;
+        min-height: 180px;
+        border: 2px dashed #afeeee;
+        margin-top: 15px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #cccccc;
+    }
+}
+@media screen and (min-width: 601px) and  (max-width: 768px) {
+    label {
+        margin-top: 1em;
+        color: white;
+        height: 40px;
+        width: 120px;
+        background-color: #03a9f4;
+        position: absolute;
+        font-size: 12px Poppins, sans-serif;
+        margin-left: -3.5em;
+        margin-bottom: 5rem;
+        padding: 10px;
+        border-radius: 10px;
+        padding-top: 8px;
+        padding-left: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .btn-primary{
+        margin-top:5rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        margin: 5rem auto;
+        display: table;
+        font-size: 18px;
+        margin-bottom: 30px;
+        border-color: #fff;
+    }
+    .image-preview {
+        width: 200px;
+        min-height: 180px;
+        border: 2px dashed #afeeee;
+        margin-top: 15px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #cccccc;
+    }
+}
+@media screen and (min-width: 769px) and  (max-width: 991px) {
+    label {
+        margin-top: 1em;
+        color: white;
+        height: 40px;
+        width: 120px;
+        background-color: #03a9f4;
+        position: absolute;
+        font-size: 12px Poppins, sans-serif;
+        margin-left: -3.5em;
+        margin-bottom: 5rem;
+        padding: 10px;
+        border-radius: 10px;
+        padding-top: 8px;
+        padding-left: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .btn-primary{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        margin: 5rem auto;
+        display: table;
+        font-size: 18px;
+        margin-bottom: 30px;
+        border-color: #fff;
+    }
+    .image-preview {
+        width: 200px;
+        min-height: 180px;
+        border: 2px dashed #afeeee;
+        margin-top: 15px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #cccccc;
+    }
+}
+@media screen and (min-width: 992px){
+    label {
+        margin-top: 1em;
+        color: white;
+        height: 40px;
+        width: 120px;
+        background-color: #03a9f4;
+        position: absolute;
+        font-size: 12px Poppins, sans-serif;
+        margin-bottom: 5rem;
+        padding: 10px;
+        border-radius: 10px;
+        padding-top: 8px;
+        padding-left: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .btn-primary{
+        margin-top:5rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        display: table;
+        font-size: 18px;
+        margin-bottom: 30px;
+        border-color: #fff;
+    }
+    .image-preview {
+        width: 200px;
+        min-height: 180px;
+        border: 2px dashed #afeeee;
+        margin-top: 15px;
+        margin-left: 9em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #cccccc;
+    }
+}
+
 </style>
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
     <div class="content-3-2 container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
@@ -126,8 +390,9 @@ label:hover {
                         +</span>
                 </div>
                 <input type="file" name="bukti_pembayaran" id="inpFile">
-                <label for="inpFile"><i class="fas fa-upload" aria-hidden="false"></i>&nbsp;
-                    Pilih foto
+                <label for="inpFile">
+                    <i class="fas fa-upload" aria-hidden="true"></i>&nbsp;
+                        Pilih foto
                 </label>
                 <button type="submit" class="btn btn-primary">Kirim</button>
             </form>

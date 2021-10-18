@@ -129,7 +129,7 @@ label:hover {
                             @endif
                             <thead>
                                 <tr style="text-align: center">
-                                    <th scope="col">
+                                    <th scope="col" style="width: 5px">
                                     No
                                     </th>
                                     <th scope="col">Kode</th>
@@ -150,11 +150,11 @@ label:hover {
                                     <td>{{ $tf->kode }}</td>
                                     <td><span class="badge badge-info">{{ $tf->kamar->tipe_kamar->nama }} ({{ $tf->kamar->nomor_kamar }})</span>
                                     </td>
-                                    <td>{{ $tf->tanggal_masuk }}</td>
-                                    <td>{{ $tf->tanggal_keluar }}</td>
-                                    <td>Rp{{ number_format($tf->total_harga,2,',','.') }}</td>
+                                    <td style="width: 10px">{{ $tf->tanggal_masuk }}</td>
+                                    <td style="width: 10px">{{ $tf->tanggal_keluar }}</td>
+                                    <td>Rp{{ number_format($tf->total_harga) }}</td>
                                     <td>
-                                        @if ($tf->status == "Dibatalkan")
+                                        @if($tf->bukti_pembayaran == null && $tf->status == "Dibatalkan")
                                             <i class="fas fa-upload" style="color: white;"></i>
                                         @elseif($tf->bukti_pembayaran != null)
                                             <img id="myImg" height="100px" id="myImg" width="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="image" style="border-radius: 5px;
@@ -169,14 +169,14 @@ label:hover {
                                     <td>
                                         @if($tf->status == "Menunggu")
                                             <span class="badge badge-warning">Menunggu</span>
-                                        @elseif($tf->status == "Selesai")
-                                            <span class="badge badge-success">Selesai</span>
+                                        @elseif($tf->status == "Sukses")
+                                            <span class="badge badge-success">Sukses</span>
                                         @elseif($tf->status == "Dibatalkan")
                                             <span class="badge badge-danger">Dibatalkan</span>
                                         @endif
                                     </td>
                                     <td>
-                                        @if($tf->status == "Selesai")
+                                        @if($tf->status == "Sukses" || $tf->status == "Dibatalkan")
                                             <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
                                                 <i class="far fa-eye"></i>
                                             </a>

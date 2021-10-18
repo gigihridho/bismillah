@@ -15,7 +15,8 @@ class CreateFasilitasTable extends Migration
     {
         Schema::create('fasilitas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama',50)->unique();
+            $table->string('nama',50);
+            $table->string('icon');
             $table->timestamps();
         });
     }

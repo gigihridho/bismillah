@@ -37,7 +37,7 @@ class HomeController extends Controller
             'tipe_kamars' => $tipe_kamars,
             'kamars' => $kamars,
             'kamar' => $kamar,
-            'kam' => $kam
+            'kam' => $kam,
         ]);
     }
 }

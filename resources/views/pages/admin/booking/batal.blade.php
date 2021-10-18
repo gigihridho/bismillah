@@ -51,8 +51,8 @@
                                 <td>
                                     @if($tf->status == "Menunggu")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($tf->status == "Selesai")
-                                        <span class="badge badge-success">Selesai</span>
+                                    @elseif($tf->status == "Sukses")
+                                        <span class="badge badge-success">Sukses</span>
                                     @elseif($tf->status == "Dibatalkan")
                                         <span class="badge badge-danger">Dibatalkan</span>
                                     @endif

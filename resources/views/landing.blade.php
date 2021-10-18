@@ -295,9 +295,60 @@
         </div>
     </div>
 </section>
+{{-- <section class="features1 cid-qyvcAqZyNq" id="features1-1" data-rv-view="764">
 
+    <div class="container">
+        <div class="media-container-row">
+
+            <div class="card p-3 col-12 col-md-6 col-lg-4">
+                <div class="card-img pb-3">
+                    <span class="mbr-iconfont mbri-users" style="color: rgb(0, 0, 0);" media-simple="true"></span>
+                </div>
+                <div class="card-box">
+                    <h4 class="card-title py-3 mbr-fonts-style display-5">
+                        Creativity</h4>
+                    <p class="mbr-text mbr-fonts-style display-7">
+                        It's the ability to think outside the box. We make decisions, create something new and generate a lot of ideas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card p-3 col-12 col-md-6 col-lg-4">
+                <div class="card-img pb-3">
+                    <span class="mbr-iconfont mbri-globe" style="color: rgb(0, 0, 0);" media-simple="true"></span>
+                </div>
+                <div class="card-box">
+                    <h4 class="card-title py-3 mbr-fonts-style display-5">
+                        Worldwide</h4>
+                    <p class="mbr-text mbr-fonts-style display-7">
+                        All sites you make with Mobirise are mobile-friendly. You don't have to create a special mobile version of your site.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card p-3 col-12 col-md-6 col-lg-4">
+                <div class="card-img pb-3">
+                    <span class="mbr-iconfont mbri-smile-face" style="color: rgb(0, 0, 0);" media-simple="true"></span>
+                </div>
+                <div class="card-box">
+                    <h4 class="card-title py-3 mbr-fonts-style display-5">
+                        Unique Styles
+                    </h4>
+                    <p class="mbr-text mbr-fonts-style display-7">
+                        Mobirise offers many site blocks in several themes, and though these blocks are pre-made, they are flexible.
+                    </p>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</section> --}}
 {{--Galeri --}}
-<section class="h-100 w-100" style="box-sizing: border-box id="galeri" data-aos="fade-down">
+{{-- <section class="h-100 w-100" style="box-sizing: border-box id="galeri" data-aos="fade-down">
     <div class="galeri container-xxl mx-auto  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Galeri Kost</h1>
@@ -315,7 +366,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 {{-- Room --}}
 <section class="h-100 w-100" style="box-sizing: border-box" id="kamar" data-aos="fade-up">
@@ -335,11 +386,12 @@
                     <div class="card card-explore">
                     <div class="card-explore__img">
                         <img class="card-img" src="{{ Storage::url($tipe_kamar->foto) }}"
-                        alt="" height="250px" width="200px" />
+                        alt="" height="200px" width="150px" />
                     </div>
                     <div class="card-body">
                         <h3 class="room-title">{{ $tipe_kamar->nama }}</h3>
                         <p class="room-price">Lantai {{$tipe_kamar->lantai}}</p>
+                        <p class="room-price">Jumlah kamar {{ $tipe_kamar->kamars->count() }}</p>
                         <p class="room-price">Rp {{number_format($tipe_kamar->harga)}}/bulan</p>
                         <a href="{{ route('detail-kost',$tipe_kamar->id) }}" class="btn btn-fill text-white">Pilih Kamar</a>
                     </div>
@@ -414,13 +466,13 @@
                 <div class="owl-carousel featured-carousel owl-theme">
                     @foreach ($reviews as $r)
                     <div class="item">
-                        <h3 class="review-title text-center" style="opacity: 0.5">
+                        <h3 class="review-title text-center">
                             {{ $r->review }}</h3>
-                        <h4 class="review-caption text-center">
+                        <h4 class="review-caption text-center" style="opacity: 0.5">
                             {{ $r->user->name }}
                         </h4>
                         <h6 class="review-caption text-center">
-                            {{ $r->user->profession }}
+                            {{ $r->user->pekerjaan }}
                         </h6>
                     </div>
                     @endforeach

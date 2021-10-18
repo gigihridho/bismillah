@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FasilitasRequest extends FormRequest
+class FasilitasEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class FasilitasRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,8 +24,8 @@ class FasilitasRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|string|unique:fasilitas',
-            'icon' => 'required|image|mimes:png,jpg,svg|max:2048'
+            'nama' => 'required|string',
+            'icon' => '|image|mimes:png,jpg,svg|max:2048'
         ];
     }
 
@@ -34,8 +34,6 @@ class FasilitasRequest extends FormRequest
         return [
             'nama.required' => 'Fasilitas harus diisi',
             'nama.string' => 'Fasilitas harus berbentuk huruf',
-            'nama.unique' => 'Fasilitas sudah tersedia',
-            'icon.required' => 'Icon harus diisi',
             'icon.image' => 'Icon harus berupa image',
             'icon.mimes' => 'Icon harus berformat png jpg svg',
             'icon.max' => 'Ukuran icon maksimal 2MB'

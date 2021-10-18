@@ -33,16 +33,13 @@
                 <h2 class="footer-text-title">Lokasi</h2>
                 <nav class="list-unstyled">
                     <li class="list-space">
-                        <p> Jl. Kentingan, Jebres, Surakarta</p>
+                        <p> Jebres, Surakarta</p>
                     </li>
                     <li class="list-space">
-                        <p>Rekening BNI 084124xxx A/N Anggito</p>
+                        <p>081215693556</p>
                     </li>
                     <li class="list-space">
-                        <p>081792482111</p>
-                    </li>
-                    <li class="list-space">
-                        <p>griyakenyo@gmail.com</p>
+                        <p>kostgriyokenyo@gmail.com</p>
                     </li>
                 </nav>
             </div>

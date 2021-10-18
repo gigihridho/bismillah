@@ -20,29 +20,23 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-body">
-                    {{-- <form action="{{ route('search') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="container">
-                        <div class="row">
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="order_date">Tanggal Awal</label>
-                                    <div class="col-sm-3">
-                                        <input type="date" class="form-control sm" id="from" name="fromDate" required/>
-                                    </div>
-                                    <label for="order_date">Tanggal Akhir</label>
-                                    <div class="col-sm-3">
-                                        <input type="date" class="form-control sm" id="to" name="toDate" required/>
-                                    </div>
-                                    <div class="col-sm-2 mt-2 form-group">
-                                        <button type="submit" class="btn btn-primary" name="search" title="Search">Search</button>
-                                    </div>
-                                </div>
+                    {{-- <form action="pemasukan" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">Tanggal Masuk</label>
+                                <input type="date" class="form-control" id="from" name="from" value="old('from')">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputPassword4">Tanggal Keluar</label>
+                                <input type="date" class="form-control" id="to" name="to" value="old('to')">
                             </div>
                         </div>
-                    </div>
+                        <button type="submit" class="btn btn-primary" name="search">Filter</button>
+                        <button type="submit" class="btn btn-success" name="exportPDF">Cetak PDF</button>
                     </form> --}}
-                    <a href="{{ route('pemasukan-pdf') }}" class="btn btn-success mb-3" id="cetakPDF"><span i class="fas fa-print"></span> Print PDF</a>
+                    <a href="{{ route('pemasukan-pdf') }}" class="btn btn-info mb-3" id="cetakPDF"><span i class="fas fa-print"></span> Unduh PDF</a>
+                    <a href="{{ route('pemasukan-excel') }}" class="btn btn-success mb-3" id="cetakExcel"><span i class="fas fa-print"></span> Unduh Excel</a>
                     <div class="table-responsive">
                     <table class="table table-striped" id="table-1">
                         <thead>
@@ -63,7 +57,7 @@
                                     <td>{{ $tf->kode }}</td>
                                     <td>{{ $tf->user->name }}</td>
                                     <td>{{ $tf->tanggal_pesan }}</td>
-                                    <td>Rp {{ number_format($tf->kamar->tipe_kamar->harga,2,',','.') }}</td>
+                                    <td>Rp {{ number_format($tf->total_harga,2,',','.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

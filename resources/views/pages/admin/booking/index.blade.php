@@ -51,8 +51,8 @@
                                 <td>
                                     @if($tf->status == "Menunggu")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($tf->status == "Selesai")
-                                        <span class="badge badge-success">Selesai</span>
+                                    @elseif($tf->status == "Sukses")
+                                        <span class="badge badge-success">Sukses</span>
                                     @elseif($tf->status == "Dibatalkan")
                                         <span class="badge badge-danger">Dibatalkan</span>
                                     @endif
@@ -62,18 +62,18 @@
                                     @if($tf->status == "Menunggu")
                                     <form action="{{ route('status',$tf->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
                                         @csrf
-                                        <button value="Selesai" id="status" name="status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">
+                                        <button value="Sukses" id="status" name="status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Apakah anda yakin akan mengkonfirmasi pemesanan ini?')">
                                             <i class="fas fa-check"></i>
                                         </button>
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('detail-booking',$tf->id) }}">
+                                        <a title="Detail" style="margin-left:4px"data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('detail-booking',$tf->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
                                     </form>
                                     <form action="{{ route('batal',$tf->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
                                         @csrf
                                         @method('PUT')
-                                        <button value="Dibatalkan" type="submit" title="Hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm ml-1" onclick="return confirm('Anda ingin membatalkan pemesanan kamar ini ?')">
-                                            <i class="far fa-trash-alt"></i>
+                                        <button value="Dibatalkan" type="submit" title="Hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm ml-1" onclick="return confirm('Apakah anda yakin akan membatalkan pemesanan ini ?')">
+                                            <i class="fas fa-times" style="width:15px"></i>
                                         </button>
                                     </form>
                                 {{-- </div> --}}

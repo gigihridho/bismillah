@@ -20,10 +20,10 @@
     <li class="nav-item {{ (request()->is('admin/booking')) ? 'active' : '' }}"  style="width: 247px;">
       <a class="nav-link" href="{{ route('transaksi') }}" style="text-align:center;">Semua</a>
     </li>
-    <li class="nav-item {{ (request()->is('admin/booking/belum')) ? 'active' : '' }}"  style="width: 247px;">
-      <a class="nav-link" href="{{ route('selesai') }}" style="text-align:center;">Selesai</a>
+    <li class="nav-item {{ (request()->is('admin/booking/sukses')) ? 'active' : '' }}"  style="width: 247px;">
+      <a class="nav-link" href="{{ route('sukses') }}" style="text-align:center;">Sukses</a>
     </li>
-    <li class="nav-item {{ (request()->is('admin/booking/sudah')) ? 'active' : '' }}"  style="width: 247px;">
+    <li class="nav-item {{ (request()->is('admin/booking/belum')) ? 'active' : '' }}"  style="width: 247px;">
       <a class="nav-link" href="{{ route('menunggu') }}" style="text-align:center;">Menunggu</a>
     </li>
     <li class="nav-item {{ (request()->is('admin/booking/batal')) ? 'active' : '' }}"  style="width: 247px;">

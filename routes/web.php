@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MessageStatus;
 use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// Route::get('/', 'HomeController@index') {
+//     MessageStatus::dispatch();
+
+//     return view('home');
+// });
 Route::get('details/{id}', 'DetailController@detail')->name('detail-kost');
 Route::post('details/{id}/confirmation', 'BookingController@confirmation')->name('confirmation');
 Route::post('details/{id}/book', 'BookingController@booking')->name('booking');
@@ -47,7 +53,6 @@ Route::prefix('user')
         Route::post('view-profil','ProfilUserController@avatar')->name('change-avatar');
         Route::get('change-profil-user', 'ProfilUserController@user')->name('change-profil-user');
         Route::post('change-profil-user/{id}', 'ProfilUserController@update')->name('change-profil-user-redirect');
-
     });
 
 Route::prefix('admin')
@@ -58,7 +63,7 @@ Route::prefix('admin')
         Route::resource('fasilitas','Admin\FasilitasController');
 
         Route::get('booking','Admin\PemesananController@index')->name('transaksi');
-        Route::get('booking/selesai', 'Admin\PemesananController@selesai')->name('selesai');
+        Route::get('booking/sukses', 'Admin\PemesananController@sukses')->name('sukses');
         Route::get('booking/menunggu','Admin\PemesananController@menunggu')->name('menunggu');
         Route::get('booking/batal','Admin\PemesananController@cancel')->name('dibatalkan');
         Route::post('booking/{id}','Admin\PemesananController@status')->name('status');
@@ -70,6 +75,7 @@ Route::prefix('admin')
         Route::get('pemasukan','Admin\PemasukanController@index')->name('pemasukan');
         Route::post('pemasukan','Admin\PemasukanController@search')->name('search');
         Route::get('pemasukan/pemasukan-pdf','Admin\PemasukanController@pdf')->name('pemasukan-pdf');
+        Route::get('pemasukan/excelExport','Admin\PemasukanController@exportExcel')->name('pemasukan-excel');
 
         Route::resource('pengeluaran','Admin\PengeluaranController');
         Route::get('pdf','Admin\PengeluaranController@ex_pdf')->name('pengeluaran-pdf');

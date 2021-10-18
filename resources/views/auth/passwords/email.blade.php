@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" style="border:1px solid">
+            <div class="card" style="border:1px solid #aaa; margin-bottom: 20px">
                 <div class="card-header">{{ __('Atur Ulang Kata Sandi') }}
                     <hr>
                 </div>

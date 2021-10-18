@@ -36,7 +36,6 @@ class BookingController extends Controller
         $new_tanggal_masuk = $request->input('tanggal_masuk');
         $durasi = $request->input('durasi');
         $kode = 'KOS'.date("ymd").mt_rand(000,999);
-
         if($durasi == 1){
             $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
             $total_harga = $durasi * $harga;
@@ -47,7 +46,6 @@ class BookingController extends Controller
             $new_tanggal_keluar = date('Y-m-d', strtotime('+12 month', strtotime($request->tanggal_masuk)));
             $total_harga = $durasi * $harga - (1 * $harga);
         }
-
         $rules['booking_validation'] = [new KamarTersedia($tipe_kamar,$new_tanggal_masuk,$new_tanggal_keluar)];
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()){
@@ -68,8 +66,7 @@ class BookingController extends Controller
         $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
         $new_tanggal_masuk = $request->input('tanggal_masuk');
         $durasi = $request->input('durasi');
-        $kode = 'KOS'.date("ymd").mt_rand(0000,9999);
-
+        $kode = 'KOS'.date("ymd").mt_rand(000,999);
         if($durasi == 1){
             $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
         }elseif($durasi == 6){
@@ -78,7 +75,6 @@ class BookingController extends Controller
             $new_tanggal_keluar = date('Y-m-d', strtotime('+12 month', strtotime($request->tanggal_masuk)));
         }
         $rules['booking_validation'] = [new KamarTersedia($tipe_kamar,$new_tanggal_masuk,$new_tanggal_keluar)];
-
         $bookingg = new AppBooking();
         $user = Auth::user();
         $bookingg->kode = $kode;
@@ -87,6 +83,7 @@ class BookingController extends Controller
         $bookingg->tanggal_pesan = Carbon::now();
         $bookingg->expired_at = Carbon::now()->addHours(24);
         $bookingg->status = "Menunggu";
+        $bookingg->durasi = $durasi;
         $harga = $tipe_kamar->harga;
         if($durasi == 1){
             $total_harga = $durasi * $harga;
@@ -95,13 +92,9 @@ class BookingController extends Controller
         } elseif($durasi == 12){
             $total_harga = $durasi * $harga - (1 * $harga);
         }
-
         $bookingg->total_harga = $total_harga;
-
         $booking = new Booking($tipe_kamar, $new_tanggal_masuk, $new_tanggal_keluar);
-
         $kamar = Kamar::where('nomor_kamar', $booking->available_nomor_kamar())->first();
-
         $bookingg->kamar_id = $kamar->id;
         $bookingg->user_id = $user->id;
         $bookingg->save();
@@ -125,7 +118,7 @@ class BookingController extends Controller
         [
             'bukti_pembayaran.required' => 'Bukti pembayaran tidak boleh kosong',
             'bukti_pembayaran.max' => 'Bukti pembayaran melebihi 2MB',
-            'bukti_pembayaran.mimes' => 'Format file tidak didukung'
+            'bukti_pembayaran.mimes' => 'Format file harus berupa png, jpg, jpeg'
         ]);
 
         $transaction = AppBooking::with('user','kamar')->where('user_id',Auth::user()->id)->latest()->first();

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Kamar;
 use App\Booking;
 use Illuminate\Http\Request;
+use App\Mail\PaymentCancelMail;
 use App\Mail\PaymentSuccessMail;
+use App\Mail\PaymentCancelledMail;
 use App\Http\Controllers\Controller;
-use App\Kamar;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -20,9 +22,9 @@ class PemesananController extends Controller
         ]);
     }
 
-    public function selesai(){
-        $pemesanans = Booking::where('status',"Selesai")->get();
-        return view('pages.admin.booking.selesai',[
+    public function sukses(){
+        $pemesanans = Booking::where('status',"Sukses")->get();
+        return view('pages.admin.booking.sukses',[
             'pemesanans' => $pemesanans
         ]);
     }
@@ -49,9 +51,10 @@ class PemesananController extends Controller
     }
     public function status(Request $request, $id){
         $pemesanans = Booking::findOrFail($id);
-        $pemesanans->status = "Selesai";
+        $pemesanans->status = "Sukses";
         $pemesanans->save();
-        Alert::success('SUCCESS','Data booking telah dikonfirmasi');
+        // Mail::to($pemesanans->user->email)->send(new PaymentSuccessMail());
+        Alert::success('SUCCESS','Pesanan telah berhasil dikonfirmasi');
         return redirect()->route('transaksi');
     }
     public function batal(Request $request, $id){
@@ -61,38 +64,43 @@ class PemesananController extends Controller
         $kamar->status = 1;
         $kamar->save();
         $pemesanans->save();
-        Alert::success('SUCCESS','Data booking telah dibatalkan');
+        if($pemesanans->bukti_pembayaran == null){
+            Mail::to($pemesanans->user->email)->send(new PaymentCancelMail());
+        }else{
+            Mail::to($pemesanans->user->email)->send(new PaymentCancelledMail());
+        }
+        Alert::success('SUCCESS','Pesanan telah berhasil dibatalkan');
         return redirect()->route('transaksi');
     }
 
 
-    public function update(Request $request, $id){
-        $pemesanans = Booking::findOrFail($id);
+    // public function update(Request $request, $id){
+    //     $pemesanans = Booking::findOrFail($id);
 
-        $rules = [
-            'status' => 'in:PENDING,SUCCESS,CANCELLED',
-        ];
+    //     $rules = [
+    //         'status' => 'in:PENDING,SUCCESS,CANCELLED',
+    //     ];
 
-        $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()){
-            return redirect()->back()
-            ->withInput($request->all())
-            ->withErrors($validator);
-        }
-        if($pemesanans->status === 'CANCELLED'){
-            $pemesanans = Booking::findOrFail($id);
-            $kamar = Kamar::find($pemesanans->kamar_id);
-            $kamar->tersedia = 1;
-            $kamar->save();
-            $pemesanans->save();
-        } else {
-            $pemesanans->status = $request->input('status','SUCCESS');
-            $pemesanans->save();
-        }
-        // Mail::to($transaction->user->email)->send(new PaymentSuccessMail());
-        Alert::success('SUCCESS','Status booking telah diubah');
-        return redirect()->route('transaksi');
-    }
+    //     $validator = Validator::make($request->all(), $rules);
+    //     if($validator->fails()){
+    //         return redirect()->back()
+    //         ->withInput($request->all())
+    //         ->withErrors($validator);
+    //     }
+    //     if($pemesanans->status === 'CANCELLED'){
+    //         $pemesanans = Booking::findOrFail($id);
+    //         $kamar = Kamar::find($pemesanans->kamar_id);
+    //         $kamar->tersedia = 1;
+    //         $kamar->save();
+    //         $pemesanans->save();
+    //     } else {
+    //         $pemesanans->status = $request->input('status','SUCCESS');
+    //         $pemesanans->save();
+    //     }
+    //     // Mail::to($transaction->user->email)->send(new PaymentSuccessMail());
+    //     Alert::success('SUCCESS','Status booking telah diubah');
+    //     return redirect()->route('transaksi');
+    // }
 
     public function detail($id){
         $pemesanans = Booking::where('id',$id)->get();

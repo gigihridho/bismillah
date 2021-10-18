@@ -9,7 +9,7 @@ class Fasilitas extends Model
     protected $table = 'fasilitas';
 
     protected $fillable = [
-        'nama'
+        'nama','icon'
     ];
 
     protected $hidden = [

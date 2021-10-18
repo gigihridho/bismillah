@@ -36,7 +36,7 @@ p.required-field::after {
     /* padding: 10px; */
 }
 </style>
-<section class="h-100 w-100 bg-white pb-5" style="box-sizing: border-box">
+<section class="h-100 w-100 bg-white pb-5" style="box-sizing: border-box" data-aos="fade-up" data-aos-delay="100">
     <div class="detail-1 container mx-auto p-0  position-relative detail-content" style="font-family: 'Poppins', sans-serif">
         <div class="row" data-aos="fade-up" data-aos-delay="100">
             <nav aria-label="breadcrumb" class="breadcrumb">
@@ -51,52 +51,39 @@ p.required-field::after {
             <div class="container">
                 <div class="row">
                     @php $incrementTipeKamar = 0 @endphp
-                    @forelse ($tipe_kamars as $tipe_kamar)
-                    <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{Storage::url($tipe_kamar->foto) }}" alt="" height="80%" width="90%">
+                    @foreach ($tipe_kamars as $tipe_kamar)
+                    <div class="col-lg-8" >
+                        <img src="{{Storage::url($tipe_kamar->foto) }}" alt="" height="95%" width="90%">
                     </div>
-                    @empty
-                    <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                        Tipe Kamar Tidak Ditemukan
-                    </div>
-                    @endforelse
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    @endforeach
+                    <div class="col-lg-4">
                         <div class="card-body shadow-lg p-3 mb-5 bg-white rounded">
                             <form action="{{ route('confirmation',$tipe_kamar->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input name="booking_validation" type="hidden" value="0">
-                            <div class="form-group" style="margin-bottom: 1rem">
+                            <div class="price mb-2" style="color: red"> <strong style="font-size: 20px"> Rp {{ number_format($tipe_kamar->harga) }} </strong>/Bulan</div>
+                            <div class="form-group" style="margin-bottom: 0.5rem">
                                 <label for="date" style="margin-bottom: 0.5rem">Pilih tanggal masuk</label>
                                 <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                        <input type="text" data-provide="datepicker" class="form-control" id="tanggal_masuk" name="tanggal_masuk" placeholder="Tanggal Masuk" value="" readonly="">
+                                        <input type="text" style="background-color: white" data-provide="datepicker" class="form-control" id="tanggal_masuk" name="tanggal_masuk" placeholder="Tanggal Masuk" value="" readonly="">
                                 </div>
-                                @if ($errors->has('tanggal_masuk'))
-                                    @foreach ($errors->get('tanggal_masuk') as $error)
-                                        <div class="alert alert-danger">
-                                            {{ $error }}
-                                        </div>
-                                    @endforeach
-                                @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 10px">
                                 <label for="durasi" style="margin-bottom: 0.5rem">Durasi Sewa</label>
                                 <select name="durasi" id="durasi" class="form-select">
                                     <option value="1">1 Bulan</option>
                                     <option value="6">6 Bulan</option>
                                     <option value="12">1 Tahun</option>
                                 </select>
-                                @error('durasi')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                             </div>
-                            <br>
-                            {{-- @if($errors->any())
+                            <div class="form-group">
+                                <label for="" style="margin-bottom: 0.5rem">Total Harga</label>
+                                    <input type="hidden" name="total" id="total" value="{{ $tipe_kamar->harga }}">
+                                    <input type="text" style="color:red; background-color:#f2f2f0" name="total_harga" id="total_harga" class="form-control" readonly value="{{ number_format($tipe_kamar->harga,2,',','.') }}">
+                            </div>
+                            @if($errors->any())
                                 {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
-                            @endif --}}
+                            @endif
                             <br>
                             @auth
                             <button type="submit" class="btn btn-fill px-5 text-white btn-block mb-3" style="width: 100%">
@@ -115,39 +102,39 @@ p.required-field::after {
             </div>
         </div>
 
-        <div class="kost-detail mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="kost-detail mb-4">
             <section class="kost-heading">
                 <div class="container">
                     <div class="row">
                         @php
                         $incrementRoomTypes = 0
                         @endphp
-                        @forelse ($tipe_kamars as $tipe_kamar)
-                        <div class="col-lg-4">
-                            <h5>Tipe Kamar</h5>
+                        @foreach ($tipe_kamars as $tipe_kamar)
+                        <div class="col-lg-3">
+                            <h5 style="color:#6777ef">Tipe Kamar</h5>
                                 <input type="hidden" name="id" value="{{ $tipe_kamar->kamar }}">
                                 <div class="owner" style="margin-bottom: 0.5rem">{{ $tipe_kamar->nama }}</div>
-                                <div class="owner" style="margin-bottom: 0.5rem">Lantai {{ $tipe_kamar->lantai }}</div>
-                                <div class="price" style="color: red">Rp {{ number_format($tipe_kamar->harga) }}/Bulan</div>
                         </div>
-                        @empty
-                        <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-                            Tipe Kamar Tidak Ditemukan
+                        <div class="col-lg-3">
+                                <h5 style="color:#6777ef">Deskripsi</h5>
+                                <p>Lantai {{ $tipe_kamar->lantai }}, Ukuran {{ $tipe_kamar->ukuran }} </p>
                         </div>
-                        @endforelse
-                        <hr style="margin-top:20px">
-                        <h4 style="margin-top:10px">Fasilitas</h4>
-                        @foreach ($tipe_kamar->fasilitas->chunk(2) as $facilityy)
+                        <div class="col-lg-8">
+                        <h5 style="color:#6777ef">Fasilitas</h5>
+                        @foreach ($tipe_kamar->fasilitas->chunk(3) as $facilityy)
                             @php $incrementRoomType = 0 @endphp
                             @forelse ($facilityy as $facility)
-                            <div class="facility col-lg-4" style="padding:auto;">
-                                <p>{{ $facility->nama }}</p>
+                            <div class="facility col-md-3">
+                                <img style="float:left; margin-right: 10px; opacity:0.5; color: #6777ef;" src="{{ Storage::url($facility->icon) }}" height="24pxs" alt="">
+                                <p style="margin-right: 5px; opacity:0.8">{{ $facility->nama }}</p>
                             </div>
                             @empty
                             <div class="col-12 text-left">
                                 Tida ada fasilitas
                             </div>
                             @endforelse
+                        @endforeach
+                    </div>
                         @endforeach
                     </div>
                 </div>
@@ -170,6 +157,7 @@ p.required-field::after {
                 </p>
             </div>
             <div class="modal-footer">
+                <a href={{ route('home') }} class="btn btn-success">Halaman utama</a>
                 <a href={{ route('profil-user') }} class="btn btn-danger">Buka Profil</a>
             </div>
         </div>
@@ -182,18 +170,40 @@ p.required-field::after {
     $('#myModal').modal('show');
 
     $(function () {
-    var $dp1 = $("#tanggal_masuk");
-    $(document).ready(function () {
+        var $dp1 = $("#tanggal_masuk");
+        $(document).ready(function () {
 
-    $dp1.datepicker({
-    changeYear: true,
-    changeMonth: true,
-        minDate: '0',
-        maxDate: '2m',
-    dateFormat: "yy-mm-dd",
-    yearRange: "-100:+20",
+            $dp1.datepicker({
+            changeYear: true,
+            changeMonth: true,
+                minDate: '0',
+                maxDate: '2m',
+            dateFormat: "yy-mm-dd",
+            yearRange: "-100:+20",
+            });
+        });
     });
-    });
-});
+    let harga = {!! $tipe_kamar->harga !!}
+    let selectedDuration = $("#durasi");
+    selectedDuration.on('change', (event) => {
+        let durasi = event.target.value;
+        let total = updatePrice(durasi, harga);
+
+        $("#total").val(total);
+        $("#total_harga").val(total.toLocaleString());
+    })
+
+    function updatePrice(durasi, harga) {
+        let total_harga = 0 ;
+
+        if (durasi == 1){
+            total_harga = durasi * harga;
+        } else if (durasi == 6){
+            total_harga = durasi * harga - (0.5 * harga);
+        } else if(durasi == 12){
+            total_harga = durasi * harga - (1 * harga);
+        }
+        return total_harga;
+    }
 </script>
 @endpush

@@ -51,8 +51,8 @@
                                 <td>
                                     @if($tf->status == "Menunggu")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($tf->status == "Selesai")
-                                        <span class="badge badge-success">Selesai</span>
+                                    @elseif($tf->status == "Sukses")
+                                        <span class="badge badge-success">Sukses</span>
                                     @elseif($tf->status == "Dibatalkan")
                                         <span class="badge badge-danger">Dibatalkan</span>
                                     @endif
@@ -61,7 +61,7 @@
                                     @if($tf->status == "Menunggu")
                                     <form action="{{ route('status',$tf->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
                                         @csrf
-                                        <button value="Selesai" id="transaction_status" name="transaction_status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">
+                                        <button value="Sukses" id="transaction_status" name="transaction_status" type="submit" title="Konfirmasi" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm edit" onClick="return confirm('Anda ingin melakukan konfirmasi pembayaran ini?')">
                                             <i class="fas fa-check"></i>
                                         </button>
                                         <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('detail-booking',$tf->id) }}">

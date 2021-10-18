@@ -22,11 +22,8 @@
             <div class="col-md-12">
                 <div style="text-align: center;">
                     <div>
-                        <strong>Rincian Tagihan Booking </strong>
+                        <strong>Rincian Tagihan Pemesanan </strong>
                     </div>
-                    <small style="margin : 0px; display: block;">Alamat : Kentingan, Jebres, Surakarta</small>
-                    <small style="margin : 0px; display: block;">Owner : Anggito Galih Nuragam</small>
-                    <p style="margin : 0px;">HP/WA : 085770254568</p>
                 </div>
             </div>
         </div>
@@ -57,6 +54,7 @@
                                     <p>{{ $transaction->kamar->tipe_kamar->nama }}
                                     {{ $transaction->kamar->nomor_kamar }}</p>
                                         <p>Tanggal Order : {{ $transaction->tanggal_pesan }} </p>
+                                        <p>Durasi sewa : {{ $transaction->durasi }} Bulan</p>
                                         <p>Tanggal Masuk :
                                         {{ $transaction->tanggal_masuk }} </p>
                                         <p>Tanggal Keluar :
@@ -65,7 +63,7 @@
                                 </td>
                             </tr>
                         </thead>
-                        <tbody>
+                        {{-- <tbody>
                             <tr>
                                 <th scope="col" colspan="8">Nomor Rekening Tujuan</th>
                             </tr>
@@ -77,12 +75,12 @@
                                     <p>089888222111</p>
                                 </td>
                             </tr>
-                        </tbody>
+                        </tbody> --}}
                         <tfoot>
                             <tr>
-                                <th scope="col" colspan="4">Total Harga</th>
+                                <th scope="col" colspan="4">Total Bayar</th>
                                 <td colspan="4">
-                                {{ $transaction->total_harga }}
+                                Rp {{ number_format($transaction->total_harga,2,',','.') }}
                                 </td>
                             </tr>
                         </tfoot>

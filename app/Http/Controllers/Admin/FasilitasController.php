@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Fasilitas;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\FasilitasRequest;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\Admin\FasilitasRequest;
+use App\Http\Requests\Admin\FasilitasEditRequest;
 
 class FasilitasController extends Controller
 {
@@ -25,28 +26,32 @@ class FasilitasController extends Controller
         return view('pages.admin.fasilitas.create');
     }
 
-    public function store(FasilitasRequest $request){
-        $data = $request->all();
-
-        Fasilitas::create($data);
+    public function store(FasilitasEditRequest $request){
+        $data = new Fasilitas();
+        $data->nama = $request->input('nama');
+        $data->icon = $request->file('icon')->store('assets/Fasilitas','public');
+        $data->save();
         Alert::success('SUCCESS','Data Fasilitas Berhasil Ditambah');
         return redirect()->route('fasilitas.index');
     }
 
     public function edit($id){
-        $fas = Fasilitas::where('id',$id)->first();
+        $data = Fasilitas::where('id',$id)->first();
 
         return view('pages.admin.fasilitas.edit',[
-            'fas' => $fas
+            'data' => $data
         ]);
     }
 
     public function update(FasilitasRequest $request, $id){
-        $data = $request->all();
+        $data = new Fasilitas();
+        $data->nama = $request->input('nama');
 
-        $item = Fasilitas::findOrFail($id);
-
-        $item->update($data);
+        if(request()->hasFile('icon')){
+            $icon = request()->file('icon')->store('assets/Fasilitas','public');
+            $data->update(['icon' => $icon]);
+        }
+        $data->save();
         Alert::success('SUCCESS','Data Fasilitas Berhasil Diupdate');
         // return redirect()->route('fasilitas.index');
     }
