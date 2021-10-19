@@ -7,10 +7,11 @@ use App\TipeKamar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\Admin\KamarRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\Admin\KamarRequest;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Admin\KamarEditRequest;
 
 class KamarController extends Controller
 {
@@ -54,7 +55,7 @@ class KamarController extends Controller
         ]);
     }
 
-    public function update($id, $kamar_id,KamarRequest $request){
+    public function update($id, $kamar_id,KamarEditRequest $request){
         $kamar = Kamar::find($kamar_id);
         $kamar->nomor_kamar = $request->input('nomor_kamar');
         $kamar->status = $request->input('status');
