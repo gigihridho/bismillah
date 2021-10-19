@@ -53,6 +53,7 @@ Route::prefix('user')
         Route::post('view-profil','ProfilUserController@avatar')->name('change-avatar');
         Route::get('change-profil-user', 'ProfilUserController@user')->name('change-profil-user');
         Route::post('change-profil-user/{id}', 'ProfilUserController@update')->name('change-profil-user-redirect');
+
     });
 
 Route::prefix('admin')
@@ -71,6 +72,10 @@ Route::prefix('admin')
         Route::get('booking/{id}/edit','Admin\PemesananController@edit');
         Route::put('booking/{id}/edit','Admin\PemesananController@update');
         Route::get('booking/detail/{id}','Admin\PemesananController@detail')->name('detail-booking');
+
+        Route::get('tagihan','Admin\TagihanController@index')->name('tagihan');
+        Route::get('tagihan/buat/{id}','Admin\TagihanController@lanjut')->name('buat-tagihan');
+        Route::post('tagihan/{id}','Admin\TagihanController@store')->name('store-tagihan');
 
         Route::get('pemasukan','Admin\PemasukanController@index')->name('pemasukan');
         Route::post('pemasukan','Admin\PemasukanController@search')->name('search');

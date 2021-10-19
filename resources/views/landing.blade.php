@@ -365,7 +365,6 @@
 <script src="{{ asset('fe/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('fe/js/owl.carousel.min.js') }}"></script>
 <script>
-
 $(document).ready(function() {
 $("#owl-image").owlCarousel({
         autoplay:true,
@@ -408,5 +407,4 @@ $('.featured-carousel').owlCarousel({
     }
 })
 </script>
-
 @endpush

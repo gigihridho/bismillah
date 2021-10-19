@@ -141,11 +141,11 @@ input[type="file"]{
                                 </td>
                                 <td>
                                     @if ($tf->bukti_pembayaran == null)
-                                        <img src="{{ asset('assets/img/default.jpg') }}" width="200px" height="150px" alt="">
+                                        <img src="{{ asset('assets/img/default.jpg') }}" width="200px" height="150px" alt=""
+                                        style="display: block; margin-bottom:15px; margin-right:auto">
                                     @else
                                         <img id="img_ktp" src="{{ Storage::url($tf->bukti_pembayaran) }}" name="bukti_pembayaran" width="250px" height="200px" alt="foto"
                                         style="display: block; margin-bottom:15px; margin-right:auto">
-
                                     @endif
                                     @if($tf->status == "Menunggu" || $tf->status == "Dibatalkan")
                                     <a title="Upload Bukti" data-toggle="modal" data-target="#uploadBukti" data-placement="top" class="btn btn-success btn-lg edit">
@@ -153,7 +153,6 @@ input[type="file"]{
                                     </a>
                                     @else
                                     @endif
-
                                 </td>
                             </tr>
                             <tr>

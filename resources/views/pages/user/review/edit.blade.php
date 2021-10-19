@@ -76,7 +76,7 @@ Review
     </section>
 </div>
 {{-- Cek Profil --}}
-@if(Auth::check() && $cek)
+{{-- @if(auth()->user()->hasRole('user') && $cek) --}}
 <div id="myModal" class="modal fade hide fade in" role="dialog" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -94,11 +94,6 @@ Review
         </div>
     </div>
 </div>
-@endif
+{{-- @endif --}}
 @endsection
 
-@push('addon-script')
-<script>
-    $('#myModal').modal('show');
-</script>
-@endpush

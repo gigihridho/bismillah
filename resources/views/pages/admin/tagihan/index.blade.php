@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Pemesanan Sukses
+    Data Tagihan
 @endsection
 
 @section('content')
@@ -20,7 +20,6 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-body">
-                    @include('includes.tabs')
                     <div class="table-responsive mt-2">
                     <table class="table table-striped" id="table-1">
                         <thead>
@@ -30,23 +29,29 @@
                             </th>
                             <th scope="col">Nama</th>
                             <th scope="col">Kode Pemesanan</th>
-                            <th scope="col">Bukti Transaksi</th>
+                            <th scope="col">Tanggal Masuk</th>
+                            <th scope="col">Tanggal Keluar</th>
                             <th scope="col">Status</th>
                             <th scope="col">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pemesanans as $index => $tf)
+                            @foreach ($tagihans as $index => $tf)
                             <tr style="text-align: center">
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $tf->user->name }}</td>
                                 <td>{{ $tf->kode }}</td>
                                 <td>
-                                    @if($tf->bukti_pembayaran != null)
-                                        <img height="100px" src="{{ Storage::url($tf->bukti_pembayaran) }}" alt="" onclick="blank">
-                                    @else
-                                        <span class="badge badge-warning">Belum Upload</span>
-                                    @endif
+                                    <?php
+                                        $date = new DateTime($tf->tanggal_masuk);
+                                        echo $date->format('d F Y');
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        $date = new DateTime($tf->tanggal_keluar);
+                                        echo $date->format('d F Y');
+                                    ?>
                                 </td>
                                 <td>
                                     @if($tf->status == "Menunggu")
@@ -58,18 +63,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{-- <form action="{{ route('booking.destroy',$room_booking->id) }}" method="POST"> --}}
-                                        {{-- <a title="Edit" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="/admin/booking/{{ $tf->id }}/edit">
-                                            <i class="far fa-edit"></i>
-                                        </a> --}}
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('detail-booking',$tf->id) }}">
-                                            <i class="far fa-eye"></i>
-                                        </a>
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" href="{{ route('buat-tagihan',$tf->id) }}" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-
-                                    {{-- </form> --}}
+                                    <a href="{{ route('buat-tagihan',$tf->id) }}" class="btn btn-primary btn-sm mb-3">Buat Tagihan</a>
                                 </td>
                             </tr>
                             @endforeach
