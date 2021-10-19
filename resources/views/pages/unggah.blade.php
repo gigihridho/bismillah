@@ -138,11 +138,11 @@ label:hover {
         border-color: #fff;
     }
     .image-preview {
-        width: 200px;
+        width: 300px;
         min-height: 180px;
         border: 2px dashed #afeeee;
         margin-top: 15px;
-        margin-left: 4em;
+        margin : 0 auto;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -182,7 +182,7 @@ label:hover {
         border-color: #fff;
     }
     .image-preview {
-        width: 200px;
+        width: 300px;
         min-height: 180px;
         border: 2px dashed #afeeee;
         margin-top: 15px;
@@ -226,7 +226,7 @@ label:hover {
         border-color: #fff;
     }
     .image-preview {
-        width: 200px;
+        width: 300px;
         min-height: 180px;
         border: 2px dashed #afeeee;
         margin-top: 15px;
@@ -270,7 +270,7 @@ label:hover {
         border-color: #fff;
     }
     .image-preview {
-        width: 200px;
+        width: 300px;
         min-height: 180px;
         border: 2px dashed #afeeee;
         margin-top: 15px;
@@ -313,7 +313,7 @@ label:hover {
         border-color: #fff;
     }
     .image-preview {
-        width: 200px;
+        width: 300px;
         min-height: 180px;
         border: 2px dashed #afeeee;
         margin-top: 15px;
@@ -355,11 +355,11 @@ label:hover {
         border-color: #fff;
     }
     .image-preview {
-        width: 200px;
-        min-height: 180px;
+        width: 300px;
+        min-height: 200px;
         border: 2px dashed #afeeee;
         margin-top: 15px;
-        margin-left: 9em;
+        margin: auto;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -369,102 +369,86 @@ label:hover {
 }
 
 </style>
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="benefit" data-aos="fade-up">
-    <div class="content-3-2 container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
-        <h4 class="d-flex justify-content-center mb-3">Silakan unggah bukti pembayaran ya</h4>
-        @php $no = 1; @endphp
-        {{-- @foreach ($transaction as $tf) --}}
-        <div class="d-flex flex-lg-row flex-column align-items-center">
-        <!-- Left Column -->
-        <div class="col-lg-6 left-column d-flex flex-column align-items-lg-start text-lg-start text-center">
-            <div class="invoice">
-                <h6>Total Tagihan Pembayaran Anda</h6>
-                <h6>Rp {{ number_format($transaction->total_harga,2,',','.') }}</h6>
-            </div>
-            <form action="{{ route('upload-pembayaran',$transaction->id) }}" method="POST"
-                enctype="multipart/form-data">
-                @csrf
-                <div class="image-preview" id="imagePreview">
-                    <img src="" id="imagePreview" alt="Image Preview" class="image-preview__image">
-                        <span class="image-preview__default-text">
-                        +</span>
-                </div>
-                <input type="file" name="bukti_pembayaran" id="inpFile">
-                <label for="inpFile">
-                    <i class="fas fa-upload" aria-hidden="true"></i>&nbsp;
-                        Pilih foto
-                </label>
-                <button type="submit" class="btn btn-primary">Kirim</button>
-            </form>
+<section class="h-100 w-100 bg-white" style="box-sizing:border-box">
+    <div class="container mx-auto position-relative" style="font-family: 'Popins,sans-serif';box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+        <div style="text-align:center; margin-bottom:20px;">
+            <h4 style="margin-top:20px">Silakan Unggah Bukti Pembayaran</h4>
         </div>
-        {{-- @endforeach --}}
-        <!-- Right Column -->
-        <div class="col-lg-6 right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
-            <h4 class="title-text">Cara Pembayaran</h4>
-            <ul style="padding: 0; margin: 0 30px">
-            <li class="list-unstyled">
-                <h6
-                class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                <span class="circle text-white d-flex align-items-center justify-content-center">
-                    1
-                </span>
-                Transfer Bank
-                </h6>
-                <p class="text-caption">
-                    <a class="nav-link button4" data-toggle="collapse" data-target="#bni"
-                    style="margin-buttom:10px; text-align:left">
-                    <img src="https://bimbel.ruangguru.com/hubfs/BNI.png"
-                        style="width:55px; margin-bottom: 10px;margin-top: 10px;">
-                    <br>Bank Transfer BNI
-                </a>
-                <div id="bni">
-                    <ol style="text-align:left; color: #4a4a4a">
-                        <li>Masukkan kartu pilih <b>bahasa</b>, dan masukkan PIN
-                            Anda.</li>
-                        <li>Pada menu utama, pilih <b>Transaksi Lainnya.</b></li>
-                        <li>Pilih <b>Transfer</b> dan pilih <b>ke rekening BNI.</b>
-                        </li>
-                        <li>Masukkan nominal transfer sesuai dengan total tagihan
-                            transaksi <b>ke no rek 5829019311
-                                a.n Agam.</b></li>
-                        <li><b>Simpan bukti pembayaran dan unggah bukti </b>pada
-                            halaman yang tersedia.</li>
-                    </ol>
+        <div class="row">
+            <div class="contentt" style="width:100%">
+                <div class="kolom1" style="width:50%;float:left">
+                    <form action="{{ route('upload-pembayaran',$transaction->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="image-preview" id="imagePreview">
+                            <img src="" id="imagePreview" alt="Image Preview" class="image-preview__image">
+                                <span class="image-preview__default-text">
+                                +</span>
+                        </div>
+                        <input type="file" name="bukti_pembayaran" id="inpFile">
+                        <label for="inpFile">
+                            <i class="fas fa-upload" aria-hidden="true"></i>&nbsp;
+                                Pilih foto
+                        </label>
+                        <button type="submit" class="btn btn-primary">Kirim</button>
+                    </form>
                 </div>
-                </p>
-            </li>
-            <li class="list-unstyled" style="margin-bottom: 2rem">
-                <h6
-                class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                <span class="circle text-white d-flex align-items-center justify-content-center">
-                    2
-                </span>
-                Dompet Digital
-                </h6>
-                <p class="text-caption">
-                    <a class="nav-link button4" data-toggle="collapse" data-target="#indo"
-                        style="text-align:left">
-                        <img src="https://bimbel.ruangguru.com/hubfs/Logo%20OVO.png"
-                            style="width:43px; margin-bottom: 10px;margin-top: 10px; font-size: 19px;">
-                        <br>Pembayaran Via OVO
-                    </a>
-                    <div class="collapse" id="indo">
-                        <ol style="text-align:left; color: #4a4a4a">
-                            <li>Buka aplikasi pembayaran OVO Anda.</b></li>
-                            <li>Pilih menu <b>transfer.</b></li>
-                            <li>Masukan nominal sesuai tagihan pada Inofa Bimbel.</li>
-                            <li>Pilih menu <b>transfer antar OVO.</b></li>
-                            <li>Masukan <b>nomor tujuan 08572839211 a.n Agam
+                <div class="kolom2" style="width: 40%;float:left;">
+                    <h5>Cara Pembayaran</h5>
+                    <br>
+                    <h5>Panduan Pembayaran Sewa Kost</h5>
+                    <div class="pembayaran">
+                        <div class="section-title text-center">
+                            <div class="card" style="width: 10rem;" style="box-shadow:0 2px 4px 0 rgba(14, 13, 13, 0.24)">
+                                <img class="card-img-top" src="https://bimbel.ruangguru.com/hubfs/BNI.png" alt="Card image cap">
+                                <div class="card-body">
+                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                              </div>
+                            <li class="nav-item dropdown" style="list-style-type:none">
+                                <p style="text-align:left;margin-bottom: 10px; font-size: 19px">Transfer Bank</p>
+                                <a class="nav-link collapsed" data-toggle="collapse" data-target="#bni" style="margin-buttom:10px; text-align:left; background-color:white;box-shadow:0 2px 4px 0 rgba(95,95,95,0.24)" aria-expanded="false">
+                                    <img src="https://bimbel.ruangguru.com/hubfs/BNI.png" style="width:55px; margin-bottom: 10px;margin-top: 10px;">
+                                    <br>Bank Transfer BNI
+                                </a>
+                                <div class="collapse" id="bni" style="">
+                                    <ol style="text-align:left; color: #4a4a4a">
+                                        <li>Masukkan kartu pilih <b>bahasa</b>, dan masukkan PIN
+                                            Anda.</li>
+                                        <li>Pada menu utama, pilih <b>Transaksi Lainnya.</b></li>
+                                        <li>Pilih <b>Transfer</b> dan pilih <b>ke rekening BNI.</b>
+                                        </li>
+                                        <li>Masukkan nominal transfer sesuai dengan total tagihan
+                                            transaksi</li>
+                                        <li><b>Simpan bukti pembayaran dan unggah bukti </b>pada
+                                            halaman yang tersedia.</li>
+                                    </ol>
+                                </div>
                             </li>
-                            <li>Periksa detail transaksi Anda pada aplikasi, lalu tap
-                                tombol <b>transfer.</b></li>
-                            <li>Transaksi Anda sudah selesai.</li>
-                        </ol>
+                            <li class="nav-item dropdown" style="list-style-type:none; margin-top:20px">
+                                <p style="text-align:left;margin-bottom: 10px; font-size: 19px">Dompet Digital</p>
+                                <a class="nav-link button4 collapsed" data-toggle="collapse" data-target="#ovo" style="margin-buttom:10px; text-align:left; background-color:white;box-shadow:0 2px 4px 0 rgba(95,95,95,0.24)" aria-expanded="false">
+                                    <img src="https://bimbel.ruangguru.com/hubfs/Logo%20OVO.png" style="width:55px; margin-bottom: 10px;margin-top: 10px;">
+                                    <br>OVO
+                                </a>
+                                <div class="collapse" id="ovo" style="">
+                                    <ol style="text-align:left; color: #4a4a4a">
+                                        <li>Buka aplikasi pembayaran OVO Anda.</b></li>
+                                        <li>Pilih menu <b>transfer.</b></li>
+                                        <li>Masukan nominal sesuai tagihan.</li>
+                                        <li>Pilih menu <b>transfer antar OVO.</b></li>
+                                        <li>Masukan <b>nomor tujuan 08572839211 a.n Agam
+                                        </li>
+                                        <li>Periksa detail transaksi Anda pada aplikasi, lalu tap
+                                            tombol <b>transfer.</b></li>
+                                        <li>Transaksi Anda sudah selesai.</li>
+                                    </ol>
+                                </div>
+                            </li>
+                        </div>
                     </div>
-                </p>
-            </li>
-            </ul>
-        </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

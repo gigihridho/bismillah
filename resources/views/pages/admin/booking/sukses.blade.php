@@ -20,6 +20,7 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-body">
+                    <p>Buat tagihan untuk bulan selanjutnya dengan menekan tombol (+)</p>
                     @include('includes.tabs')
                     <div class="table-responsive mt-2">
                     <table class="table table-striped" id="table-1">
@@ -68,7 +69,6 @@
                                         <a title="Detail" data-toggle="tooltip" data-placement="top" href="{{ route('buat-tagihan',$tf->id) }}" class="btn btn-primary btn-sm">
                                             <i class="fas fa-plus"></i>
                                         </a>
-
                                     {{-- </form> --}}
                                 </td>
                             </tr>

@@ -23,7 +23,7 @@
     <li class="nav-item {{ (request()->is('admin/booking/sukses')) ? 'active' : '' }}"  style="width: 247px;">
       <a class="nav-link" href="{{ route('sukses') }}" style="text-align:center;">Sukses</a>
     </li>
-    <li class="nav-item {{ (request()->is('admin/booking/belum')) ? 'active' : '' }}"  style="width: 247px;">
+    <li class="nav-item {{ (request()->is('admin/booking/menunggu')) ? 'active' : '' }}"  style="width: 247px;">
       <a class="nav-link" href="{{ route('menunggu') }}" style="text-align:center;">Menunggu</a>
     </li>
     <li class="nav-item {{ (request()->is('admin/booking/batal')) ? 'active' : '' }}"  style="width: 247px;">
