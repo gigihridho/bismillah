@@ -107,7 +107,8 @@ class UserBookingController extends Controller
         [
             'bukti_pembayaran.required' => 'Bukti pembayaran tidak boleh kosong',
             'bukti_pembayaran.max' => 'Bukti pembayaran melebihi 2MB',
-            'bukti_pembayaran.mimes' => 'Format file tidak didukung'
+            'bukti_pembayaran.mimes' => 'Format file tidak didukung',
+            'bukti_pembayaran.image' => 'Bukti pembayaran harus berupa gambar'
         ]);
         $user = Auth::user();
 

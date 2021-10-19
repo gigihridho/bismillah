@@ -176,12 +176,16 @@ input[type="file"]{
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Pembayaran</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                    <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Pembayaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+
                 <div class="modal-body">
+                    @if($errors->any())
+                        {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
+                    @endif
                     <div class="image-preview" id="imagePreview">
                         <img src="" alt="Image Preview" class="image-preview__image">
                             <span class="image-preview__default-text">
@@ -207,6 +211,7 @@ input[type="file"]{
                     <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
                         Pilih foto
                     </label>
+
                 </div>
                 <div class="modal-footer mt-3">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -220,6 +225,11 @@ input[type="file"]{
 @endsection
 @push('addon-script')
 <script>
+    @if($errors->has('bukti_pembayaran'))
+        $('#uploadBukti').modal({
+            show: true
+        });
+    @endif
     $(function () {
         $("#bukti_pembayaran").change(function () {
             readURL(this);

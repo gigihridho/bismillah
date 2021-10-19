@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\ProfilUserRequest;
 use App\User;
 use Illuminate\Support\Str;
@@ -18,7 +19,7 @@ class ProfilUserController extends Controller
         ]);
     }
 
-    public function avatar(Request $request){
+    public function avatar(AvatarRequest $request){
         $request->validate([
             'avatar' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);

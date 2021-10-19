@@ -80,31 +80,31 @@
                                 <div class="form-group row">
                                     <label for="email" class="col-3 col-form-label required">Email</label>
                                     <div class="col-9">
-                                    <input id="name" name="email" value="{{ $u->email }}" class="form-control here" required="required" type="email">
+                                    <input id="name" name="email" value="{{ old('email',$u->email) }}" class="form-control here" required="required" type="email">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="text" class="col-3 col-form-label required">Alamat</label>
                                     <div class="col-9">
-                                    <input id="text" name="alamat" value="{{ $u->alamat }}" class="form-control here" required="required" type="text">
+                                    <input id="text" name="alamat" value="{{ old('alamat',$u->alamat) }}" class="form-control here" required="required" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="text" class="col-3 col-form-label required">Pekerjaan</label>
                                     <div class="col-9">
-                                    <input id="text" name="pekerjaan" value="{{ $u->pekerjaan }}" class="form-control here" required="required" type="text">
+                                    <input id="text" name="pekerjaan" value="{{ old('pekerjaan',$u->pekerjaan) }}" class="form-control here" required="required" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="text" class="col-3 col-form-label required">Bank</label>
                                     <div class="col-9">
-                                    <input id="text" name="bank" value="{{ $u->bank }}" class="form-control here" required="required" type="text">
+                                    <input id="text" name="bank" value="{{ old('bank',$u->bank) }}" class="form-control here" required="required" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="text" class="col-3 col-form-label required">Nomor Rekening</label>
                                     <div class="col-9">
-                                    <input id="text" name="no_rekening" value="{{ $u->no_rekening }}" class="form-control here" required="required" type="numeric">
+                                    <input id="text" name="no_rekening" value="{{ old('no_rekening',$u->no_rekening) }}" class="form-control here" required="required" type="numeric">
                                     </div>
                                 </div>
                             <div class="form-group row">

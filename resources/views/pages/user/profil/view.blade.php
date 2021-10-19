@@ -202,11 +202,19 @@ label:hover {
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ubah Foto Profil</h5>
+            @error('avatar')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
+                @if($errors->any())
+                    {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
+                @endif
                 <div class="image-preview" id="imagePreview">
                     <img src="" alt="Image Preview" class="image-preview__image">
                         <span class="image-preview__default-text">
@@ -244,6 +252,12 @@ label:hover {
 @endsection
 @push('addon-script')
 <script>
+    @if($errors->has('avatar'))
+        $('#uploadBukti').modal({
+            show: true
+        });
+    @endif
+
     const inpFile = document.getElementById("inpFile");
     const previewContainer = document.getElementById("imagePreview");
     const previewImage = previewContainer.querySelector(".image-preview__image");
