@@ -38,10 +38,6 @@
                     <a href="{{ route('transaksi') }}" class="nav-link">
                     <i class="fas fa-calendar-check"></i><span>Data Pemesanan</span></a>
                 </li>
-                <li class="{{ (request()->is('admin/tagihan')) ? 'active' : '' }}">
-                    <a href="{{ route('tagihan') }}" class="nav-link">
-                    <i class="fas fa-receipt"></i><span>Buat Tagihan</span></a>
-                </li>
             </li>
             <li class="menu-header">Keuangan
                 <li class="{{ (request()->is('admin/pemasukan*')) ? 'active' : '' }}">
