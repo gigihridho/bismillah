@@ -27,7 +27,7 @@ class ProfilUserRequest extends FormRequest
             'name' => 'required|string|min:3|max:255',
             'email' => 'required|email|max:255|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'no_hp' => 'required|numeric|digits_between:10,13',
-            'pekerjaan' => 'required|alpha',
+            'pekerjaan' => 'required|string',
             'alamat' => 'required|string',
             'bank' => 'required|string',
             'no_rekening' => 'required|alpha_num',
