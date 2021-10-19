@@ -71,7 +71,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="required">Status</label>
-                                        <select name="tersedia" id="tersedia" class="form-control">
+                                        <select name="status" id="tersedia" class="form-control">
                                             <option value="1"
                                             @if (old('availabe') == '1')selected="selected" @endif" >
                                             Tersedia
