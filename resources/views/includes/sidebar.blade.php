@@ -78,7 +78,7 @@ body.sidebar-mini .main-sidebar .user.info a>span .user-level {
         <div class="sidebar-brand">
             {{-- <a href="#">Dashboard Pengguna</a> --}}
             <a href="">
-            <img src="{{ asset('fe/img/GriyoKenyo.png') }}" style="margin-right: 90px" alt="">
+            <img src="{{ asset('fe/img/GriyoKenyo.png') }}" class="img-sidebar" style="margin-right: 90px" alt="">
         </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
@@ -86,7 +86,11 @@ body.sidebar-mini .main-sidebar .user.info a>span .user-level {
         </div>
         <div class="user">
             <div class="photo">
-                <img src="{{ asset('storage/'.auth()->user()->avatar) }}" class="rounded-circle mr-1">
+                @if(Auth::user()->avatar)
+                    <img alt="image" src="{{ asset('storage/'.auth()->user()->avatar) }}" class="rounded-circle mr-1">
+                @else
+                    <img alt="image" src="{{asset('/assets/img/avatar/avatar-4.png')}}" class="rounded-circle mr-1">
+                @endif
             </div>
             <div class="profile-widget-item">
                 <a href="{{ route('profil-user') }}" style="color:black">

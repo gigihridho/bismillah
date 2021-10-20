@@ -3,7 +3,7 @@
 @section('title')
     Ubah Kata Sandi
 @endsection
-<style>
+<style type="text/css">
     .required:after {
         content:" *";
         color: red;

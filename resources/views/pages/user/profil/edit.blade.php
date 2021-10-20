@@ -147,7 +147,7 @@
 </div>
 @endsection
 @push('addon-script')
-<script type="text/javascript">
+<script>
     $(function () {
         $("#foto_ktp").change(function () {
             readURL(this);
