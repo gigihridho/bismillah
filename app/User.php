@@ -57,6 +57,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $words[0];
     }
 
+    public function usernamee(){
+        $word = explode(" ", $this->name );
+        $initials = null;
+        foreach ($word as $w) {
+            $initials .= $w[0];
+        }
+        return strtoupper($initials);
+    }
+
     public function getProfilePhotoAttribute()
     {
         $avatar = null;

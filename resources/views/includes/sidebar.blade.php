@@ -1,3 +1,68 @@
+<style>
+    .user {
+    margin-top: 12.5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 12.5px;
+    border-bottom: 1px solid #eee;
+    display: block;
+}
+.user .photo {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    float: left;
+    margin-right: 11px;
+    z-index: 5;
+    border-radius: 50%;
+}
+
+.user .photo img {
+    width: 100%;
+    height: 100%;
+}
+
+.user .info a {
+    white-space: nowrap;
+    display: block;
+    position: relative;
+}
+.sidebar .user .info a:hover,
+.sidebar .user .info a:focus {
+    text-decoration: none;
+}
+.user .info a>span .user-level {
+    color: #555;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    margin-top: 5px;
+}
+.user .info a .link-collapse {
+    padding: 7px 0;
+}
+.ui-helper-clearfix:after,
+.ui-helper-clearfix:before {
+    content: "";
+    display: table;
+    border-collapse: collapse;
+}
+
+.ui-helper-clearfix:after {
+    clear: both;
+}
+body.sidebar-mini .main-sidebar .user {
+    padding-left:15px ;
+    font-size: 0;
+    height: 2px;
+    border-bottom:none;
+    margin-bottom:40px;
+}
+body.sidebar-mini .main-sidebar .user.info a>span .user-level {
+    display: none; }
+
+</style>
+
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         @if(auth()->user()->hasRole('admin'))
@@ -11,10 +76,24 @@
 
         @if(auth()->user()->hasRole('user'))
         <div class="sidebar-brand">
-            <a href="#">User Dashboard</a>
+            {{-- <a href="#">Dashboard Pengguna</a> --}}
+            <a href="">
+            <img src="{{ asset('fe/img/GriyoKenyo.png') }}" style="margin-right: 90px" alt="">
+        </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="#">UD</a>
+            <a href="#">{{ Auth::user()->usernamee() }}</a>
+        </div>
+        <div class="user">
+            <div class="photo">
+                <img src="{{ asset('storage/'.auth()->user()->avatar) }}" class="rounded-circle mr-1">
+            </div>
+            <div class="profile-widget-item">
+                <a href="{{ route('profil-user') }}" style="color:black">
+                    <div class="profile-widget-item-label">{{ Auth::user()->name }}</div>
+                </a>
+                    <div class="profile-widget-item-value"><strong>Pengguna</strong></div>
+            </div>
         </div>
         @endif
 
@@ -58,7 +137,6 @@
             @endif
 
             @if(auth()->user()->hasRole('user'))
-            <li class="menu-header">Dashboard</li>
                 <li class="{{ (request()->is('user/user-transaksi*')) ? 'active' : '' }}">
                     <a href="{{ route('user-transaksi') }}" class="nav-link"><i class="fas fa-calendar-check"></i> <span>Pemesanan</span></a>
                 </li>

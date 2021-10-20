@@ -8,7 +8,7 @@
     <div class="list-footer">
         <div class="row gap-md-0 gap-3">
             <div class="col-lg-4 col-md-6">
-                <h2 class="footer-text-title">Social Media</h2>
+                <h2 class="footer-text-title">Media Sosial</h2>
                 <nav class="list-unstyled">
                     <li class="list-space">
                         <p>Facebook</p>

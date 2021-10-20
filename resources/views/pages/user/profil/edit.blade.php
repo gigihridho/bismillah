@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    Edit Profil
+    Ubah Profil
 @endsection
 {{-- <link rel="stylesheet" href="{{ asset('assets/css/editProfil.css') }}" type="text/css"> --}}
 <style type="text/css">

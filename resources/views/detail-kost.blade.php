@@ -41,7 +41,9 @@ p.required-field::after {
         <div class="row" data-aos="fade-up" data-aos-delay="100">
             <nav aria-label="breadcrumb" class="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('home') }}" style="text-decoration: none;color:#0c0d36;font-weight: 300;">Beranda</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
                 </ol>
             </nav>

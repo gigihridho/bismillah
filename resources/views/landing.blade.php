@@ -300,7 +300,7 @@
                 <img src="{{ asset('fe/img/login.png') }}" style="width:200px; height:200px"
                 alt="" />
             </div>
-            <h3 class="icon-title">Registrasi Akun</h3>
+            <h3 class="icon-title">Pendaftaran Akun</h3>
             <p class="icon-caption">
                 Anda perlu mendaftar<br />
                 ke dalam sistem

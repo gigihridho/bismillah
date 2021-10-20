@@ -36,7 +36,7 @@
                         <div class="dropdown-menu">
                             @if(auth()->user()->hasRole('user'))
                             <a href="{{ route('profil-user') }}" class="dropdown-item">Profil</a>
-                            <a href="{{ route('user-transaksi') }}" class="dropdown-item"><span>Booking</span></a>
+                            <a href="{{ route('user-transaksi') }}" class="dropdown-item"><span>Pemesanan</span></a>
                                 <div class="dropdown-divider"></div>
                             <a
                             href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -106,8 +106,8 @@
             </a>
             <div class="dropdown-menu">
                 @if(auth()->user()->hasRole('user'))
+                <a href="{{ route('user-transaksi') }}" class="dropdown-item"><span>Pemesanan</span></a>
                 <a href="{{ route('profil-user') }}" class="dropdown-item">Profil</a>
-                <a href="{{ route('user-transaksi') }}" class="dropdown-item"><span>Booking</span></a>
                     <div class="dropdown-divider"></div>
                 <a
                 href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
