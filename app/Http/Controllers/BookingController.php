@@ -101,7 +101,7 @@ class BookingController extends Controller
         $kamar->status = 0;
         $kamar->save();
         Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');
-        return redirect()->route('user-transaksi');
+        return redirect()->route('upload');
     }
 
     public function show(){
@@ -127,7 +127,6 @@ class BookingController extends Controller
             $transaction->bukti_pembayaran = $path;
         }
         $transaction->save();
-
         Alert::success('SUCCESS','Foto pembayaran berhasil disimpan');
         return redirect()->route('user-transaksi');
     }

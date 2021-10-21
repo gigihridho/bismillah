@@ -369,42 +369,52 @@ label:hover {
 }
 
 </style>
-<section class="h-100 w-100 bg-white" style="box-sizing:border-box">
-    <div class="container mx-auto position-relative" style="font-family: 'Popins,sans-serif';box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-        <div style="text-align:center; margin-bottom:20px;">
-            <h4 style="margin-top:20px">Silakan Unggah Bukti Pembayaran</h4>
-        </div>
-        <div class="row">
-            <div class="contentt" style="width:100%">
-                <div class="kolom1" style="width:50%;float:left">
-                    <form action="{{ route('upload-pembayaran',$transaction->id) }}" method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="image-preview" id="imagePreview">
-                            <img src="" id="imagePreview" alt="Image Preview" class="image-preview__image">
-                                <span class="image-preview__default-text">
-                                +</span>
-                        </div>
-                        <input type="file" name="bukti_pembayaran" id="inpFile">
-                        <label for="inpFile">
-                            <i class="fas fa-upload" aria-hidden="true"></i>&nbsp;
-                                Pilih foto
-                        </label>
-                        <button type="submit" class="btn btn-primary">Kirim</button>
-                    </form>
+<section class="h-100 w-100 bg-white" style="box-sizing:border-box" style="margin-bottom: 20px" data-aos="fade-up">
+    <div class="confirmation container mx-auto position-relative" style="font-family: 'Popins,sans-serif';box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-bottom: 30px">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header justify-content-center">
+                    <h4 class="d-flex justify-content-center mb-3">
+                        Unggah bukti pembayaran
+                    </h4>
                 </div>
-                <div class="kolom2" style="width: 40%;float:left;">
-                    <h5>Cara Pembayaran</h5>
-                    <br>
-                    <h5>Panduan Pembayaran Sewa Kost</h5>
-                    <div class="pembayaran">
-                        <div class="section-title text-center">
-                            <div class="card" style="width: 10rem;" style="box-shadow:0 2px 4px 0 rgba(14, 13, 13, 0.24)">
-                                <img class="card-img-top" src="https://bimbel.ruangguru.com/hubfs/BNI.png" alt="Card image cap">
-                                <div class="card-body">
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-group mb-3" style="border:none">
+                                <li class="list-group-item  mb-1"  style="border:none">
+                                    <div>
+                                    <h5 class="my-0 mb-1">Kode Pemesanan :</h5>
+                                    </div>
+                                    <span class="text-muted">{{ ($transaction->kode) }}</span>
+                                </li>
+                                <li class="list-group-item  mb-1"  style="border:none">
+                                    <div>
+                                    <h5 class="my-0 mb-1">Total Harga Pembayaran :</h5>
+                                    </div>
+                                    <span class="text-muted">Rp {{ number_format($transaction->total_harga) }}</span>
+                                </li>
+                            </ul>
+                            <form action="{{ route('upload-pembayaran',$transaction->id) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="image-preview" id="imagePreview">
+                                    <img src="" id="imagePreview" alt="Image Preview" class="image-preview__image">
+                                        <span class="image-preview__default-text">
+                                        +</span>
                                 </div>
-                              </div>
+                                <input type="file" name="bukti_pembayaran" id="inpFile">
+                                <label for="inpFile">
+                                    <i class="fas fa-upload" aria-hidden="true"></i>&nbsp;
+                                        Pilih foto
+                                </label>
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Cara Pembayaran</h5>
+                            <h5>Panduan Pembayaran Sewa Kost</h5>
+                            <br>
                             <li class="nav-item dropdown" style="list-style-type:none">
                                 <p style="text-align:left;margin-bottom: 10px; font-size: 19px">Transfer Bank</p>
                                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#bni" style="margin-buttom:10px; text-align:left; background-color:white;box-shadow:0 2px 4px 0 rgba(95,95,95,0.24)" aria-expanded="false">

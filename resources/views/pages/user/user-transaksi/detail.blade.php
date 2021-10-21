@@ -71,8 +71,8 @@ input[type="file"]{
                                 <td>
                                     @if($tf->status == "Menunggu")
                                         <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($tf->status == "Selesai")
-                                        <span class="badge badge-success">Selesai</span>
+                                    @elseif($tf->status == "Sukses")
+                                        <span class="badge badge-success">Sukses</span>
                                     @elseif($tf->status == "Dibatalkan")
                                         <span class="badge badge-danger">Dibatalkan</span>
                                     @endif
@@ -144,7 +144,7 @@ input[type="file"]{
                                         <img src="{{ asset('assets/img/default.jpg') }}" width="200px" height="150px" alt=""
                                         style="display: block; margin-bottom:15px; margin-right:auto">
                                     @else
-                                        <img id="img_ktp" src="{{ Storage::url($tf->bukti_pembayaran) }}" name="bukti_pembayaran" width="250px" height="200px" alt="foto"
+                                        <img id="img_ktp" src="{{ Storage::url($tf->bukti_pembayaran) }}" name="bukti_pembayaran" width="200px" height="250px" alt="foto"
                                         style="display: block; margin-bottom:15px; margin-right:auto">
                                     @endif
                                     @if($tf->status == "Menunggu" || $tf->status == "Dibatalkan")
