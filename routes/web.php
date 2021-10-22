@@ -46,6 +46,9 @@ Route::prefix('user')
         Route::get('user-transaksi/{id}', 'UserBookingController@detail')->name('user-transaksi-detail');
         Route::put('user-transaksi/{id}','UserBookingController@cancel')->name('user-transaksi-cancel');
 
+        Route::get('perpanjang/buat/{id}','PerpanjangController@lanjut')->name('perpanjang-sewa');
+        Route::post('perpanjang/{id}','PerpanjangController@store')->name('save-perpanjang-sewa');
+
         Route::get('review', 'UserReviewController@review')->name('review-user');
         Route::post('review/{id}', 'UserReviewController@update')->name('review-user-update');
 

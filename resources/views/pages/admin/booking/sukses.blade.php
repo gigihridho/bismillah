@@ -66,7 +66,7 @@
                                         <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('detail-booking',$tf->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" href="{{ route('buat-tagihan',$tf->id) }}" class="btn btn-primary btn-sm">
+                                        <a title="Buat Tagihan" data-toggle="tooltip" data-placement="top" href="{{ route('buat-tagihan',$tf->id) }}" class="btn btn-primary btn-sm">
                                             <i class="fas fa-plus"></i>
                                         </a>
                                     {{-- </form> --}}

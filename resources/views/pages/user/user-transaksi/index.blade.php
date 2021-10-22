@@ -35,9 +35,10 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="table-1">
                             <p class="required">Silakan unggah bukti pembayaran pada bagian detail </p>
-                            @if ($transaction->count() > 0)
+                            <p class="required">Untuk memperpanjang sewa kamar, pilih tombol (+) akan muncul setelah status sukses </p>
+                            {{-- @if ($transaction->count() > 0)
                             <a href="{{ route('lanjut-sewa') }}" class="btn btn-primary mb-3"><span i class="fas fa-plus"></span> Perpanjang Sewa</a>
-                            @endif
+                            @endif --}}
                             <thead>
                                 <tr style="text-align: center">
                                     <th scope="col" style="width: 5px">
@@ -85,7 +86,14 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($tf->status == "Sukses" || $tf->status == "Dibatalkan")
+                                        @if($tf->status == "Sukses")
+                                            <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+                                            <a title="Perpanjang Sewa" data-toggle="tooltip" data-placement="top" href="{{ route('perpanjang-sewa',$tf->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        @elseif($tf->status == "Dibatalkan")
                                             <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
                                                 <i class="far fa-eye"></i>
                                             </a>

@@ -40,7 +40,7 @@ class ExpiredOrder extends Command
      */
     public function handle()
     {
-        $expired = Transaction::whereNull('photo_payment')->Where('expired_at',"<",now())->update([
+        $expired = Transaction::whereNull('bukti_pembayaran')->Where('expired_at',"<",now())->update([
             'status' => "Dibatalkan"
         ])->everyMinute();
     }
