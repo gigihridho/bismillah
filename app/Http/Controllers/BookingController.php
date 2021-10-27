@@ -66,7 +66,7 @@ class BookingController extends Controller
         $tipe_kamar = TipeKamar::findOrFail($tipe_kamar_id);
         $new_tanggal_masuk = $request->input('tanggal_masuk');
         $durasi = $request->input('durasi');
-        $kode = 'KOS'.date("ymd").mt_rand(000,999);
+        $kode = $request->input('kode');
         if($durasi == 1){
             $new_tanggal_keluar = date('Y-m-d', strtotime('+1 month', strtotime($request->tanggal_masuk)));
         }elseif($durasi == 6){

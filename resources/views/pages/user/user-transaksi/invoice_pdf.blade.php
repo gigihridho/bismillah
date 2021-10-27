@@ -53,13 +53,24 @@
                                     <b>Kamar: </b>
                                     <p>{{ $transaction->kamar->tipe_kamar->nama }}
                                     {{ $transaction->kamar->nomor_kamar }}</p>
-                                        <p>Tanggal Order : {{ $transaction->tanggal_pesan }} </p>
+                                        <p>Tanggal Order :
+                                            <?php
+                                                $date = new DateTime($transaction->tanggal_pesan);
+                                                echo $date->format('d F Y H:i:s');
+                                            ?>
+                                        </p>
                                         <p>Durasi sewa : {{ $transaction->durasi }} Bulan</p>
                                         <p>Tanggal Masuk :
-                                        {{ $transaction->tanggal_masuk }} </p>
+                                            <?php
+                                                $date = new DateTime($transaction->tanggal_masuk);
+                                                echo $date->format('d F Y');
+                                            ?>
                                         <p>Tanggal Keluar :
-                                        {{ $transaction->tanggal_keluar }} </p>
-                                    </p>
+                                            <?php
+                                                $date = new DateTime($transaction->tanggal_keluar);
+                                                echo $date->format('d F Y');
+                                            ?>
+                                        </p>
                                 </td>
                             </tr>
                         </thead>

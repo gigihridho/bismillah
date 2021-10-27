@@ -22,7 +22,7 @@ class PengeluaranExport implements FromCollection, WithMapping, WithHeadings,Wit
     public function map($pengeluarans): array
     {
         return [
-            $pengeluarans->index+1,
+            $pengeluarans->id,
             $pengeluarans->tanggal,
             $pengeluarans->deskripsi,
             number_format($pengeluarans->nominal),
@@ -32,7 +32,7 @@ class PengeluaranExport implements FromCollection, WithMapping, WithHeadings,Wit
     public function headings(): array
     {
         return [
-            'Nomor',
+            'ID',
             'Tanggal',
             'Deskripsi',
             'Nominal',

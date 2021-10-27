@@ -78,7 +78,7 @@ class TagihanController extends Controller
         $transaction->expired_at = Carbon::now()->addHours(24);
         $transaction->save();
         Alert::success('SUCCESS','Berhasil membuat tagihan sewa kamar');
-        return redirect()->route('tagihan');
+        return redirect()->route('transaksi');
     }
 
     /**

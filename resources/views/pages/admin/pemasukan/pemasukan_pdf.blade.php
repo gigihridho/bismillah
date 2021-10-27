@@ -19,7 +19,7 @@
         </div>
         <hr class="mb-3">
         <div class="row">
-            <div class="col-md-12">
+            {{-- <div class="col-md-12">
                 <div style="text-align: center;">
                     <div>
                         <strong>Bukti Pendapatan Kost Griyo Kenyo</strong>
@@ -28,7 +28,7 @@
                     <small style="margin : 0px; display: block;">Owner : Anggito Galih Nuragam</small>
                     <p style="margin : 0px;">HP/WA : 085770254568</p>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <hr>
         <div class="row my-3">

@@ -429,7 +429,7 @@ label:hover {
                                         <li>Pilih <b>Transfer</b> dan pilih <b>ke rekening BNI.</b>
                                         </li>
                                         <li>Masukkan nominal transfer sesuai dengan total tagihan
-                                            transaksi</li>
+                                            transaksi ke no rek 1299766500 <br> a.n Gigih Ridho Ridhana</li>
                                         <li><b>Simpan bukti pembayaran dan unggah bukti </b>pada
                                             halaman yang tersedia.</li>
                                     </ol>
@@ -447,7 +447,7 @@ label:hover {
                                         <li>Pilih menu <b>transfer.</b></li>
                                         <li>Masukan nominal sesuai tagihan.</li>
                                         <li>Pilih menu <b>transfer antar OVO.</b></li>
-                                        <li>Masukan <b>nomor tujuan 08572839211 a.n Agam
+                                        <li>Masukan <b>nomor tujuan 08572839211 a.n Anggito
                                         </li>
                                         <li>Periksa detail transaksi Anda pada aplikasi, lalu tap
                                             tombol <b>transfer.</b></li>

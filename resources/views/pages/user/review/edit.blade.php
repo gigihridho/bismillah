@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-Review
+Review Kost
 @endsection
 
 @section('content')
@@ -96,4 +96,9 @@ Review
 </div>
 {{-- @endif --}}
 @endsection
+{{-- @push('addon-script')
+<script>
+    $('#myModal').modal('show')
+</script>
+@endpush --}}
 

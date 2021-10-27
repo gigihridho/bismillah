@@ -26,7 +26,7 @@ class PemasukanExport implements FromCollection, WithMapping, WithHeadings,WithC
     public function map($pemesanans): array
     {
         return [
-            $pemesanans->index+1,
+            $pemesanans->id,
             $pemesanans->user->name,
             $pemesanans->kode,
             $pemesanans->tanggal_pesan,
@@ -40,7 +40,7 @@ class PemasukanExport implements FromCollection, WithMapping, WithHeadings,WithC
     public function headings(): array
     {
         return [
-            'Nomor',
+            'ID',
             'Nama',
             'Kode Pemesanan',
             'Tanggal Pesan',

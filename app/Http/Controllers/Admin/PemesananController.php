@@ -53,9 +53,9 @@ class PemesananController extends Controller
         $pemesanans = Booking::findOrFail($id);
         $pemesanans->status = "Sukses";
         $pemesanans->save();
-        // Mail::to($pemesanans->user->email)->send(new PaymentSuccessMail());
+        Mail::to($pemesanans->user->email)->send(new PaymentSuccessMail());
         Alert::success('SUCCESS','Pesanan telah berhasil dikonfirmasi');
-        return redirect()->route('transaksi');
+        return redirect()->route('sukses');
     }
     public function batal(Request $request, $id){
         $pemesanans = Booking::findOrFail($id);
@@ -70,7 +70,7 @@ class PemesananController extends Controller
             Mail::to($pemesanans->user->email)->send(new PaymentCancelledMail());
         }
         Alert::success('SUCCESS','Pesanan telah berhasil dibatalkan');
-        return redirect()->route('transaksi');
+        return redirect()->route('dibatalkan');
     }
 
 

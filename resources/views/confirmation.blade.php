@@ -123,6 +123,7 @@
                             @csrf
                                 <input name="booking_validation" type="hidden" value="0">
                                 <input type="date" class="form-control" id="datepicker" name="tanggal_masuk" value="{{ $new_tanggal_masuk }}" hidden>
+                                <input name="kode" id="kode" class="form-control" value="{{ $kode }}" hidden>
                                 <input name="durasi" id="durasi" class="form-control" value="{{ $durasi }}" hidden>
                                 <button type="submit" class="btn btn-fill text-white px-5" style="padding: 8px 16px">Pesan</button>
                         </form>
