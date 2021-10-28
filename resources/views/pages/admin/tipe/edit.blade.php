@@ -92,7 +92,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Foto</label>
-                                        <input type="file" id="input_photo" name="photo" class="form-control">
+                                        <input type="file" id="input_photo" name="foto" class="form-control">
                                     </div>
                                     @if ($d->foto != null)
                                         <img id="img_photo" src="{{ Storage::url($d->foto) }}" width="280px" height="180px" alt="foto"

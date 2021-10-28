@@ -56,7 +56,6 @@ Route::prefix('user')
         Route::post('view-profil','ProfilUserController@avatar')->name('change-avatar');
         Route::get('change-profil-user', 'ProfilUserController@user')->name('change-profil-user');
         Route::post('change-profil-user/{id}', 'ProfilUserController@update')->name('change-profil-user-redirect');
-
     });
 
 Route::prefix('admin')
