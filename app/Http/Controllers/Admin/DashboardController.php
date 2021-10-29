@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Booking;
 use App\Room;
 use App\User;
+use App\Kamar;
+use App\Booking;
 use App\Expense;
+use App\TipeKamar;
+use App\Pengeluaran;
 use App\RoomBooking;
+use App\Transaction;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Kamar;
-use App\Pengeluaran;
-use App\Transaction;
 
 class DashboardController extends Controller
 {
@@ -22,6 +23,7 @@ class DashboardController extends Controller
 
     public function index(){
         $user = User::role('user')->count();
+        $tipe_kamar = TipeKamar::all();
         $kamar_tersedia = Kamar::where('status',true)->count();
         $kam = Kamar::count();
         $bookings = Booking::count();
@@ -35,6 +37,7 @@ class DashboardController extends Controller
         }
         return view('pages.admin.dashboard',[
             'user' => $user,
+            'tipe_kamar' => $tipe_kamar,
             'kamar_tersedia' => $kamar_tersedia,
             'bookings' => $bookings,
             'total_harga' => $total_harga,

@@ -87,23 +87,33 @@
                                     </td>
                                     <td>
                                         @if($tf->status == "Sukses")
+                                            <a title="Invoice" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('user-invoice',$tf->id) }}">
+                                                <i class="fas fa-file-invoice-dollar"></i>
+                                            </a>
                                             <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
                                                 <i class="far fa-eye"></i>
                                             </a>
                                             <a title="Perpanjang Sewa" data-toggle="tooltip" data-placement="top" href="{{ route('perpanjang-sewa',$tf->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-plus"></i>
                                             </a>
-                                        @elseif($tf->status == "Dibatalkan")
+                                            @elseif($tf->status == "Dibatalkan")
                                             <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
                                                 <i class="far fa-eye"></i>
                                             </a>
-                                        @else
-                                        <a title="Invoice" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('user-invoice',$tf->id) }}">
-                                            <i class="fas fa-file-invoice-dollar"></i>
-                                        </a>
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
-                                            <i class="far fa-eye"></i>
-                                        </a>
+                                            @else
+                                        <form action="{{ route('user-transaksi-cancel',$tf->id) }} method="POST" enctype="multipart/form-data"">
+                                            @csrf
+                                            @method('PUT')
+                                            <a title="Invoice" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" href="{{ route('user-invoice',$tf->id) }}">
+                                                <i class="fas fa-file-invoice-dollar"></i>
+                                            </a>
+                                            <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm" href="{{ route('user-transaksi-detail',$tf->id) }}">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+                                            <button value="Dibatalkan" type="submit" title="Hapus" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-sm" onclick="return confirm('Anda ingin membatalkan pemesanan kamar ini ?')">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </form>
                                         @endif
                                     </td>
                                 </tr>
@@ -117,54 +127,7 @@
             </div>
         </div>
     </section>
-    <!-- Modal -->
-    {{-- @foreach ($transaction as $tf)
-    <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="img">
-            <form action="{{ route('user-transaksi-upload',$tf->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Pembayaran</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <div class="image-preview" id="imagePreview">
-                        <img src="" alt="Image Preview" class="image-preview__image">
-                            <span class="image-preview__default-text">
-                            +</span>
-                    </div>
-                    <input type="file" name="bukti_pembayaran" id="inpFile">
-                    <label for="inpFile" style="color: white;
-                        height: 35px;
-                        width: 105px;
-                        background-color: #03a9f4;
-                        position: absolute;
-                        margin-left: 6em;
-                        padding: 10px;
-                        border-radius: 10px;
-                        padding-top: 8px;
-                        padding-left: 20px;
-                        font-weight: lighter;
-                        font-size: 12px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        margin-top: 1em;">
-                    <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
-                        Pilih foto
-                    </label>
-                </div>
-                <div class="modal-footer mt-3">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    @endforeach --}}
+
 </div>
 @endsection
 @push('addon-script')
@@ -179,51 +142,6 @@
         });
     } );
 
-    function deleteConfirm(id) {
-        Swal.fire({
-            title: 'Harap Konfirmasi',
-            text: "Anda ingin membatalkan transaksi ini?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Lanjutkan'
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
-                    },
-                    url: "/user/user-transaksi/" + id,
-                    method: "POST",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "_method": "POST",
-                        id: id
-                    },
-                    success: function (data) {
-                        Swal.fire({
-                            title: 'Berhasil!',
-                            text: 'Pemesanan berhasil dibatalkan',
-                            icon: 'success',
-                        }).then((result) => {
-                            if (result.value) {
-                                window.location.href = "/user/user-transaksi/"
-                            }
-                        });
-                    },
-                    error: function () {
-                        Swal.fire({
-                            title: 'Gagal!',
-                            text: 'Pemesanan tidak dapat dibatalkan!',
-                            icon: 'warning',
-                        });
-                        window.location.href = "/user/user-transaksi/"
-                    }
-                });
-            }
-        })
-    }
 
     const inpFile = document.getElementById("inpFile");
     const previewContainer = document.getElementById("imagePreview");

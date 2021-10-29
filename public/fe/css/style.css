@@ -1010,7 +1010,7 @@
         }
         .review {
             padding: 6rem 4rem;
-            background: #F2F6FF;
+            /* background: #F2F6FF; */
         }
         .review .title-text {
             padding-top: 5rem;

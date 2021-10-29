@@ -36,7 +36,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Kamar Tersedia</h4>
+                                <h4>Kamar Kosong</h4>
                             </div>
                             <div class="card-body">
                                 {{ $kamar_tersedia }}
@@ -116,15 +116,33 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-12 col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                <h4>Statistik Jumlah Transaksi Setiap Bulan</h4>
-                </div>
-                <div class="card-body">
-                <canvas id="myChart" height="100"></canvas>
+            <div class="col-lg-8 col-md-8 col-8 col-sm-8">
+                <div class="card">
+                    <div class="card-header">
+                    <h4>Statistik Jumlah Transaksi Setiap Bulan</h4>
+                    </div>
+                    <div class="card-body">
+                    <canvas id="myChart" height="100"></canvas>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-lg-4 col-md-4 col-4 col-sm-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Kamar Kosong</h4>
+                    </div>
+                    <div class="card-body">
+                        @foreach ($tipe_kamar as $tipe)
+                            @php $arrayTipe = array(); @endphp
+                            @foreach ($tipe->kamars->where('status',true) as $t)
+                                @php $arrayTipe[] = $t @endphp
+                            @endforeach
+                                @php $jum = count($arrayTipe); @endphp
+                                <p>{{ $tipe->nama }} : <strong>{{ $jum }}</strong> yang kosong</p>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </section>

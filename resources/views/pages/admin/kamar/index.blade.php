@@ -31,6 +31,7 @@
                                 <th scope="col">Tipe Kamar</th>
                                 <th scope="col">Nomor Kamar</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Pemesan</th>
                                 <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -42,10 +43,19 @@
                                     <td>{{ $kamar->nomor_kamar }}</td>
                                     <td>
                                         @if($kamar->status == 1)
-                                        <span class="badge badge-success">Tersedia</span>
+                                        <span class="badge badge-success">Kosong</span>
                                         @else
-                                        <span class="badge badge-danger">Tidak Tersedia</span>
+                                        <span class="badge badge-danger">Dipesan</span>
                                         @endif
+                                    </td>
+                                    <td>
+                                        @foreach ($kamar->bookings as $k)
+                                        @if($kamar->status == 0)
+                                        {{ $k->user->name }}
+                                        @else
+
+                                        @endif
+                                        @endforeach
                                     </td>
                                     <td>
                                         <form action="/admin/tipe/{{ $tipe_kamar->id }}/kamar/{{ $kamar->id }}" method="POST">

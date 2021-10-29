@@ -20,6 +20,7 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-body" style="overflow-x:auto;">
+                    <a href="{{ route('user.create') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Buat User</a>
                     <div class="table-responsive">
                     <table class="table table-striped" id="table-1">
                         <thead>
@@ -41,16 +42,19 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->no_hp }}</td>
                                     <td>
-                                    <form action="#" method="POST" enctype="multipart/form-data">
-                                        @method('PUT')
+                                    <form action="{{ route('user.destroy',$user->id) }}" method="POST" enctype="multipart/form-data">
+                                        @method('DELETE')
                                         @csrf
                                         <input style="display:none" value="0" id="status"
                                         name="status"></input>
                                         <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user.show',$user->id) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        {{-- <button ty class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="return confirm('Anda yakin mau menonaktifkan siswa?')">
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $user->id }})">
                                             <i class="far fa-trash-alt" style="color: white;"></i>
+                                        </a>
+                                        {{-- <button ty class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="return confirm('Anda yakin mau menonaktifkan siswa?')">
+                                            <i class="fas fa-times" style="color: white;"></i>
                                         </button> --}}
                                     </form>
                                     </td>
@@ -81,7 +85,7 @@
     function deleteConfirm(id) {
         Swal.fire({
             title: 'Harap Konfirmasi',
-            text: "Anda akan menonaktifkan user!",
+            text: "Anda akan menghapus user!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -107,7 +111,7 @@
                             icon: 'success',
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "/admin/tidakAktif/"
+                                window.location.href = "user"
                             }
                         });
                     },
@@ -117,7 +121,7 @@
                             text: 'Data tidak dapat di hapus!',
                             icon: 'warning',
                         });
-                        window.location.href = "/admin/user/"
+                        window.location.href = "user"
                     }
                 });
             }

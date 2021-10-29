@@ -43,8 +43,8 @@ Route::prefix('user')
         Route::post('user-transaksi','UserBookingController@save')->name('save-lanjut-sewa');
         Route::get('user-transaksi/invoice_pdf/{id}','UserBookingController@invoice')->name('user-invoice');
         Route::post('user-transaksi/{id}', 'UserBookingController@upload')->name('user-transaksi-upload');
-        Route::get('user-transaksi/{id}', 'UserBookingController@detail')->name('user-transaksi-detail');
-        Route::put('user-transaksi/{id}','UserBookingController@cancel')->name('user-transaksi-cancel');
+        Route::get('user-transaksi/{id}','UserBookingController@cancel')->name('user-transaksi-cancel');
+        Route::get('user-transaksi/detail/{id}', 'UserBookingController@detail')->name('user-transaksi-detail');
 
         Route::get('perpanjang/buat/{id}','PerpanjangController@lanjut')->name('perpanjang-sewa');
         Route::post('perpanjang/{id}','PerpanjangController@store')->name('save-perpanjang-sewa');
@@ -89,6 +89,8 @@ Route::prefix('admin')
         Route::get('excel','Admin\PengeluaranController@excel')->name('pengeluaran-excel');
 
         Route::resource('user', 'Admin\UserController');
+        Route::get('user/detail/newPassword/{id}','Admin\UserController@newPassword')->name('new-password');
+        Route::post('user/detail/newPassword/{id}','Admin\UserController@newPasswordd')->name('save-new-password');
 
         Route::resource('reviews', 'Admin\ReviewsController');
 

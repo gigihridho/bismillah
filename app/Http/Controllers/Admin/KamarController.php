@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Booking;
 use App\Kamar;
 use App\TipeKamar;
 use Illuminate\Http\Request;
@@ -22,8 +23,10 @@ class KamarController extends Controller
 
     public function index($id){
         $tipe_kamars = TipeKamar::find($id);
+        $pemesanans = Booking::all();
         return view('pages.admin.kamar.index',[
-            'tipe_kamar' => $tipe_kamars
+            'tipe_kamar' => $tipe_kamars,
+            'pemesanans' => $pemesanans
         ]);
     }
 

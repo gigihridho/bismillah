@@ -23,6 +23,9 @@
                 <div style="text-align: center;">
                     <div>
                         <strong>Rincian Tagihan Pemesanan </strong>
+                        @if ($transaction->status == "Sukses")
+                        <p>Simpan Struk dan Bawa Saat Datang ke Kos</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -74,19 +77,16 @@
                                 </td>
                             </tr>
                         </thead>
-                        {{-- <tbody>
+                        @if($transaction->status == "Sukses")
+                        <tbody>
                             <tr>
-                                <th scope="col" colspan="8">Nomor Rekening Tujuan</th>
+                                <th scope="col" colspan="4">Status Pemesanan</th>
+                                <th scope="col" colspan="4">
+                                    <span class="badge badge-success">Sukses</span>
+                                </th>
                             </tr>
-                            <tr>
-                                <td colspan="8">
-                                    <b>BNI a.n Anggito Galih  </b>
-                                    <p>0889322111</p>
-                                    <b>OVO </b>
-                                    <p>089888222111</p>
-                                </td>
-                            </tr>
-                        </tbody> --}}
+                        </tbody>
+                        @endif
                         <tfoot>
                             <tr>
                                 <th scope="col" colspan="4">Total Bayar</th>

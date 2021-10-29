@@ -236,6 +236,33 @@
     </div>
 </section>
 
+{{-- Review --}}
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box id="review" data-aos="fade-up">
+    <div class="review container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
+        <div class="text-center title-text">
+            <h1 class="text-title">Review Kost</h1>
+            <p class="text-caption">Berikut review dari mereka</p>
+        </div>
+        <div class="container" style="margin-top: 4rem">
+            {{-- <div class="row"> --}}
+                <div class="owl-carousel featured-carousel owl-theme">
+                    @foreach ($reviews as $r)
+                    <div class="item">
+                        <h3 class="review-title text-center">
+                            {{ $r->review }}</h3>
+                        <h4 class="review-caption text-center" style="opacity: 0.5">
+                            {{ $r->user->name }}
+                        </h4>
+                        <h6 class="review-caption text-center">
+                            {{ $r->user->pekerjaan }}
+                        </h6>
+                    </div>
+                    @endforeach
+                </div>
+            {{-- </div> --}}
+        </div>
+    </div>
+</section>
 
 {{-- Room --}}
 <section class="h-100 w-100" style="box-sizing: border-box" id="kamar" data-aos="fade-up">
@@ -327,34 +354,6 @@
             </p>
             </div>
         </div>
-        </div>
-    </div>
-</section>
-
-{{-- Review --}}
-<section class="h-100 w-100" style="box-sizing: border-box id="review" data-aos="fade-up">
-    <div class="review container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
-        <div class="text-center title-text">
-            <h1 class="text-title">Review Kost</h1>
-            <p class="text-caption">Berikut review dari mereka</p>
-        </div>
-        <div class="container" style="margin-top: 4rem">
-            {{-- <div class="row"> --}}
-                <div class="owl-carousel featured-carousel owl-theme">
-                    @foreach ($reviews as $r)
-                    <div class="item">
-                        <h3 class="review-title text-center">
-                            {{ $r->review }}</h3>
-                        <h4 class="review-caption text-center" style="opacity: 0.5">
-                            {{ $r->user->name }}
-                        </h4>
-                        <h6 class="review-caption text-center">
-                            {{ $r->user->pekerjaan }}
-                        </h6>
-                    </div>
-                    @endforeach
-                </div>
-            {{-- </div> --}}
         </div>
     </div>
 </section>

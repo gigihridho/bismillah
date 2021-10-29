@@ -33,6 +33,7 @@
                             <th scope="col">Lantai</th>
                             <th scope="col">Harga</th>
                             <th scope="col">Ukuran</th>
+                            <th scope="col">Kamar Kosong</th>
                             <th scope="col">Aksi</th>
                         </tr>
                         </thead>
@@ -47,6 +48,15 @@
                                     <td>{{ $tipe->lantai }}</td>
                                     <td>Rp{{ number_format($tipe->harga,2,',','.') }}</td>
                                     <td>{{ $tipe->ukuran }}</td>
+                                    <td>
+                                        @php $arrayTipe = array(); @endphp
+                                        @foreach ($tipe->kamars->where('status',true) as $t)
+                                            @php $arrayTipe[] = $t @endphp
+
+                                        @endforeach
+                                        @php $jum = count($arrayTipe); @endphp
+                                        {{ $jum }}
+                                    </td>
                                     <td>
                                         <form action="/admin/tipe/{{ $tipe->id }}" method="POST">
                                             @csrf

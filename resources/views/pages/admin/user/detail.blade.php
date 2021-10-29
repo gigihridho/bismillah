@@ -3,7 +3,47 @@
 @section('title')
     User
 @endsection
+<style type="text/css">
 
+    .inpFile {
+        margin-left: 3rem;
+        margin-top: 2rem;
+        color: #000;
+    }
+    input[type="file"]{
+        display: none;
+    }
+    .image-preview {
+        width: 250px;
+        min-height: 170px;
+        border: 2px dashed #afeeee;
+        margin-top: 15px;
+        /* margin-left: 3em; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #cccccc;
+    }
+    .image-preview__image{
+        display: none;
+        width: 100%;
+    }
+    .image-preview__default-text {
+        color:#87ceeb;
+
+    }
+    #myImg {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    #myImg:hover {opacity: 0.7;}
+
+    /* The Modal (background) */
+
+</style>
 @section('content')
 <div class="main-content">
     <section class="section">
@@ -77,6 +117,7 @@
                                         @endif
                                     </div>
                                 </div>
+                                <a href="{{ route('new-password',$u->id) }}" class="btn btn-success">Kata Sandi Baru</a>
                             </form>
                             @endforeach
                         </div>

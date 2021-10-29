@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Kamar;
+use App\Booking;
 use Carbon\Carbon;
 use App\RoomBooking;
-use App\Booking;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use App\Mail\PaymentCancelMail;
+use App\Mail\PaymentCancelledMail;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserBookingController extends Controller
@@ -120,6 +124,24 @@ class UserBookingController extends Controller
         $transaction->save();
 
         Alert::success('SUCCESS','Bukti pembayaran berhasil disimpan');
+        return redirect()->back();
+    }
+
+    public function cancel($id){
+        $pemesanans = Booking::findOrFail($id);
+        $kamar = Kamar::find($pemesanans->kamar_id);
+        $pemesanans->status = "Dibatalkan";
+        $kamar->status = 1;
+        $kamar->save();
+        $pemesanans->save();
+        if($pemesanans->bukti_pembayaran == null){
+            Mail::to($pemesanans->user->email)->send(new PaymentCancelMail());
+        }else{
+            Mail::to($pemesanans->user->email)->send(new PaymentCancelledMail());
+        }
+        Alert::success('SUCCESS','Pesanan telah berhasil dibatalkan');
+        return redirect()->route('dibatalkan');
+
         return redirect()->back();
     }
 }
