@@ -33,40 +33,43 @@ Review Kost
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            @foreach ($user as $rev)
+                            {{-- @foreach ($user as $rev) --}}
                             <form action="{{ route('review-user-update','review-user') }}" method="POST" enctype="multipart/form-data">
+                                @foreach ($booking as $book)
+                                    <input type="hidden" name="booking_id" value="{{ $booking->id }}">
+                                @endforeach
                                 @csrf
-                            <input type="hidden" name="id" value="{{ auth()->user()->id }}">
+                                {{-- <input type="hidden" name="id" value="{{ auth()->user()->id }}"> --}}
                             <div class="form-group">
                                 <label for="name">Nama</label>
-                                <input type="text" name="name" value="{{ $rev->name }}" class="form-control" disabled>
+                                <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control" disabled>
                             </div>
-                            @endforeach
+                            {{-- @endforeach --}}
 
-                        @if(count($review) > 0)
-                            @foreach ($review as $revv)
-                            <div class="form-group">
-                                <label for="review" class="required">Review</label>
-                                <input type="text" name="review" id="review" class="form-control"
-                                value="{{ $revv->review }}" autocomplete="off" placeholder="Masukkan Review">
-                                <small>Contoh: Kost bersih dan nyaman</small>
-                            </div>
-                            @endforeach
-                        @else
-                            <div class="form-group">
-                                <label for="review" class="required">Review</label>
-                                <input type="text" name="review" id="review" class="form-control"
-                                value="" autocomplete="off" placeholder="Masukkan Review" required>
-                                <small>Contoh: Kost bersih dan nyaman</small>
-                            </div>
-                        @endif
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary px-5 text-white mb-3" style="padding: 8px 16px" >
-                                        Simpan Data
-                                    </button>
+                            @if(count($review) > 0)
+                                @foreach ($review as $revv)
+                                <div class="form-group">
+                                    <label for="review" class="required">Review</label>
+                                    <input type="text" name="review" id="review" class="form-control"
+                                    value="{{ $revv->review }}" autocomplete="off" placeholder="Masukkan Review">
+                                    <small>Contoh: Kost bersih dan nyaman</small>
                                 </div>
-                            </div>
+                                @endforeach
+                            @else
+                                <div class="form-group">
+                                    <label for="review" class="required">Review</label>
+                                    <input type="text" name="review" id="review" class="form-control"
+                                    value="" autocomplete="off" placeholder="Masukkan Review" required>
+                                    <small>Contoh: Kost bersih dan nyaman</small>
+                                </div>
+                            @endif
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <button type="submit" class="btn btn-primary px-5 text-white mb-3" style="padding: 8px 16px" >
+                                            Simpan Data
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -76,7 +79,7 @@ Review Kost
     </section>
 </div>
 {{-- Cek Profil --}}
-{{-- @if(auth()->user()->hasRole('user') && $cek) --}}
+{{-- @if($booking_id)
 <div id="myModal" class="modal fade hide fade in" role="dialog" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -94,8 +97,9 @@ Review Kost
         </div>
     </div>
 </div>
-{{-- @endif --}}
+@endif --}}
 @endsection
+
 {{-- @push('addon-script')
 <script>
     $('#myModal').modal('show')

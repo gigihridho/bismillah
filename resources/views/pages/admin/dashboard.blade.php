@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <a style="text-decoration: none;" href="{{ route('user.index') }}">
+                    <a style="text-decoration: none;" href="{{ route('user-aktif') }}">
                         <div class="card-icon bg-primary" style="width: 70px">
                             <i class="fas fa-users"></i>
                         </div>
@@ -135,7 +135,7 @@
                     <div class="card-body">
                         @foreach ($tipe_kamar as $tipe)
                             @php $arrayTipe = array(); @endphp
-                            @foreach ($tipe->kamars->where('status',true) as $t)
+                            @foreach ($tipe->kamars->where('status',"Kosong") as $t)
                                 @php $arrayTipe[] = $t @endphp
                             @endforeach
                                 @php $jum = count($arrayTipe); @endphp

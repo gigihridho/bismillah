@@ -98,7 +98,7 @@ class BookingController extends Controller
         $bookingg->kamar_id = $kamar->id;
         $bookingg->user_id = $user->id;
         $bookingg->save();
-        $kamar->status = 0;
+        $kamar->status = "Dipesan";
         $kamar->save();
         Alert::success('SUCCESS','Berhasil melakukan pemesanan kamar');
         return redirect()->route('upload');

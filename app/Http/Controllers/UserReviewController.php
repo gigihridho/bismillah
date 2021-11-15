@@ -19,26 +19,34 @@ class UserReviewController extends Controller
 
     public function review(Request $request)
     {
-        $user = User::where('id',Auth::user()->id)->get();
-        $review = Review::where('user_id',Auth::user()->id)->get();
+        // $user = User::where('id',Auth::user()->id)->get();
+        // $review = Review::where('user_id',Auth::user()->id)->get();
+
+        $booking = Booking::with(['review','user'])->where('user_id',Auth::user()->id)->where('status',"Sukses")->first();
+        $id = $booking->id;
+        $review = Review::where('booking_id',$id)->get();
         return view('pages.user.review.edit',[
             'review' => $review,
-            'user' => $user,
+            'booking' => $booking,
+
         ]);
     }
 
     public function update(Request $request, $redirect){
         $user = User::where('id',Auth::user()->id)->first()->id;
-        $item = Review::where('user_id', $user)->first();
+        // $item = Review::where('user_id', $user)->first();
+        $item = Booking::where('id', $user)->first();
+        $booking = Booking::with(['review','user'])->where('user_id',Auth::user()->id)->where('status',"Sukses")->get();
+        $booking_id = Review::where('booking_id',$booking)->first();
         if($item == null){
             $item = new Review();
             $item->review = $request->review;
-            $item->user_id = $user;
+            $item->booking_id = $request->input('booking_id');
             $item->save();
         }else {
             if($request->review != null){
                 $item->review = $request->review;
-                $item->user_id = $user;
+                $item->booking_id = $request->input('booking_id');
                 $item->save();
             }
         }

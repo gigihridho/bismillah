@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Fasilitas;
+use App\GaleriKamar;
 use App\TipeKamar;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -21,9 +22,29 @@ class TipeKamarController extends Controller
 
     public function index(){
         $tipe_kamars = TipeKamar::with('fasilitas:nama')->get();
+        $galeri = TipeKamar::with(['galeri','fasilitas:nama'])->get();
+        // dd($galeri);
         return view('pages.admin.tipe.index',[
-            'tipe_kamars' => $tipe_kamars
+            'tipe_kamars' => $tipe_kamars,
+            'galeri' => $galeri
         ]);
+    }
+
+    public function uploadGaleri(Request $request){
+        $data = $request->all();
+        // $data = GaleriKamar::findOrFail($id);
+        $data['foto'] =$request->file('foto')->store('assets/GaleriKamar','public');
+
+        GaleriKamar::create($data);
+
+        return redirect()->route('tipe.edit', $request->tipe_kamar_id);
+    }
+
+    public function deleteGaleri(Request $request, $id){
+        $item = GaleriKamar::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('tipe.edit', $item->tipe_kamar_id);
     }
 
     public function create(){
@@ -36,11 +57,19 @@ class TipeKamarController extends Controller
     public function store(TipeKamarRequest $request){
         $data = new TipeKamar();
         $data->nama = $request->input('nama');
-        $data->foto = $request->file('foto')->store('assets/TipeKamars','public');
         $data->lantai = $request->input('lantai');
         $data->harga = $request->input('harga');
         $data->ukuran = $request->input('ukuran');
         $data->save();
+
+        // $tipe = TipeKamar::create($data);
+
+        $galeri = [
+            'tipe_kamar_id' => $data->id,
+            'foto' => $request->file('foto')->store('assets/GaleriKamar','public'),
+        ];
+
+        GaleriKamar::create($galeri);
 
         if($request->has('fas')){
             $data->fasilitas()->attach(array_keys($request->input('fas')));
@@ -52,7 +81,7 @@ class TipeKamarController extends Controller
 
     public function edit($id){
         $fasilitas = Fasilitas::all();
-        $data = TipeKamar::where('id',$id)->get();
+        $data = TipeKamar::with('galeri')->findOrFail($id);
         return view('pages.admin.tipe.edit',[
             'data' => $data,
             'fasilitas' => $fasilitas
@@ -65,17 +94,18 @@ class TipeKamarController extends Controller
         $data->lantai = $request->lantai;
         $data->harga = $request->harga;
         $data->ukuran = $request->ukuran;
-        if(request()->hasFile('foto')){
-            $foto = request()->file('foto')->store('assets/TipeKamars','public');
-            $data->update(['foto' => $foto]);
-        }
+        // if(request()->hasFile('foto')){
+        //     $foto = request()->file('foto')->store('assets/GaleriKamar','public');
+        //     $data->update(['foto' => $foto]);
+        // }
         $data->save();
+        if(request()->hasFile('fas')){
         $data->fasilitas()->sync(array_keys($request->input('fas')));
+        }
 
         Alert::success('SUCCESS','Data Tipe Kamar Berhasil Diupdate');
         return redirect()->route('tipe.index');
     }
-
 
     public function destroy($id){
         $tipe_kamar = TipeKamar::findOrFail($id);
@@ -83,4 +113,5 @@ class TipeKamarController extends Controller
 
         return redirect()->route('tipe.index');
     }
+
 }

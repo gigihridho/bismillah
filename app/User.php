@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'no_hp','alamat','pekerjaan','bank','no_rekening','foto_ktp','avatar'
+        'name', 'email', 'password', 'no_hp','alamat','pekerjaan','bank','no_rekening','foto_ktp','avatar','status'
     ];
 
     /**
@@ -44,11 +44,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function bookings(){
         return $this->hasMany(Booking::class);
-    }
-
-    public function review()
-    {
-        return $this->hasMany(Review::class);
     }
 
     public function initials()

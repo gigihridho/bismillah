@@ -88,7 +88,16 @@ Route::prefix('admin')
         Route::get('pdf','Admin\PengeluaranController@ex_pdf')->name('pengeluaran-pdf');
         Route::get('excel','Admin\PengeluaranController@excel')->name('pengeluaran-excel');
 
-        Route::resource('user', 'Admin\UserController');
+        Route::get('user','Admin\UserController@index')->name('user');
+        Route::get('user/aktif', 'Admin\UserController@aktif')->name('user-aktif');
+        Route::get('user/nonAktif','Admin\UserController@nonAktif')->name('user-non-aktif');
+        Route::post('user/nonAktif/{id}','Admin\UserController@activate')->name('aktifkan-user');
+        Route::put('user/aktif/{id}','Admin\UserController@nonActivate')->name('nonaktifkan-user');
+        Route::get('user/create','Admin\UserController@create')->name('buat-user');
+        Route::post('user','Admin\UserController@store')->name('save-user');
+        Route::delete('user/{id}','Admin\UserController@destroy')->name('delete-user');
+        Route::get('user/detail/{id}','Admin\UserController@show')->name('detail-user');
+        Route::get('user/changeStatus','Admin\UserController@changeStatus')->name('change-status');
         Route::get('user/detail/newPassword/{id}','Admin\UserController@newPassword')->name('new-password');
         Route::post('user/detail/newPassword/{id}','Admin\UserController@newPasswordd')->name('save-new-password');
 
@@ -100,6 +109,8 @@ Route::prefix('admin')
         Route::post('change-profil/{id}', 'Admin\ChangeProfilController@update')->name('change-profil-redirect');
 
         Route::resource('tipe', 'Admin\TipeKamarController');
+        Route::post('tipe/galeri/upload','Admin\TipeKamarController@uploadGaleri')->name('kamar-galeri-upload');
+        Route::get('tipe/galeri/delete/{id}','Admin\TipeKamarController@deleteGaleri')->name('kamar-galeri-delete');
 
         Route::prefix('tipe')
             ->middleware(['auth', 'role:admin' , 'verified'])

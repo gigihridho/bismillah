@@ -42,18 +42,20 @@
                                     <td>{{ $tipe_kamar->nama}}</td>
                                     <td>{{ $kamar->nomor_kamar }}</td>
                                     <td>
-                                        @if($kamar->status == 1)
+                                        @if($kamar->status == "Kosong")
                                         <span class="badge badge-success">Kosong</span>
+                                        @elseif($kamar->status == "Dipesan")
+                                        <span class="badge badge-warning">Dipesan</span>
                                         @else
-                                        <span class="badge badge-danger">Dipesan</span>
+                                        <span class="badge badge-danger">Disewa</span>
                                         @endif
                                     </td>
                                     <td>
                                         @foreach ($kamar->bookings as $k)
-                                        @if($kamar->status == 0)
+                                        @if($kamar->status == "Dipesan")
                                         {{ $k->user->name }}
-                                        @else
-
+                                        @elseif($kamar->status == "Disewa")
+                                        {{ $k->user->name }}
                                         @endif
                                         @endforeach
                                     </td>

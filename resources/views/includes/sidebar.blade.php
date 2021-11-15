@@ -131,8 +131,8 @@ body.sidebar-mini .main-sidebar .user.info a>span .user-level {
                 </li>
             </li>
             <li class="menu-header">User
-                <li class="{{ (request()->is('admin/user*')) ? 'active' : '' }}">
-                    <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-user"></i><span>User</span></a>
+                <li class="{{ (request()->is('admin/user/aktif')) ? 'active' : '' }}">
+                    <a href="{{ route('user-aktif') }}" class="nav-link"><i class="fas fa-user"></i><span>User</span></a>
                 </li>
                 <li class="{{ (request()->is('admin/reviews*')) ? 'active' : '' }}">
                     <a href="{{ route('reviews.index') }}" class="nav-link"><i class="fas fa-book"></i><span>Review</span></a>

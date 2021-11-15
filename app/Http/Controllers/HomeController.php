@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $reviews = Review::latest()->take(5)->get();
-        $tipe_kamars = TipeKamar::all();
+        $tipe_kamars = TipeKamar::with('galeri')->get();
         $kamars = TipeKamar::with('kamars')->get();
         $kamar = Kamar::where('status',true)->count();
         $kam = Kamar::count();

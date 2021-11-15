@@ -24,7 +24,7 @@ class DashboardController extends Controller
     public function index(){
         $user = User::role('user')->count();
         $tipe_kamar = TipeKamar::all();
-        $kamar_tersedia = Kamar::where('status',true)->count();
+        $kamar_tersedia = Kamar::where('status',"Kosong")->count();
         $kam = Kamar::count();
         $bookings = Booking::count();
         $total_harga = Booking::where('status',"Sukses")->sum('total_harga');

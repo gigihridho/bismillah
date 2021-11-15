@@ -56,14 +56,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="required">Status</label>
-                                    <select name="tersedia" id="tersedia" class="form-control">
+                                    <select name="status" id="status" class="form-control">
                                         <option value="1"
                                             @if (old('status') == '1')selected="selected" @endif" >
-                                            Tersedia
+                                            Kosong
                                         </option>
                                         <option value="0"
                                             @if (old('status') == '0')selected="selected" @endif" >
-                                            Tidak Tersedia
+                                            Dipesan
                                         </option>
                                     </select>
                                 </div>

@@ -38,19 +38,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($tipe_kamars as $index => $tipe)
+                            @foreach ($galeri as $index => $tipe)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $tipe->nama }}</td>
                                     <td>
-                                        <img height="100px" src="{{ Storage::url($tipe->foto) }}" alt="">
+                                        <img height="100px" src="{{ Storage::url($tipe->galeri->first()->foto ?? '') }}" alt="">
                                     </td>
                                     <td>{{ $tipe->lantai }}</td>
                                     <td>Rp{{ number_format($tipe->harga,2,',','.') }}</td>
                                     <td>{{ $tipe->ukuran }}</td>
                                     <td>
                                         @php $arrayTipe = array(); @endphp
-                                        @foreach ($tipe->kamars->where('status',true) as $t)
+                                        @foreach ($tipe->kamars->where('status',"Kosong") as $t)
                                             @php $arrayTipe[] = $t @endphp
 
                                         @endforeach

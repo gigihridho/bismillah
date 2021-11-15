@@ -24,4 +24,8 @@ class Booking extends Model
     public function kamar(){
         return $this->belongsTo(Kamar::class);
     }
+
+    public function review(){
+        return $this->hasOne(Review::class);
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKamarsTable extends Migration
+class CreateGaleriKamarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateKamarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('kamars', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('nomor_kamar')->unique();
-            $table->enum('status',['Kosong','Dipesan','Disewa'])->default('Kosong');
+        Schema::create('galeri_kamars', function (Blueprint $table) {
+            $table->id();
+            $table->string('foto');
             $table->integer('tipe_kamar_id')->unsigned()->index();
             $table->timestamps();
 
@@ -33,6 +32,6 @@ class CreateKamarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kamars');
+        Schema::dropIfExists('galeri_kamars');
     }
 }

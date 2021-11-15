@@ -1,5 +1,11 @@
 @extends('layouts.fe')
 
+@push('after-style')
+    <link rel="stylesheet" href="{{ asset('fe/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('fe/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fe/css/owl.carousel.min.css') }}">
+@endpush
+
 @section('title')
     Detail Kamar
 @endsection
@@ -7,7 +13,17 @@
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.theme.min.css" integrity="sha512-9h7XRlUeUwcHUf9bNiWSTO9ovOWFELxTlViP801e5BbwNJ5ir9ua6L20tEroWZdm+HFBAWBLx2qH4l4QHHlRyg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" integrity="sha512-+0Vhbu8sRUlg+R/NKgTv7ahM+szPDF10G6J5PcHb1tOrAaquZIUiKUV3TH16mi6fuH4NjvHqlok6ppBhR6Nxuw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <style type="text/css">
+
+#owl-image .item{
+    margin: 3px;
+    }
+#owl-image .item img{
+    display: block;
+    /* width: 100%;
+    height: auto; */
+}
 .btn-fill{
     background-color: #6777ef;
     border-radius: 12px;
@@ -54,8 +70,12 @@ p.required-field::after {
                 <div class="row">
                     @php $incrementTipeKamar = 0 @endphp
                     @foreach ($tipe_kamars as $tipe_kamar)
-                    <div class="col-lg-8" >
-                        <img src="{{Storage::url($tipe_kamar->foto) }}" alt="" height="95%" width="90%">
+                    <div class="col-lg-8">
+                        <div class="owl-carousel featured-carousel owl-theme">
+                        @foreach ($tipe_kamar->galeri as $galerii)
+                            <img class="owl-image" style="width: 100%; height:500px;" src="{{Storage::url($galerii->foto) }}" alt="">
+                        @endforeach
+                        </div>
                     </div>
                     @endforeach
                     <div class="col-lg-4">
@@ -119,7 +139,7 @@ p.required-field::after {
                         </div>
                         <div class="col-lg-3">
                                 <h5 style="color:#6777ef">Deskripsi</h5>
-                                <p>Lantai {{ $tipe_kamar->lantai }}, Ukuran {{ $tipe_kamar->ukuran }} </p>
+                                <p>Berada di lantai {{ $tipe_kamar->lantai }} dan memiliki ukuran kamar {{ $tipe_kamar->ukuran }} </p>
                         </div>
                         <div class="col-lg-8">
                         <h5 style="color:#6777ef">Fasilitas</h5>
@@ -168,7 +188,29 @@ p.required-field::after {
 @endif
 @endsection
 @push('after-script')
-<script>
+<script src="{{ asset('fe/js/owl.carousel.js') }}"></script>
+<script src="{{ asset('fe/js/owl.carousel.min.js') }}"></script>
+<script type="text/javascript">
+    $('.featured-carousel').owlCarousel({
+    loop:true,
+    // margin:20,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true,
+        },
+        600:{
+            items:1,
+            nav:true,
+        },
+        1000:{
+            items:1,
+            nav:true,
+        }
+    }
+    });
+
     $('#myModal').modal('show');
 
     $(function () {

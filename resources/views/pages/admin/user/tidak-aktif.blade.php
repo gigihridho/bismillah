@@ -1,26 +1,27 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Penghuni Tidak Aktif
+    Data User Tidak Aktif
 @endsection
 
 @section('content')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Table @yield('title')</h1>
+            <h1>@yield('title')</h1>
             <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
             <div class="breadcrumb-item">@yield('title')</div>
             </div>
         </div>
-        @include('pages.admin.user.navbarr')
-        <div class="section-body" style="margin-top: 100px">
+        <div class="section-body">
             <div class="row">
-            <div class="col-12">
-                <div class="card">
-                <div class="card-body" style="overflow-x:auto;">
-                    <div class="table-responsive">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body" style="overflow-x:auto;">
+                            <a href="{{ route('buat-user') }}" class="btn btn-primary mb-3" id="tambah-data"><span i class="fas fa-plus"></span> Buat User</a>
+                            <div class="table-responsive">
+                        @include('pages.admin.user.navbarr')
                     <table class="table table-striped" id="table-1">
                         <thead>
                         <tr style="text-align:center">
@@ -30,24 +31,45 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>No Telepon</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $index => $d)
+                            @foreach ($users as $index => $user)
                                 <tr style="text-align: center">
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{ $d->name }}</td>
-                                    <td>{{ $d->email }}</td>
-                                    <td>{{ $d->no_hp }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->no_hp }}</td>
                                     <td>
-                                    <form action="#" method="POST">
-                                        <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('user-detail',$d->id) }}">
-                                            <i class="far fa-eye"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $d->id }})">
+                                        @if($user->status == 1)
+                                            <span class="badge badge-success">Aktif</span>
+                                        @else
+                                            <span class="badge badge-danger">Tidak Aktif</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('aktifkan-user',$user->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
+                                            @csrf
+                                            <button value="1" type="submit" title="Aktifkan" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-sm" onclick="return confirm('Anda ingin mengaktifkan user ini ?')">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <input style="display:none" value="0" id="status"
+                                            name="status"></input>
+                                            <a title="Detail" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-sm edit" href="{{ route('detail-user',$user->id) }}">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+                                        </form>
+                                        <form action="{{ route('delete-user',$user->id) }}" method="POST" enctype="multipart/form-data" style="display:inline-block">
+                                            @method('DELETE')
+                                            @csrf
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="deleteConfirm({{ $user->id }})">
                                             <i class="far fa-trash-alt" style="color: white;"></i>
                                         </a>
+                                        {{-- <button ty class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Hapus" onClick="return confirm('Anda yakin mau menonaktifkan siswa?')">
+                                            <i class="fas fa-times" style="color: white;"></i>
+                                        </button> --}}
                                     </form>
                                     </td>
                                 </tr>

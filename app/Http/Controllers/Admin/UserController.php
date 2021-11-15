@@ -22,6 +22,20 @@ class UserController extends Controller
         ]);
     }
 
+    public function aktif(){
+        $users = User::role('user')->where('status',1)->get();
+        return view('pages.admin.user.aktif',[
+            'users' => $users,
+        ]);
+    }
+
+    public function nonAktif(Request $request){
+        $users = User::role('user')->where('status',0)->get();
+        return view('pages.admin.user.tidak-aktif',[
+            'users' => $users,
+        ]);
+    }
+
     public function create(){
         return view('pages.admin.user.create');
     }
@@ -74,6 +88,22 @@ class UserController extends Controller
         ]);
     }
 
+    public function activate(Request $request,$id){
+        $user = User::findOrFail($id);
+        $user->status = 1;
+        $user->save();
+        Alert::success('SUCCESS','User berhasil diaktifkan');
+        return redirect()->back();
+    }
+
+    public function nonActivate(Request $request,$id){
+        $user = User::findOrFail($id);
+        $user->status = 0;
+        $user->save();
+        Alert::success('SUCCESS','User berhasil dinonaktifkan');
+        return redirect()->back();
+    }
+
     public function newPassword(Request $request, $id){
         $user = User::where('id',$id)->get();
         return view('pages.admin.user.kata-sandi-baru',[
@@ -87,7 +117,6 @@ class UserController extends Controller
             'password' => Hash::make($request->get('password'))
         ]);
 
-        // dd($user);
         Alert::success('SUCCESS','Kata Sandi Berhasil Diubah');
         return redirect()->route('user.index');
     }
@@ -111,5 +140,14 @@ class UserController extends Controller
         // $user->delete();
 
         return redirect()->back()->withErrors(array('message' => 'Maaf, data user tidak terhapus'));
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->status = $request->status;
+        $user->save();
+        dd($user);
+        return response()->json(['success'=>'Status change successfully.']);
     }
 }

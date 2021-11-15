@@ -73,6 +73,7 @@ class UserBookingController extends Controller
         $transaction->tanggal_keluar = $new_tanggal_keluar;
         $transaction->tanggal_pesan = Carbon::now();
         $transaction->total_harga = $total_harga;
+        $transaction->status = "Dipesan";
         $transaction->kamar_id = $old_room_booking->kamar_id;
         $transaction->user_id = $user->id;
         $transaction->kode = $kode;
@@ -131,7 +132,7 @@ class UserBookingController extends Controller
         $pemesanans = Booking::findOrFail($id);
         $kamar = Kamar::find($pemesanans->kamar_id);
         $pemesanans->status = "Dibatalkan";
-        $kamar->status = 1;
+        $kamar->status = "Dipesan";
         $kamar->save();
         $pemesanans->save();
         if($pemesanans->bukti_pembayaran == null){

@@ -281,7 +281,7 @@
                 <div class="col-lg-4 column">
                     <div class="card card-explore">
                     <div class="card-explore__img">
-                        <img class="card-img" src="{{ Storage::url($tipe_kamar->foto) }}"
+                        <img class="card-img" src="{{ Storage::url($tipe_kamar->galeri->first()->foto ?? '') }}"
                         alt="" height="200px" width="150px" />
                     </div>
                     <div class="card-body">
@@ -290,7 +290,7 @@
                             <p class="room-price">Lantai : {{$tipe_kamar->lantai}}</p>
                             <p class="room-price">Jumlah kamar kosong :
                                 @php $arrayTipe = array(); @endphp
-                                @foreach ($tipe_kamar->kamars->where('status',true) as $t)
+                                @foreach ($tipe_kamar->kamars->where('status',"Kosong") as $t)
                                     @php $arrayTipe[] = $t @endphp
 
                                 @endforeach

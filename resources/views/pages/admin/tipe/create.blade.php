@@ -60,7 +60,10 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Foto</label>
-                                        <input type="file" name="foto" class="form-control">
+                                        <input type="file" name="foto" multiple="true" class="form-control">
+                                        <small>
+                                            Kamu dapat memilih lebih dari satu file
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

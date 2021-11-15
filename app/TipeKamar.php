@@ -9,8 +9,12 @@ class TipeKamar extends Model
     protected $table = 'tipe_kamars';
 
     protected $fillable = [
-        'nama','foto','lantai','harga','ukuran'
+        'nama','lantai','harga','ukuran'
     ];
+
+    public function galeri(){
+        return $this->hasMany(GaleriKamar::class,'tipe_kamar_id','id');
+    }
 
     public function kamars()
     {

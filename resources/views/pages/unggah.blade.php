@@ -91,7 +91,7 @@ label {
     margin-top: 1em;
     color: white;
     height: 40px;
-    width: 120px;
+    width: 200px;
     background-color: #03a9f4;
     position: absolute;
     font-size: 12px Poppins, sans-serif;
@@ -112,7 +112,7 @@ label:hover {
         margin-top: 1em;
         color: white;
         height: 40px;
-        width: 120px;
+        width: 200px;
         background-color: #03a9f4;
         position: absolute;
         font-size: 12px Poppins, sans-serif;
@@ -155,7 +155,7 @@ label:hover {
         margin-top: 1em;
         color: white;
         height: 40px;
-        width: 120px;
+        width: 200px;
         background-color: #03a9f4;
         position: absolute;
         font-size: 12px Poppins, sans-serif;
@@ -199,7 +199,7 @@ label:hover {
         margin-top: 1em;
         color: white;
         height: 40px;
-        width: 120px;
+        width: 200px;
         background-color: #03a9f4;
         position: absolute;
         font-size: 12px Poppins, sans-serif;
@@ -243,7 +243,7 @@ label:hover {
         margin-top: 1em;
         color: white;
         height: 40px;
-        width: 120px;
+        width: 200px;
         background-color: #03a9f4;
         position: absolute;
         font-size: 12px Poppins, sans-serif;
@@ -287,7 +287,7 @@ label:hover {
         margin-top: 1em;
         color: white;
         height: 40px;
-        width: 120px;
+        width: 200px;
         background-color: #03a9f4;
         position: absolute;
         font-size: 12px Poppins, sans-serif;
@@ -330,7 +330,7 @@ label:hover {
         margin-top: 1em;
         color: white;
         height: 40px;
-        width: 120px;
+        width: 200px;
         background-color: #03a9f4;
         position: absolute;
         font-size: 12px Poppins, sans-serif;
@@ -339,6 +339,7 @@ label:hover {
         border-radius: 10px;
         padding-top: 8px;
         padding-left: 20px;
+        margin-left: 10rem;
         justify-content: center;
         align-items: center;
     }
@@ -375,7 +376,7 @@ label:hover {
             <div class="card">
                 <div class="card-header justify-content-center">
                     <h4 class="d-flex justify-content-center mb-3">
-                        Unggah bukti pembayaran
+                        Unggah Bukti Pembayaran
                     </h4>
                 </div>
                 <div class="card-body">
@@ -406,7 +407,7 @@ label:hover {
                                 <input type="file" name="bukti_pembayaran" id="inpFile">
                                 <label for="inpFile">
                                     <i class="fas fa-upload" aria-hidden="true"></i>&nbsp;
-                                        Pilih foto
+                                        Unggah Bukti Bayar
                                 </label>
                                 <button type="submit" class="btn btn-primary">Kirim</button>
                             </form>

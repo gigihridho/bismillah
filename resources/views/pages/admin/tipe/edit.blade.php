@@ -6,6 +6,13 @@
 
 @section('content')
 <style type="text/css">
+
+.delete-gallery{
+    display: block;
+    position: absolute;
+    top: -10px;
+    right: 0;
+}
 .required:after {
     content:" *";
     color: red;
@@ -42,34 +49,34 @@
                     <div class="card-header">
                         <h4>Edit Tipe Kamar</h4>
                     </div>
-                    @foreach ($data as $d)
+                    {{-- @foreach ($data as $d) --}}
                     <div class="card-body">
-                        <form action="{{ route('tipe.update', $d->id ) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('tipe.update', $data->id ) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Tipe Kamar</label>
-                                        <input type="text" name="nama" value="{{ $d->nama }}" class="form-control">
+                                        <input type="text" name="nama" value="{{ $data->nama }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Lantai</label>
-                                        <input type="number" name="lantai" value="{{ $d->lantai }}" class="form-control">
+                                        <input type="number" name="lantai" value="{{ $data->lantai }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Harga</label>
-                                        <input type="number" name="harga" value="{{ $d->harga }}" class="form-control">
+                                        <input type="number" name="harga" value="{{ $data->harga }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Ukuran</label>
-                                        <input type="text" name="ukuran" value="{{ $d->ukuran }}" class="form-control">
+                                        <input type="text" name="ukuran" value="{{ $data->ukuran }}" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +96,7 @@
                                     @endforelse
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Foto</label>
                                         <input type="file" id="input_photo" name="foto" class="form-control">
@@ -101,7 +108,7 @@
                                         <img id="img_photo" src="{{ asset('assets/img/avatar/avatar-1.png') }}" width="170px" height="170px" alt="foto"
                                         style="display: block; margin:auto">
                                     @endif
-                                </div>
+                                </div> --}}
                             </div>
                             <br>
                             <div class="row tombol">
@@ -115,8 +122,38 @@
                                 </div>
                             </div>
                         </form>
-                        @endforeach
+                        {{-- @endforeach --}}
                     </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                        <div class="row">
+                            @foreach ($data->galeri as $foto)
+                            <div class="col-md-4">
+                                <div class="gallery-container">
+                                    <img src="{{ Storage::url($foto->foto ?? '') }}" alt="" class="w-100 mt-4">
+                                        <a href="{{ route('kamar-galeri-delete',$foto->id) }}" class="delete-gallery">
+                                    <img src="{{ asset('assets/img/icon-delete.svg') }}" class="mt-4" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            @endforeach
+                            <div class="col-12">
+                            <form action="{{ route('kamar-galeri-upload') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="tipe_kamar_id" value="{{ $data->id }}">
+                                <input type="file" name="foto" id="file" style="display: none;" onchange="form.submit()">
+                                    <button type="button" class="btn btn-success btn-block mt-3 px-5" onclick="thisFileUpload()">
+                                        Tambah Gambar
+                                    </button>
+                            </form>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,6 +163,9 @@
 @endsection
 @push('addon-script')
 <script type="text/javascript">
+    function thisFileUpload(){
+        document.getElementById("file").click();
+    }
     $(function () {
         $("#input_photo").change(function () {
             readURL(this);
