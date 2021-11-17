@@ -237,6 +237,35 @@
 </section>
 
 {{-- Review --}}
+{{-- <section class="h-100 w-100 bg-white" style="box-sizing: border-box id="review" data-aos="fade-up">
+<div class="testimonail-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1 text-center">
+                <div class="testimonial-sliders owl-carousel featured-carousel owl-theme">
+                    @foreach ($reviews as $r)
+                    <div class="single-testimonial-slider">
+                        <div class="client-avater">
+                            <img src="{{ Storage::url($r->booking->user->avatar ?? 'assets/img/avaters/avatar1.png') }}" width="100px" height="100px" style="rounded-circle mt-5" alt="">
+                        </div>
+                        <div class="client-meta">
+                            <h3>{{ $r->booking->user->name }} <span>{{ $r->booking->user->pekerjaan }}</span></h3>
+                            <p class="testimonial-body">
+                                "{{ $r->review }}"
+                            </p>
+                            <div class="last-icon">
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section> --}}
+<!-- end testimonail-section -->
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box id="review" data-aos="fade-up">
     <div class="review container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
@@ -251,10 +280,10 @@
                         <h3 class="review-title text-center">
                             {{ $r->review }}</h3>
                         <h4 class="review-caption text-center" style="opacity: 0.5">
-                            {{ $r->user->name }}
+                            {{ $r->booking->user->name }}
                         </h4>
                         <h6 class="review-caption text-center">
-                            {{ $r->user->pekerjaan }}
+                            {{ $r->booking->user->pekerjaan }}
                         </h6>
                     </div>
                     @endforeach

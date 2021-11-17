@@ -22,6 +22,14 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function showLoginForm()
+    {
+        if(!session()->has('url.intended'))
+        {
+            session(['url.intended' => url()->previous()]);
+        }
+        return view('auth.login');
+    }
     /**
      * Where to redirect users after login.
      *
@@ -37,6 +45,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->redirectTo = url()->previous();
     }
 
     protected function authenticated(Request $request, $user)
@@ -44,10 +53,10 @@ class LoginController extends Controller
         if($user->hasRole('admin')){
             return redirect()->route('admin-dashboard');
         }
-        if($user->hasRole('user')){
-            return redirect()->back();
-        }
+        // if($user->hasRole('user')){
+        //     return redirect()->back();
+        // }
 
-        return redirect()->route('home');
+        // return redirect()->route('home');
     }
 }
