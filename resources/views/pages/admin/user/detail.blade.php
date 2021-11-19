@@ -74,17 +74,21 @@
                                     <input type="text" class="form-control" value="{{ $u->alamat }}" disabled>
                                 </div>
                                 <div class="col-md-12">
-                                    <label class="labels mt-2">Pekerjaan</label>
-                                    <input type="text" class="form-control" value="{{ $u->pekerjaan }}" disabled>
+                                    <label class="labels mt-2">Email</label>
+                                    <input type="text" class="form-control" value="{{ $u->email }}" disabled>
                                 </div>
                             </div>
-                            <a href="{{ route('new-password',$u->id) }}" class="btn btn-success mt-5">Buat Kata Sandi Baru</a>
-                            <a href="{{ route('user') }}" class="btn btn-danger mt-5">Kembali</a>
+                            <a href="{{ route('new-password',$u->id) }}" class="btn btn-success" style="margin-top: 100px">Buat Kata Sandi Baru</a>
+                            <a href="{{ route('user') }}" class="btn btn-danger" style="margin-top: 100px">Kembali</a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="p-3 py-5">
                             <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <label class="labels mt-2">Pekerjaan</label>
+                                    <input type="text" class="form-control" value="{{ $u->pekerjaan }}" disabled>
+                                </div>
                                 <div class="col-md-12">
                                     <label class="labels mt-2">Bank</label>
                                     <input type="text" class="form-control" value="{{ $u->bank }}" disabled>

@@ -30,7 +30,7 @@ class UserBookingController extends Controller
         ];
     }
     public function index(){
-        $transaction = Booking::where('user_id','=',Auth::user()->id)->get();
+        $transaction = Booking::where('user_id','=',Auth::user()->id)->orderBy('created_at','DESC')->get();
         return view('pages.user.user-transaksi.index',[
             'transaction' => $transaction
         ]);

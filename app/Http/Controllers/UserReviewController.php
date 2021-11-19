@@ -20,15 +20,10 @@ class UserReviewController extends Controller
     public function review(Request $request)
     {
         $booking = Booking::with(['review','user'])->where('user_id',Auth::user()->id)->where('status',"Sukses")->get();
-        // $review = Review::where('user_id',Auth::user()->id)->get();
-
-        // $booking = Booking::with(['review','user'])->where('user_id',Auth::user()->id)->where('status',"Sukses")->first();
-        // $id = $booking->id;
         $review = Review::with(['booking'])->where('user_id',Auth::user()->id)->get();
         return view('pages.user.review.edit',[
             'review' => $review,
             'booking' => $booking,
-
         ]);
     }
 
@@ -45,7 +40,6 @@ class UserReviewController extends Controller
         }else {
             if($request->review != null){
                 $item->review = $request->review;
-                // $item->booking_id = $request->input('booking_id');
                 $item->save();
             }
         }
@@ -53,3 +47,8 @@ class UserReviewController extends Controller
         return redirect()->route($redirect);
     }
 }
+
+// $review = Review::where('user_id',Auth::user()->id)->get();
+// $booking = Booking::with(['review','user'])->where('user_id',Auth::user()->id)->where('status',"Sukses")->first();
+// $id = $booking->id;
+// $item->booking_id = $request->input('booking_id');

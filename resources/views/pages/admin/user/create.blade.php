@@ -42,7 +42,7 @@
                         <h4>Buat User</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('save-user') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -132,7 +132,7 @@
                                 <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
                                     Simpan Data
                                 </button>
-                                <a href="#" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
+                                <a href="{{ route('user') }}" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
                                     Batal
                                 </a>
                             </div>
@@ -146,3 +146,18 @@
     </section>
 </div>
 @endsection
+@push('addon-script')
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle("fas fa-eye");
+    });
+
+</script>
+@endpush

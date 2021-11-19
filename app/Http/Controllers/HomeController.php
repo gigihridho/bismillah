@@ -30,7 +30,7 @@ class HomeController extends Controller
         $reviews = Review::latest()->take(5)->get();
         $tipe_kamars = TipeKamar::with('galeri')->get();
         $kamars = TipeKamar::with('kamars')->get();
-        $kamar = Kamar::where('status',true)->count();
+        $kamar = Kamar::where('status',"Kosong")->count();
         $kam = Kamar::count();
         return view('landing',[
             'reviews' => $reviews,
