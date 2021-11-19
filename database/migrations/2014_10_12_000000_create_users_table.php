@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('bank')->nullable();
             $table->string('no_rekening')->nullable();
             $table->string('avatar')->nullable();
+            $table->boolean('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

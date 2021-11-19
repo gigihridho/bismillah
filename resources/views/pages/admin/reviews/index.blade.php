@@ -36,7 +36,7 @@
                             @foreach ($reviews as $index => $review)
                                 <tr style="text-align:center">
                                         <td>{{ $index+1 }}</td>
-                                        <td>{{ $review->user->name }}</td>
+                                        <td>{{ $review->booking->user->name }}</td>
                                         <td>{{ $review->review }}</td>
                                         <td>
                                             <form action="{{ route('reviews.destroy',$review->id) }}" method="POST">

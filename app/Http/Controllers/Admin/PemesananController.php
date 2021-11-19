@@ -77,6 +77,12 @@ class PemesananController extends Controller
         return redirect()->route('dibatalkan');
     }
 
+    public function detail($id){
+        $pemesanans = Booking::where('id',$id)->get();
+        return view('pages.admin.booking.detail',[
+            'pemesanans' => $pemesanans
+        ]);
+    }
 
     // public function update(Request $request, $id){
     //     $pemesanans = Booking::findOrFail($id);
@@ -106,10 +112,4 @@ class PemesananController extends Controller
     //     return redirect()->route('transaksi');
     // }
 
-    public function detail($id){
-        $pemesanans = Booking::where('id',$id)->get();
-        return view('pages.admin.booking.detail',[
-            'pemesanans' => $pemesanans
-        ]);
-    }
 }

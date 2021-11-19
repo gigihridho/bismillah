@@ -55,7 +55,65 @@
             </div>
         </div>
 
-        <div class="section-body">
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                @foreach ($user as $u)
+                    <div class="col-md-6">
+                        <div class="p-3 py-5">
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <label class="labels mt-2">Nama</label>
+                                    <input type="text" class="form-control" value="{{ $u->name }}" disabled>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels mt-2">Nomor Handphone</label>
+                                    <input type="text" class="form-control" value="{{ $u->no_hp }}" disabled>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels mt-2">Alamat</label>
+                                    <input type="text" class="form-control" value="{{ $u->alamat }}" disabled>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels mt-2">Pekerjaan</label>
+                                    <input type="text" class="form-control" value="{{ $u->pekerjaan }}" disabled>
+                                </div>
+                            </div>
+                            <a href="{{ route('new-password',$u->id) }}" class="btn btn-success mt-5">Buat Kata Sandi Baru</a>
+                            <a href="{{ route('user') }}" class="btn btn-danger mt-5">Kembali</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 py-5">
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <label class="labels mt-2">Bank</label>
+                                    <input type="text" class="form-control" value="{{ $u->bank }}" disabled>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels mt-2">Nomor rekening</label>
+                                    <input type="text" class="form-control" value="{{ $u->no_rekening }}" disabled>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels mt-2">Foto Ktp</label>
+                                    @if ($u->foto_ktp == null)
+                                    <div class="image-preview" id="imagePreview">
+                                        <img src="" alt="Image Preview" class="image-preview__image">
+                                            <span class="image-preview__default-text">
+                                            +</span>
+                                    </div>
+                                    @else
+                                        <img id="img_ktp" src="{{ Storage::url($u->foto_ktp) }}" name="foto_ktp" width="250px" height="150px" alt="foto"
+                                        style="display: block; margin-bottom:15px; margin-right:auto">
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        {{-- <div class="section-body">
+            <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -66,6 +124,7 @@
                                     <h5>Detail User</h5>
                                 </div>
                                 <hr>
+                                <div class="col-md-6">
                                 <div class="form-group row">
                                     <label for="name" class="col-3 col-form-label">Nama</label>
                                     <div class="col-9">
@@ -90,6 +149,8 @@
                                     <input id="text" name="pekerjaan" value="{{ $u->pekerjaan }}" class="form-control here" type="text" disabled>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group row">
                                     <label for="text" class="col-3 col-form-label">Bank</label>
                                     <div class="col-9">
@@ -125,6 +186,7 @@
                 </div>
             </div>
         </div>
+        </div> --}}
     </section>
 </div>
 @endsection

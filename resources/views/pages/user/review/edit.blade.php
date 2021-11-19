@@ -36,17 +36,36 @@ Review Kost
                             {{-- @foreach ($user as $rev) --}}
                             <form action="{{ route('review-user-update','review-user') }}" method="POST" enctype="multipart/form-data">
                                 @foreach ($booking as $book)
-                                    <input type="hidden" name="booking_id" value="{{ $booking->id }}">
+                                    <input type="hidden" name="booking_id" value="{{ $book->id }}">
                                 @endforeach
                                 @csrf
-                                {{-- <input type="hidden" name="id" value="{{ auth()->user()->id }}"> --}}
+                                <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                             <div class="form-group">
                                 <label for="name">Nama</label>
                                 <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control" disabled>
                             </div>
                             {{-- @endforeach --}}
+                            @if(count($booking) > 0)
+                            @foreach ($booking as $revv)
+                                <div class="form-group">
+                                    <label for="review" class="required">Review</label>
+                                    <input type="text" name="review" id="review" class="form-control"
+                                    value="{{ $revv->review->review ?? '' }}" autocomplete="off" placeholder="Masukkan Review">
+                                    <small>Contoh: Kost bersih dan nyaman</small>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <button type="submit" class="btn btn-primary px-5 text-white mb-3" style="padding: 8px 16px" >
+                                            Simpan Data
+                                        </button>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @else
+                                <p class="required">Maaf, Silakan lakukan pemesanan kamar terlebih dahulu</p>
 
-                            @if(count($review) > 0)
+                                @endif
+                            {{-- @if(count($review) > 0)
                                 @foreach ($review as $revv)
                                 <div class="form-group">
                                     <label for="review" class="required">Review</label>
@@ -62,14 +81,8 @@ Review Kost
                                     value="" autocomplete="off" placeholder="Masukkan Review" required>
                                     <small>Contoh: Kost bersih dan nyaman</small>
                                 </div>
-                            @endif
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <button type="submit" class="btn btn-primary px-5 text-white mb-3" style="padding: 8px 16px" >
-                                            Simpan Data
-                                        </button>
-                                    </div>
-                                </div>
+                            @endif --}}
+
                             </form>
                         </div>
                     </div>

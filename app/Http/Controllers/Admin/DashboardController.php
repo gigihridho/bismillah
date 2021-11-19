@@ -20,12 +20,11 @@ class DashboardController extends Controller
     {
         $this->middleware('auth');
     }
-
     public function index(){
         $user = User::role('user')->count();
         $tipe_kamar = TipeKamar::all();
-        $kamar_tersedia = Kamar::where('status',"Kosong")->count();
-        $kam = Kamar::count();
+        $kamar_kosong = Kamar::where('status',"Kosong")->count();
+        $kamar = Kamar::count();
         $bookings = Booking::count();
         $total_harga = Booking::where('status',"Sukses")->sum('total_harga');
         $pengeluaran = Pengeluaran::sum('nominal');
@@ -38,12 +37,12 @@ class DashboardController extends Controller
         return view('pages.admin.dashboard',[
             'user' => $user,
             'tipe_kamar' => $tipe_kamar,
-            'kamar_tersedia' => $kamar_tersedia,
+            'kamar_kosong' => $kamar_kosong,
             'bookings' => $bookings,
             'total_harga' => $total_harga,
             'keuntungan' => $keuntungan,
             'pengeluaran' => $pengeluaran,
-            'kam' => $kam,
+            'kamar' => $kamar,
             'label' => $label,
             'jumlah_transactions' => $jumlah_transactions,
         ]);

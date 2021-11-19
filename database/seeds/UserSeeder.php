@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
             'bank' => 'BRI',
             'no_rekening' => '01312313131313',
             'avatar' => "",
+            'status' => 1,
         ]);
 
         $admin->assignRole('admin');
@@ -41,6 +42,7 @@ class UserSeeder extends Seeder
             'bank' => 'BNI',
             'no_rekening' => '0889221212',
             'avatar' => "",
+            'status' => 1,
         ]);
 
         $user->assignRole('user');

@@ -72,13 +72,16 @@
                                     <div class="form-group">
                                         <label class="required">Status</label>
                                         <select name="status" id="tersedia" class="form-control">
-                                            <option value="1"
-                                            @if (old('availabe') == '1')selected="selected" @endif" >
-                                            Tersedia
+                                            <option value="Kosong"
+                                            @if (old('status') == 'Kosong')selected="selected" @endif" >
+                                            Kosong
                                             </option>
-                                            <option value="0"
-                                                @if (old('tersedia') == '0')selected="selected" @endif" >
-                                            Tidak Tersedia
+                                            <option value="Dipesan"
+                                            @if (old('status') == 'Dipesan')selected="selected" @endif" >
+                                            Dipesan
+                                            <option value="Disewa"
+                                            @if (old('status') == 'Disewa')selected="selected" @endif" >
+                                            Disewa
                                         </option>
                                         </select>
                                     </div>

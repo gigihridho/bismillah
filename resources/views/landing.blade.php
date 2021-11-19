@@ -79,6 +79,63 @@
     width: 12px;
     height: 12px;
     background: #6777EF; }
+
+    .client-avater {
+  margin-bottom: 20px;
+}
+
+.testimonail-section .title-text {
+    padding-top: 5rem;
+    margin-bottom: 3rem;
+}
+
+.testimonail-section .text-title {
+    font: 600 2.25rem/2.5rem Poppins, sans-serif;
+    color: #121212;
+    margin-bottom: 0.625rem;
+}
+
+.testimonail-section .text-caption{
+    font: 400 1rem/1.75rem Poppins, sans-serif;
+    letter-spacing: 0.025em;
+    color: #565656;
+}
+.client-meta h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.client-meta span {
+    display: block;
+    font-size: 70%;
+    margin-top: 10px;
+    color: $text-color;
+    font-weight: 600;
+    opacity: 0.5;
+  }
+
+p.testimonial-body {
+  font-size: 17px;
+  font-style: italic;
+  font-family: 'Poppins', sans-serif;
+  width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: $text-color-light;
+  margin-top: 20px;
+}
+
+.last-icon {
+  margin-top: 20px;
+  font-size: 25px;
+  opacity: 0.3;
+  margin-bottom: 3rem;
+}
+
+.client-avater img {
+  max-width: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
 </style>
 {{-- Hero --}}
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box" id="beranda" data-aos="fade-down" data-aos-delay="100">
@@ -237,16 +294,24 @@
 </section>
 
 {{-- Review --}}
-{{-- <section class="h-100 w-100 bg-white" style="box-sizing: border-box id="review" data-aos="fade-up">
-<div class="testimonail-section">
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box id="review" data-aos="fade-up">
+<div class="testimonail-section container-xxl mx-auto p-0  position-relative">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 offset-lg-1 text-center">
+                <div class="text-center title-text">
+                    <h1 class="text-title">Review Kost</h1>
+                    <p class="text-caption">Berikut review dari mereka</p>
+                </div>
                 <div class="testimonial-sliders owl-carousel featured-carousel owl-theme">
                     @foreach ($reviews as $r)
                     <div class="single-testimonial-slider">
                         <div class="client-avater">
-                            <img src="{{ Storage::url($r->booking->user->avatar ?? 'assets/img/avaters/avatar1.png') }}" width="100px" height="100px" style="rounded-circle mt-5" alt="">
+                            @if($r->booking->user->avatar)
+                                <img src="{{ Storage::url($r->booking->user->avatar)}}" width="100px" height="100px" style="rounded-circle mt-5" alt="">
+                            @else
+                                <img src="{{asset('/assets/img/avatar/avatar-4.png')}}" width="100px" height="100px" style="rounded-circle mt-5" alt="">
+                            @endif
                         </div>
                         <div class="client-meta">
                             <h3>{{ $r->booking->user->name }} <span>{{ $r->booking->user->pekerjaan }}</span></h3>
@@ -264,16 +329,16 @@
         </div>
     </div>
 </div>
-</section> --}}
+</section>
 <!-- end testimonail-section -->
-<section class="h-100 w-100 bg-white" style="box-sizing: border-box id="review" data-aos="fade-up">
+{{-- <section class="h-100 w-100 bg-white" style="box-sizing: border-box id="review" data-aos="fade-up">
     <div class="review container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="text-center title-text">
             <h1 class="text-title">Review Kost</h1>
             <p class="text-caption">Berikut review dari mereka</p>
         </div>
         <div class="container" style="margin-top: 4rem">
-            {{-- <div class="row"> --}}
+            <div class="row">
                 <div class="owl-carousel featured-carousel owl-theme">
                     @foreach ($reviews as $r)
                     <div class="item">
@@ -288,10 +353,10 @@
                     </div>
                     @endforeach
                 </div>
-            {{-- </div> --}}
+            </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 {{-- Room --}}
 <section class="h-100 w-100" style="box-sizing: border-box" id="kamar" data-aos="fade-up">

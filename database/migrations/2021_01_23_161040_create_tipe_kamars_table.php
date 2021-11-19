@@ -16,7 +16,6 @@ class CreateTipeKamarsTable extends Migration
         Schema::create('tipe_kamars', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama',50)->unique();
-            $table->string('foto');
             $table->integer('lantai');
             $table->string('harga');
             $table->string('ukuran');

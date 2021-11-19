@@ -59,10 +59,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="required">Foto</label>
-                                        <input type="file" name="foto" multiple="true" class="form-control">
+                                        <label class="required">Thumbnail Kamar</label>
+                                        <input type="file" name="foto" class="form-control">
                                         <small>
-                                            Kamu dapat memilih lebih dari satu file
+                                            Format: jpg, png, jpeg
                                         </small>
                                     </div>
                                 </div>

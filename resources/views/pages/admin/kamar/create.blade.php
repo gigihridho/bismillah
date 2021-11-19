@@ -58,12 +58,8 @@
                                     <label class="required">Status</label>
                                     <select name="status" id="status" class="form-control">
                                         <option value="1"
-                                            @if (old('status') == '1')selected="selected" @endif" >
+                                            @if (old('status') == 'Kosong')selected="selected" @endif" >
                                             Kosong
-                                        </option>
-                                        <option value="0"
-                                            @if (old('status') == '0')selected="selected" @endif" >
-                                            Dipesan
                                         </option>
                                     </select>
                                 </div>

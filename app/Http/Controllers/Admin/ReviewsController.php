@@ -14,7 +14,7 @@ class ReviewsController extends Controller
     }
 
     public function index(){
-        $reviews = Review::with('user')->get();
+        $reviews = Review::with('booking')->get();
         return view('pages.admin.reviews.index',[
             'reviews' => $reviews
         ]);

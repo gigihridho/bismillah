@@ -79,7 +79,7 @@ class UserController extends Controller
         $user->sendEmailVerificationNotification();
 
         Alert::success('SUCCESS','User Berhasil Ditambah');
-        return redirect()->route('user.index');
+        return redirect()->route('user');
     }
     public function show($id){
         $user = User::where('id',$id)->get();
@@ -118,7 +118,7 @@ class UserController extends Controller
         ]);
 
         Alert::success('SUCCESS','Kata Sandi Berhasil Diubah');
-        return redirect()->route('user.index');
+        return redirect()->route('user');
     }
 
     public function destroy($id){

@@ -17,10 +17,10 @@
 
     </style>
     <ul class="nav nav-tabs">
-        <li class="nav-item {{ (request()->is('admin/user')) ? 'active' : '' }}"  style="width: 200px;">
+        <li class="nav-item {{ (request()->is('admin/user')) ? 'active' : '' }}"  style="width: 330px;">
             <a class="nav-link" href="{{ route('user') }}" style="text-align:center;">Semua User</a>
         </li>
-        <li class="nav-item {{ (request()->is('admin/user/aktif')) ? 'active' : '' }}"  style="width: 330px;">
+        <li class="nav-item {{ (request()->is('admin/user/aktif')) ? 'active' : '' }}"  style="width: 329px;">
             <a class="nav-link" href="{{ route('user-aktif') }}" style="text-align:center;">Akif</a>
         </li>
         <li class="nav-item {{ (request()->is('admin/user/nonAktif')) ? 'active' : '' }}"  style="width: 330px;">

@@ -38,7 +38,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($galeri as $index => $tipe)
+                            @foreach ($tipe_kamars as $index => $tipe)
                                 <tr style="text-align:center">
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $tipe->nama }}</td>

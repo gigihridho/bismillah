@@ -88,7 +88,7 @@
                                         <div class="form-check mb-3">
                                             <label class="checkbox">
                                                 <input name="fas[{{ $fas->id }}]" class="form-check-input" type="checkbox" value="{{ $fas->nama }}"
-                                                @if ($d->fasilitas->contains($fas->id)) checked @endif>{{ $fas->nama }}
+                                                @if ($data->fasilitas->contains($fas->id)) checked @endif>{{ $fas->nama }}
                                             </label>
                                         </div>
                                     @empty

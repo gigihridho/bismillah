@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <a style="text-decoration: none;" href="{{ route('user-aktif') }}">
+                    <a style="text-decoration: none;" href="{{ route('user') }}">
                         <div class="card-icon bg-primary" style="width: 70px">
                             <i class="fas fa-users"></i>
                         </div>
@@ -39,9 +39,9 @@
                                 <h4>Kamar Kosong</h4>
                             </div>
                             <div class="card-body">
-                                {{ $kamar_tersedia }}
+                                {{ $kamar_kosong }}
                             </div>
-                            <p style="color:black;">Dari total {{ $kam }} kamar</p>
+                            <p style="color:black;">Dari total {{ $kamar }} kamar</p>
                         </div>
                     </a>
                 </div>

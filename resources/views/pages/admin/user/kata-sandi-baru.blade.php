@@ -57,7 +57,7 @@
                                         <button type="submit" class="btn btn-primary px-5 simpan" style="padding: 8px 16px">
                                             Simpan Data
                                         </button>
-                                        <a href="{{ route('user.index') }}" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
+                                        <a href="{{ route('user') }}" class="btn btn-danger px-5" style="padding: 8px 16px; margin-left:10px;">
                                             Batal
                                         </a>
                                     </div>

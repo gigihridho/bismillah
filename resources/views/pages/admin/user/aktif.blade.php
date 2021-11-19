@@ -58,7 +58,7 @@
                                             @csrf
                                             @method('PUT')
                                             <button value="0" type="submit" title="Nonaktifkan" data-toggle="tooltip" data-placement="top" class="btn btn-warning btn-sm" onclick="return confirm('Anda ingin menonaktifkan user ini ?')">
-                                                <i class="far fa-times-circle"></i>
+                                                <i class="fas fa-minus"></i>
                                             </button>
                                             <input style="display:none" value="0" id="status"
                                             name="status"></input>
