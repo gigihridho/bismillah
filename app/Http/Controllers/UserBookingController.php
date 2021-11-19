@@ -132,7 +132,7 @@ class UserBookingController extends Controller
         $pemesanans = Booking::findOrFail($id);
         $kamar = Kamar::find($pemesanans->kamar_id);
         $pemesanans->status = "Dibatalkan";
-        $kamar->status = "Dipesan";
+        $kamar->status = "Kosong";
         $kamar->save();
         $pemesanans->save();
         if($pemesanans->bukti_pembayaran == null){
@@ -141,7 +141,7 @@ class UserBookingController extends Controller
             Mail::to($pemesanans->user->email)->send(new PaymentCancelledMail());
         }
         Alert::success('SUCCESS','Pesanan telah berhasil dibatalkan');
-        return redirect()->route('dibatalkan');
+        return redirect()->route('user-transaksi');
 
         return redirect()->back();
     }
